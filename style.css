@@ -5,7 +5,8 @@
 }
 
 body {
-     font-family: 'segoe ui';
+     /* font-family: 'segoe ui'; */
+     font-family: 'Open Sans', sans-serif;
 }
 
 .nav {
@@ -25,12 +26,12 @@ body {
 }
 
 .name {
-     height: 50px;
+     height: 45px;
 }
 
 .name:hover {
      animation: zoom 3s infinite;
-     cursor: pointer;
+     cursor: pointer;    
 }
 
 @keyframes zoom {
