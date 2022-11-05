@@ -117,8 +117,6 @@ h2 {
      display: none;
 }
 
-
-
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  MAIN   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Intro */
 
@@ -546,8 +544,6 @@ h2 {
      border-top: 3px solid black;
 }
 
-/* cONTACT */
-
 /* Contact Us */
 
 .contact {
@@ -574,7 +570,6 @@ h2 {
      margin: 10px;
      color: #000;
      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
 }
 
 .iconbtn:hover {
@@ -601,13 +596,7 @@ footer p {
      text-shadow: 1px 1px 25px #000000;
 }
 
-
-
-
-
-
-
-/* SOcial Media Icon */
+/* Social Media Icon */
 
 .socialicon {
      display: flex;
@@ -675,25 +664,6 @@ footer p {
      background-color: black;
      transition: 0.3s ease-in;
 }
-
-
-/* Temp */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ~~~~~~~~~~~~~~~~~     Media Query    ~~~~~~~~~~~~~~~~~ */
 
@@ -810,7 +780,7 @@ footer p {
           width: 25%;
      }
 
-     /* FOr FA-faa icon */
+     /* For Font Awesome icon */
      .hide {
           display: inline;
           color: #2553df;
