@@ -122,13 +122,37 @@ h2 {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  MAIN   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Intro */
 
-.intro {
+.introduction {
      height: 100vh;
      width: 100%;
      display: flex;
      justify-content: center;
      align-items: center;
+     flex-direction: row-reverse;
+}
+
+.leftintro {
+     width: 50%;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
      flex-direction: column;
+
+}
+
+.rightintro {
+     width: 50%;
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+}
+
+.rightintro img {
+     width: 70%;
+     object-fit: cover;
 }
 
 .btn {
@@ -175,6 +199,7 @@ h2 {
      justify-content: center;
      align-items: center;
      flex-direction: column;
+     margin-bottom: 20px;
 }
 
 .edu {
@@ -579,11 +604,118 @@ footer p {
 
 
 
+
+
+
+/* SOcial Media Icon */
+
+.socialicon {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: row;
+     color: #fff;
+     margin-top: 20px;
+     margin-bottom: 20px;
+}
+
+.socialicon a {
+     text-decoration: none;
+     color: #fff;
+     font-size: 20px;
+     margin: 6px;
+}
+
+.socialicon i {
+     width: 40px;
+     height: 40px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     font-size: 24px;
+     border-radius: 50%;
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.463);
+     color: #fff;
+}
+
+.linkedin {
+     background-color: #0e76a8;
+     color: #fff;
+}
+
+.github {
+     background-color: #333;
+}
+
+.google {
+     background-color: #ea4335;
+}
+
+.twitter {
+     background-color: #1da1f2;
+}
+
+.instagram {
+     background-color: #E4405F;
+}
+
+.facebook {
+     background-color: #3b5998;
+}
+
+/*Hover Transition*/
+.twitter :hover,
+.google :hover,
+.gitlab :hover,
+.github :hover,
+.linkedin :hover,
+.facebook :hover,
+.instagram :hover {
+     background-color: black;
+     transition: 0.3s ease-in;
+}
+
+
+/* Temp */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ~~~~~~~~~~~~~~~~~     Media Query    ~~~~~~~~~~~~~~~~~ */
 
 @media (max-width:700px) {
      .stack {
           width: 20%;
+     }
+
+     .introduction {
+          height: 100vh;
+          flex-direction: column-reverse;
+     }
+
+     .leftintro {
+
+          width: 100%;
+          height: 100%;
+     }
+
+     .rightintro {
+          height: 100%;
+          width: 100%;
      }
 }
 
@@ -640,8 +772,20 @@ footer p {
      }
 
      /* Intro */
-     .intro {
-          height: 500px;
+     .introduction {
+          height: 100vh;
+          flex-direction: column-reverse;
+     }
+
+     .leftintro {
+
+          width: 100%;
+          height: 100%;
+     }
+
+     .rightintro {
+          height: 100%;
+          width: 100%;
      }
 
      /* Education */
