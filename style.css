@@ -672,7 +672,7 @@ footer p {
 
      .nav>#nav-check:checked~.nav-links {
           background-color: rgb(255, 255, 255);
-          height: calc(100vh - 40px);
+          height: calc(500px - 40px);
           overflow-y: auto;
      }
 
