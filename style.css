@@ -31,7 +31,7 @@ body {
 
 .name:hover {
      animation: zoom 3s infinite;
-     cursor: pointer;    
+     cursor: pointer;
 }
 
 @keyframes zoom {
@@ -324,6 +324,7 @@ h2 {
 
 .certificate-item img:hover {
      box-shadow: 0 8px 6px -6px rgb(0, 153, 255);
+     cursor: pointer;
 }
 
 .certificate-info {
