@@ -9,6 +9,8 @@ import {
 	FaSass,
 	FaLinux,
 	FaNpm,
+	FaAndroid,
+	FaJava,
 } from 'react-icons/fa';
 const skillList = [
 	{
@@ -47,6 +49,14 @@ const skillList = [
 	{
 		icon: <FaNpm className=" text-6xl mb-1" />,
 		title: 'NPM',
+	},
+	{
+		icon: <FaAndroid className=" text-6xl mb-1" />,
+		title: 'Android',
+	},
+	{
+		icon: <FaJava className=" text-6xl mb-1" />,
+		title: 'Java',
 	},
 ];
 

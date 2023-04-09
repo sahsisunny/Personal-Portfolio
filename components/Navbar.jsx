@@ -51,13 +51,13 @@ const Navbar = () => {
 								Home
 							</li>
 						</Link>
-						<Link href="#about">
+						<Link href="#experience">
 							<li
 								onClick={() => setShow(false)}
-								key="about"
+								key="experience"
 								className="ml-10 text-sm uppercase hover:border-b"
 							>
-								About
+								Experience
 							</li>
 						</Link>
 						<Link href="#skills">
@@ -76,6 +76,15 @@ const Navbar = () => {
 								className="ml-10 text-sm uppercase hover:border-b"
 							>
 								Projects
+							</li>
+						</Link>
+						<Link href="#education">
+							<li
+								onClick={() => setShow(false)}
+								key="education"
+								className="ml-10 text-sm uppercase hover:border-b"
+							>
+								education
 							</li>
 						</Link>
 						<Link href="#contact">
@@ -139,13 +148,13 @@ const Navbar = () => {
 									Home
 								</li>
 							</Link>
-							<Link href="#about">
+							<Link href="#experience">
 								<li
 									onClick={() => setShow(false)}
-									key="about"
+									key="experience"
 									className="py-4 text-sm"
 								>
-									About
+									Experience
 								</li>
 							</Link>
 							<Link href="#skills">
@@ -164,6 +173,15 @@ const Navbar = () => {
 									className="py-4 text-sm"
 								>
 									Projects
+								</li>
+							</Link>
+							<Link href="#education">
+								<li
+									onClick={() => setShow(false)}
+									key="education"
+									className="py-4 text-sm"
+								>
+									Education
 								</li>
 							</Link>
 							<Link href="#contact">
