@@ -6,7 +6,7 @@ const Experience = () => {
                <div className="max-w-[1240px] w-full h-full mx-auto p-2 flex justify-center items-center">
                     <div>
                          <p className="uppercase text-sm tracking-widest text-gray-600">EXPERIENCE</p>
-                         <h1 className="py-4 text-gray-700">My Work Experience</h1>
+                         <h1 className="text-3xl font-bold text-gray-700 mb-8 w-full text-center">My Work Experience</h1>
 
                          <div className="flex justify-center">
                               <div className="max-w-lg w-full mb-10">
