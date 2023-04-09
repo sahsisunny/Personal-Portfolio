@@ -1,6 +1,6 @@
 import Main from '@/components/Main';
 import About from '@/components/About';
-import ContactUs from '@/components/ContactUs';
+import ContactUs from '@/components/Contactus';
 import Skill from '@/components/Skills';
 import Navbar from '@/components/Navbar';
 import Head from 'next/head';
