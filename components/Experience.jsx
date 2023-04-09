@@ -29,7 +29,7 @@ const Experience = () => {
                                              Add the filter feature to filter the users based on their status.
                                         </li>
                                         <li className="mb-2">
-                                             Create the feature to show the user's pull requests on the profile page.
+                                             Create the feature to show the uses pull requests on the profile page.
                                         </li>
 
                                    </ul>
