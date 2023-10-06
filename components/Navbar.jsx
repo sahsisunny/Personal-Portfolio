@@ -33,13 +33,21 @@ const Navbar = () => {
 					: 'fixed w-full h-20 z-[100]'
 			}
 		>
-			<div className="flex justify-between items-center w-full h-full px-2 2xl:px-16">
-				<Image
-					src="/assets/logo/logo.ico"
-					alt="logo"
-					width={50}
-					height={50}
-				/>
+			<div className="flex justify-between items-center w-full h-full px-2 2xl:px-16 bg-[#ecf0f3]">
+				<div className="flex items-center">
+					<Image
+						src="/assets/logo/logo.png"
+						alt="logo"
+						width={50}
+						height={50}
+					/>
+					<p
+						className="md:block text-xl ml-2"
+						style={{ fontFamily: 'Poppins' }}
+					>
+						Sunny Sahsi
+					</p>
+				</div>
 				<div>
 					<ul className="hidden md:flex">
 						<Link href="#home">
@@ -118,12 +126,20 @@ const Navbar = () => {
 				>
 					<div>
 						<div className="flex w-full items-center justify-between">
-							<Image
-								src="/assets/logo/logo.ico"
-								alt="logo"
-								width={50}
-								height={50}
-							/>
+							<div className="flex items-center">
+								<Image
+									src="/assets/logo/logo.png"
+									alt="logo"
+									width={50}
+									height={50}
+								/>
+								<p
+									className=" text-xl ml-2"
+									style={{ fontFamily: 'Poppins' }}
+								>
+									Sunny Sahsi
+								</p>
+							</div>
 							<div
 								className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer"
 								onClick={navHandler}

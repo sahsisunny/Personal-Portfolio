@@ -13,20 +13,36 @@ const Education = () => {
 					</h1>
 					<div className=" m-auto">
 						<div className="flex items-center mb-4">
-							<p className=" text-right text-gray-600 pr-4 text-2xl font-bold">Degree:</p>
-							<p className="text-left text-gray-700 text-2xl">Bachelor of Computer Applications (BCA)</p>
+							<p className=" text-right text-gray-600 pr-4 text-2xl font-bold">
+								Degree:
+							</p>
+							<p className="text-left text-gray-700 text-2xl">
+								Bachelor of Computer Applications (BCA)
+							</p>
 						</div>
 						<div className="flex items-center mb-4">
-							<p className="text-right text-gray-600 pr-4 text-2xl font-bold">University:</p>
-							<p className="text-left text-gray-700 text-2xl">Patna University, Patna Bihar</p>
+							<p className="text-right text-gray-600 pr-4 text-2xl font-bold">
+								University:
+							</p>
+							<p className="text-left text-gray-700 text-2xl">
+								Patna University, Patna Bihar
+							</p>
 						</div>
 						<div className="flex items-center mb-4">
-							<p className="text-right text-gray-600 pr-4 text-2xl font-bold">Duration:</p>
-							<p className="text-left text-gray-700 text-2xl">2019 - 2022</p>
+							<p className="text-right text-gray-600 pr-4 text-2xl font-bold">
+								Duration:
+							</p>
+							<p className="text-left text-gray-700 text-2xl">
+								2019 - 2022
+							</p>
 						</div>
 						<div className="flex items-center">
-							<p className="text-right text-gray-600 pr-4 text-2xl font-bold">Grade:</p>
-							<p className="text-left text-gray-700 text-2xl">8.36/10 (CGPA)</p>
+							<p className="text-right text-gray-600 pr-4 text-2xl font-bold">
+								Grade:
+							</p>
+							<p className="text-left text-gray-700 text-2xl">
+								8.36/10 (CGPA)
+							</p>
 						</div>
 					</div>
 				</div>

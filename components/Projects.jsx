@@ -150,5 +150,4 @@ const Projects = () => {
 
 export default Projects;
 
-
 // About ME - I am Sunny Sahsi from India. I am currently contributing to open source projects in Real Dev Squad and learning new technologies.
