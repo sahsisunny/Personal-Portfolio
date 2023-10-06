@@ -5,6 +5,8 @@ import { AiOutlineMenu, AiOutlineClose, AiOutlineMail } from 'react-icons/ai';
 import { FaLinkedinIn, FaGithub, FaTwitter } from 'react-icons/fa';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
 
+import LogoImage from '../public/assets/logo/logo.png';
+
 const Navbar = () => {
 	const [show, setShow] = useState(false);
 	const [shadow, setShadow] = useState(false);
@@ -35,12 +37,7 @@ const Navbar = () => {
 		>
 			<div className="flex justify-between items-center w-full h-full px-2 2xl:px-16 bg-[#ecf0f3]">
 				<div className="flex items-center">
-					<Image
-						src="/assets/logo/logo.png"
-						alt="logo"
-						width={50}
-						height={50}
-					/>
+					<Image src={LogoImage} alt="logo" width={50} height={50} />
 					<p
 						className="md:block text-xl ml-2"
 						style={{ fontFamily: 'Poppins' }}
@@ -128,7 +125,7 @@ const Navbar = () => {
 						<div className="flex w-full items-center justify-between">
 							<div className="flex items-center">
 								<Image
-									src="/assets/logo/logo.png"
+									src={LogoImage}
 									alt="logo"
 									width={50}
 									height={50}
