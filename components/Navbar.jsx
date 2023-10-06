@@ -5,7 +5,7 @@ import { AiOutlineMenu, AiOutlineClose, AiOutlineMail } from 'react-icons/ai';
 import { FaLinkedinIn, FaGithub, FaTwitter } from 'react-icons/fa';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
 
-import LogoImage from '../public/assets/logo/logo.png';
+import LogoImage from './public/assets/logo/logo.png';
 
 const Navbar = () => {
 	const [show, setShow] = useState(false);
