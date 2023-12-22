@@ -44,19 +44,18 @@ const Navbar = () => {
                </p>
             </div>
             <div>
-               <ul className="hidden md:flex">
+               <div className="hidden md:flex">
                   {menuItems.map((item) => (
-                     <Link href={item.href}>
-                        <li
-                           onClick={() => setShow(false)}
-                           key={item.label}
-                           className="ml-10 text-sm uppercase hover:border-b"
-                        >
-                           {item.label}
-                        </li>
+                     <Link
+                        href={item.href}
+                        key={item.label}
+                        onClick={navHandler}
+                        className="ml-10 text-sm uppercase hover:border-b"
+                     >
+                        {item.label}
                      </Link>
                   ))}
-               </ul>
+               </div>
                <div className="md:hidden" onClick={navHandler}>
                   <AiOutlineMenu size={25} />
                </div>
@@ -101,19 +100,18 @@ const Navbar = () => {
                   </div>
                </div>
                <div className="py-4 flex flex-col">
-                  <ul className="uppercase">
+                  <div className="uppercase tracking-widest text-textColor flex flex-col">
                      {menuItems.map((item) => (
-                        <Link href={item.href}>
-                           <li
-                              onClick={() => setShow(false)}
-                              key={item.label}
-                              className="py-4 text-sm"
-                           >
-                              {item.label}
-                           </li>
+                        <Link
+                           href={item.href}
+                           onClick={navHandler}
+                           key={item.label}
+                           className="py-4 text-sm"
+                        >
+                           {item.label}
                         </Link>
                      ))}
-                  </ul>
+                  </div>
                   <div className="pt-10 ">
                      <p className="uppercase tracking-widest text-textColor">
                         Lets Connect
