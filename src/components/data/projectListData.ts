@@ -1,4 +1,4 @@
-// import portFolio from './../../../public/assets/projects/portfolio.png'
+import portfolio from './../../../public/assets/projects/portfolio.png'
 import xprobba from './../../../public/assets/projects/xprobba.png'
 import websitescrapper from './../../../public/assets/projects/websitescrapper.png'
 import emojiSearchEngine from './../../../public/assets/projects/emojisearch.png'
@@ -13,7 +13,7 @@ export const projectList = [
        details:
           'This is my personal portfolio website. It is built using Next.js and Tailwind CSS. It is hosted on Netlify. It is a static website and is very fast. It is also responsive and looks good on all devices.',
        techStack: ['NextJS, Tailwind'],
-       image: websitescrapper,
+       image: portfolio,
        liveLink: 'https://sahsisunny.netlify.app/',
        repoLink: 'https://github.com/sahsisunny/Personal-Portfolio',
     },
