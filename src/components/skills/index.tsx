@@ -1,5 +1,5 @@
 import React from 'react'
-import { skillList } from '../data/skillList'
+import { skillList } from '@/components/data/SkillListData'
 
 const Skill = () => {
    return (

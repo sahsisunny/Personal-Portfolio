@@ -1,9 +1,9 @@
 import portFolio from './../../../public/assets/projects/portfolio.png'
 import xprobba from './../../../public/assets/projects/xprobba.png'
 import websitescrapper from './../../../public/assets/projects/websitescrapper.png'
-import emojiSearchEngine from './../../../public/assets/projects/EmojiSearchEngine.png'
-import knowYourEmoji from './../../../public/assets/projects/knoyouremoji.png'
-import gitrackr from './../../../public/assets/projects/gitrackr.png'
+import emojiSearchEngine from './../../../public/assets/projects/emojisearch.png'
+import knowYourEmoji from './../../../public/assets/projects/knowyouremoji.png'
+import gitrackr from './../../../public/assets/projects/gittrackr.png'
 
 export const projectList = [
     {

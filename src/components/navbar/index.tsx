@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react'
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
 
 import LogoImage from './../../../public/assets/logos/logo.png'
-import { socialLinks } from '../data/socialLinks'
-import { menuItems } from '../data/menuItems'
+import { socialLinks } from '../data/socialLinksData'
+import { menuItems } from '../data/menuItemsData'
 
 const Navbar = () => {
    const [show, setShow] = useState(false)

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { socialLinks } from '../data/socialLinks'
+import { socialLinks } from '@/components/data/socialLinksData'
 
 function Contact() {
    return (

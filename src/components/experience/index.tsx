@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { experienceData } from './../data/experience'
+import { experienceData } from '@/components/data/experienceData'
 
 const Experience = () => {
    return (

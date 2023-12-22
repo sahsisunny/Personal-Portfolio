@@ -1,7 +1,7 @@
 import React from 'react'
 import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
-import { projectList } from './../data/projectData'
+import { projectList } from '@/components/data/projectListData'
 import { FaGithub } from 'react-icons/fa'
 import { FaExternalLinkAlt } from 'react-icons/fa'
 

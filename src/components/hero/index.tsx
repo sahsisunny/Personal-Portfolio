@@ -1,5 +1,5 @@
 import React from 'react'
-import { socialLinks } from '../data/socialLinks'
+import { socialLinks } from '@/components/data/socialLinksData'
 import Link from 'next/link'
 
 const Hero = () => {

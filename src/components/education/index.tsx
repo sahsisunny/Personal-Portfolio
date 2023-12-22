@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { StaticImageData } from 'next/image'
-import { educationList } from './../data/education'
+import { educationList } from '@/components/data/educationData'
 
 interface EducationComponentProps {
    logo: StaticImageData
