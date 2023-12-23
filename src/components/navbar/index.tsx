@@ -28,6 +28,38 @@ const Navbar = () => {
       }
    }, [])
 
+   const menuItemListDesktop = menuItems.map((item, index) => (
+      <li key={index}>
+         <Link
+            href={item.href}
+            onClick={navHandler}
+            className="ml-10 text-sm uppercase hover:border-b"
+         >
+            {item.label}
+         </Link>
+      </li>
+   ))
+
+   const menuItemListMobile = menuItems.map((item, index) => (
+      <li key={index}>
+         <Link href={item.href} onClick={navHandler} className="py-4 text-sm">
+            {item.label}
+         </Link>
+      </li>
+   ))
+
+   const socialLinkList = socialLinks.map((item, index) => (
+      <li key={index}>
+         <Link
+            className="rounded-full shadow-lg shadow-gray-400 p-3  cursor-pointer hover:scale-105 ease-in duration-300"
+            href={item.href}
+            target="_blank"
+         >
+            <item.icon size={25} />
+         </Link>
+      </li>
+   ))
+
    return (
       <nav
          className={`w-full nav sticky top-0 z-50 
@@ -44,18 +76,7 @@ const Navbar = () => {
                </p>
             </div>
             <div>
-               <div className="hidden md:flex">
-                  {menuItems.map((item) => (
-                     <Link
-                        href={item.href}
-                        key={item.label}
-                        onClick={navHandler}
-                        className="ml-10 text-sm uppercase hover:border-b"
-                     >
-                        {item.label}
-                     </Link>
-                  ))}
-               </div>
+               <ul className="hidden md:flex">{menuItemListDesktop}</ul>
                <div className="md:hidden" onClick={navHandler}>
                   <AiOutlineMenu size={25} />
                </div>
@@ -101,32 +122,15 @@ const Navbar = () => {
                </div>
                <div className="py-4 flex flex-col">
                   <div className="uppercase tracking-widest text-textColor flex flex-col">
-                     {menuItems.map((item) => (
-                        <Link
-                           href={item.href}
-                           onClick={navHandler}
-                           key={item.label}
-                           className="py-4 text-sm"
-                        >
-                           {item.label}
-                        </Link>
-                     ))}
+                     {menuItemListMobile}
                   </div>
                   <div className="pt-10 ">
                      <p className="uppercase tracking-widest text-textColor">
                         Lets Connect
                      </p>
-                     <div className="flex items-center justify-between my-4 w-full sm:w-[80%]">
-                        {socialLinks.map((item) => (
-                           <Link
-                              className="rounded-full shadow-lg shadow-gray-400 p-3  cursor-pointer hover:scale-105 ease-in duration-300"
-                              href={item.href}
-                              target="_blank"
-                           >
-                              <item.icon size={25} />
-                           </Link>
-                        ))}
-                     </div>
+                     <ul className="flex items-center justify-between my-4 w-full sm:w-[80%]">
+                        {socialLinkList}
+                     </ul>
                   </div>
                </div>
             </div>

@@ -26,10 +26,11 @@ const Hero = () => {
                   problems.
                </p>
                <div className="items-center justify-between max-w-[430px] m-auto py-4 hidden sm:flex">
-                  {socialLinks.map((link) => (
+                  {socialLinks.map((link, index) => (
                      <Link
                         className="icon rounded-full shadow-lg shadow-gray-400 p-6  cursor-pointer hover:scale-110 ease-in duration-300"
                         href={link.href}
+                        key={index}
                      >
                         <link.icon size={25} />
                      </Link>
