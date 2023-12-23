@@ -49,15 +49,14 @@ const Navbar = () => {
    ))
 
    const socialLinkList = socialLinks.map((item, index) => (
-      <li key={index}>
-         <Link
-            className="rounded-full shadow-lg shadow-gray-400 p-3  cursor-pointer hover:scale-105 ease-in duration-300"
-            href={item.href}
-            target="_blank"
-         >
-            <item.icon size={25} />
-         </Link>
-      </li>
+      <Link
+         className="rounded-full shadow-lg shadow-gray-400 p-3  cursor-pointer hover:scale-105 ease-in duration-300"
+         href={item.href}
+         target="_blank"
+         key={index}
+      >
+         <item.icon size={25} />
+      </Link>
    ))
 
    return (
@@ -121,16 +120,16 @@ const Navbar = () => {
                   </div>
                </div>
                <div className="py-4 flex flex-col">
-                  <div className="uppercase tracking-widest text-textColor flex flex-col">
+                  <ul className="uppercase tracking-widest text-textColor flex flex-col gap-6">
                      {menuItemListMobile}
-                  </div>
+                  </ul>
                   <div className="pt-10 ">
                      <p className="uppercase tracking-widest text-textColor">
                         Lets Connect
                      </p>
-                     <ul className="flex items-center justify-between my-4 w-full sm:w-[80%]">
+                     <div className="flex items-center justify-around my-4 w-full sm:w-[80%]">
                         {socialLinkList}
-                     </ul>
+                     </div>
                   </div>
                </div>
             </div>
