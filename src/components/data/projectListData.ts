@@ -1,5 +1,5 @@
 import xprobba from './../../../public/assets/projects/xprobba.png'
-import portfolio from './../../../public/assets/projects/portfolio.png'
+import portfolio from './../../../public/assets/projects/portfolioImage.png'
 import websitescrapper from './../../../public/assets/projects/websitescrapper.png'
 import emojiSearchEngine from './../../../public/assets/projects/emojisearch.png'
 import knowYourEmoji from './../../../public/assets/projects/knowyouremoji.png'
