@@ -18,7 +18,7 @@ function Contact() {
    ))
    return (
       <div
-         id="projects"
+         id="contact"
          className="w-full text-center  h-auto text-textColor mt-10"
       >
          <div className="max-w-[1240px]  w-full h-full mx-auto p-2 flex justify-center items-center flex-col">

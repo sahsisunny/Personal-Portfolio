@@ -10,10 +10,12 @@ export default function OpenSource() {
             Open Source Contributions
          </h1>
          <div className="flex flex-row items-center justify-center w-full h-full space-x-4">
-            <div className="w-10 h-6 border-2 bg-green-400"></div>{' '}
+            <div className="w-10 h-6 border-2 bg-green-500"></div>{' '}
             <span className="text-textColor font-semibold">Merged </span>
-            <div className="w-10 h-6 border-2 bg-red-400"></div>{' '}
+            <div className="w-10 h-6 border-2 bg-blue-500"></div>{' '}
             <span className="text-textColor font-semibold">Open</span>
+            <div className="w-10 h-6 border-2 bg-red-500"></div>{' '}
+            <span className="text-textColor font-semibold">Closed</span>
          </div>
          <PrList perPage={perPage} />{' '}
       </PageLayout>
