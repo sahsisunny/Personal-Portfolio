@@ -1,6 +1,6 @@
 import React from 'react'
 import Footer from '@/components/footer'
-import Header from '@/components/header'
+import PortfolioHead from '@/components/header'
 import Navbar from '@/components/navbar'
 
 interface LayoutProps {
@@ -9,7 +9,7 @@ interface LayoutProps {
 export default function PageLayout({ children }: LayoutProps) {
    return (
       <main>
-         <Header />
+         <PortfolioHead />
          <Navbar />
          {children}
          <Footer />
