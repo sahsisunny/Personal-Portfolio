@@ -5,8 +5,20 @@ import emojiSearchEngine from './../../../public/assets/projects/emojisearch.png
 import knowYourEmoji from './../../../public/assets/projects/knowyouremoji.png'
 import gitrackr from './../../../public/assets/projects/gittrackr.png'
 import sweetcart from './../../../public/assets/projects/sweetcart.png'
+import linktree from './../../../public/assets/projects/linktree.jpeg'
 
 export const projectList = [
+   {
+      title: 'Linktree🌳[WIP]',
+      description: 'Linktree clone(not exact)',
+      details:
+         'This is a Linktree clone. It is built using Next.JS, Tailwind CSS, MongoDB and TypeScript. It is hosted on Netlify. It is also responsive and looks good on all devices.',
+      techStack: ['NextJS, Tailwind, MongoDB, TypeScript'],
+      image: linktree,
+      liveLink: 'https://litree.netlify.app/',
+      repoLink: 'https://github.com/sahsisunny/linktree',
+      imageScroll: true,
+   },
    {
       title: 'Gitrackr📊',
       description: 'Track assinged and PRs from orgs',
@@ -18,6 +30,7 @@ export const projectList = [
       repoLink: 'https://github.com/sahsisunny/git-dashboard/',
       imageScroll: true,
    },
+
     {
        title: 'Personal Portfolio👨‍💻',
        description: 'Showcase your education, experience, projects and skills',

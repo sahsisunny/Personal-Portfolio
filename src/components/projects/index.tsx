@@ -62,12 +62,14 @@ const ProjectComponent = ({
             <div className=" flex justify-center gap-2 mt-2">
                <Link
                   href={repoLink}
+                  target="_blank"
                   className=" bg-primary rounded-xl p-2 px-4 flex items-center text-black hover:bg-gray-200"
                >
                   <FaGithub className="mr-2" /> Repo
                </Link>
                <Link
                   href={liveLink}
+                  target="_blank"
                   className=" bg-primary rounded-xl p-2 px-4 flex items-center text-black hover:bg-gray-200"
                >
                   <FaExternalLinkAlt className="mr-2" /> Live
