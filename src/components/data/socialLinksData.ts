@@ -28,7 +28,7 @@ export const socialLinks = [
    },
    {
       label: 'Resume',
-      href: 'https://drive.google.com/file/d/1ZQxVt4ohbz5utsfU1Xa2ADEccDVMMXNq/view?usp=sharing',
+      href: 'https://drive.google.com/file/d/1PwY4WZ56RLXUaiuHxPnMBxMLFk1R6Oix/view',
       icon: BsFillPersonLinesFill,
       color: 'hover:bg-[#24292e]',
    },
