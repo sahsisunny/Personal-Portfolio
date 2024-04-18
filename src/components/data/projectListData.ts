@@ -51,7 +51,7 @@ export const projectList = [
          'This is an e-commerce website. It is built using React.js and CSS. In this project, I have used the Commerce.js API to fetch the products. It is hosted on Netlify. It is also responsive and looks good on all devices.',
       techStack: ['NextJS', 'Tailwind', 'Framer Motion'],
       image: sweetcart,
-      liveLink: 'https://sweetcart.netlify.app/',
+      liveLink: 'https://sweetcarts.netlify.app/',
       repoLink: 'https://github.com/sahsisunny/sweetcart',
       imageScroll: true,
    },
