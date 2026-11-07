@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import type { Skills } from "@/lib/schema";
-import { Cpu, Search, Sparkles } from "lucide-react";
+import { Cpu, Search } from "lucide-react";
 import { SkillIcon } from "./skill-icons";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 
@@ -144,28 +144,6 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
             No technologies found matching &ldquo;{searchQuery}&rdquo;.
           </div>
         )}
-
-        {/* Currently Learning Row */}
-        <div className="mt-8 rounded-xl border border-border bg-surface p-5 sm:p-6 shadow-xs">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-accent" />
-              <h3 className="font-bold text-sm uppercase font-mono tracking-wider text-text">
-                Currently Exploring & Researching
-              </h3>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {skills.currentlyLearning.map((topic, idx) => (
-                <span
-                  key={idx}
-                  className="rounded-full bg-accent/10 text-accent border border-accent/20 px-3 py-1 text-xs font-mono"
-                >
-                  {topic}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
