@@ -87,13 +87,13 @@ export function SteedLocker() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border/70 pb-6">
             <div>
               <div className="text-xs font-mono text-accent uppercase tracking-wider font-semibold">
-                Solo Touring Machine
+                Solo Touring Cruiser
               </div>
               <h3 className="font-display text-3xl sm:text-4xl text-text font-bold mt-1">
-                Yamaha FZ-S FI v3 150cc
+                Royal Enfield Meteor 350
               </h3>
               <p className="text-sm text-muted font-mono mt-1">
-                Air-Cooled • Fuel-Injected • SOHC Single Cylinder • 135 kg Kerb Weight
+                349cc J-Series Engine • Air-Oil Cooled • Dual-Channel ABS • 191 kg Kerb Weight
               </p>
             </div>
             <div className="rounded-xl border border-accent/30 bg-accent/10 px-4 py-2 font-mono text-xs text-accent">
@@ -104,32 +104,32 @@ export function SteedLocker() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono text-xs">
             <div className="p-4 rounded-xl border border-border bg-surface-2/60 space-y-1">
               <div className="text-muted">ENGINE OUTPUT</div>
-              <div className="text-lg font-bold text-text">13.3 HP @ 7,200 RPM</div>
-              <div className="text-[11px] text-muted">13.6 Nm Torque @ 5,500 RPM</div>
+              <div className="text-lg font-bold text-text">20.2 BHP @ 6,100 RPM</div>
+              <div className="text-[11px] text-muted">27 Nm Torque @ 4,000 RPM</div>
             </div>
             <div className="p-4 rounded-xl border border-border bg-surface-2/60 space-y-1">
               <div className="text-muted">FUEL CAPACITY</div>
-              <div className="text-lg font-bold text-text">13 Liters</div>
-              <div className="text-[11px] text-muted">~550 km touring range per tank</div>
+              <div className="text-lg font-bold text-text">15 Liters</div>
+              <div className="text-[11px] text-muted">~480 km touring range per tank</div>
             </div>
             <div className="p-4 rounded-xl border border-border bg-surface-2/60 space-y-1">
               <div className="text-muted">BRAKING & SAFETY</div>
-              <div className="text-lg font-bold text-text">Single-Channel ABS</div>
-              <div className="text-[11px] text-muted">Dual Disc brakes (Front 282mm, Rear 220mm)</div>
+              <div className="text-lg font-bold text-text">Dual-Channel ABS</div>
+              <div className="text-[11px] text-muted">Front 300mm disc, Rear 270mm disc</div>
             </div>
             <div className="p-4 rounded-xl border border-border bg-surface-2/60 space-y-1">
-              <div className="text-muted">TIRES & TRACTION</div>
-              <div className="text-lg font-bold text-text">140/60-R17 Rear</div>
-              <div className="text-[11px] text-muted">Radial tubeless with slime puncture sealant</div>
+              <div className="text-muted">WHEELS & TIRES</div>
+              <div className="text-lg font-bold text-text">19&quot; Front / 17&quot; Rear</div>
+              <div className="text-[11px] text-muted">Alloy wheels with tubeless touring rubber</div>
             </div>
           </div>
 
           {/* Rider Philosophy Callout */}
           <div className="p-5 rounded-xl border border-border/80 bg-surface-2/40 text-sm leading-relaxed text-muted">
             <strong className="text-text block mb-1 font-mono text-xs uppercase tracking-wide">
-              Why a 150cc commuter bike for the Himalayas?
+              The Royal Enfield Meteor 350 Touring Experience
             </strong>
-            &ldquo;When you are solo at 16,000 feet in knee-deep glacial slush at Pagal Nallah, a 240 kg adventure bike is a liability if you drop it. A 135 kg Yamaha can be dragged, lifted, and pushed by one person. Any mechanic in any remote Indian village has parts and knows how to fix it. Big adventures don&apos;t require big displacement—they require momentum, endurance, and heart.&rdquo;
+            &ldquo;Long-distance solo touring across India is about rhythm and physical endurance. The Meteor 350&apos;s cruiser ergonomics—relaxed upright seating, wide handlebars, and cushioned saddle—prevent fatigue during 700 km highway sprints. The 349cc J-series engine produces steady, accessible low-end torque that pulls effortlessly up steep Himalayan switchbacks and high passes like Khardung La without breaking a sweat.&rdquo;
           </div>
         </div>
       )}

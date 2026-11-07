@@ -12,7 +12,6 @@ import {
 import { getRidesSection, getSocials } from "@/lib/data";
 import { InstagramIcon, YoutubeIcon } from "@/components/ui/icons";
 import { IndiaRoutesMapClient } from "@/components/rides/india-routes-map-client";
-import { RiderCockpitHud } from "@/components/rides/rider-cockpit-hud";
 import { SteedLocker } from "@/components/rides/steed-locker";
 
 export const metadata: Metadata = {
@@ -73,25 +72,26 @@ export default function RidesLandingPage() {
 
           <div className="pt-4 flex flex-wrap justify-center gap-4">
             <a
-              href="#cockpit"
+              href="#stories"
               className="inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-accent-contrast shadow-md hover:opacity-95 transition-all"
             >
-              <span>Explore Cockpit & Telemetry</span>
+              <span>Explore Expeditions</span>
               <ChevronDown className="w-4 h-4" />
             </a>
             <a
               href="#map"
               className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-6 py-3 text-sm font-bold text-text hover:border-accent transition-all"
             >
-              <span>Interactive Map</span>
+              <span>Route Maps</span>
+            </a>
+            <a
+              href="#gear"
+              className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-6 py-3 text-sm font-bold text-text hover:border-accent transition-all"
+            >
+              <span>The Meteor 350 & Gear</span>
             </a>
           </div>
         </div>
-      </section>
-
-      {/* Interactive Cockpit HUD (Rider Instruments & Telemetry) */}
-      <section id="cockpit" className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <RiderCockpitHud />
       </section>
 
       {/* Stats strip */}

@@ -40,17 +40,14 @@ export function RidesNavbar() {
         {/* Navigation items & Theme toggle */}
         <div className="flex items-center gap-3">
           <nav className="hidden md:flex items-center gap-4 text-xs font-mono uppercase tracking-wider text-muted">
-            <Link href="/rides#cockpit" className="hover:text-accent transition-colors">
-              Cockpit
+            <Link href="/rides#stories" className="hover:text-accent transition-colors">
+              Expeditions
             </Link>
             <Link href="/rides#map" className="hover:text-accent transition-colors">
               Routes
             </Link>
-            <Link href="/rides#stories" className="hover:text-accent transition-colors">
-              Expeditions
-            </Link>
             <Link href="/rides#gear" className="hover:text-accent transition-colors">
-              The Garage
+              The Meteor 350
             </Link>
           </nav>
 

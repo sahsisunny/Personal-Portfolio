@@ -1,6 +1,7 @@
 import { getSocials } from "@/lib/data";
 import { RidesNavbar } from "@/components/layout/rides-navbar";
 import { RidesFooter } from "@/components/layout/rides-footer";
+import { RiderBackgroundEffects } from "@/components/rides/rider-background-effects";
 
 export const metadata = {
   title: "On Two Wheels | Solo Motorcycle Touring across India",
@@ -16,9 +17,10 @@ export default function RidesLayout({
   const socials = getSocials();
 
   return (
-    <div className="rides-realm flex min-h-screen flex-col bg-bg text-text transition-colors">
+    <div className="rides-realm flex min-h-screen flex-col bg-bg text-text transition-colors relative overflow-x-hidden">
+      <RiderBackgroundEffects />
       <RidesNavbar />
-      <main id="main-content" className="flex-1">
+      <main id="main-content" className="flex-1 relative z-10">
         {children}
       </main>
       <RidesFooter socials={socials} />

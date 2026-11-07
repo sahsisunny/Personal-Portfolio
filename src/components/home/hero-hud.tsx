@@ -20,7 +20,7 @@ const COMMANDS: Record<string, string> = {
     2
   ),
   status: "🟢 In Production at Fountane • Shipping AI Chatbot Agent Backend (200+ APIs) • Planning Next Himalayan Expedition",
-  "npm run rides": "🏍️ Firing up Yamaha FZ-S FI v3... Preparing expedition routes from Patna!",
+  "npm run rides": "🏍️ Firing up Royal Enfield Meteor 350... Preparing expedition routes from Patna!",
 };
 
 export function HeroHud() {

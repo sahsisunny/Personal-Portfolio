@@ -457,10 +457,10 @@
         "endDate": "2023-06-27",
         "durationDays": 18,
         "distanceKm": 3850,
-        "bike": "Yamaha FZ-S FI v3 150cc",
+        "bike": "Royal Enfield Meteor 350",
         "coverImage": "/images/rides/ladakh/cover.jpg",
         "summary": "A 3,850 km solo motorcycle expedition from the plains of Patna across Rohtang, Baralacha La, and Tanglang La to Khardung La at 17,590 ft.",
-        "story": "Leaving the sweltering 42°C heat of Patna behind, this solo journey was about testing grit on a modest 150cc machine. Climbing from sea-level plains up into the freezing passes of the Great Himalayas proved that big adventure does not require a heavy adventure motorcycle—it requires patience, steady throttle control, and respect for the mountain.",
+        "story": "Leaving the sweltering 42°C heat of Patna behind, this solo journey was about testing grit on a Royal Enfield Meteor 350. Climbing from sea-level plains up into the freezing passes of the Great Himalayas proved that the J-series engine's steady low-end torque is built for high-altitude mountain climbs.",
         "route": {
           "geojsonFile": null,
           "gpxFile": null,
@@ -478,7 +478,7 @@
           ]
         },
         "highlights": [
-          "Conquered Khardung La at 17,590 ft on a 150cc single-cylinder commuter bike.",
+          "Conquered Khardung La at 17,590 ft on the Royal Enfield Meteor 350.",
           "Navigated freezing water crossings at Pagal Nallah and snow blizzards on Baralacha La.",
           "Camped by Pangong Tso at 14,270 ft with freezing -2°C night winds.",
           "Maintained 100% mechanical reliability across 3,850 km of rugged mountain terrain."
@@ -497,10 +497,10 @@
         "lessons": [
           "AMS (Acute Mountain Sickness) is real: hydrate aggressively with electrolytes and ascend gradually.",
           "Keep weight centered and low on the rear subframe to maintain front tire steering in gravel.",
-          "A 150cc bike will climb any mountain in India if you maintain momentum and respect the torque curve."
+          "The Meteor 350's low-end 27 Nm torque makes hair-pin climbs smooth without constant downshifts."
         ],
         "gearUsed": [
-          "Yamaha FZ-S FI v3 150cc",
+          "Royal Enfield Meteor 350",
           "Rynox All-Weather CE Level 2 Touring Jacket",
           "MT Dual-Visor Adventure Helmet with Pinlock",
           "Viaterra 55L Waterproof Dry Saddlebags",
@@ -519,7 +519,7 @@
         "endDate": "2024-01-31",
         "durationDays": 20,
         "distanceKm": 5420,
-        "bike": "Yamaha FZ-S FI v3 150cc",
+        "bike": "Royal Enfield Meteor 350",
         "coverImage": "/images/rides/rameshwaram/cover.jpg",
         "summary": "A 5,420 km solo motorcycle ride slicing from North India down the spine of the Deccan Plateau to the Pamban Sea Bridge and Dhanushkodi.",
         "story": "Riding from the Ganga basin to the confluence of the Indian Ocean and the Bay of Bengal. Across 9 states, this expedition was about enduring intense heat shifts, coastal crosswinds, and endless asphalt marathons.",
@@ -559,7 +559,7 @@
           "Hydration tablets are just as crucial in 40°C humid south heat as in Ladakh."
         ],
         "gearUsed": [
-          "Yamaha FZ-S FI v3 150cc",
+          "Royal Enfield Meteor 350",
           "Mesh Ventilation Touring Jacket",
           "Hydration Bladder (2L)",
           "RAM Waterproof Phone Mount",
@@ -568,7 +568,7 @@
       }
     ],
     "gear": {
-      "bike": "Yamaha FZ-S FI v3 (149cc Fuel-Injected, Dual-Disc ABS)",
+      "bike": "Royal Enfield Meteor 350 (349cc J-Series, Dual-Channel ABS)",
       "riding": [
         "Rynox Tornado Pro Jacket (CE Level 2 Armour)",
         "MT Dual-Visor DOT/ECE Helmet with Pinlock",

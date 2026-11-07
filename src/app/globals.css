@@ -84,6 +84,16 @@ body {
   background-size: 24px 24px;
 }
 
+/* Road drift animation for rides realm background */
+@keyframes road-drift {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
 /* Syntax Highlighting for Code Blocks (Prism Tokens) */
 .code-highlight {
   color: #e2e8f0;
