@@ -5,7 +5,7 @@ import { CodeBlock } from "./blog-post-content";
 
 interface ModernBlogRendererProps {
   content: string;
-  slug: string;
+  slug?: string;
 }
 
 export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
@@ -38,7 +38,15 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
           }
         }
 
-        const lang = langRaw || "code";
+        // Auto-detect architecture diagram if language isn't specified
+        let lang = langRaw;
+        if (!lang) {
+          if (codeBody.includes("+---") || codeBody.includes("|    ") || codeBody.includes("↓") || codeBody.includes("▼")) {
+            lang = "diagram";
+          } else {
+            lang = "code";
+          }
+        }
 
         elements.push(
           <CodeBlock
@@ -62,11 +70,15 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
 
           // Headings
           if (trimmed.startsWith("### ")) {
-            const headingText = trimmed.replace(/^###\s+/, "");
+            const newlineIdx = trimmed.indexOf("\n");
+            const headingLine = newlineIdx !== -1 ? trimmed.slice(0, newlineIdx).trim() : trimmed;
+            const remainingText = newlineIdx !== -1 ? trimmed.slice(newlineIdx + 1).trim() : "";
+            const headingText = headingLine.replace(/^###\s+/, "");
             const id = headingText
               .toLowerCase()
               .replace(/[^a-z0-9]+/g, "-")
               .replace(/(^-|-$)/g, "");
+
             elements.push(
               <h3
                 key={`h3-${index}-${pIdx}`}
@@ -76,11 +88,26 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
                 {headingText}
               </h3>
             );
+
+            if (remainingText) {
+              elements.push(
+                <p
+                  key={`p-after-h3-${index}-${pIdx}`}
+                  className="text-base sm:text-[17px] text-muted leading-relaxed font-sans"
+                  dangerouslySetInnerHTML={{
+                    __html: formatInline(remainingText),
+                  }}
+                />
+              );
+            }
             return;
           }
 
           if (trimmed.startsWith("## ")) {
-            const headingText = trimmed.replace(/^##\s+/, "");
+            const newlineIdx = trimmed.indexOf("\n");
+            const headingLine = newlineIdx !== -1 ? trimmed.slice(0, newlineIdx).trim() : trimmed;
+            const remainingText = newlineIdx !== -1 ? trimmed.slice(newlineIdx + 1).trim() : "";
+            const headingText = headingLine.replace(/^##\s+/, "");
             const id = headingText
               .toLowerCase()
               .replace(/[^a-z0-9]+/g, "-")
@@ -95,6 +122,18 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
                 {headingText}
               </h2>
             );
+
+            if (remainingText) {
+              elements.push(
+                <p
+                  key={`p-after-h2-${index}-${pIdx}`}
+                  className="text-base sm:text-[17px] text-muted leading-relaxed font-sans"
+                  dangerouslySetInnerHTML={{
+                    __html: formatInline(remainingText),
+                  }}
+                />
+              );
+            }
             return;
           }
 

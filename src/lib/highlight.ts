@@ -16,13 +16,23 @@ function escapeHtml(text: string): string {
 
 export function highlightCode(code: string, language: string): string {
   const normLang = (language || "").toLowerCase().trim();
+  if (
+    normLang === "text" ||
+    normLang === "txt" ||
+    normLang === "plain" ||
+    normLang === "diagram" ||
+    normLang === "ascii"
+  ) {
+    return escapeHtml(code);
+  }
+
   let langKey = normLang;
   if (normLang === "ts" || normLang === "tsx") langKey = "typescript";
   if (normLang === "js" || normLang === "jsx") langKey = "javascript";
   if (normLang === "golang") langKey = "go";
   if (normLang === "sh" || normLang === "shell") langKey = "bash";
 
-  const grammar = Prism.languages[langKey] || Prism.languages.javascript || Prism.languages.clike;
+  const grammar = Prism.languages[langKey];
   if (!grammar) {
     return escapeHtml(code);
   }

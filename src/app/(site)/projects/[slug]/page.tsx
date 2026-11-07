@@ -15,6 +15,7 @@ import { GithubIcon } from "@/components/ui/icons";
 import { getProjects, getProjectBySlug } from "@/lib/data";
 import { getProjectCaseStudyMdx } from "@/lib/mdx";
 import { formatDate } from "@/lib/utils";
+import { ModernBlogRenderer } from "@/components/blog/modern-blog-renderer";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -206,20 +207,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </div>
           </section>
 
-          {/* Optional Extended MDX */}
+          {/* Deep Dive Case Study Content with Syntax Highlighted Code Blocks */}
           {mdxContent && (
-            <section className="rounded-xl border border-border bg-surface p-6 sm:p-8 shadow-xs space-y-6 prose dark:prose-invert max-w-none text-muted">
-              <div
-                className="text-text space-y-4 text-sm sm:text-base leading-relaxed"
-                dangerouslySetInnerHTML={{
-                  __html: mdxContent
-                    .replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-text mt-6 mb-2">$1</h3>')
-                    .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-text mt-8 mb-3">$1</h2>')
-                    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-text font-semibold">$1</strong>')
-                    .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
-                    .replace(/```([\s\S]*?)```/g, '<pre class="p-4 rounded-lg bg-surface-2 font-mono text-xs overflow-x-auto text-text my-4 border border-border">$1</pre>'),
-                }}
-              />
+            <section className="rounded-xl border border-border bg-surface p-6 sm:p-8 shadow-xs">
+              <ModernBlogRenderer content={mdxContent} slug={project.slug} />
             </section>
           )}
 

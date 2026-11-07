@@ -26,9 +26,40 @@ The property management backend is composed of discrete services:
 ```
 
 ### Critical Problem: Time-Window Ambiguity
-When queries referenced relative timeframes like *"yesterday"* or *"last shift"*, naive LLM calls failed because the LLM assumed server time or hallucinated ambiguous date formats. We resolved this by explicitly injecting an anchor block into the system prompt:
+
+When queries referenced relative timeframes like *"yesterday"* or *"last shift"*, naive LLM calls failed because the LLM assumed server time or hallucinated ambiguous date formats. We resolved this by explicitly injecting an anchor block into the system prompt and enforcing temporal boundary invariance directly in the Go tool dispatcher:
+
 - Canonical today date in hotel local timezone
 - Exact ISO start and end timestamps for yesterday: `[yesterday 00:00:00 -> yesterday 23:59:59]`
+
+```go
+// internal/agent/orchestrator.go
+package agent
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"time"
+)
+
+type ToolExecutionRequest struct {
+	ToolName  string          `json:"tool_name"`
+	Arguments json.RawMessage `json:"arguments"`
+	HotelTZ   *time.Location  `json:"hotel_timezone"`
+}
+
+func (o *Orchestrator) ExecuteTool(ctx context.Context, req ToolExecutionRequest) (*ToolResult, error) {
+	tool, exists := o.registry[req.ToolName]
+	if !exists {
+		return nil, fmt.Errorf("tool %q is not registered in security policy", req.ToolName)
+	}
+
+	// Enforce temporal boundary invariance for relative day queries
+	start, end := o.computeTimeWindow(req.HotelTZ)
+	return tool.Execute(ctx, req.Arguments, start, end)
+}
+```
 
 ### What I Learned & What's Next
 Orchestrating tools with LLMs requires treating the agent as a deterministic state machine with guardrails, rather than expecting the LLM to guess enterprise invariants. The next phase will introduce asynchronous routines with webhook-based event triggers and a web-based human approval step.
