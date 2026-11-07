@@ -51,7 +51,7 @@ body {
   color: var(--accent-contrast);
 }
 
-/* Accessibility: respect prefers-reduced-motion */
+/* Accessibility: respect prefers-reduced-motion without breaking animation states */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -61,6 +61,27 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Futuristic background grid */
+.bg-tech-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+}
+
+.dark .bg-tech-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Topographic background for rides realm */
+.bg-topo-pattern {
+  background-image: radial-gradient(rgba(251, 146, 60, 0.08) 1px, transparent 0);
+  background-size: 24px 24px;
 }
 
 /* Print styles */

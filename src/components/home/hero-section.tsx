@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { ArrowDown, FileText, Mail, MapPin, Laptop } from "lucide-react";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/icons";
+import { HeroHud } from "./hero-hud";
 import type { Person, Socials } from "@/lib/schema";
 
 interface HeroSectionProps {
@@ -133,25 +134,9 @@ export function HeroSection({ person, socials }: HeroSectionProps) {
             </div>
           </div>
 
-          {/* Avatar / Portrait Card */}
-          <div className="relative flex-shrink-0">
-            <div className="relative h-44 w-44 sm:h-52 sm:w-52 md:h-60 md:w-60 rounded-2xl border-2 border-border/80 bg-gradient-to-br from-surface to-surface-2 p-1.5 shadow-xl">
-              <div className="flex h-full w-full flex-col items-center justify-center rounded-xl bg-surface-2 text-center overflow-hidden border border-border/40">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-accent/15 text-accent font-mono text-3xl font-extrabold mb-2">
-                  SS
-                </div>
-                <div className="px-3">
-                  <div className="text-sm font-bold text-text">{person.name}</div>
-                  <div className="text-xs text-muted font-mono mt-0.5">Patna, India</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Floating Tag */}
-            <div className="absolute -bottom-3 -right-2 rounded-lg border border-border bg-surface px-3 py-1.5 shadow-md flex items-center gap-2 text-xs font-mono">
-              <span className="h-2 w-2 rounded-full bg-emerald-500" />
-              <span className="text-text font-semibold">Next.js + Go</span>
-            </div>
+          {/* Interactive Futuristic Developer HUD */}
+          <div className="w-full lg:w-auto flex justify-center lg:justify-end">
+            <HeroHud />
           </div>
         </div>
       </div>
