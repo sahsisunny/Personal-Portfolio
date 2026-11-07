@@ -39,27 +39,27 @@ export function SiteNavbar({ name, headline }: SiteNavbarProps) {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/80 bg-surface/80 backdrop-blur-md transition-colors">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo / Identity */}
         <Link
           href="/"
-          className="group flex items-center gap-2.5 text-left transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg p-1"
+          className="group flex items-center gap-2.5 text-left transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg p-1 flex-shrink-0"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-contrast font-mono font-bold text-base shadow-sm">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-contrast font-mono font-bold text-base shadow-sm flex-shrink-0">
             SS
           </div>
-          <div>
-            <span className="block font-bold leading-tight tracking-tight text-text">
+          <div className="flex flex-col min-w-0">
+            <span className="font-bold leading-tight tracking-tight text-text whitespace-nowrap text-sm sm:text-base">
               {name}
             </span>
-            <span className="block text-xs text-muted font-mono leading-none">
+            <span className="text-[11px] text-muted font-mono leading-tight whitespace-nowrap hidden sm:block">
               {headline}
             </span>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-1.5 lg:flex" aria-label="Main navigation">
           {navLinks.map((link) => {
             const isActive =
               link.href === "/"
@@ -74,7 +74,7 @@ export function SiteNavbar({ name, headline }: SiteNavbarProps) {
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "rounded-md px-3 py-1.5 text-sm font-medium transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+                  "rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent flex-shrink-0 whitespace-nowrap",
                   isActive ? "text-accent font-semibold" : "text-muted hover:text-text"
                 )}
               >
@@ -86,23 +86,23 @@ export function SiteNavbar({ name, headline }: SiteNavbarProps) {
           {/* Highlighted Rides Link with Badge */}
           <Link
             href="/rides"
-            className="ml-2 inline-flex items-center gap-1.5 rounded-full border border-amber-600/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-700 dark:text-amber-300 hover:bg-amber-500/20 hover:border-amber-500 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+            className="ml-1 inline-flex items-center gap-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-300 hover:bg-amber-500/20 hover:border-amber-500/60 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 flex-shrink-0 whitespace-nowrap"
           >
-            <Compass className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 animate-pulse" />
-            <span>Rides</span>
-            <span className="rounded-full bg-amber-500/20 px-1.5 py-0.2 text-[10px] font-mono uppercase tracking-wide">
+            <Compass className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 flex-shrink-0" />
+            <span className="font-semibold">Rides</span>
+            <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider font-bold text-amber-800 dark:text-amber-200 whitespace-nowrap leading-none">
               Off the clock
             </span>
           </Link>
 
-          <div className="mx-2 h-4 w-px bg-border" />
+          <div className="mx-1.5 h-4 w-px bg-border flex-shrink-0" />
 
           {/* Resume button */}
           <Link
             href="/resume"
-            className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium text-muted hover:text-text hover:bg-surface-2 transition-colors border border-border"
+            className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted hover:text-text hover:bg-surface-2 transition-colors border border-border flex-shrink-0 whitespace-nowrap"
           >
-            <FileText className="w-3.5 h-3.5" />
+            <FileText className="w-3.5 h-3.5 flex-shrink-0" />
             <span>Resume</span>
           </Link>
 
@@ -110,8 +110,42 @@ export function SiteNavbar({ name, headline }: SiteNavbarProps) {
           <CommandPalette />
 
           {/* Theme Toggle */}
-          <ThemeToggle className="ml-1" />
+          <ThemeToggle className="ml-1 flex-shrink-0" />
         </nav>
+
+        {/* Medium Screen Navigation (between md and lg) */}
+        <div className="hidden md:flex lg:hidden items-center gap-2">
+          <Link
+            href="/projects"
+            className="rounded-md px-2 py-1 text-xs font-medium text-muted hover:text-text"
+          >
+            Projects
+          </Link>
+          <Link
+            href="/blog"
+            className="rounded-md px-2 py-1 text-xs font-medium text-muted hover:text-text"
+          >
+            Blog
+          </Link>
+          <Link
+            href="/rides"
+            className="inline-flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-300"
+          >
+            <Compass className="w-3 h-3" />
+            <span>Rides</span>
+          </Link>
+          <CommandPalette />
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted hover:text-text hover:bg-surface-2 transition-colors"
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
+        </div>
 
         {/* Mobile controls: Search + Theme toggle + Hamburger */}
         <div className="flex items-center gap-2 md:hidden">
@@ -132,7 +166,7 @@ export function SiteNavbar({ name, headline }: SiteNavbarProps) {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-x-0 top-16 bottom-0 z-50 flex flex-col justify-between border-t border-border bg-surface/98 p-6 backdrop-blur-xl md:hidden overflow-y-auto"
+          className="fixed inset-x-0 top-16 bottom-0 z-50 flex flex-col justify-between border-t border-border bg-surface/98 p-6 backdrop-blur-xl lg:hidden overflow-y-auto"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation"

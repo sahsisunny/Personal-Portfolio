@@ -14,3 +14,4 @@ const IndiaRoutesMap = dynamic(() => import("@/components/rides/india-routes-map
 export function IndiaRoutesMapClient() {
   return <IndiaRoutesMap />;
 }
+

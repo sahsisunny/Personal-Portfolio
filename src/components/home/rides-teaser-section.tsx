@@ -104,3 +104,4 @@ export function RidesTeaserSection({ ridesData }: RidesTeaserSectionProps) {
     </section>
   );
 }
+

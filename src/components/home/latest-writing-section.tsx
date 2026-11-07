@@ -87,3 +87,4 @@ export function LatestWritingSection({ posts }: LatestWritingSectionProps) {
     </section>
   );
 }
+

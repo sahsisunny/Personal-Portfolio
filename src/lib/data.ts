@@ -105,3 +105,4 @@ export function getSeo() {
 export function getMeta() {
   return portfolioData.meta;
 }
+
