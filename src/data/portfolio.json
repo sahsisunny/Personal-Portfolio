@@ -1,0 +1,557 @@
+{
+  "_readme": "Single source of truth for the portfolio site. Keys starting with '_' are notes for you and are ignored by the site. Every 'null' or empty value is something Sunny still needs to fill in. Never invent numbers: leave null until real.",
+  "_sources": {
+    "verified": [
+      "https://sahsisunny.netlify.app (current portfolio: experience, skills, projects, education, social links)"
+    ],
+    "fromSunny": "Promotion to Associate Full Stack Developer, AI tools used (Claude, Antigravity, Cursor), AI chatbot agent work, Ladakh and Rameshwaram rides from Patna, extra projects and Fountane work details",
+    "notFound": [
+      "LinkedIn profile text (not readable from outside, copy the About + Experience text in manually)",
+      "X/Twitter posts (handle only: @sahsisunny)",
+      "Peerlist resume snippet looks outdated/inconsistent (shows 'Software Development Engineer 1'), ignore it or update it"
+    ]
+  },
+
+  "meta": {
+    "siteTitle": "Sunny Sahsi | Associate Full Stack Developer",
+    "siteDescription": "Portfolio of Sunny Sahsi: Associate Full Stack Developer from Patna, India building web apps, backend services in Go and AI chatbot agents. Also a solo motorcycle rider.",
+    "siteUrl": "https://sahsisunny.netlify.app",
+    "locale": "en-IN",
+    "defaultThemeMode": "system",
+    "ogImage": "/og/default.png",
+    "favicon": "/favicon.svg",
+    "keywords": [
+      "Sunny Sahsi",
+      "Associate Full Stack Developer",
+      "Next.js",
+      "Golang",
+      "TypeScript",
+      "AI chatbot agent",
+      "Patna",
+      "motorcycle touring"
+    ]
+  },
+
+  "person": {
+    "name": "Sunny Sahsi",
+    "firstName": "Sunny",
+    "handle": "sahsisunny",
+    "headline": "Associate Full Stack Developer",
+    "tagline": "I build web apps, backend services and AI agents that solve real-world problems.",
+    "location": "Patna, Bihar, India",
+    "workMode": "Remote",
+    "availability": {
+      "status": "open-to-conversations",
+      "label": "Open to interesting conversations",
+      "_note": "Change status to 'not-looking' or 'open-to-work' as needed. The site shows a small status pill."
+    },
+    "shortBio": "Associate Full Stack Developer at Fountane, working with Next.js and Go. I own features end to end, and I'm currently building an AI chatbot agent that lets users query a large system in plain language.",
+    "longBio": [
+      "I'm a software developer from Patna, India. I started building for the web while studying Computer Applications at Patna University, contributed to open source with Real Dev Squad, and joined Fountane in August 2024 as a Junior Full Stack Developer. I was recently promoted to Associate Full Stack Developer.",
+      "Day to day I work across Next.js and Go: UI with Ant Design, backend services and APIs, payment integrations, and role-based access control. I use AI tools like Claude, Cursor and Antigravity as part of how I build, and I'm now working on an AI chatbot agent that answers natural-language questions by calling internal APIs through an LLM.",
+      "Outside code I ride. I have ridden solo from Patna to Ladakh and from Patna to Rameshwaram, and I document the road, the people and the lessons on a separate Rides page."
+    ],
+    "avatar": "/images/sunny.jpg",
+    "avatarAlt": "Portrait of Sunny Sahsi",
+    "email": "sahsisunny@gmail.com",
+    "resumeUrl": "https://drive.google.com/file/d/1PwY4WZ56RLXUaiuHxPnMBxMLFk1R6Oix/view",
+    "resumeLocalPath": null,
+    "_note": "Resume link is the one on the current portfolio. Replace with an updated PDF in /public/resume.pdf once the new title is added."
+  },
+
+  "socials": {
+    "linkedin": "https://www.linkedin.com/in/sahsisunny/",
+    "github": "https://www.github.com/sahsisunny",
+    "x": "https://www.twitter.com/sahsisunny",
+    "instagram": null,
+    "youtube": null,
+    "peerlist": "https://peerlist.io/sahsisunny",
+    "_note": "Instagram and YouTube exist but handles are not known yet, add them so the Rides page can link to them."
+  },
+
+  "navigation": {
+    "main": [
+      { "label": "Home", "href": "/" },
+      { "label": "Experience", "href": "/#experience" },
+      { "label": "Projects", "href": "/projects" },
+      { "label": "Blog", "href": "/blog" },
+      { "label": "Contact", "href": "/#contact" }
+    ],
+    "rides": { "label": "Rides", "href": "/rides", "badge": "Off the clock", "style": "highlight" }
+  },
+
+  "stats": {
+    "_note": "Shown as small counters on Home. Only keep numbers that are true and easy to defend.",
+    "items": [
+      { "label": "Years building professionally", "value": "2+", "computedFrom": "2024-08" },
+      { "label": "Solo long-distance rides", "value": "2" },
+      { "label": "Primary stack", "value": "Next.js + Go" }
+    ]
+  },
+
+  "experience": [
+    {
+      "id": "fountane",
+      "company": "Fountane Inc.",
+      "companyUrl": "https://fountane.com",
+      "logo": "/images/logos/fountane.png",
+      "location": "Remote",
+      "employmentType": "Full-time",
+      "start": "2024-08",
+      "end": null,
+      "current": true,
+      "roles": [
+        {
+          "title": "Associate Full Stack Developer",
+          "start": "2026",
+          "end": null,
+          "_note": "Add the exact promotion month, e.g. 2026-10.",
+          "highlights": [
+            "Recently promoted from Junior Full Stack Developer after owning features end to end across a Next.js frontend and Go backend.",
+            "Building an AI chatbot agent backend that lets users ask questions in natural language and get answers by orchestrating internal APIs through an LLM.",
+            "Auditing and hardening the agent service (data accuracy, time-window filtering, session and user context) using AI-assisted code review plus manual verification.",
+            "Designing the next phase of the agent: scheduled, event-based and condition-based routines with an approval flow."
+          ]
+        },
+        {
+          "title": "Junior Full Stack Developer",
+          "start": "2024-08",
+          "end": "2026",
+          "highlights": [
+            "Developed and optimized web applications using Next.js with Ant Design for consistent UI/UX.",
+            "Built and maintained scalable backend services in Go, focused on performance and reliability.",
+            "Designed and shipped a payment API integration and CRUD features end to end.",
+            "Built a customizable columns and rows feature for a data-heavy frontend table.",
+            "Implemented user access control and dynamic UI based on authorization levels in Next.js.",
+            "Wrote unit and integration tests with Vitest and TypeScript.",
+            "Managed version control, code reviews and CI/CD using GitLab; tracked delivery with Jira.",
+            "Worked with MySQL and PostgreSQL databases."
+          ]
+        }
+      ],
+      "tech": ["Next.js", "TypeScript", "Ant Design", "Go", "MySQL", "PostgreSQL", "GitLab CI/CD", "Vitest", "Jira"],
+      "confidentialityNote": "Client and product names stay generic on the public site unless Fountane approves naming them."
+    },
+    {
+      "id": "real-dev-squad",
+      "company": "Real Dev Squad",
+      "companyUrl": "https://realdevsquad.com",
+      "logo": "/images/logos/rds.png",
+      "location": "Remote",
+      "employmentType": "Open source",
+      "start": "2022-12",
+      "end": null,
+      "current": true,
+      "roles": [
+        {
+          "title": "Open Source Contributor",
+          "start": "2022-12",
+          "end": null,
+          "highlights": [
+            "Worked across React, Next.js, Ember and Vue.js codebases.",
+            "Built the Goal form modal using Vue.js and Vuetify.",
+            "Added a feature to lock the accordion for unauthorized users.",
+            "Added a filter to list users by status.",
+            "Built a feature to show a user's pull requests on their profile page."
+          ]
+        }
+      ],
+      "tech": ["Vue.js", "Vuetify", "React", "Next.js", "Ember"]
+    },
+    {
+      "id": "smartinternz",
+      "company": "SmartInternz",
+      "companyUrl": null,
+      "logo": "/images/logos/smartinternz.png",
+      "location": "Remote",
+      "employmentType": "Externship",
+      "start": "2022-08",
+      "end": "2022-09",
+      "current": false,
+      "roles": [
+        {
+          "title": "Android Developer (Externship)",
+          "start": "2022-08",
+          "end": "2022-09",
+          "highlights": [
+            "Built Android apps with Kotlin.",
+            "Applied Material Design: colour, spacing and typography.",
+            "Created a 'Grocery App' project."
+          ]
+        }
+      ],
+      "tech": ["Kotlin", "Android", "Material Design"]
+    }
+  ],
+
+  "education": [
+    {
+      "id": "bca-patna",
+      "institution": "Patna University",
+      "degree": "Bachelor of Computer Applications (B.C.A)",
+      "score": "8.36 CGPA",
+      "start": "2019",
+      "end": "2022",
+      "logo": "/images/logos/patna-university.png",
+      "topics": ["C, C++, Java, Python, JavaScript", "Database management", "Web development", "Software engineering", "Networking and administration"]
+    }
+  ],
+
+  "skills": {
+    "_note": "Group by what you actually use. 'level' is a self-assessment: 'daily' (used every week), 'comfortable', 'learning'. Be honest, it helps in interviews.",
+    "groups": [
+      {
+        "id": "languages",
+        "label": "Languages",
+        "items": [
+          { "name": "TypeScript", "level": "daily" },
+          { "name": "JavaScript", "level": "daily" },
+          { "name": "Go", "level": "daily" },
+          { "name": "HTML / CSS", "level": "daily" },
+          { "name": "SQL", "level": "comfortable" }
+        ]
+      },
+      {
+        "id": "frontend",
+        "label": "Frontend",
+        "items": [
+          { "name": "React", "level": "daily" },
+          { "name": "Next.js", "level": "daily" },
+          { "name": "Ant Design", "level": "daily" },
+          { "name": "Tailwind CSS", "level": "comfortable" },
+          { "name": "React Query", "level": "comfortable" }
+        ]
+      },
+      {
+        "id": "backend",
+        "label": "Backend and APIs",
+        "items": [
+          { "name": "Go services and REST APIs", "level": "daily" },
+          { "name": "Node.js / Express", "level": "comfortable" },
+          { "name": "Payment API integration", "level": "comfortable" },
+          { "name": "Role-based access control", "level": "comfortable" }
+        ]
+      },
+      {
+        "id": "databases",
+        "label": "Databases",
+        "items": [
+          { "name": "PostgreSQL", "level": "comfortable" },
+          { "name": "MySQL", "level": "comfortable" },
+          { "name": "MongoDB", "level": "comfortable" }
+        ]
+      },
+      {
+        "id": "ai",
+        "label": "AI and agents",
+        "items": [
+          { "name": "LLM-powered chatbot / agent backends", "level": "comfortable" },
+          { "name": "Tool/API orchestration for agents", "level": "learning" },
+          { "name": "Claude", "level": "daily" },
+          { "name": "Cursor", "level": "daily" },
+          { "name": "Antigravity", "level": "daily" }
+        ]
+      },
+      {
+        "id": "tools",
+        "label": "Tools and workflow",
+        "items": [
+          { "name": "Git, GitHub, GitLab", "level": "daily" },
+          { "name": "GitLab CI/CD", "level": "comfortable" },
+          { "name": "Vitest (unit and integration tests)", "level": "comfortable" },
+          { "name": "Jira", "level": "comfortable" },
+          { "name": "Linux", "level": "comfortable" }
+        ]
+      }
+    ],
+    "currentlyLearning": ["AWS and cloud deployment", "System design", "Distributed systems", "Agent evaluation and guardrails"]
+  },
+
+  "projects": [
+    {
+      "id": "ai-chatbot-agent",
+      "slug": "ai-chatbot-agent",
+      "title": "AI Chatbot Agent for a Property Management System",
+      "status": "in-progress",
+      "featured": true,
+      "visibility": "public-after-review",
+      "visibilityNote": "Work project: confirm with your employer what you may publish. Keep client names, screenshots with real data and internal API names out of the public site.",
+      "summary": "A backend service that lets front-desk and hotelier users ask questions in plain language and get answers pulled from 200+ APIs by an LLM.",
+      "description": "The system sits on top of a multi-service backend (auth, config, reservation, reporting). The agent turns a natural-language question into the right API calls, filters data correctly (for example, a proper 'yesterday' window), and returns a readable answer. A next phase adds scheduled, event-based and condition-based routines with approval steps.",
+      "role": "Backend engineer (design, build, audit)",
+      "tech": ["Go", "LLM APIs", "REST", "Cursor", "Claude"],
+      "highlights": [
+        "Built the chatbot backend service on top of an existing multi-service system.",
+        "Ran an AI-assisted audit to find implementation issues, then fixed them with manual verification.",
+        "Handled data-accuracy problems such as fixed reporting windows and missing user names in session data.",
+        "Drafted a phased plan for agent routines with approvals."
+      ],
+      "metrics": { "_note": "Add real numbers only (response accuracy, latency, tools supported).", "toolsCount": null, "avgLatencyMs": null },
+      "links": { "repo": null, "live": null, "caseStudy": null },
+      "images": [],
+      "period": { "start": "2026", "end": null }
+    },
+    {
+      "id": "family-tracker",
+      "slug": "family-tracker",
+      "title": "Family Location Tracker",
+      "status": "in-progress",
+      "featured": true,
+      "visibility": "public",
+      "summary": "A Life360-style app that shows family members' live location along with how they are moving: driving, walking, riding and more.",
+      "description": "Live location sharing with movement-mode detection and safety features. Built with an AI-assisted workflow: prompts drafted with Claude, implementation in Antigravity, and every result reviewed before merging.",
+      "role": "Solo developer",
+      "tech": ["Antigravity", "Claude", "Maps", "Geolocation"],
+      "_note": "Confirm the final app name and add the actual stack (mobile/web framework, backend, database) once settled.",
+      "highlights": [
+        "Live location with movement-mode detection (driving, walking, riding).",
+        "Safety features layered on top of the live map.",
+        "AI-assisted build workflow with human review of each change."
+      ],
+      "links": { "repo": null, "live": null, "caseStudy": null },
+      "images": [],
+      "period": { "start": "2026", "end": null }
+    },
+    {
+      "id": "shadi-invitations",
+      "slug": "shadi-invitations",
+      "title": "Shadi Invitation Website",
+      "status": "in-progress",
+      "featured": true,
+      "visibility": "public",
+      "summary": "A mobile-first Hindi wedding invitation site with multiple templates, a template gallery landing page and an animated opening-gate reveal.",
+      "description": "Next.js + TypeScript project built around reusable invitation templates. Includes an opening gate (doors) animation, animated couple illustrations, a map view option for the venue and a tap-to-call button for the organizer. Numbers are shown in English digits for readability.",
+      "role": "Solo developer",
+      "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      "highlights": [
+        "Template system: add a new template without touching core code.",
+        "Landing page gallery that lists every template.",
+        "Opening-gate animation and animated illustrations, tuned for mobile.",
+        "Venue map option and one-tap organizer call."
+      ],
+      "links": { "repo": null, "live": null, "caseStudy": null },
+      "images": [],
+      "period": { "start": "2026", "end": null }
+    },
+    {
+      "id": "gitrackr",
+      "slug": "gitrackr",
+      "title": "Gitrackr",
+      "status": "completed",
+      "featured": false,
+      "visibility": "public",
+      "summary": "A dashboard that uses the GitHub API to track pull requests, issues and assigned issues, with filters and stats.",
+      "description": "Built with React and Tailwind, hosted on Netlify. Fetches data from GitHub, lets you filter it and shows summary stats. Fully responsive.",
+      "role": "Solo developer",
+      "tech": ["React", "Next.js", "Tailwind CSS", "GitHub API", "Netlify"],
+      "highlights": ["Filters for PRs and issues", "Stats view", "Responsive layout"],
+      "links": { "repo": "https://github.com/sahsisunny/git-dashboard/", "live": "https://gittrackr.netlify.app/", "caseStudy": null },
+      "images": [],
+      "period": { "start": null, "end": null }
+    },
+    {
+      "id": "linktree-clone",
+      "slug": "linktree-clone",
+      "title": "Linktree Clone",
+      "status": "work-in-progress",
+      "featured": false,
+      "visibility": "public",
+      "summary": "A link-in-bio app built from scratch with Next.js, Tailwind CSS, MongoDB and TypeScript.",
+      "description": "Users can create a page of links. Responsive and hosted on Netlify.",
+      "role": "Solo developer",
+      "tech": ["Next.js", "Tailwind CSS", "MongoDB", "TypeScript", "Netlify"],
+      "highlights": ["Custom link pages", "MongoDB-backed data", "Responsive"],
+      "links": { "repo": "https://github.com/sahsisunny/linktree", "live": "https://litree.netlify.app/", "caseStudy": null },
+      "images": [],
+      "period": { "start": null, "end": null }
+    },
+    {
+      "id": "personal-portfolio-v1",
+      "slug": "personal-portfolio-v1",
+      "title": "Personal Portfolio (v1)",
+      "status": "completed",
+      "featured": false,
+      "visibility": "public",
+      "summary": "The first version of this site: static, fast and responsive, built with Next.js and Tailwind.",
+      "description": "Replaced by this version, which adds a blog, case studies, dark/light mode and a separate Rides page.",
+      "role": "Solo developer",
+      "tech": ["Next.js", "Tailwind CSS", "TypeScript", "Netlify"],
+      "highlights": ["Static export", "Responsive", "Open-source repo"],
+      "links": { "repo": "https://github.com/sahsisunny/Personal-Portfolio", "live": "https://sahsisunny.netlify.app/", "caseStudy": null },
+      "images": [],
+      "period": { "start": null, "end": null }
+    }
+  ],
+
+  "openSource": [
+    {
+      "org": "Real Dev Squad",
+      "summary": "Contributions across Vue.js, React, Next.js and Ember projects.",
+      "links": { "github": "https://github.com/Real-Dev-Squad" },
+      "contributions": [
+        "Goal form modal (Vue.js + Vuetify)",
+        "Accordion lock for unauthorized users",
+        "User status filter",
+        "Pull requests on profile page"
+      ],
+      "_note": "Add PR links for each contribution, they are strong proof."
+    }
+  ],
+
+  "blog": {
+    "enabled": true,
+    "title": "Writing",
+    "subtitle": "Notes on building software, working with AI tools, and the road.",
+    "source": "mdx",
+    "contentDir": "content/blog",
+    "categories": ["Engineering", "AI", "Career", "Rides"],
+    "posts": [],
+    "_postFrontmatter": {
+      "title": "string",
+      "slug": "string (kebab-case)",
+      "date": "YYYY-MM-DD",
+      "updated": "YYYY-MM-DD (optional)",
+      "summary": "string, under 160 characters",
+      "tags": ["string"],
+      "category": "one of blog.categories",
+      "cover": "/images/blog/<slug>.jpg (optional)",
+      "draft": false
+    },
+    "postIdeas": [
+      { "title": "Building an AI agent over 200+ APIs: what broke first", "category": "AI", "why": "Your current work, rare topic, strong signal." },
+      { "title": "How I use Claude, Cursor and Antigravity without shipping bugs", "category": "AI", "why": "Honest workflow post; cover review and verification habits." },
+      { "title": "Designing a payment API integration in Go: a checklist", "category": "Engineering", "why": "Practical and searchable." },
+      { "title": "From Junior to Associate in two years: what actually helped", "category": "Career", "why": "Timely given the promotion." },
+      { "title": "Patna to Ladakh solo: planning, gear and mistakes", "category": "Rides", "why": "Cross-links to the Rides page and reaches a different audience." },
+      { "title": "Patna to Rameshwaram: 5 lessons from the road", "category": "Rides", "why": "Story-led, good for social sharing." }
+    ]
+  },
+
+  "rides": {
+    "_note": "Powers the separate /rides page with its own look. Fill the nulls with real values. Do not guess distances or dates.",
+    "enabled": true,
+    "page": {
+      "title": "On Two Wheels",
+      "eyebrow": "Off the clock",
+      "tagline": "Patna to the edge of the map, and back.",
+      "intro": "When I'm not shipping code, I'm on a motorcycle. These are my long solo rides: the routes, the stories, the footage and what the road taught me.",
+      "_copyStatus": "draft, rewrite in your own voice"
+    },
+    "stats": {
+      "totalDistanceKm": null,
+      "totalRides": 2,
+      "statesCrossed": null,
+      "highestPointMeters": null,
+      "totalRideDays": null
+    },
+    "rides": [
+      {
+        "id": "patna-to-ladakh",
+        "slug": "patna-to-ladakh",
+        "title": "Patna to Ladakh",
+        "type": "solo",
+        "origin": "Patna, Bihar",
+        "destination": "Ladakh",
+        "year": null,
+        "startDate": null,
+        "endDate": null,
+        "durationDays": null,
+        "distanceKm": null,
+        "bike": null,
+        "coverImage": "/images/rides/ladakh/cover.jpg",
+        "summary": "A solo motorcycle ride from Patna all the way to Ladakh.",
+        "story": "",
+        "route": {
+          "geojsonFile": null,
+          "gpxFile": null,
+          "waypoints": [],
+          "_note": "Waypoints: [{ name, lat, lng, day, note }]. Export a GPX from your phone or Google Maps timeline and convert to GeoJSON."
+        },
+        "highlights": [],
+        "dayByDay": [],
+        "gallery": [],
+        "videos": [],
+        "lessons": [],
+        "gearUsed": []
+      },
+      {
+        "id": "patna-to-rameshwaram",
+        "slug": "patna-to-rameshwaram",
+        "title": "Patna to Rameshwaram",
+        "type": "solo",
+        "origin": "Patna, Bihar",
+        "destination": "Rameshwaram, Tamil Nadu",
+        "year": null,
+        "startDate": null,
+        "endDate": null,
+        "durationDays": null,
+        "distanceKm": null,
+        "bike": null,
+        "coverImage": "/images/rides/rameshwaram/cover.jpg",
+        "summary": "A solo motorcycle ride from Patna in the north to Rameshwaram at the southern tip of India.",
+        "story": "",
+        "route": { "geojsonFile": null, "gpxFile": null, "waypoints": [] },
+        "highlights": [],
+        "dayByDay": [],
+        "gallery": [],
+        "videos": [],
+        "lessons": [],
+        "gearUsed": []
+      }
+    ],
+    "gear": {
+      "bike": null,
+      "riding": [],
+      "content": ["Action camera", "Microphone"]
+    },
+    "plannedRides": [],
+    "cta": {
+      "label": "Follow the rides",
+      "links": ["instagram", "youtube"]
+    }
+  },
+
+  "contact": {
+    "heading": "Let's build something",
+    "subheading": "Open to interesting engineering conversations, collaborations and ride stories.",
+    "email": "sahsisunny@gmail.com",
+    "form": { "enabled": true, "provider": "formspree-or-resend", "spamProtection": "honeypot+rate-limit" },
+    "responseTime": null
+  },
+
+  "now": {
+    "updated": "2026-11",
+    "items": [
+      "Working as an Associate Full Stack Developer at Fountane (Next.js + Go).",
+      "Building an AI chatbot agent that talks to a large set of APIs.",
+      "Going deeper on AWS, system design and distributed systems.",
+      "Planning the next ride and editing footage from the last ones."
+    ]
+  },
+
+  "tools": {
+    "_note": "Powers an optional /uses page.",
+    "ai": ["Claude", "Cursor", "Antigravity"],
+    "dev": ["Git, GitHub, GitLab", "Linux", "VS Code or Cursor"],
+    "hardware": [],
+    "riding": []
+  },
+
+  "testimonials": [],
+
+  "seo": {
+    "jsonLd": {
+      "@type": "Person",
+      "name": "Sunny Sahsi",
+      "jobTitle": "Associate Full Stack Developer",
+      "worksFor": { "@type": "Organization", "name": "Fountane Inc." },
+      "alumniOf": "Patna University",
+      "address": { "@type": "PostalAddress", "addressLocality": "Patna", "addressRegion": "Bihar", "addressCountry": "IN" },
+      "sameAs": [
+        "https://www.linkedin.com/in/sahsisunny/",
+        "https://www.github.com/sahsisunny",
+        "https://www.twitter.com/sahsisunny"
+      ]
+    }
+  }
+}

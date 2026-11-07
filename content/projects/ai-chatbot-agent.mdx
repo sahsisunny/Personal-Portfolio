@@ -1,0 +1,34 @@
+## Deep Dive: Agent Architecture & Tool Orchestration
+
+In hotel operations, front-desk staff need answers immediately—whether reconciling yesterday's night audit, verifying guest balances before checkout, or checking room maintenance statuses across multiple buildings.
+
+### Multi-Service Topology
+
+The property management backend is composed of discrete services:
+- **Auth & Session Service**: Validates JWTs and employee role scopes.
+- **Reservation & Room Service**: Manages occupancy, housekeeping statuses, and folio ledgers.
+- **Configuration & Rate Service**: Manages seasonal rate plans and tax overrides.
+- **Reporting Service**: Aggregates daily summaries, shift turnovers, and historical ledger exports.
+
+```
+[ User Query in Plain Text ]
+             ↓
+[ Agent Orchestrator (Go) ]
+   ├── Intent Classification & Tool Pruning
+   ├── Dynamic Time-Window Framing (Hotel Timezone)
+   └── RBAC Permission Check
+             ↓
+[ Selected Tool Execution against Internal REST APIs ]
+             ↓
+[ Response Synthesizer & Fact Verification ]
+             ↓
+[ Verified Answer with Source Attribution ]
+```
+
+### Critical Problem: Time-Window Ambiguity
+When queries referenced relative timeframes like *"yesterday"* or *"last shift"*, naive LLM calls failed because the LLM assumed server time or hallucinated ambiguous date formats. We resolved this by explicitly injecting an anchor block into the system prompt:
+- Canonical today date in hotel local timezone
+- Exact ISO start and end timestamps for yesterday: `[yesterday 00:00:00 -> yesterday 23:59:59]`
+
+### What I Learned & What's Next
+Orchestrating tools with LLMs requires treating the agent as a deterministic state machine with guardrails, rather than expecting the LLM to guess enterprise invariants. The next phase will introduce asynchronous routines with webhook-based event triggers and a web-based human approval step.

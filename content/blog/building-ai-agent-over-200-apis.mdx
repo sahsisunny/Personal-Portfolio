@@ -1,0 +1,43 @@
+---
+title: "Building an AI agent over 200+ APIs: what broke first"
+slug: "building-ai-agent-over-200-apis"
+date: "2026-10-15"
+summary: "Notes from designing and auditing a production Go backend agent that orchestrates 200+ microservice endpoints for hotel front-desk operations."
+tags: ["AI", "Go", "Architecture", "Microservices"]
+category: "AI"
+draft: false
+---
+
+When we set out to build an AI chatbot agent backend on top of our existing property management services at Fountane, the initial pitch sounded simple: connect an LLM to internal endpoints so front-desk staff can query reservations, reports, and room statuses in plain English.
+
+In reality, orchestrating **200+ REST APIs** through an LLM exposes every edge case in your system architecture. Here is what broke first, and how we engineered solutions around it.
+
+## 1. Tool Selection Bloat
+
+Passing 200 API schemas directly into a prompt blows up context tokens, increases latency, and degrades tool selection accuracy.
+
+We implemented a two-stage routing architecture:
+- **Classifier & Intent Analyzer**: High-level categorization to determine the domain (e.g., Reservation, Billing, Housekeeping, Guest Profile).
+- **Domain Sub-Registry**: Dynamically inject only the 8-12 tools relevant to that domain into the execution prompt.
+
+## 2. The "Yesterday" Ambiguity
+
+One of the subtlest bugs discovered during our AI-assisted audit was date-window calculation.
+
+When a front-desk operator asks:
+> *"Show me all checked-out rooms from yesterday."*
+
+Different microservices expected ISO UTC timestamps, local hotel timezone timestamps, or raw `YYYY-MM-DD` date strings. A naive LLM call often grabbed the server's UTC time. If the server is in US East and the hotel is in London or Mumbai, "yesterday" shifted by an entire day.
+
+**Fix:** We bound the user session to the hotel's IANA timezone and injected explicit calculated boundaries (`yesterday_start`, `yesterday_end`) directly into the agent runtime context before tool invocation.
+
+## 3. Session Context & Identity Hardening
+
+Hotel employees operate in multi-shift desks. We had to ensure:
+- Every tool execution strictly enforces role-based access control (RBAC).
+- Session tokens carry the acting employee's audit identity, preventing privilege escalation.
+- Strict schema validation using Zod/Go struct tags before dispatching API calls.
+
+## What's Next: Agent Routines
+
+Our next phase introduces scheduled and condition-triggered routines: automated morning audit summaries, room status discrepancy notifications, and automated escalation flows with mandatory human-in-the-loop sign-off.

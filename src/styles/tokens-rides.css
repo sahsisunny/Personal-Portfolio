@@ -1,0 +1,31 @@
+/* Rides Microsite Design Tokens (Adventure Journal) */
+/* Light: Sand / Earth palette */
+.rides-realm,
+[data-theme-realm="rides"] {
+  --bg: #FBF7F0;
+  --surface: #FFFFFF;
+  --surface-2: #F5EFEB;
+  --text: #1C1917;
+  --muted: #57534E;
+  --border: #E7E5E4;
+  --accent: #C2410C; /* burnt orange */
+  --accent-contrast: #FFFFFF;
+  --accent-2: #0E7490; /* glacier blue */
+  --success: #15803D;
+}
+
+/* Dark: Asphalt / Night ride palette */
+html.dark .rides-realm,
+html.dark [data-theme-realm="rides"],
+.dark.rides-realm {
+  --bg: #0A0A0B;
+  --surface: #151517;
+  --surface-2: #1F1F24;
+  --text: #F5F5F4;
+  --muted: #A8A29E;
+  --border: #27272A;
+  --accent: #FB923C;
+  --accent-contrast: #0A0A0B;
+  --accent-2: #22D3EE;
+  --success: #4ADE80;
+}

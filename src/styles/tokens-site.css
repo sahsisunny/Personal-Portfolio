@@ -1,0 +1,28 @@
+/* Professional Site Design Tokens */
+:root {
+  --bg: #FAFAF9;
+  --surface: #FFFFFF;
+  --surface-2: #F1F5F9;
+  --text: #0F172A;
+  --muted: #475569;
+  --border: #E2E8F0;
+  --accent: #4F46E5;
+  --accent-contrast: #FFFFFF;
+  --success: #15803D;
+  --accent-2: #0284C7;
+}
+
+html.dark,
+:root.dark,
+[data-theme="dark"] {
+  --bg: #0B0F17;
+  --surface: #111827;
+  --surface-2: #172033;
+  --text: #E5E7EB;
+  --muted: #94A3B8;
+  --border: #1F2937;
+  --accent: #818CF8;
+  --accent-contrast: #0B0F17;
+  --success: #4ADE80;
+  --accent-2: #38BDF8;
+}

@@ -1,0 +1,42 @@
+---
+title: "From Junior to Associate in two years: what actually helped"
+slug: "junior-to-associate-full-stack"
+date: "2026-11-01"
+summary: "Reflections on transitioning from Junior Full Stack Developer to Associate at Fountane: ownership, Go backend depth, and AI-assisted engineering habits."
+tags: ["Career", "Go", "Next.js", "Engineering"]
+category: "Career"
+draft: false
+---
+
+Two years ago, I joined Fountane as a Junior Full Stack Developer, fresh from open-source contributions with Real Dev Squad. Recently, I was promoted to **Associate Full Stack Developer**.
+
+Title changes in software engineering are usually trailing indicators: you get promoted after you've already been operating at the next level for several months. Looking back, here are the three specific shifts in thinking and habits that actually made the difference.
+
+## 1. Shifting from Task Completer to Feature Owner
+
+As a junior developer, it's easy to treat Jira tickets as discrete to-do checklists:
+- Write the React component.
+- Connect the API endpoint.
+- Move card to "In Review".
+
+The shift happened when I started owning features from customer intent all the way to production monitoring:
+- **Pre-empting edge cases:** What happens when the payment webhook arrives out of order?
+- **Designing resilient schemas:** Anticipating column customizations without breaking PostgreSQL indices.
+- **Handling auth granularity:** Enforcing role-based access control (RBAC) at the API layer rather than relying on frontend conditional rendering.
+
+## 2. Going Deep on Go and Backend Systems
+
+While my early web work was heavily focused on React and Next.js, stepping into Go backend microservices required thinking about memory allocation, goroutines, connection pooling, and structured error propagation.
+
+Writing Go forces clarity. You cannot hide behind implicit type coercions or magic middleware. Owning payment integration APIs and database migrations in Go gave me a grounded understanding of distributed system reliability.
+
+## 3. Developing Disciplined AI-Assisted Workflows
+
+Working with Claude, Cursor, and Antigravity is a core part of my daily routine. However, the engineers who level up are not the ones who copy-paste LLM suggestions blindly.
+
+The habit that proved most valuable:
+- Treat AI output like a PR from a well-intentioned intern.
+- Verify every line of generated SQL, API signature, and boundary condition.
+- Use AI to audit code for missing tests and race conditions, then manually verify the findings before merge.
+
+Engineering is about judgment, trade-offs, and taking accountability for the code running in production.
