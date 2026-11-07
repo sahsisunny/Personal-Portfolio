@@ -1,22 +1,14 @@
 "use client";
 
 import * as React from "react";
-import {
-  CodeBlock,
-  ExecutiveSummaryCallout,
-  ArchitectureDiagram,
-  ComparisonTable,
-  AlertBox,
-} from "./blog-post-content";
+import { CodeBlock } from "./blog-post-content";
 
 interface ModernBlogRendererProps {
   content: string;
   slug: string;
 }
 
-export function ModernBlogRenderer({ content, slug }: ModernBlogRendererProps) {
-  const isJuniorToAssociate = slug === "junior-to-associate-full-stack";
-
+export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
   // Parse markdown content by splitting code blocks and prose
   const blocks = React.useMemo(() => {
     // Regex matches ```lang\ncode```
@@ -61,7 +53,7 @@ export function ModernBlogRenderer({ content, slug }: ModernBlogRendererProps) {
         const proseText = part.trim();
         if (!proseText) return;
 
-        // Split prose into paragraphs, headings, blockquotes, lists
+        // Split prose into paragraphs, headings, blockquotes, lists, tables
         const paragraphs = proseText.split(/\n\n+/);
 
         paragraphs.forEach((pText, pIdx) => {
@@ -79,7 +71,7 @@ export function ModernBlogRenderer({ content, slug }: ModernBlogRendererProps) {
               <h3
                 key={`h3-${index}-${pIdx}`}
                 id={id}
-                className="text-xl font-bold text-text mt-8 mb-3 scroll-mt-24"
+                className="text-lg sm:text-xl font-bold text-text mt-8 mb-3 scroll-mt-24"
               >
                 {headingText}
               </h3>
@@ -94,26 +86,68 @@ export function ModernBlogRenderer({ content, slug }: ModernBlogRendererProps) {
               .replace(/[^a-z0-9]+/g, "-")
               .replace(/(^-|-$)/g, "");
 
-            // If this is junior-to-associate, insert relevant rich media before/after certain headings
-            if (isJuniorToAssociate && headingText.includes("3. Developing Disciplined")) {
-              elements.push(
-                <ArchitectureDiagram key={`arch-diag-${index}-${pIdx}`} />
-              );
-              elements.push(
-                <ComparisonTable key={`comp-table-${index}-${pIdx}`} />
-              );
-            }
-
             elements.push(
               <h2
                 key={`h2-${index}-${pIdx}`}
                 id={id}
-                className="text-2xl sm:text-3xl font-bold text-text mt-12 mb-4 scroll-mt-24 border-b border-border/60 pb-2.5"
+                className="text-xl sm:text-2xl font-bold text-text mt-12 mb-4 scroll-mt-24 border-b border-border/60 pb-2"
               >
                 {headingText}
               </h2>
             );
             return;
+          }
+
+          // Markdown Table
+          if (trimmed.includes("|") && trimmed.includes("---")) {
+            const lines = trimmed.split("\n").filter((l) => l.trim().length > 0);
+            if (lines.length >= 2) {
+              const headers = lines[0]
+                .split("|")
+                .map((c) => c.trim())
+                .filter((c) => c.length > 0);
+              const rows = lines.slice(2).map((rowLine) =>
+                rowLine
+                  .split("|")
+                  .map((c) => c.trim())
+                  .filter((c) => c.length > 0)
+              );
+
+              elements.push(
+                <div
+                  key={`table-${index}-${pIdx}`}
+                  className="my-6 overflow-x-auto rounded-lg border border-border bg-surface"
+                >
+                  <table className="w-full text-left text-xs sm:text-sm">
+                    <thead className="border-b border-border bg-surface-2/60 font-mono text-xs uppercase text-muted">
+                      <tr>
+                        {headers.map((h, hIdx) => (
+                          <th key={hIdx} className="p-3 font-semibold">
+                            {h}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border/60">
+                      {rows.map((row, rIdx) => (
+                        <tr key={rIdx} className="hover:bg-surface-2/30">
+                          {row.map((cell, cIdx) => (
+                            <td key={cIdx} className="p-3 text-muted text-xs leading-relaxed">
+                              <span
+                                dangerouslySetInnerHTML={{
+                                  __html: formatInline(cell),
+                                }}
+                              />
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+              return;
+            }
           }
 
           // Blockquotes
@@ -122,7 +156,7 @@ export function ModernBlogRenderer({ content, slug }: ModernBlogRendererProps) {
             elements.push(
               <blockquote
                 key={`quote-${index}-${pIdx}`}
-                className="border-l-4 border-accent pl-4 my-5 italic text-muted bg-surface-2/40 py-2.5 rounded-r text-base"
+                className="border-l-2 border-accent pl-4 my-5 italic text-muted text-base leading-relaxed"
               >
                 {quoteContent}
               </blockquote>
@@ -130,19 +164,19 @@ export function ModernBlogRenderer({ content, slug }: ModernBlogRendererProps) {
             return;
           }
 
-          // Bullet lists
+          // Bullet lists / Numbered lists
           if (trimmed.startsWith("- ") || trimmed.startsWith("1. ")) {
             const listItems = trimmed.split("\n");
             elements.push(
               <ul
                 key={`list-${index}-${pIdx}`}
-                className="my-4 space-y-2 text-muted text-base sm:text-lg leading-relaxed pl-1"
+                className="my-4 space-y-2 text-muted text-base leading-relaxed pl-1"
               >
                 {listItems.map((item, itemIdx) => {
                   const cleaned = item.replace(/^(-\s+|\d+\.\s+)/, "");
                   return (
                     <li key={itemIdx} className="flex items-start gap-2.5">
-                      <span className="text-accent font-mono select-none mt-1">▸</span>
+                      <span className="text-accent/80 select-none mt-1 font-mono text-xs">•</span>
                       <span
                         dangerouslySetInnerHTML={{
                           __html: formatInline(cleaned),
@@ -156,11 +190,11 @@ export function ModernBlogRenderer({ content, slug }: ModernBlogRendererProps) {
             return;
           }
 
-          // Standard Paragraph
+          // Standard Paragraph: clean, calm, comfortable reading format
           elements.push(
             <p
               key={`p-${index}-${pIdx}`}
-              className="text-base sm:text-lg text-muted leading-relaxed font-sans"
+              className="text-base sm:text-[17px] text-muted leading-relaxed font-sans"
               dangerouslySetInnerHTML={{
                 __html: formatInline(trimmed),
               }}
@@ -171,45 +205,13 @@ export function ModernBlogRenderer({ content, slug }: ModernBlogRendererProps) {
     });
 
     return elements;
-  }, [content, isJuniorToAssociate]);
+  }, [content]);
 
   return (
     <div className="space-y-6">
-      {/* Executive Summary callout for junior to associate post */}
-      {isJuniorToAssociate && (
-        <ExecutiveSummaryCallout
-          takeaways={[
-            {
-              title: "End-to-End Ownership",
-              desc: "Moving from completing discrete Jira UI tickets to owning edge cases, DB schemas, and auth bounds.",
-            },
-            {
-              title: "Go Backend Mastery",
-              desc: "Writing typed, concurrent microservices with idempotent webhooks and transactional database rollbacks.",
-            },
-            {
-              title: "Adversarial AI Review",
-              desc: "Treating Claude/Cursor as talented interns: rigorously testing boundaries before merging.",
-            },
-          ]}
-        />
-      )}
-
-      {/* Main Body */}
-      <div className="prose dark:prose-invert max-w-none text-muted leading-relaxed space-y-6">
+      <div className="prose dark:prose-invert max-w-none text-muted leading-relaxed space-y-5">
         {blocks}
       </div>
-
-      {/* Pro Tip Callout Box at bottom */}
-      {isJuniorToAssociate && (
-        <AlertBox
-          type="tip"
-          title="Engineering Rule of Thumb"
-        >
-          Seniority is measured by how few surprises you introduce into production. 
-          When designing features, design the error and failure paths first. The happy path will take care of itself.
-        </AlertBox>
-      )}
     </div>
   );
 }

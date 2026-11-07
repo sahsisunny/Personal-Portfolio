@@ -84,6 +84,64 @@ body {
   background-size: 24px 24px;
 }
 
+/* Syntax Highlighting for Code Blocks (Prism Tokens) */
+.code-highlight {
+  color: #e2e8f0;
+}
+
+.code-highlight .token.comment,
+.code-highlight .token.prolog,
+.code-highlight .token.doctype,
+.code-highlight .token.cdata {
+  color: #64748b;
+  font-style: italic;
+}
+
+.code-highlight .token.punctuation {
+  color: #94a3b8;
+}
+
+.code-highlight .token.property,
+.code-highlight .token.tag,
+.code-highlight .token.boolean,
+.code-highlight .token.number,
+.code-highlight .token.constant,
+.code-highlight .token.symbol {
+  color: #f59e0b;
+}
+
+.code-highlight .token.selector,
+.code-highlight .token.attr-name,
+.code-highlight .token.string,
+.code-highlight .token.char,
+.code-highlight .token.builtin {
+  color: #34d399;
+}
+
+.code-highlight .token.operator,
+.code-highlight .token.entity,
+.code-highlight .token.url {
+  color: #38bdf8;
+}
+
+.code-highlight .token.atrule,
+.code-highlight .token.attr-value,
+.code-highlight .token.keyword {
+  color: #c084fc;
+  font-weight: 600;
+}
+
+.code-highlight .token.function,
+.code-highlight .token.class-name {
+  color: #60a5fa;
+}
+
+.code-highlight .token.regex,
+.code-highlight .token.important,
+.code-highlight .token.variable {
+  color: #f43f5e;
+}
+
 /* Print styles */
 @media print {
   nav, footer, .no-print {

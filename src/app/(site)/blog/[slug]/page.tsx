@@ -6,13 +6,12 @@ import {
   ArrowRight,
   Calendar,
   Clock,
-  BookOpen,
   User,
 } from "lucide-react";
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/mdx";
 import { formatDate } from "@/lib/utils";
 import { getPerson } from "@/lib/data";
-import { ReadingProgressBar } from "@/components/blog/blog-post-content";
+import { ReadingProgressBar, TableOfContents } from "@/components/blog/blog-post-content";
 import { ModernBlogRenderer } from "@/components/blog/modern-blog-renderer";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/icons";
 
@@ -115,9 +114,9 @@ export default async function BlogPostPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
 
-      <div className="py-12 md:py-20">
+      <div className="py-12 md:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumbs */}
+          {/* Top Breadcrumb */}
           <div className="mb-8 flex items-center justify-between">
             <Link
               href="/blog"
@@ -132,19 +131,19 @@ export default async function BlogPostPage({ params }: PageProps) {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Main Article Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            {/* Main Article Body (Clean, moderate, high readability) */}
             <article className="lg:col-span-8">
-              <header className="border-b border-border pb-8 mb-8">
-                <h1 className="text-3xl font-extrabold tracking-tight text-text sm:text-4xl lg:text-5xl leading-tight">
+              <header className="border-b border-border/70 pb-6 mb-8 space-y-4">
+                <h1 className="text-3xl font-bold tracking-tight text-text sm:text-4xl lg:text-5xl leading-tight">
                   {post.frontmatter.title}
                 </h1>
 
-                <p className="mt-4 text-base sm:text-lg text-muted leading-relaxed">
+                <p className="text-base sm:text-lg text-muted leading-relaxed font-sans">
                   {post.frontmatter.summary}
                 </p>
 
-                <div className="mt-6 flex flex-wrap items-center gap-4 text-xs font-mono text-muted">
+                <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-muted pt-2">
                   <div className="flex items-center gap-1.5">
                     <User className="w-3.5 h-3.5 text-accent" />
                     <span className="font-semibold text-text">Sunny Sahsi</span>
@@ -164,7 +163,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
 
                 {/* Tags */}
-                <div className="mt-4 flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-1.5 pt-1">
                   {post.frontmatter.tags.map((t) => (
                     <span
                       key={t}
@@ -176,11 +175,11 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
               </header>
 
-              {/* Modern Interactive Blog Post Renderer */}
+              {/* Clean, syntax-colored Markdown Renderer */}
               <ModernBlogRenderer content={post.content} slug={slug} />
 
               {/* Prev / Next Article Navigation */}
-              <div className="mt-16 pt-8 border-t border-border flex items-center justify-between gap-4">
+              <div className="mt-14 pt-8 border-t border-border flex items-center justify-between gap-4">
                 {prevPost ? (
                   <Link
                     href={`/blog/${prevPost.slug}`}
@@ -189,7 +188,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     <span className="text-xs font-mono text-muted flex items-center gap-1 group-hover:text-accent">
                       <ArrowLeft className="w-3.5 h-3.5" /> Previous Article
                     </span>
-                    <span className="font-bold text-sm sm:text-base text-text group-hover:text-accent truncate">
+                    <span className="font-bold text-sm text-text group-hover:text-accent truncate">
                       {prevPost.frontmatter.title}
                     </span>
                   </Link>
@@ -205,7 +204,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     <span className="text-xs font-mono text-muted flex items-center justify-end gap-1 group-hover:text-accent">
                       Next Article <ArrowRight className="w-3.5 h-3.5" />
                     </span>
-                    <span className="font-bold text-sm sm:text-base text-text group-hover:text-accent truncate">
+                    <span className="font-bold text-sm text-text group-hover:text-accent truncate">
                       {nextPost.frontmatter.title}
                     </span>
                   </Link>
@@ -215,41 +214,19 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
             </article>
 
-            {/* Sticky Table of Contents on Desktop */}
+            {/* Sidebar (Table of Contents + Author) */}
             <aside className="hidden lg:block lg:col-span-4 sticky top-24 space-y-6">
-              {toc.length > 0 && (
-                <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs">
-                  <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-muted font-bold mb-4">
-                    <BookOpen className="w-3.5 h-3.5 text-accent" />
-                    <span>Table of Contents</span>
-                  </div>
-                  <nav className="space-y-2 text-xs font-mono">
-                    {toc.map((item, idx) => (
-                      <a
-                        key={idx}
-                        href={`#${item.id}`}
-                        className={`block hover:text-accent transition-colors ${
-                          item.level === 3
-                            ? "pl-3 text-muted/80 text-[11px]"
-                            : "text-text font-medium"
-                        }`}
-                      >
-                        {item.text}
-                      </a>
-                    ))}
-                  </nav>
-                </div>
-              )}
+              {/* Interactive Scroll-Tracking TOC */}
+              {toc.length > 0 && <TableOfContents headings={toc} />}
 
-              {/* Author Card */}
-              <div className="rounded-2xl border border-border bg-surface-2/40 p-5 space-y-3">
-                <span className="text-xs font-mono text-muted uppercase tracking-wider block font-bold">
+              {/* Simple Author Box */}
+              <div className="rounded-xl border border-border bg-surface-2/40 p-5 space-y-2.5">
+                <span className="text-[11px] font-mono text-muted uppercase tracking-wider block font-bold">
                   Author
                 </span>
                 <p className="text-sm font-bold text-text">{person.name}</p>
                 <p className="text-xs text-muted leading-relaxed font-sans">
                   Associate Full Stack Developer at Fountane working across Next.js and Go.
-                  Building AI chatbot agent backends and riding solo across India.
                 </p>
                 <div className="pt-2 flex items-center gap-3 text-muted">
                   <a
@@ -284,9 +261,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 
               {/* Related Posts */}
               {relatedPosts.length > 0 && (
-                <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs space-y-3">
-                  <span className="text-xs font-mono text-muted uppercase tracking-wider block font-bold">
-                    Related Articles
+                <div className="rounded-xl border border-border bg-surface p-5 shadow-xs space-y-3">
+                  <span className="text-[11px] font-mono text-muted uppercase tracking-wider block font-bold">
+                    Related Writing
                   </span>
                   <div className="space-y-3">
                     {relatedPosts.map((rp) => (
