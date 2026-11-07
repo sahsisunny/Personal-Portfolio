@@ -34,12 +34,12 @@ export function EducationSection({ education }: EducationSectionProps) {
           {education.map((edu) => (
             <div
               key={edu.id}
-              className="rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-xs hover:border-accent/40 transition-all duration-300"
+              className="rounded-2xl border border-border bg-surface p-5 sm:p-8 shadow-xs hover:border-accent/40 transition-all duration-300"
             >
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6">
-                <div className="flex items-start gap-4 sm:gap-5 min-w-0">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-5 sm:gap-6">
+                <div className="flex items-start gap-3.5 sm:gap-5 min-w-0">
                   {/* University Logo */}
-                  <div className="relative flex h-14 w-14 sm:h-16 sm:w-16 flex-shrink-0 items-center justify-center rounded-2xl border border-border bg-surface-2 overflow-hidden shadow-xs p-1.5">
+                  <div className="relative flex h-12 w-12 sm:h-16 sm:w-16 flex-shrink-0 items-center justify-center rounded-2xl border border-border bg-surface-2 overflow-hidden shadow-xs p-1.5">
                     {edu.logo ? (
                       <Image
                         src={edu.logo}

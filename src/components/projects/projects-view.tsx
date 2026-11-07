@@ -116,15 +116,15 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
         </div>
       </div>
 
-      {/* Tech tags row */}
-      <div className="flex flex-wrap items-center gap-1.5 pb-2 border-b border-border">
-        <span className="text-xs font-mono text-muted mr-1">Tech:</span>
+      {/* Tech tags row - scrollable on mobile, wrapping on desktop */}
+      <div className="flex items-center gap-1.5 pb-2.5 border-b border-border overflow-x-auto no-scrollbar flex-nowrap sm:flex-wrap">
+        <span className="text-xs font-mono text-muted mr-1 whitespace-nowrap flex-shrink-0">Tech:</span>
         {allTechs.slice(0, 12).map((tech) => (
           <button
             key={tech}
             type="button"
             onClick={() => setSelectedTech(tech)}
-            className={`px-2 py-0.5 text-xs font-mono rounded-md border transition-colors ${
+            className={`px-2.5 py-1 sm:py-0.5 text-xs font-mono rounded-md border transition-colors whitespace-nowrap flex-shrink-0 ${
               selectedTech === tech
                 ? "bg-text text-bg border-text font-semibold"
                 : "bg-surface-2/60 text-muted border-border hover:text-text hover:border-border/80"

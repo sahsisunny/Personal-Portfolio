@@ -133,7 +133,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
         {/* Timeline Container */}
         <div
           ref={timelineRef}
-          className="relative pl-8 sm:pl-10 ml-2 sm:ml-4 space-y-12"
+          className="relative pl-6 sm:pl-10 ml-1 sm:ml-4 space-y-8 sm:space-y-12"
         >
           {/* Timeline Slider Track */}
           <div
@@ -192,7 +192,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                     });
                   }}
                   aria-label={`Jump to ${exp.company}`}
-                  className="absolute -left-8 sm:-left-10 top-4 -translate-x-1/2 z-20 flex h-7 w-7 items-center justify-center rounded-full bg-surface transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer group/node"
+                  className="absolute -left-6 sm:-left-10 top-4 -translate-x-1/2 z-20 flex h-7 w-7 items-center justify-center rounded-full bg-surface transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer group/node"
                 >
                   <div
                     className={cn(
@@ -216,7 +216,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                 {/* Card */}
                 <div
                   className={cn(
-                    "rounded-xl border bg-surface p-5 sm:p-7 shadow-xs transition-all duration-300",
+                    "rounded-xl border bg-surface p-4 sm:p-7 shadow-xs transition-all duration-300",
                     isActive
                       ? "border-accent/60 shadow-[0_4px_24px_-6px_rgba(79,70,229,0.18)]"
                       : "border-border hover:border-accent/40"

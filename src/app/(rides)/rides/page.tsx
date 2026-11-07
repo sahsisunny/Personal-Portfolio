@@ -66,7 +66,7 @@ export default function RidesLandingPage() {
             <span>{ridesData.page.eyebrow} • SOLO MOTORCYCLE EXPEDITIONS</span>
           </div>
 
-          <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl tracking-wider uppercase font-bold text-text">
+          <h1 className="font-display text-4xl sm:text-6xl lg:text-8xl tracking-wider uppercase font-bold text-text">
             {ridesData.page.title}
           </h1>
 
