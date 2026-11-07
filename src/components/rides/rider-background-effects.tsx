@@ -119,3 +119,4 @@ export function RiderBackgroundEffects() {
     </div>
   );
 }
+

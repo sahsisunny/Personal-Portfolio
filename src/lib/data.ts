@@ -6,6 +6,9 @@ import {
   type Experience,
   type Education,
   type Ride,
+  type BikeDetails,
+  type GearItem,
+  type PlannedRide,
   type OpenSource,
 } from "./schema";
 
@@ -84,6 +87,18 @@ export function getRides(): Ride[] {
 
 export function getRideBySlug(slug: string): Ride | undefined {
   return portfolioData.rides.rides.find((r) => r.slug === slug);
+}
+
+export function getBikeDetails(): BikeDetails {
+  return portfolioData.rides.bikeDetails;
+}
+
+export function getGearItems(): GearItem[] {
+  return portfolioData.rides.gearItems;
+}
+
+export function getPlannedRides(): PlannedRide[] {
+  return portfolioData.rides.plannedRides;
 }
 
 export function getNow() {

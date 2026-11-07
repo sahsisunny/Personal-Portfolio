@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Compass,
@@ -6,28 +7,32 @@ import {
   MapPin,
   Clock,
   Bike,
-  ChevronDown,
+  ShieldCheck,
   Sparkles,
+  ChevronRight,
 } from "lucide-react";
-import { getRidesSection, getSocials } from "@/lib/data";
+import { getRidesSection, getSocials, getBikeDetails } from "@/lib/data";
 import { InstagramIcon, YoutubeIcon } from "@/components/ui/icons";
 import { IndiaRoutesMapClient } from "@/components/rides/india-routes-map-client";
-import { SteedLocker } from "@/components/rides/steed-locker";
 
 export const metadata: Metadata = {
   title: "On Two Wheels | Solo Motorcycle Touring across India",
   description:
-    "Patna to Ladakh and Patna to Rameshwaram. Solo motorcycle expeditions, route maps, waypoints, telemetry, gear, and field stories by Sunny Sahsi.",
+    "Patna to Ladakh and Patna to Rameshwaram. Solo motorcycle expeditions, route maps, waypoints, telemetry, gear, and field stories by Sunny Sahsi on a Royal Enfield Meteor 350.",
 };
 
 export default function RidesLandingPage() {
   const ridesData = getRidesSection();
   const socials = getSocials();
+  const bike = getBikeDetails();
 
   // Filter out any stat that is null per Section 9.1 rules
   const statsList = [
     ridesData.stats.totalDistanceKm
-      ? { label: "Total Distance", value: `${ridesData.stats.totalDistanceKm.toLocaleString()} km` }
+      ? {
+          label: "Total Distance",
+          value: `${ridesData.stats.totalDistanceKm.toLocaleString()} km`,
+        }
       : null,
     ridesData.stats.totalRides
       ? { label: "Solo Expeditions", value: `${ridesData.stats.totalRides}` }
@@ -36,7 +41,10 @@ export default function RidesLandingPage() {
       ? { label: "States Crossed", value: `${ridesData.stats.statesCrossed}` }
       : null,
     ridesData.stats.highestPointMeters
-      ? { label: "Highest Altitude", value: `${ridesData.stats.highestPointMeters.toLocaleString()} m` }
+      ? {
+          label: "Highest Altitude",
+          value: `${ridesData.stats.highestPointMeters.toLocaleString()} m`,
+        }
       : null,
     ridesData.stats.totalRideDays
       ? { label: "Days on Road", value: `${ridesData.stats.totalRideDays}` }
@@ -70,26 +78,36 @@ export default function RidesLandingPage() {
             {ridesData.page.intro}
           </p>
 
-          <div className="pt-4 flex flex-wrap justify-center gap-4">
+          {/* Quick Subpage Navigation Cards / Pills */}
+          <div className="pt-4 flex flex-wrap justify-center gap-3 sm:gap-4">
             <a
-              href="#stories"
-              className="inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-bold text-accent-contrast shadow-md hover:opacity-95 transition-all"
+              href="#expeditions"
+              className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-xs font-mono uppercase font-bold text-accent-contrast shadow-md hover:opacity-95 transition-all"
             >
-              <span>Explore Expeditions</span>
-              <ChevronDown className="w-4 h-4" />
+              <span>Completed Expeditions</span>
+              <ChevronRight className="w-4 h-4" />
             </a>
-            <a
-              href="#map"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-6 py-3 text-sm font-bold text-text hover:border-accent transition-all"
+            <Link
+              href="/rides/bike"
+              className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-xs font-mono uppercase font-bold text-text hover:border-accent hover:text-accent transition-all"
             >
-              <span>Route Maps</span>
-            </a>
-            <a
-              href="#gear"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-6 py-3 text-sm font-bold text-text hover:border-accent transition-all"
+              <Bike className="w-4 h-4 text-accent" />
+              <span>The Meteor 350</span>
+            </Link>
+            <Link
+              href="/rides/gear"
+              className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-xs font-mono uppercase font-bold text-text hover:border-accent hover:text-accent transition-all"
             >
-              <span>The Meteor 350 & Gear</span>
-            </a>
+              <ShieldCheck className="w-4 h-4 text-accent" />
+              <span>Gear & Loadout</span>
+            </Link>
+            <Link
+              href="/rides/upcoming"
+              className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-xs font-mono uppercase font-bold text-text hover:border-accent hover:text-accent transition-all"
+            >
+              <Sparkles className="w-4 h-4 text-accent" />
+              <span>Upcoming Rides</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -103,12 +121,139 @@ export default function RidesLandingPage() {
                 <div className="font-display text-3xl sm:text-4xl text-accent font-bold tracking-wide">
                   {st.value}
                 </div>
-                <div className="text-xs font-mono text-muted uppercase mt-1">{st.label}</div>
+                <div className="text-xs font-mono text-muted uppercase mt-1">
+                  {st.label}
+                </div>
               </div>
             ))}
           </div>
         </section>
       )}
+
+      {/* Explore Portals Grid: The Bike, The Gear, The Horizon */}
+      <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6">
+        <div>
+          <span className="text-xs font-mono text-accent uppercase tracking-widest font-semibold block mb-1">
+            Expedition Dimensions
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl uppercase tracking-wide text-text font-bold">
+            The Rig, Loadout & Horizon
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Card 1: The Bike */}
+          <Link
+            href="/rides/bike"
+            className="group flex flex-col justify-between rounded-2xl border-2 border-border bg-surface overflow-hidden shadow-xs hover:border-accent hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <div className="relative aspect-16/10 w-full bg-slate-950 flex items-center justify-center p-4 overflow-hidden border-b border-border">
+                <Image
+                  src={bike.image}
+                  alt={bike.name}
+                  width={600}
+                  height={375}
+                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute top-3 left-3 rounded-full bg-surface/90 border border-accent/40 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent">
+                  349CC SOHC J-SERIES
+                </div>
+              </div>
+              <div className="p-5 space-y-2">
+                <div className="flex items-center gap-1.5 text-xs font-mono text-accent font-bold">
+                  <Bike className="w-3.5 h-3.5" />
+                  <span>THE MACHINE</span>
+                </div>
+                <h3 className="font-display text-2xl uppercase tracking-wide text-text group-hover:text-accent transition-colors font-bold">
+                  Royal Enfield Meteor 350
+                </h3>
+                <p className="text-xs text-muted leading-relaxed line-clamp-3">
+                  {bike.description}
+                </p>
+              </div>
+            </div>
+            <div className="p-5 pt-0 flex items-center gap-2 text-xs font-mono font-bold text-accent uppercase tracking-wider group-hover:underline">
+              <span>Inspect Bike Specs & Mods</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+            </div>
+          </Link>
+
+          {/* Card 2: Gear & Loadout */}
+          <Link
+            href="/rides/gear"
+            className="group flex flex-col justify-between rounded-2xl border-2 border-border bg-surface overflow-hidden shadow-xs hover:border-accent hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <div className="relative aspect-16/10 w-full bg-slate-950 flex items-center justify-center p-4 overflow-hidden border-b border-border">
+                <Image
+                  src="/images/gear/rynox-jacket.svg"
+                  alt="Touring Gear"
+                  width={600}
+                  height={375}
+                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute top-3 left-3 rounded-full bg-surface/90 border border-accent/40 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent">
+                  CE LEVEL 2 • 8 ARSENAL ITEMS
+                </div>
+              </div>
+              <div className="p-5 space-y-2">
+                <div className="flex items-center gap-1.5 text-xs font-mono text-accent font-bold">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>ARMOUR & LUGGAGE</span>
+                </div>
+                <h3 className="font-display text-2xl uppercase tracking-wide text-text group-hover:text-accent transition-colors font-bold">
+                  Touring Gear & Loadout
+                </h3>
+                <p className="text-xs text-muted leading-relaxed line-clamp-3">
+                  CE Level 2 armour, ECE helmets, 55L radio-welded dry saddlebags, and survival tools tested across 15,480 km.
+                </p>
+              </div>
+            </div>
+            <div className="p-5 pt-0 flex items-center gap-2 text-xs font-mono font-bold text-accent uppercase tracking-wider group-hover:underline">
+              <span>View Gear Loadout</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+            </div>
+          </Link>
+
+          {/* Card 3: Upcoming Expeditions */}
+          <Link
+            href="/rides/upcoming"
+            className="group flex flex-col justify-between rounded-2xl border-2 border-border bg-surface overflow-hidden shadow-xs hover:border-accent hover:shadow-xl transition-all duration-300"
+          >
+            <div>
+              <div className="relative aspect-16/10 w-full bg-slate-950 flex items-center justify-center overflow-hidden border-b border-border">
+                <Image
+                  src="/images/rides/spiti-cover.svg"
+                  alt="Spiti Valley & Sach Pass"
+                  width={600}
+                  height={375}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute top-3 left-3 rounded-full bg-surface/90 border border-accent/40 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent">
+                  AUTUMN 2025 • PLANNING
+                </div>
+              </div>
+              <div className="p-5 space-y-2">
+                <div className="flex items-center gap-1.5 text-xs font-mono text-accent font-bold">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>NEXT HORIZON</span>
+                </div>
+                <h3 className="font-display text-2xl uppercase tracking-wide text-text group-hover:text-accent transition-colors font-bold">
+                  Spiti & Sach Pass
+                </h3>
+                <p className="text-xs text-muted leading-relaxed line-clamp-3">
+                  Tackling the most treacherous cliff-carved mountain roads on earth: Hindustan-Tibet Highway and Sach Pass cliff-hangers.
+                </p>
+              </div>
+            </div>
+            <div className="p-5 pt-0 flex items-center gap-2 text-xs font-mono font-bold text-accent uppercase tracking-wider group-hover:underline">
+              <span>View Route Blueprint</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+            </div>
+          </Link>
+        </div>
+      </section>
 
       {/* Interactive India Map */}
       <section id="map" className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6">
@@ -127,17 +272,20 @@ export default function RidesLandingPage() {
         <IndiaRoutesMapClient />
       </section>
 
-      {/* Ride Cards (Stories & Debriefs) */}
-      <section id="stories" className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-8">
+      {/* Ride Cards (Completed Expeditions) */}
+      <section
+        id="expeditions"
+        className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-8"
+      >
         <div>
           <span className="text-xs font-mono text-accent uppercase tracking-widest font-semibold block mb-1">
             Solo Journeys
           </span>
           <h2 className="font-display text-3xl sm:text-4xl uppercase tracking-wide text-text font-bold">
-            The Expeditions
+            Completed Expeditions
           </h2>
           <p className="text-sm text-muted max-w-xl mt-1">
-            Field journals, day-by-day logs, altitude profiles, and survival lessons.
+            Field journals, day-by-day logs, altitude profiles, and survival lessons from the road.
           </p>
         </div>
 
@@ -148,27 +296,36 @@ export default function RidesLandingPage() {
               className="group flex flex-col justify-between rounded-2xl border-2 border-border bg-surface overflow-hidden shadow-xs hover:border-accent hover:shadow-2xl transition-all duration-300"
             >
               <div>
-                {/* Visual Cover Banner with Topographic Overlay */}
-                <div className="relative aspect-16/10 w-full bg-gradient-to-br from-surface-2 via-surface to-accent/20 border-b border-border flex items-center justify-center p-6 text-center">
-                  <div className="space-y-2">
-                    <Compass className="w-12 h-12 text-accent mx-auto group-hover:rotate-45 transition-transform duration-300" />
-                    <div className="font-display text-2xl sm:text-3xl tracking-wide uppercase text-text font-bold">
-                      {ride.origin} ➔ {ride.destination}
-                    </div>
-                  </div>
+                {/* Visual Cover Banner with Topographic Landscape SVG Illustration */}
+                <div className="relative aspect-16/10 w-full bg-slate-950 border-b border-border overflow-hidden">
+                  <Image
+                    src={ride.coverImage}
+                    alt={ride.title}
+                    width={800}
+                    height={500}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"
+                  />
 
                   <div className="absolute top-3 left-3 rounded-full bg-surface/90 backdrop-blur-xs border border-accent/40 px-3 py-1 text-[11px] font-mono font-bold text-accent">
                     Solo Expedition • {ride.year}
+                  </div>
+
+                  <div className="absolute bottom-3 left-3 right-3 bg-surface/85 backdrop-blur-xs border border-border/80 px-3 py-1.5 rounded-lg flex items-center justify-between text-xs font-mono">
+                    <span className="font-bold text-text uppercase">
+                      {ride.origin} ➔ {ride.destination}
+                    </span>
                   </div>
                 </div>
 
                 {/* Body */}
                 <div className="p-6 space-y-3">
-                  <h3 className="font-display text-2xl uppercase tracking-wide text-text group-hover:text-accent transition-colors">
+                  <h3 className="font-display text-2xl uppercase tracking-wide text-text group-hover:text-accent transition-colors font-bold">
                     <Link href={`/rides/${ride.slug}`}>{ride.title}</Link>
                   </h3>
 
-                  <p className="text-sm text-muted leading-relaxed">{ride.summary}</p>
+                  <p className="text-sm text-muted leading-relaxed">
+                    {ride.summary}
+                  </p>
 
                   <div className="pt-3 flex flex-wrap gap-4 text-xs font-mono text-muted">
                     {ride.distanceKm && (
@@ -217,34 +374,6 @@ export default function RidesLandingPage() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Steed & Gear Locker ("The Garage") */}
-      <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <SteedLocker />
-      </section>
-
-      {/* Next Expedition Callout */}
-      <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="p-6 sm:p-8 rounded-2xl border-2 border-accent/40 bg-gradient-to-r from-accent/10 via-surface to-accent-2/10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-          <div className="space-y-2">
-            <div className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-accent uppercase tracking-wider">
-              <Sparkles className="w-4 h-4" />
-              <span>Next Mission On The Horizon</span>
-            </div>
-            <h3 className="font-display text-2xl sm:text-3xl uppercase tracking-wide text-text font-bold">
-              Spiti Valley & Sach Pass
-            </h3>
-            <p className="text-xs sm:text-sm text-muted max-w-xl">
-              Targeting 3,200 km through the remote Kinnaur corridors, treacherous Sach Pass cliff-hangers, and Kaza monastery plateaus in Autumn 2025.
-            </p>
-          </div>
-          <div className="flex-shrink-0">
-            <div className="rounded-xl border border-border bg-surface px-4 py-2.5 font-mono text-xs text-accent font-bold text-center">
-              STATUS: PREPARATION & ROUTE SCOUTING
-            </div>
-          </div>
         </div>
       </section>
 

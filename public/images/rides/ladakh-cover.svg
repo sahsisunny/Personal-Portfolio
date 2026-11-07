@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284C7" />
+      <stop offset="60%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#BAE6FD" />
+    </linearGradient>
+    <linearGradient id="snowMtn" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#E0F2FE" />
+      <stop offset="100%" stop-color="#94A3B8" />
+    </linearGradient>
+    <linearGradient id="rockMtn" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78350F" />
+      <stop offset="50%" stop-color="#451A03" />
+      <stop offset="100%" stop-color="#1C1917" />
+    </linearGradient>
+    <linearGradient id="roadGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#18181B" />
+      <stop offset="100%" stop-color="#3F3F46" />
+    </linearGradient>
+  </defs>
+
+  <!-- Deep Himalayan Sky -->
+  <rect width="800" height="450" fill="url(#skyGrad)" />
+
+  <!-- Distant Snow Peaks (Baralacha & Khardung Range) -->
+  <polygon points="120,240 260,80 400,240" fill="url(#snowMtn)" />
+  <polygon points="340,240 480,60 620,240" fill="url(#snowMtn)" opacity="0.9" />
+  <polygon points="0,260 140,110 280,260" fill="url(#snowMtn)" opacity="0.8" />
+  <polygon points="560,260 680,100 800,260" fill="url(#snowMtn)" opacity="0.85" />
+
+  <!-- Dark Rugged Himalayan Foothills -->
+  <polygon points="-40,340 180,180 420,340" fill="url(#rockMtn)" />
+  <polygon points="360,340 580,170 820,340" fill="url(#rockMtn)" />
+
+  <!-- Asphalt Mountain Pass Road with Hairpin Curves -->
+  <path d="M 0 450 Q 240 440 380 340 T 420 280 Q 450 250 480 270 T 560 300 Q 640 320 800 310 L 800 450 Z" fill="url(#roadGrad)" />
+  <!-- Centerline Dashes -->
+  <path d="M 40 445 Q 260 435 390 342" fill="none" stroke="#FBBF24" stroke-width="4" stroke-dasharray="14 12" />
+
+  <!-- Prayer Flags (Buddhist Lungta) Strung Across Pass -->
+  <path d="M 200 160 Q 400 210 600 170" fill="none" stroke="#1E293B" stroke-width="2" />
+  <polygon points="240,170 255,185 240,200" fill="#EF4444" />
+  <polygon points="270,175 285,190 270,205" fill="#3B82F6" />
+  <polygon points="300,180 315,195 300,210" fill="#FFFFFF" />
+  <polygon points="330,184 345,199 330,214" fill="#22C55E" />
+  <polygon points="360,187 375,202 360,217" fill="#EAB308" />
+  <polygon points="390,189 405,204 390,219" fill="#EF4444" />
+  <polygon points="420,188 435,203 420,218" fill="#3B82F6" />
+  <polygon points="450,186 465,201 450,216" fill="#FFFFFF" />
+  <polygon points="480,182 495,197 480,212" fill="#22C55E" />
+  <polygon points="510,178 525,193 510,208" fill="#EAB308" />
+
+  <!-- Milestone Marker: KHARDUNG LA 17,590 FT -->
+  <g transform="translate(140, 310)">
+    <rect x="0" y="0" width="56" height="85" rx="28" fill="#FEF08A" stroke="#CA8A04" stroke-width="3" />
+    <rect x="0" y="45" width="56" height="40" fill="#FFFFFF" stroke="#CA8A04" stroke-width="2" />
+    <text x="28" y="32" fill="#78350F" font-family="monospace" font-size="9" font-weight="bold" text-anchor="middle">BRO</text>
+    <text x="28" y="62" fill="#000000" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">LEH</text>
+    <text x="28" y="74" fill="#DC2626" font-family="monospace" font-size="8" font-weight="bold" text-anchor="middle">39 KM</text>
+  </g>
+
+  <!-- Overlay Badge -->
+  <g transform="translate(40, 40)" font-family="monospace">
+    <rect width="260" height="52" rx="10" fill="#09090B" fill-opacity="0.85" stroke="#38BDF8" stroke-width="1.5" />
+    <text x="16" y="22" fill="#38BDF8" font-size="11" font-weight="bold">PATNA ➔ LADAKH EXPEDITION</text>
+    <text x="16" y="38" fill="#E2E8F0" font-size="10">3,850 KM • KHARDUNG LA 17,590 FT</text>
+  </g>
+</svg>

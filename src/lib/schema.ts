@@ -209,6 +209,82 @@ export const RideSchema = z.object({
   gearUsed: z.array(z.string()).default([]),
 });
 
+export const BikeModSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  category: z.string(),
+});
+
+export const BikeTelemetryStatSchema = z.object({
+  label: z.string(),
+  value: z.string(),
+  subtext: z.string().optional(),
+});
+
+export const BikeDetailsSchema = z.object({
+  name: z.string(),
+  model: z.string(),
+  engine: z.string(),
+  displacement: z.string(),
+  power: z.string(),
+  torque: z.string(),
+  weight: z.string(),
+  fuelCapacity: z.string(),
+  rangeKm: z.string(),
+  brakes: z.string(),
+  tires: z.string(),
+  image: z.string(),
+  tagline: z.string(),
+  description: z.string(),
+  whyThisBike: z.array(z.string()),
+  modifications: z.array(BikeModSchema),
+  telemetryStats: z.array(BikeTelemetryStatSchema),
+});
+
+export const GearItemSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  category: z.enum(["armour", "helmets", "luggage", "footwear", "tech", "emergency"]),
+  categoryLabel: z.string(),
+  brand: z.string(),
+  spec: z.string(),
+  description: z.string(),
+  image: z.string(),
+  fieldNotes: z.string().optional(),
+  rating: z.string().optional(),
+});
+
+export const PlannedRideCheckpointSchema = z.object({
+  point: z.string(),
+  altitude: z.string(),
+  note: z.string(),
+});
+
+export const PlannedRideTaskSchema = z.object({
+  task: z.string(),
+  done: z.boolean(),
+});
+
+export const PlannedRideSchema = z.object({
+  id: z.string(),
+  slug: z.string(),
+  title: z.string(),
+  status: z.string(),
+  origin: z.string(),
+  destination: z.string(),
+  targetDate: z.string(),
+  targetKm: z.number(),
+  durationDays: z.number(),
+  targetElevationMeters: z.number().optional(),
+  summary: z.string(),
+  description: z.string(),
+  image: z.string(),
+  readinessPercent: z.number(),
+  highlights: z.array(z.string()),
+  checkpoints: z.array(PlannedRideCheckpointSchema),
+  preparationList: z.array(PlannedRideTaskSchema),
+});
+
 export const RidesSectionSchema = z.object({
   enabled: z.boolean(),
   page: z.object({
@@ -225,12 +301,16 @@ export const RidesSectionSchema = z.object({
     totalRideDays: z.number().nullable().optional(),
   }),
   rides: z.array(RideSchema),
-  gear: z.object({
-    bike: z.string().nullable().optional(),
-    riding: z.array(z.string()).default([]),
-    content: z.array(z.string()).default([]),
-  }),
-  plannedRides: z.array(z.any()).default([]),
+  bikeDetails: BikeDetailsSchema,
+  gearItems: z.array(GearItemSchema),
+  plannedRides: z.array(PlannedRideSchema),
+  gear: z
+    .object({
+      bike: z.string().nullable().optional(),
+      riding: z.array(z.string()).default([]),
+      content: z.array(z.string()).default([]),
+    })
+    .optional(),
   cta: z.object({
     label: z.string(),
     links: z.array(z.string()),
@@ -312,4 +392,7 @@ export type Experience = z.infer<typeof ExperienceSchema>;
 export type Education = z.infer<typeof EducationSchema>;
 export type Ride = z.infer<typeof RideSchema>;
 export type RidesSection = z.infer<typeof RidesSectionSchema>;
+export type BikeDetails = z.infer<typeof BikeDetailsSchema>;
+export type GearItem = z.infer<typeof GearItemSchema>;
+export type PlannedRide = z.infer<typeof PlannedRideSchema>;
 export type OpenSource = z.infer<typeof OpenSourceSchema>;

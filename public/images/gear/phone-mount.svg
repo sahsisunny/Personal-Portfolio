@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="mount-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b132b"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="screen-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="450" fill="url(#mount-bg)" rx="16"/>
+  <rect x="20" y="20" width="560" height="410" fill="none" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="6 6" rx="12"/>
+
+  <!-- Technical Labels -->
+  <text x="40" y="45" font-family="monospace" font-size="12" font-weight="bold" fill="#3b82f6" letter-spacing="2">NAVIGATION & POWER COCKPIT</text>
+  <text x="40" y="65" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f8fafc">RAM Anti-Vibration Wireless Cockpit Mount</text>
+
+  <!-- Mount Graphic -->
+  <g transform="translate(160, 80)">
+    <!-- Handlebar Clamp -->
+    <path d="M 120 280 C 100 280 90 310 110 320 L 170 320 C 190 310 180 280 160 280 Z" fill="#334155" stroke="#64748b" stroke-width="2"/>
+    <circle cx="140" cy="300" r="14" fill="#0f172a" stroke="#94a3b8" stroke-width="2"/>
+    <!-- U-Bolt Hardware -->
+    <path d="M 115 310 L 115 330 M 165 310 L 165 330" stroke="#cbd5e1" stroke-width="3"/>
+
+    <!-- Double Socket Arm (60mm B-Size Ball) -->
+    <path d="M 140 240 L 140 280" stroke="#475569" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="140" cy="240" r="14" fill="#0f172a" stroke="#3b82f6" stroke-width="2.5"/>
+    <circle cx="140" cy="280" r="12" fill="#0f172a" stroke="#3b82f6" stroke-width="2.5"/>
+
+    <!-- Vibration Dampener Module (Silicone Grommets) -->
+    <rect x="105" y="200" width="70" height="24" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <circle cx="118" cy="212" r="4" fill="#ef4444"/>
+    <circle cx="140" cy="212" r="4" fill="#ef4444"/>
+    <circle cx="162" cy="212" r="4" fill="#ef4444"/>
+
+    <!-- Phone Cradle Base Plate -->
+    <rect x="85" y="40" width="110" height="165" rx="14" fill="url(#screen-grad)" stroke="#475569" stroke-width="3"/>
+
+    <!-- GPS Navigation UI on Screen -->
+    <rect x="92" y="48" width="96" height="149" rx="8" fill="#020617"/>
+    <!-- Map Path Graphic -->
+    <path d="M 110 170 L 130 130 L 155 110 L 145 70" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+    <!-- Location Pin -->
+    <circle cx="145" cy="70" r="5" fill="#f97316"/>
+    <circle cx="145" cy="70" r="9" fill="none" stroke="#f97316" stroke-width="1.5" stroke-dasharray="2 2"/>
+    <!-- Turn by turn pill -->
+    <rect x="98" y="55" width="84" height="18" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+    <text x="140" y="68" font-family="monospace" font-size="8" font-weight="bold" fill="#38bdf8" text-anchor="middle">500M ➔ KHARDUNG LA</text>
+
+    <!-- Spring-Loaded Grip Arms (X-Grip / Quick-Grip) -->
+    <!-- Top Left -->
+    <rect x="70" y="60" width="20" height="14" rx="4" fill="#f97316"/>
+    <!-- Top Right -->
+    <rect x="190" y="60" width="20" height="14" rx="4" fill="#f97316"/>
+    <!-- Bottom Left -->
+    <rect x="70" y="160" width="20" height="14" rx="4" fill="#f97316"/>
+    <!-- Bottom Right -->
+    <rect x="190" y="160" width="20" height="14" rx="4" fill="#f97316"/>
+
+    <!-- Wireless Qi Fast-Charge Coil Icon in center -->
+    <circle cx="140" cy="120" r="14" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <path d="M 142 112 L 135 121 L 140 121 L 138 128 L 146 119 L 141 119 Z" fill="#22c55e"/>
+  </g>
+
+  <!-- Technical Specs -->
+  <g transform="translate(40, 400)" font-family="monospace" font-size="11" fill="#94a3b8">
+    <text x="0" y="0">MOUNT: 1" RUBBER B-BALL</text>
+    <text x="250" y="0">ISOLATION: 3-AXIS DAMPENER</text>
+    <text x="470" y="0">OUTPUT: 15W QI WIRELESS</text>
+  </g>
+</svg>

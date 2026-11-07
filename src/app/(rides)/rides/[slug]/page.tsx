@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -121,6 +122,18 @@ export default async function RideDetailPage({ params }: PageProps) {
                 <span>{ride.bike}</span>
               </div>
             )}
+          </div>
+
+          {/* Cover Landscape Illustration */}
+          <div className="relative aspect-16/9 sm:aspect-21/9 w-full rounded-2xl border-2 border-border bg-slate-950 overflow-hidden shadow-xl mt-6">
+            <Image
+              src={ride.coverImage}
+              alt={ride.title}
+              width={1200}
+              height={550}
+              priority
+              className="w-full h-full object-cover"
+            />
           </div>
         </header>
 

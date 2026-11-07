@@ -458,7 +458,7 @@
         "durationDays": 18,
         "distanceKm": 3850,
         "bike": "Royal Enfield Meteor 350",
-        "coverImage": "/images/rides/ladakh/cover.jpg",
+        "coverImage": "/images/rides/ladakh-cover.svg",
         "summary": "A 3,850 km solo motorcycle expedition from the plains of Patna across Rohtang, Baralacha La, and Tanglang La to Khardung La at 17,590 ft.",
         "story": "Leaving the sweltering 42°C heat of Patna behind, this solo journey was about testing grit on a Royal Enfield Meteor 350. Climbing from sea-level plains up into the freezing passes of the Great Himalayas proved that the J-series engine's steady low-end torque is built for high-altitude mountain climbs.",
         "route": {
@@ -520,7 +520,7 @@
         "durationDays": 20,
         "distanceKm": 5420,
         "bike": "Royal Enfield Meteor 350",
-        "coverImage": "/images/rides/rameshwaram/cover.jpg",
+        "coverImage": "/images/rides/rameshwaram-cover.svg",
         "summary": "A 5,420 km solo motorcycle ride slicing from North India down the spine of the Deccan Plateau to the Pamban Sea Bridge and Dhanushkodi.",
         "story": "Riding from the Ganga basin to the confluence of the Indian Ocean and the Bay of Bengal. Across 9 states, this expedition was about enduring intense heat shifts, coastal crosswinds, and endless asphalt marathons.",
         "route": {
@@ -567,6 +567,233 @@
         ]
       }
     ],
+    "bikeDetails": {
+      "name": "Royal Enfield Meteor 350",
+      "model": "Meteor 350 Fireball / Stellar Touring Rig",
+      "engine": "349cc Single Cylinder, 4-stroke, Air-Oil Cooled SOHC J-Series Engine",
+      "displacement": "349 cc",
+      "power": "20.2 BHP @ 6,100 RPM",
+      "torque": "27 Nm @ 4,000 RPM (Flat low-end torque band)",
+      "weight": "191 kg (Kerb Weight)",
+      "fuelCapacity": "15 Litres",
+      "rangeKm": "~480 km per tank (32-35 km/L highway touring)",
+      "brakes": "Dual-Channel ABS with 300mm front disc & 270mm rear disc",
+      "tires": "100/90-19 57P (Front) / 140/70-17 66P (Rear) Tubeless Alloys",
+      "image": "/images/rides/meteor-350.svg",
+      "tagline": "The Highway Cruiser Built for Mountain Passes & Ocean Highways",
+      "description": "My primary solo touring steed. Built on Royal Enfield's twin downtube spine frame with counterbalanced J-series single-cylinder thumper, delivering buttery smooth cruising without handlebar vibration at 90-100 km/h.",
+      "whyThisBike": [
+        "Low Center of Gravity & 765mm Seat Height: Enables full-foot plant control during treacherous slush and icy gravel hairpins in Ladakh.",
+        "Bottom-End Thump (27 Nm @ 4,000 RPM): Seamless hill-climbing without frequent gear hunting on 17,000 ft Himalayan switchbacks.",
+        "480 km Realistic Fuel Range: Vital for crossing remote fuel-dry stretches like the 365 km stretch between Tandi and Karu in Ladakh.",
+        "Rock-solid Mechanical Reliability: Zero engine breakdown or mechanical drop across 15,480 km of solo cross-country touring."
+      ],
+      "modifications": [
+        {
+          "title": "Heavy-Duty Touring Saddle Stays",
+          "description": "Custom bolted tubular steel stays preventing 55L saddlebags from rubbing against the rear tire and exhaust heat shield.",
+          "category": "Chassis & Luggage"
+        },
+        {
+          "title": "Touring High Windscreen & Wind Deflector",
+          "description": "Aerodynamic polycarbonate screen deflecting highway chest blast, reducing rider fatigue on 600 km marathon days.",
+          "category": "Aerodynamics"
+        },
+        {
+          "title": "Twin 60W Cree LED Auxiliary Driving Pods",
+          "description": "Fork-mounted fog and spot combo beam providing 180° visibility in thick Himalayan mountain mist and unlit coastal corridors.",
+          "category": "Illumination"
+        },
+        {
+          "title": "Cockpit Anti-Vibration Wireless RAM Mount & Dual QC 3.0 USB",
+          "description": "Triple-dampened ball mount isolating phone optical sensors from road shock with direct ignition-switched waterproof charging.",
+          "category": "Cockpit Electronics"
+        },
+        {
+          "title": "Engine & Sump Bash Plate",
+          "description": "4mm aircraft-grade aluminum belly skid plate shielding crankcase and oil lines from flying boulders on riverbeds.",
+          "category": "Armor & Protection"
+        }
+      ],
+      "telemetryStats": [
+        { "label": "Top Solo Odometer", "value": "15,480 KM", "subtext": "Logged across 14 states" },
+        { "label": "Highest Elevation Summit", "value": "17,590 FT", "subtext": "Khardung La Pass, Ladakh" },
+        { "label": "Lowest Route Point", "value": "0 FT", "subtext": "Pamban Sea Bridge, Tamil Nadu" },
+        { "label": "Mechanical Breakdown", "value": "0 Issues", "subtext": "100% mechanical reliability" }
+      ]
+    },
+    "gearItems": [
+      {
+        "id": "rynox-tornado-pro",
+        "name": "Rynox Tornado Pro 4 Jacket",
+        "category": "armour",
+        "categoryLabel": "Armour & Protection",
+        "brand": "Rynox Gears",
+        "spec": "CE Level 2 KNOX Micro-Lock Armour (Back, Shoulders, Elbows) + Chest Protectors",
+        "description": "High-density heavy-duty Cordura mesh chassis built for endurance touring. Dual-layer removable thermal and rain liners adapted for freezing Himalayan passes and 42°C Deccan heat.",
+        "image": "/images/gear/rynox-jacket.svg",
+        "fieldNotes": "Kept me dry through torrential coastal monsoon in Tamil Nadu and warm at 14,000 ft Pangong Tso.",
+        "rating": "5/5 Expedition Rating"
+      },
+      {
+        "id": "mt-thunder-helmet",
+        "name": "MT Dual-Visor DOT/ECE Helmet",
+        "category": "helmets",
+        "categoryLabel": "Helmets & Vision",
+        "brand": "MT Helmets",
+        "spec": "ECE 22.06 & DOT Certified • Pinlock 70 Max Vision Anti-Fog • Dropdown Sun Shield",
+        "description": "Aerodynamic polycarbonate shell with channeled EPS liner and multi-point ventilation. Pinlock 70 insert prevents inner fogging when transitioning between freezing mountain altitudes and humid rain.",
+        "image": "/images/gear/mt-helmet.svg",
+        "fieldNotes": "Zero fogging while crossing Khardung La at -2°C with visor fully locked down.",
+        "rating": "5/5 Expedition Rating"
+      },
+      {
+        "id": "touring-boots",
+        "name": "Waterproof Ankle-Support Touring Boots",
+        "category": "footwear",
+        "categoryLabel": "Boots & Footwear",
+        "brand": "Alpinestars / Falco",
+        "spec": "CE EN 13634:2017 Level 2 • Dry-Tek Breathable Waterproof Membrane • TPU Shin & Malleolus Cups",
+        "description": "Full-grain oiled leather touring boots with reinforced shift pad, micro-adjustable ratchet buckles, and deep lug vulcanized anti-slip rubber soles for icy mountain riverbed crossings.",
+        "image": "/images/gear/touring-boots.svg",
+        "fieldNotes": "Waded through Pagal Nallah knee-deep glacial melt water with completely dry socks.",
+        "rating": "5/5 Expedition Rating"
+      },
+      {
+        "id": "viaterra-armored-gloves",
+        "name": "Viaterra Aquatour WP Touring Gloves",
+        "category": "armour",
+        "categoryLabel": "Armour & Protection",
+        "brand": "Viaterra",
+        "spec": "Real Carbon-Fiber Knuckle Armour • Knox SPS Scaphoid Palm Sliders • Visor Wiper",
+        "description": "Waterproof thermal touring gauntlet gloves designed to withstand biting crosswinds and freezing rain. Features conductive index finger pads for glove-friendly GPS touch navigation.",
+        "image": "/images/gear/gloves.svg",
+        "fieldNotes": "Index visor wipe was indispensable during coastal sea spray on the Pamban Sea Bridge.",
+        "rating": "4.9/5 Expedition Rating"
+      },
+      {
+        "id": "viaterra-saddlebags",
+        "name": "55L Heavy-Duty Waterproof Dry Saddlebags",
+        "category": "luggage",
+        "categoryLabel": "Luggage & Packs",
+        "brand": "Viaterra / Dryspec",
+        "spec": "1000D Cordura + Radio-Frequency Welded TPU • 10,000mm H2O Waterproof Rating",
+        "description": "Zero-compromise expedition saddlebag system anchored with industrial nylon webbing and aluminum cam buckles. Includes dedicated bottle holsters and Molle exterior tool loops.",
+        "image": "/images/gear/saddlebags.svg",
+        "fieldNotes": "Survived 5,420 km without a millimeter of shifting or loosening across broken gravel.",
+        "rating": "5/5 Expedition Rating"
+      },
+      {
+        "id": "action-cam-rig",
+        "name": "4K 60fps Helmet Action Camera & Mic Rig",
+        "category": "tech",
+        "categoryLabel": "Tech & Electronics",
+        "brand": "GoPro / DJI",
+        "spec": "4K 60fps HDR • RockSteady / HyperSmooth 6.0 Gyro Stabilization • Stereo Deadcat Wind Mic",
+        "description": "Chin-mounted POV cinematography system calibrated for horizon-level riding perspective. Custom wind-cut lapel microphone mounted inside helmet cheek-pads for clean exhaust and engine audio.",
+        "image": "/images/gear/action-cam.svg",
+        "fieldNotes": "Captured the entire Khardung La ascent and Pamban Bridge ocean sweep in crisp 4K.",
+        "rating": "4.8/5 Expedition Rating"
+      },
+      {
+        "id": "ram-phone-mount",
+        "name": "RAM Tough-Charge Anti-Vibration Mount",
+        "category": "tech",
+        "categoryLabel": "Tech & Electronics",
+        "brand": "RAM Mounts",
+        "spec": "1-inch B-Size Rubber Ball • Triple-Axis Silicone Vibration Damper • 15W Qi Wireless Fast Charge",
+        "description": "Heavy-duty aircraft aluminum cockpit mount engineered specifically to protect smartphone optical image stabilization (OIS) magnets from single-cylinder engine harmonic resonance.",
+        "image": "/images/gear/phone-mount.svg",
+        "fieldNotes": "Phone camera OIS survived 15,480 km with zero sensor degradation.",
+        "rating": "5/5 Expedition Rating"
+      },
+      {
+        "id": "tire-inflator-kit",
+        "name": "12V Digital High-Pressure Tire Pump & Repair Kit",
+        "category": "emergency",
+        "categoryLabel": "Rescue & Emergency",
+        "brand": "ResqTech / Michelin",
+        "spec": "150 PSI Max Pressure • Auto-Shutoff Preset • Heavy-Duty Tubeless Mushroom Plugger Kit",
+        "description": "Compact emergency air compressor wired directly to the bike battery via SAE quick-disconnect connector. Capable of inflating a rear tire from 0 to 32 PSI in under 3 minutes on remote mountain trails.",
+        "image": "/images/gear/tire-inflator.svg",
+        "fieldNotes": "Rescued a stranded fellow rider in the More Plains at 15,000 ft altitude.",
+        "rating": "5/5 Expedition Rating"
+      }
+    ],
+    "plannedRides": [
+      {
+        "id": "spiti-valley-sach-pass",
+        "slug": "spiti-valley-sach-pass",
+        "title": "Spiti Valley & Sach Pass Circuit",
+        "status": "Route Reconnaissance & Scouting",
+        "origin": "Patna, Bihar",
+        "destination": "Spiti Valley & Sach Pass (Himachal Pradesh)",
+        "targetDate": "Autumn 2025",
+        "targetKm": 3200,
+        "durationDays": 16,
+        "targetElevationMeters": 4551,
+        "summary": "Tackling the most treacherous cliff-carved mountain roads on earth: Hindustan-Tibet Highway, high-altitude desert of Kaza, Kunzum La, and the notorious Sach Pass cliff-hangers.",
+        "description": "A high-risk, high-reward trans-Himalayan circuit that tests motorcycle clearance, water-crossing navigation, and high-altitude solo endurance. Entering through Shimla and the Kinnaur gorge, ascending to Tabo and Key Monastery at 12,000 ft, traversing Kunzum Pass (14,931 ft), and descending through the sheer rock walls of Sach Pass (14,482 ft) in Pangi Valley.",
+        "image": "/images/rides/spiti-cover.svg",
+        "readinessPercent": 75,
+        "highlights": [
+          "Navigating the sheer cliff-cut corridors of the Hindustan-Tibet highway.",
+          "Summiting Kunzum La (14,931 ft) and camping near the Chandratal glacial crescent.",
+          "Conquering Sach Pass (14,482 ft) — known as India's most treacherous single-lane mountain road.",
+          "Field testing cold-weather engine thermal management and air filtration in Spiti desert dust."
+        ],
+        "checkpoints": [
+          { "point": "Patna Flag-Off", "altitude": "53 m", "note": "Plains transit through Uttar Pradesh." },
+          { "point": "Shimla & Narkanda", "altitude": "2,708 m", "note": "Himalayan gateway & mountain baseline." },
+          { "point": "Kalpa & Kinnaur Valley", "altitude": "2,960 m", "note": "Cliff corridors alongside the roaring Satluj river." },
+          { "point": "Kaza (Spiti Capital)", "altitude": "3,650 m", "note": "High-altitude desert base camp & monastery plateaus." },
+          { "point": "Kunzum La Summit", "altitude": "4,551 m", "note": "High mountain pass linking Spiti to Lahaul." },
+          { "point": "Sach Pass Summit", "altitude": "4,414 m", "note": "Treacherous unpaved rocky cliff-hangers." }
+        ],
+        "preparationList": [
+          { "task": "Physical high-altitude respiratory endurance training", "done": true },
+          { "task": "Royal Enfield Meteor 350 heavy-duty sump bash plate installed", "done": true },
+          { "task": "Auxiliary high-penetration amber fog illumination wired", "done": true },
+          { "task": "Inner-line permits & Pangi Valley road status monitoring", "done": false },
+          { "task": "Satellite SOS beacon & high-altitude emergency oxygen canister", "done": false }
+        ]
+      },
+      {
+        "id": "bhutan-eastern-circuit",
+        "slug": "bhutan-eastern-circuit",
+        "title": "Bhutan & Eastern Himalayas Expedition",
+        "status": "Route Mapping & Permit Research",
+        "origin": "Patna, Bihar",
+        "destination": "Thimphu, Paro & Chele La (Kingdom of Bhutan)",
+        "targetDate": "Spring 2026",
+        "targetKm": 2400,
+        "durationDays": 12,
+        "targetElevationMeters": 3988,
+        "summary": "Cross-border expedition from Patna across the Dooars tea gardens into the Kingdom of Bhutan, ascending to Chele La Pass at 13,084 ft.",
+        "description": "An international motorcycle journey threading through North Bengal tea country to Phuentsholing, climbing into the mystical fortress valleys of Thimphu and Paro, and ascending the highest motorable road in Bhutan at Chele La with panoramas of Mt. Jomolhari.",
+        "image": "/images/rides/spiti-cover.svg",
+        "readinessPercent": 40,
+        "highlights": [
+          "International overland border crossing at Phuentsholing on two wheels.",
+          "Riding the immaculate winding alpine curves through Thimphu and Punakha Dzongs.",
+          "Summiting Chele La Pass at 13,084 ft overlooking the sacred Himalayan snow peaks.",
+          "Experiencing Bhutan's Carbon-Negative roads and preservation-first mountain ethos."
+        ],
+        "checkpoints": [
+          { "point": "Patna Flag-Off", "altitude": "53 m", "note": "Eastbound transit across Bihar." },
+          { "point": "Siliguri & Dooars", "altitude": "122 m", "note": "Tea garden highways at the foothills." },
+          { "point": "Phuentsholing Border", "altitude": "293 m", "note": "Border entry & motorcycle immigration." },
+          { "point": "Thimphu", "altitude": "2,334 m", "note": "Capital city in alpine valley." },
+          { "point": "Chele La Pass", "altitude": "3,988 m", "note": "Highest motorable mountain pass in Bhutan." }
+        ],
+        "preparationList": [
+          { "task": "Overland motorcycle international entry permit documentation", "done": false },
+          { "task": "Route mapping across Paro, Punakha, and Dochula Pass", "done": true },
+          { "task": "Mandatory local licensed motorcycle guide coordination", "done": false },
+          { "task": "Cold-weather rain gear and high-altitude thermal loadout", "done": true }
+        ]
+      }
+    ],
     "gear": {
       "bike": "Royal Enfield Meteor 350 (349cc J-Series, Dual-Channel ABS)",
       "riding": [
@@ -583,13 +810,6 @@
         "RAM Tough-Charge Anti-Vibration Phone Mount"
       ]
     },
-    "plannedRides": [
-      {
-        "title": "Spiti Valley & Sach Pass",
-        "status": "Planning for Autumn 2025",
-        "targetKm": "3,200 km"
-      }
-    ],
     "cta": {
       "label": "Follow the rides",
       "links": ["instagram", "youtube"]

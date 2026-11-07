@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181B" />
+      <stop offset="50%" stop-color="#0F0F11" />
+      <stop offset="100%" stop-color="#09090B" />
+    </linearGradient>
+    <linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#D4D4D8" />
+      <stop offset="50%" stop-color="#71717A" />
+      <stop offset="100%" stop-color="#27272A" />
+    </linearGradient>
+    <linearGradient id="tankGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FB923C" />
+      <stop offset="60%" stop-color="#EA580C" />
+      <stop offset="100%" stop-color="#9A3412" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047" />
+      <stop offset="100%" stop-color="#CA8A04" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="480" fill="url(#bgGrad)" rx="16" />
+  
+  <!-- Subtle Grid lines -->
+  <g stroke="#27272A" stroke-width="0.8" opacity="0.4">
+    <line x1="0" y1="120" x2="800" y2="120" />
+    <line x1="0" y1="240" x2="800" y2="240" />
+    <line x1="0" y1="360" x2="800" y2="360" />
+    <line x1="200" y1="0" x2="200" y2="480" />
+    <line x1="400" y1="0" x2="400" y2="480" />
+    <line x1="600" y1="0" x2="600" y2="480" />
+  </g>
+
+  <!-- Ground Shadow -->
+  <ellipse cx="400" cy="410" rx="340" ry="24" fill="#000000" opacity="0.6" filter="url(#glow)" />
+
+  <!-- Rear Wheel (17" Alloy) -->
+  <g transform="translate(180, 330)">
+    <circle cx="0" cy="0" r="74" fill="#18181B" stroke="#27272A" stroke-width="6" />
+    <circle cx="0" cy="0" r="66" fill="#09090B" stroke="#3F3F46" stroke-width="2" />
+    <circle cx="0" cy="0" r="54" fill="none" stroke="#71717A" stroke-width="3" stroke-dasharray="14 10" />
+    <circle cx="0" cy="0" r="32" fill="#18181B" stroke="#52525B" stroke-width="2" />
+    <!-- Spokes -->
+    <line x1="-50" y1="0" x2="50" y2="0" stroke="url(#metalGrad)" stroke-width="3" />
+    <line x1="0" y1="-50" x2="0" y2="50" stroke="url(#metalGrad)" stroke-width="3" />
+    <line x1="-35" y1="-35" x2="35" y2="35" stroke="url(#metalGrad)" stroke-width="3" />
+    <line x1="35" y1="-35" x2="-35" y2="35" stroke="url(#metalGrad)" stroke-width="3" />
+    <circle cx="0" cy="0" r="14" fill="#D4D4D8" stroke="#18181B" stroke-width="3" />
+  </g>
+
+  <!-- Front Wheel (19" Alloy) -->
+  <g transform="translate(620, 320)">
+    <circle cx="0" cy="0" r="82" fill="#18181B" stroke="#27272A" stroke-width="6" />
+    <circle cx="0" cy="0" r="74" fill="#09090B" stroke="#3F3F46" stroke-width="2" />
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#71717A" stroke-width="3" stroke-dasharray="14 10" />
+    <circle cx="0" cy="0" r="36" fill="#18181B" stroke="#52525B" stroke-width="2" />
+    <!-- Front Disc Brake -->
+    <circle cx="0" cy="0" r="42" fill="none" stroke="#A1A1AA" stroke-width="2" stroke-dasharray="4 3" />
+    <!-- Spokes -->
+    <line x1="-56" y1="0" x2="56" y2="0" stroke="url(#metalGrad)" stroke-width="3" />
+    <line x1="0" y1="-56" x2="0" y2="56" stroke="url(#metalGrad)" stroke-width="3" />
+    <line x1="-40" y1="-40" x2="40" y2="40" stroke="url(#metalGrad)" stroke-width="3" />
+    <line x1="40" y1="-40" x2="-40" y2="40" stroke="url(#metalGrad)" stroke-width="3" />
+    <circle cx="0" cy="0" r="16" fill="#D4D4D8" stroke="#18181B" stroke-width="3" />
+  </g>
+
+  <!-- Exhaust Pipe (Chrome swept-back cruiser style) -->
+  <path d="M 370 340 L 440 345 Q 490 348 500 350 L 220 352 Q 170 352 140 348" fill="none" stroke="url(#metalGrad)" stroke-width="12" stroke-linecap="round" />
+  <path d="M 230 352 L 130 348" fill="none" stroke="#E4E4E7" stroke-width="14" stroke-linecap="round" />
+
+  <!-- Engine Block (349cc J-Series with cooling fins) -->
+  <g transform="translate(360, 260)">
+    <!-- Crankcase -->
+    <rect x="-40" y="30" width="90" height="60" rx="12" fill="#18181B" stroke="#3F3F46" stroke-width="2" />
+    <circle cx="5" cy="60" r="24" fill="#27272A" stroke="url(#metalGrad)" stroke-width="3" />
+    <text x="5" y="64" fill="#A1A1AA" font-family="monospace" font-size="9" font-weight="bold" text-anchor="middle">RE</text>
+
+    <!-- Cylinder Head with Cooling Fins -->
+    <path d="M -30 30 L -10 -40 L 40 -40 L 50 30 Z" fill="#27272A" stroke="#3F3F46" stroke-width="2" />
+    <line x1="-24" y1="18" x2="44" y2="18" stroke="#A1A1AA" stroke-width="2" />
+    <line x1="-18" y1="4" x2="38" y2="4" stroke="#A1A1AA" stroke-width="2" />
+    <line x1="-12" y1="-10" x2="32" y2="-10" stroke="#A1A1AA" stroke-width="2" />
+    <line x1="-6" y1="-24" x2="26" y2="-24" stroke="#A1A1AA" stroke-width="2" />
+
+    <!-- Spark Plug & FI Cover -->
+    <rect x="-2" y="-48" width="16" height="10" rx="2" fill="#71717A" />
+  </g>
+
+  <!-- Cruiser Frame & Chassis (Twin Downtube Spine) -->
+  <path d="M 180 330 L 260 270 L 330 260 L 560 170" fill="none" stroke="#27272A" stroke-width="10" stroke-linecap="round" />
+  <path d="M 330 260 L 360 360 L 460 360 L 560 170" fill="none" stroke="#18181B" stroke-width="8" />
+
+  <!-- Teardrop Fuel Tank (Royal Enfield Fireball Orange) -->
+  <path d="M 360 215 Q 400 165 490 170 Q 560 175 565 205 Q 520 245 440 245 Q 370 245 360 215 Z" fill="url(#tankGrad)" stroke="#7C2D12" stroke-width="2" />
+  <!-- Tank Badge / Decal -->
+  <path d="M 430 205 Q 470 200 495 210" fill="none" stroke="url(#goldGrad)" stroke-width="3" />
+  <text x="465" y="222" fill="#FFFFFF" font-family="sans-serif" font-weight="900" font-size="11" letter-spacing="2" text-anchor="middle">METEOR</text>
+
+  <!-- Front Telescopic Suspension Forks (41mm) -->
+  <line x1="560" y1="170" x2="620" y2="320" stroke="url(#metalGrad)" stroke-width="9" stroke-linecap="round" />
+  <line x1="570" y1="180" x2="624" y2="310" stroke="#18181B" stroke-width="5" />
+  <!-- Front Mudguard -->
+  <path d="M 550 255 Q 600 230 655 260" fill="none" stroke="#27272A" stroke-width="8" stroke-linecap="round" />
+
+  <!-- Rear Mudguard & Tail -->
+  <path d="M 120 300 Q 150 230 230 250" fill="none" stroke="#27272A" stroke-width="8" stroke-linecap="round" />
+  <circle cx="115" cy="295" r="7" fill="#EF4444" filter="url(#glow)" />
+
+  <!-- Low-Slung Cruiser Saddle (Plush Split Seat) -->
+  <path d="M 240 255 Q 290 235 360 238 Q 330 270 260 270 Z" fill="#18181B" stroke="#09090B" stroke-width="2" />
+  <!-- Pillion Seat & Backrest -->
+  <path d="M 180 265 Q 220 255 250 258" fill="none" stroke="#18181B" stroke-width="12" stroke-linecap="round" />
+  <line x1="165" y1="260" x2="165" y2="225" stroke="#71717A" stroke-width="5" stroke-linecap="round" />
+  <rect x="158" y="215" width="14" height="22" rx="4" fill="#18181B" />
+
+  <!-- Wide Cruiser Handlebars & Round Retro Headlamp -->
+  <path d="M 540 160 L 510 135 L 485 140" fill="none" stroke="url(#metalGrad)" stroke-width="6" stroke-linecap="round" />
+  <!-- Round LED Headlamp -->
+  <ellipse cx="600" cy="190" rx="12" ry="18" fill="#FEF08A" stroke="url(#metalGrad)" stroke-width="4" filter="url(#glow)" />
+  <!-- Instrument Cluster / Tripper Pod -->
+  <circle cx="530" cy="148" r="9" fill="#18181B" stroke="url(#metalGrad)" stroke-width="2" />
+  <circle cx="530" cy="148" r="5" fill="#38BDF8" opacity="0.8" />
+
+  <!-- Telemetry Badge Overlays -->
+  <g transform="translate(40, 40)" font-family="monospace">
+    <rect width="210" height="48" rx="8" fill="#18181B" fill-opacity="0.85" stroke="#3F3F46" stroke-width="1" />
+    <text x="14" y="20" fill="#FB923C" font-size="10" font-weight="bold">ROYAL ENFIELD METEOR 350</text>
+    <text x="14" y="36" fill="#A1A1AA" font-size="9">349CC J-SERIES • 27 NM TORQUE</text>
+  </g>
+  <g transform="translate(560, 40)" font-family="monospace">
+    <rect width="200" height="48" rx="8" fill="#18181B" fill-opacity="0.85" stroke="#3F3F46" stroke-width="1" />
+    <text x="14" y="20" fill="#22D3EE" font-size="10" font-weight="bold">EXPEDITION SPECIFICATION</text>
+    <text x="14" y="36" fill="#A1A1AA" font-size="9">15,480 KM • KHARDUNG LA 17,590 FT</text>
+  </g>
+</svg>
