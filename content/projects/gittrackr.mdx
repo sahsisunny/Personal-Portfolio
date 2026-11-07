@@ -1,0 +1,68 @@
+## Deep Dive: Engineering Multi-Repo GitHub Management Dashboard
+
+**GitTrackr** is an engineering management and triage dashboard that connects to the GitHub REST and GraphQL APIs. It addresses the fragmentation problem engineering teams face when collaborating across dozens of microservice repositories, open-source organizations, and distributed PR review queues.
+
+### Architecture Topology
+
+```
++-------------------------------------------------------------------------+
+|                  Next.js App Router Client Dashboard                    |
+|      • Multi-Repo Search & Label Filtering                              |
+|      • Optimistic Triage & Issue Assignment                             |
+|      • Real-Time Query Invalidation via React Query                     |
++------------------------------------+------------------------------------+
+                                     |
+                                     v
++-------------------------------------------------------------------------+
+|                      Authentication & Session Layer                     |
+|      • NextAuth.js with GitHub OAuth Provider                           |
+|      • Granular Repository Access Token Scopes (read:org, repo)         |
+|      • JWT Refresh Token Rotation                                       |
++------------------------------------+------------------------------------+
+                                     |
+                                     v
++-------------------------------------------------------------------------+
+|                      GitHub GraphQL & REST Data Layer                   |
+|      • Batching GraphQL queries to prevent API rate-limit exhaustion    |
+|      • Cursor-based pagination across issue and pull request threads    |
+|      • Automated Webhook Receivers for instant CI status reflection     |
++-------------------------------------------------------------------------+
+```
+
+### 1. GraphQL Batching & Rate-Limit Optimization
+
+Querying 20+ active repositories via the standard REST API quickly exhausts GitHub's 5,000 requests/hour limit. GitTrackr bundles queries into composite **GraphQL requests**, retrieving repository statuses, open PRs, assigned reviewers, and CI build badges in a single round-trip:
+
+```typescript
+// lib/github-client.ts
+export const ORG_TRIAGE_QUERY = `
+  query GetOrgTriageStatus($org: String!, $cursor: String) {
+    organization(login: $org) {
+      repositories(first: 25, after: $cursor, orderBy: {field: PUSHED_AT, direction: DESC}) {
+        nodes {
+          name
+          isPrivate
+          openIssues: issues(states: OPEN) { totalCount }
+          pullRequests(states: OPEN, first: 10) {
+            nodes {
+              number
+              title
+              author { login avatarUrl }
+              reviewDecision
+              updatedAt
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+```
+
+### 2. Optimistic UI Updates & Testing Rigor
+
+Issue triage requires split-second responsiveness. When an engineering lead applies a label, assigns a contributor, or closes an issue:
+- **React Query** applies the mutation optimistically to the local cache immediately.
+- The background network request executes concurrently.
+- If the network call fails or experiences rate limits, the UI automatically rolls back with a toast notification.
+- The application is validated with automated **Vitest** test suites and React Testing Library tests covering every triage workflow.

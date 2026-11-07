@@ -1,0 +1,62 @@
+## Deep Dive: Monorepo Architecture & Multimodal AI Invoice OCR
+
+**Home Asset Manager** is a personal digital operating system designed to catalog physical household assets, track warranty lifecycles, and automate recurring maintenance tasks. 
+
+It solves the real-world headache of misplaced paper receipts, forgotten warranty expirations, and missed appliance servicing across multi-device households.
+
+### Turborepo Monorepo Architecture
+
+The platform is structured as an end-to-end type-safe **Turborepo Monorepo** managed with `pnpm`:
+
+```
+home_assets/
+├── apps/
+│   ├── server/        # Modular Monolith (Node.js + Express + TypeScript)
+│   ├── web/           # Next.js 14 App Router Desktop & Tablet Dashboard
+│   └── mobile/        # React Native (Expo SDK 51) Camera Capture & Scanner
+│
+├── packages/
+│   ├── db/            # Prisma ORM schema & PostgreSQL 16 client
+│   ├── validation/    # Shared Zod validation schemas across web, mobile, and API
+│   └── tokens/        # Shared currency (INR ₹), date formatters, and design tokens
+│
+└── docker-compose.yml # PostgreSQL 16 & Redis 7 BullMQ service instances
+```
+
+### 1. Multimodal AI Invoice OCR Pipeline
+
+Rather than forcing users to manually type serial numbers, purchase dates, and vendor names, Home Asset Manager uses **Gemini 2.5 Flash** multimodal vision extraction:
+
+1. User snaps a photo of a physical receipt or invoice using the mobile camera viewfinder.
+2. The image is compressed on-device and dispatched to `/api/v1/invoices/extract`.
+3. Gemini extracts structured data adhering strictly to a JSON schema:
+
+```typescript
+// packages/validation/src/invoice-schema.ts
+import { z } from "zod";
+
+export const ExtractedInvoiceSchema = z.object({
+  vendorName: z.string().min(1),
+  purchaseDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  totalAmount: z.number().positive(),
+  currency: z.string().default("INR"),
+  serialNumber: z.string().nullable().optional(),
+  modelNumber: z.string().nullable().optional(),
+  warrantyMonths: z.number().int().min(0).default(12),
+  category: z.enum(["ELECTRONICS", "APPLIANCE", "VEHICLE", "FURNITURE", "TOOLS"]),
+  items: z.array(
+    z.object({
+      name: z.string(),
+      price: z.number(),
+    })
+  ),
+});
+```
+
+### 2. Automated Lifecycle Notifications with Redis & BullMQ
+
+Warranties and service intervals are managed through distributed job queues backed by Redis:
+
+- **Warranty Expiry Alerts:** Scheduled BullMQ jobs trigger push notifications at 30 days, 7 days, and 24 hours prior to expiration.
+- **Maintenance Schedules:** Recurring jobs calculate filter changes, water purifier servicing, and vehicle maintenance dates based on calendar intervals or usage heuristics.
+- **Fail-Safe Retries:** Jobs feature exponential backoff with dead-letter queue (DLQ) logging in PostgreSQL.

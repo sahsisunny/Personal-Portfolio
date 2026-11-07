@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Search, FolderGit2, ArrowRight, ExternalLink, ShieldAlert, Bot, MapPin, Heart, Sparkles } from "lucide-react";
+import { Search, FolderGit2, ArrowRight, ExternalLink, ShieldAlert, Bot, MapPin, Heart, Sparkles, Layers, Globe } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import type { Project } from "@/lib/schema";
 
@@ -72,7 +72,9 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
 
   const getProjectIcon = (slug: string) => {
     if (slug.includes("ai-chatbot")) return <Bot className="w-8 h-8 text-accent" />;
-    if (slug.includes("family-tracker")) return <MapPin className="w-8 h-8 text-accent" />;
+    if (slug.includes("care-ring")) return <MapPin className="w-8 h-8 text-accent" />;
+    if (slug.includes("home-assets")) return <Layers className="w-8 h-8 text-accent" />;
+    if (slug.includes("linktree")) return <Globe className="w-8 h-8 text-accent" />;
     if (slug.includes("shadi")) return <Heart className="w-8 h-8 text-accent" />;
     return <FolderGit2 className="w-8 h-8 text-accent" />;
   };

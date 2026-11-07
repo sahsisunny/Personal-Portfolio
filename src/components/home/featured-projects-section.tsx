@@ -10,6 +10,8 @@ import {
   MapPin,
   Heart,
   ShieldAlert,
+  Layers,
+  Globe,
 } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
@@ -25,15 +27,15 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
   const categories = [
     { id: "all", label: "All Featured" },
     { id: "ai", label: "AI & Agents" },
-    { id: "fullstack", label: "Full Stack" },
-    { id: "mobile", label: "Location & Cloud" },
+    { id: "fullstack", label: "Full Stack & Web" },
+    { id: "mobile", label: "Mobile & Real-Time" },
   ];
 
   const filteredProjects = projects.filter((p) => {
     if (filter === "all") return true;
-    if (filter === "ai") return p.slug.includes("ai-chatbot") || p.tech.some((t) => t.includes("LLM") || t.includes("Claude"));
-    if (filter === "fullstack") return p.tech.includes("Next.js") || p.tech.includes("Go");
-    if (filter === "mobile") return p.slug.includes("family-tracker") || p.tech.includes("Firebase");
+    if (filter === "ai") return p.slug.includes("ai-chatbot") || p.tech.some((t) => t.includes("LLM") || t.includes("Claude") || t.includes("Gemini"));
+    if (filter === "fullstack") return p.tech.includes("Next.js") || p.tech.includes("Go") || p.tech.includes("Fastify");
+    if (filter === "mobile") return p.slug.includes("care-ring") || p.slug.includes("home-assets") || p.tech.includes("React Native");
     return true;
   });
 
@@ -62,7 +64,9 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
 
   const getProjectIcon = (slug: string) => {
     if (slug.includes("ai-chatbot")) return <Bot className="w-8 h-8 text-accent" />;
-    if (slug.includes("family-tracker")) return <MapPin className="w-8 h-8 text-accent" />;
+    if (slug.includes("care-ring")) return <MapPin className="w-8 h-8 text-accent" />;
+    if (slug.includes("home-assets")) return <Layers className="w-8 h-8 text-accent" />;
+    if (slug.includes("linktree")) return <Globe className="w-8 h-8 text-accent" />;
     if (slug.includes("shadi")) return <Heart className="w-8 h-8 text-accent" />;
     return <FolderGit2 className="w-8 h-8 text-accent" />;
   };
