@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   ArrowLeft,
@@ -171,6 +172,20 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             ))}
           </div>
         </header>
+
+        {/* Project Preview Image */}
+        {project.images && project.images[0] && (
+          <div className="relative aspect-video w-full mb-12 overflow-hidden rounded-2xl border border-border bg-surface-2 shadow-md">
+            <Image
+              src={typeof project.images[0] === "string" ? project.images[0] : project.images[0].src}
+              alt={typeof project.images[0] === "string" ? `${project.title} screenshot` : project.images[0].alt || `${project.title} screenshot`}
+              fill
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              priority
+              className="object-cover object-top"
+            />
+          </div>
+        )}
 
         {/* Case Study Content Blocks */}
         <div className="space-y-12">

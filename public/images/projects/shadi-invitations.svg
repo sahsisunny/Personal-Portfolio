@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" fill="none">
+  <defs>
+    <linearGradient id="shbg" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#450a0a"/>
+      <stop offset="50%" stop-color="#7f1d1d"/>
+      <stop offset="100%" stop-color="#2a0808"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#shbg)"/>
+
+  <!-- Top Navigation -->
+  <rect x="80" y="60" width="1040" height="60" rx="16" fill="#2a0808" fill-opacity="0.8" stroke="#991b1b" stroke-width="1"/>
+  <circle cx="115" cy="90" r="14" fill="#fbbf24" fill-opacity="0.2"/>
+  <path d="M115 84l2 4 4 1-3 3 1 4-4-2-4 2 1-4-3-3 4-1z" fill="#fbbf24"/>
+  <text x="145" y="96" fill="#fef3c7" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="18">Shadi Invitation Platform</text>
+  <text x="420" y="95" fill="#fde68a" font-family="monospace" font-size="12">NEXT.JS 14 • FRAMER MOTION SPRING GATES • PLUGGABLE TEMPLATES</text>
+
+  <!-- Left: Mobile Viewport Preview -->
+  <rect x="140" y="150" width="280" height="460" rx="36" fill="#1c0505" stroke="#fbbf24" stroke-width="2.5"/>
+  <rect x="230" y="165" width="100" height="14" rx="7" fill="#2a0808"/>
+
+  <!-- Left Gate -->
+  <rect x="152" y="190" width="128" height="390" fill="#991b1b" stroke="#f59e0b" stroke-width="1.5"/>
+  <circle cx="270" cy="385" r="8" fill="#fbbf24"/>
+
+  <!-- Right Gate -->
+  <rect x="280" y="190" width="128" height="390" fill="#991b1b" stroke="#f59e0b" stroke-width="1.5"/>
+  <circle cx="290" cy="385" r="8" fill="#fbbf24"/>
+
+  <!-- Seal in Center -->
+  <circle cx="280" cy="385" r="32" fill="#fbbf24" stroke="#78350f" stroke-width="2"/>
+  <text x="280" y="382" text-anchor="middle" fill="#78350f" font-family="sans-serif" font-weight="900" font-size="12">शुभ</text>
+  <text x="280" y="396" text-anchor="middle" fill="#78350f" font-family="sans-serif" font-weight="900" font-size="12">विवाह</text>
+
+  <!-- Right: Feature Breakdown Cards -->
+  <rect x="470" y="150" width="590" height="460" rx="20" fill="#2a0808" fill-opacity="0.95" stroke="#991b1b" stroke-width="1.5"/>
+  <text x="500" y="195" fill="#fde68a" font-family="monospace" font-size="12" font-weight="700" letter-spacing="1">ENGINEERING HIGHLIGHTS</text>
+
+  <!-- Card 1 -->
+  <rect x="500" y="220" width="530" height="90" rx="14" fill="#450a0a" stroke="#b91c1c" stroke-width="1"/>
+  <text x="525" y="255" fill="#fef3c7" font-family="sans-serif" font-weight="bold" font-size="16">60 FPS Ceremonial Door Reveal</text>
+  <text x="525" y="280" fill="#fca5a5" font-family="sans-serif" font-size="13">Framer Motion spring physics (stiffness: 80, damping: 18) for smooth mobile swipe and open gestures.</text>
+
+  <!-- Card 2 -->
+  <rect x="500" y="330" width="530" height="90" rx="14" fill="#450a0a" stroke="#b91c1c" stroke-width="1"/>
+  <text x="525" y="365" fill="#fef3c7" font-family="sans-serif" font-weight="bold" font-size="16">Pluggable Event &amp; Itinerary Schema</text>
+  <text x="525" y="390" fill="#fca5a5" font-family="sans-serif" font-size="13">JSON-driven ceremony declarations: Haldi, Mehndi, Sangeet, and Reception with distinct color palettes.</text>
+
+  <!-- Card 3 -->
+  <rect x="500" y="440" width="530" height="90" rx="14" fill="#450a0a" stroke="#b91c1c" stroke-width="1"/>
+  <text x="525" y="475" fill="#fef3c7" font-family="sans-serif" font-weight="bold" font-size="16">1-Tap Directions &amp; WhatsApp RSVP</text>
+  <text x="525" y="500" fill="#fca5a5" font-family="sans-serif" font-size="13">Direct navigation deep links to Google Maps + prefilled WhatsApp family confirmation message.</text>
+</svg>

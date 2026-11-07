@@ -102,12 +102,15 @@ export const SkillsSchema = z.object({
   currentlyLearning: z.array(z.string()),
 });
 
-export const ProjectImageSchema = z.object({
-  src: z.string(),
-  alt: z.string(),
-  width: z.number().optional(),
-  height: z.number().optional(),
-});
+export const ProjectImageSchema = z.union([
+  z.string().transform((src) => ({ src, alt: "Project screenshot" })),
+  z.object({
+    src: z.string(),
+    alt: z.string(),
+    width: z.number().optional(),
+    height: z.number().optional(),
+  }),
+]);
 
 export const ProjectSchema = z.object({
   id: z.string(),

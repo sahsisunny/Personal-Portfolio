@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   FolderGit2,
   ExternalLink,
@@ -127,20 +128,35 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
               >
                 <div className="flex flex-col h-full justify-between">
                   <div>
-                    {/* Visual Header */}
-                    <div className="relative aspect-video w-full bg-gradient-to-br from-surface-2 via-surface to-accent/10 border-b border-border flex items-center justify-center p-6">
-                      <div className="p-3 rounded-2xl bg-surface border border-border/80 shadow-xs group-hover:scale-105 transition-transform">
-                        {getProjectIcon(project.slug)}
-                      </div>
+                    {/* Visual Header with Real Project Screenshots */}
+                    <div className="relative aspect-video w-full overflow-hidden border-b border-border bg-surface-2 flex items-center justify-center">
+                      {project.images && project.images[0] ? (
+                        <>
+                          <Image
+                            src={typeof project.images[0] === "string" ? project.images[0] : project.images[0].src}
+                            alt={typeof project.images[0] === "string" ? `${project.title} screenshot` : project.images[0].alt || `${project.title} screenshot`}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-black/20 pointer-events-none" />
+                        </>
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-surface-2 via-surface to-accent/10 flex items-center justify-center p-6">
+                          <div className="p-3 rounded-2xl bg-surface border border-border/80 shadow-xs group-hover:scale-105 transition-transform">
+                            {getProjectIcon(project.slug)}
+                          </div>
+                        </div>
+                      )}
 
                       {/* Status badge in top right */}
-                      <div className="absolute top-3 right-3 flex items-center gap-2">
+                      <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
                         {getStatusBadge(project.status)}
                       </div>
 
                       {/* Work project notice if confidential */}
                       {isConfidential && (
-                        <div className="absolute bottom-2 left-2 rounded-md bg-surface/90 backdrop-blur-xs border border-border px-2 py-1 text-[10px] font-mono text-muted flex items-center gap-1">
+                        <div className="absolute bottom-2 left-2 rounded-md bg-surface/90 backdrop-blur-xs border border-border px-2 py-1 text-[10px] font-mono text-muted flex items-center gap-1 z-10">
                           <ShieldAlert className="w-3 h-3 text-amber-500" />
                           <span>Sanitized for confidentiality</span>
                         </div>

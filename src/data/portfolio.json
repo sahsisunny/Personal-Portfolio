@@ -94,7 +94,7 @@
       "id": "fountane",
       "company": "Fountane Inc.",
       "companyUrl": "https://fountane.com",
-      "logo": "/images/logos/fountane.svg",
+      "logo": "/images/logos/fountane.png",
       "location": "Remote",
       "employmentType": "Full-time",
       "start": "2024-08",
@@ -136,7 +136,7 @@
       "id": "real-dev-squad",
       "company": "Real Dev Squad",
       "companyUrl": "https://realdevsquad.com",
-      "logo": "/images/logos/rds.svg",
+      "logo": "/images/logos/rds.png",
       "location": "Remote",
       "employmentType": "Open source",
       "start": "2022-12",
@@ -162,7 +162,7 @@
       "id": "smartinternz",
       "company": "SmartInternz",
       "companyUrl": null,
-      "logo": "/images/logos/smartinternz.svg",
+      "logo": "/images/logos/smartinternz.png",
       "location": "Remote",
       "employmentType": "Externship",
       "start": "2022-08",
@@ -192,7 +192,7 @@
       "score": "8.36 CGPA",
       "start": "2019",
       "end": "2022",
-      "logo": "/images/logos/patna-university.svg",
+      "logo": "/images/logos/patna-university.png",
       "topics": ["C, C++, Java, Python, JavaScript", "Database management", "Web development", "Software engineering", "Networking and administration"]
     }
   ],
@@ -286,7 +286,7 @@
         "One-touch emergency SOS broadcast with zero-knowledge encrypted contact alerts."
       ],
       "links": { "repo": "https://github.com/sahsisunny/care-ring", "live": "https://care-ring.netlify.app/", "caseStudy": null },
-      "images": [],
+      "images": ["/images/projects/care-ring.svg"],
       "period": { "start": "2024-03", "end": "2024-09" }
     },
     {
@@ -307,7 +307,7 @@
         "Multi-platform UI with Next.js 14 App Router for desktop management and Expo React Native for mobile camera capture."
       ],
       "links": { "repo": "https://github.com/sahsisunny/home-assets", "live": null, "caseStudy": null },
-      "images": [],
+      "images": ["/images/projects/home-assets.svg"],
       "period": { "start": "2024-06", "end": "2024-11" }
     },
     {
@@ -328,7 +328,7 @@
         "Comprehensive test coverage with Vitest and React Testing Library for mission-critical triage flows."
       ],
       "links": { "repo": "https://github.com/sahsisunny/gittrackr", "live": "https://gittrackr.netlify.app/", "caseStudy": null },
-      "images": [],
+      "images": ["/images/projects/gittrackr.png"],
       "period": { "start": "2023-08", "end": "2024-01" }
     },
     {
@@ -349,7 +349,7 @@
         "Fully responsive mobile-first UI with custom themes, drag-and-drop link ordering, and share previews."
       ],
       "links": { "repo": "https://github.com/sahsisunny/linktree", "live": "https://litree.netlify.app/", "caseStudy": null },
-      "images": [],
+      "images": ["/images/projects/linktree.jpeg"],
       "period": { "start": "2023-11", "end": "2024-03" }
     },
     {
@@ -372,7 +372,7 @@
       ],
       "metrics": { "_note": "Add real numbers only (response accuracy, latency, tools supported).", "toolsCount": null, "avgLatencyMs": null },
       "links": { "repo": null, "live": null, "caseStudy": null },
-      "images": [],
+      "images": ["/images/projects/ai-chatbot-agent.svg"],
       "period": { "start": "2024", "end": null }
     },
     {
@@ -393,8 +393,32 @@
         "Venue map option and one-tap organizer call."
       ],
       "links": { "repo": null, "live": null, "caseStudy": null },
-      "images": [],
+      "images": ["/images/projects/shadi-invitations.svg"],
       "period": { "start": "2024", "end": null }
+    },
+    {
+      "id": "sweetcart",
+      "slug": "sweetcart",
+      "title": "SweetCart",
+      "status": "completed",
+      "featured": false,
+      "visibility": "public",
+      "summary": "Modern e-commerce storefront with reactive product catalog, cart persistence, and Framer Motion micro-interactions.",
+      "description": "An e-commerce web application built using React, Next.js, and Tailwind CSS. Features Commerce.js API integration for real-time inventory management, responsive product catalog, and seamless cart checkout flow.",
+      "role": "Solo developer",
+      "tech": ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
+      "highlights": [
+        "Dynamic product catalog and category filters connected to headless commerce APIs.",
+        "Smooth page and cart transition animations built with Framer Motion.",
+        "Fully responsive mobile-friendly shopping and checkout experience."
+      ],
+      "links": {
+        "repo": "https://github.com/sahsisunny/sweetcart",
+        "live": "https://sweetcarts.netlify.app/",
+        "caseStudy": null
+      },
+      "images": ["/images/projects/sweetcart.png"],
+      "period": { "start": "2023", "end": "2023" }
     }
   ],
 

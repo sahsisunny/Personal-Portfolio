@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Search, FolderGit2, ArrowRight, ExternalLink, ShieldAlert, Bot, MapPin, Heart, Sparkles, Layers, Globe } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import type { Project } from "@/lib/schema";
@@ -163,14 +164,29 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
                 className="group flex flex-col justify-between rounded-xl border border-border bg-surface overflow-hidden shadow-xs hover:border-accent/60 hover:shadow-md transition-all duration-200"
               >
                 <div>
-                  {/* Visual Header */}
-                  <div className="relative aspect-video w-full bg-gradient-to-br from-surface-2 via-surface to-accent/10 border-b border-border flex items-center justify-center p-6">
-                    <div className="p-3 rounded-2xl bg-surface border border-border/80 shadow-xs group-hover:scale-105 transition-transform">
-                      {getProjectIcon(project.slug)}
-                    </div>
+                  {/* Visual Header with Real Project Screenshots */}
+                  <div className="relative aspect-video w-full overflow-hidden border-b border-border bg-surface-2 flex items-center justify-center">
+                    {project.images && project.images[0] ? (
+                      <>
+                        <Image
+                          src={typeof project.images[0] === "string" ? project.images[0] : project.images[0].src}
+                          alt={typeof project.images[0] === "string" ? `${project.title} screenshot` : project.images[0].alt || `${project.title} screenshot`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-black/20 pointer-events-none" />
+                      </>
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-surface-2 via-surface to-accent/10 flex items-center justify-center p-6">
+                        <div className="p-3 rounded-2xl bg-surface border border-border/80 shadow-xs group-hover:scale-105 transition-transform">
+                          {getProjectIcon(project.slug)}
+                        </div>
+                      </div>
+                    )}
 
                     {/* Status badge */}
-                    <div className="absolute top-3 right-3 flex items-center gap-1.5">
+                    <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
                       {project.featured && (
                         <span className="rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 px-2 py-0.5 text-[10px] font-mono font-semibold flex items-center gap-1">
                           <Sparkles className="w-2.5 h-2.5" />
@@ -182,7 +198,7 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
 
                     {/* Work project notice if confidential */}
                     {isConfidential && (
-                      <div className="absolute bottom-2 left-2 rounded-md bg-surface/90 backdrop-blur-xs border border-border px-2 py-1 text-[10px] font-mono text-muted flex items-center gap-1">
+                      <div className="absolute bottom-2 left-2 rounded-md bg-surface/90 backdrop-blur-xs border border-border px-2 py-1 text-[10px] font-mono text-muted flex items-center gap-1 z-10">
                         <ShieldAlert className="w-3 h-3 text-amber-500" />
                         <span>Work project: details sanitized</span>
                       </div>
