@@ -113,11 +113,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           )}
 
           {/* Meta Grid */}
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 rounded-xl border border-border bg-surface p-5 text-xs font-mono shadow-xs">
-            <div>
-              <span className="text-muted block mb-1">Role</span>
-              <span className="text-text font-bold">{project.role}</span>
-            </div>
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 rounded-xl border border-border bg-surface p-5 text-xs font-mono shadow-xs">
             <div>
               <span className="text-muted block mb-1">Timeline</span>
               <span className="text-text font-semibold">

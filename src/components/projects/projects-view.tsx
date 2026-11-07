@@ -163,13 +163,8 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
                 <div>
                   {/* Visual Header */}
                   <div className="relative aspect-video w-full bg-gradient-to-br from-surface-2 via-surface to-accent/10 border-b border-border flex items-center justify-center p-6">
-                    <div className="flex flex-col items-center justify-center text-center">
-                      <div className="p-3 rounded-2xl bg-surface border border-border/80 shadow-xs mb-2 group-hover:scale-105 transition-transform">
-                        {getProjectIcon(project.slug)}
-                      </div>
-                      <span className="text-xs font-mono text-muted uppercase tracking-wider">
-                        {project.role}
-                      </span>
+                    <div className="p-3 rounded-2xl bg-surface border border-border/80 shadow-xs group-hover:scale-105 transition-transform">
+                      {getProjectIcon(project.slug)}
                     </div>
 
                     {/* Status badge */}

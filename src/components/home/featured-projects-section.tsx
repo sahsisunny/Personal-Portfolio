@@ -10,9 +10,6 @@ import {
   MapPin,
   Heart,
   ShieldAlert,
-  ChevronDown,
-  ChevronUp,
-  Cpu,
 } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
@@ -24,16 +21,6 @@ interface FeaturedProjectsSectionProps {
 
 export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionProps) {
   const [filter, setFilter] = React.useState<string>("all");
-  const [expandedArchitectures, setExpandedArchitectures] = React.useState<
-    Record<string, boolean>
-  >({});
-
-  const toggleArch = (id: string) => {
-    setExpandedArchitectures((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
 
   const categories = [
     { id: "all", label: "All Featured" },
@@ -128,7 +115,6 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => {
             const isConfidential = project.visibility === "public-after-review";
-            const isArchOpen = !!expandedArchitectures[project.id];
 
             return (
               <SpotlightCard
@@ -137,15 +123,10 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
               >
                 <div className="flex flex-col h-full justify-between">
                   <div>
-                    {/* Visual Header / Cover Fallback */}
+                    {/* Visual Header */}
                     <div className="relative aspect-video w-full bg-gradient-to-br from-surface-2 via-surface to-accent/10 border-b border-border flex items-center justify-center p-6">
-                      <div className="flex flex-col items-center justify-center text-center">
-                        <div className="p-3 rounded-2xl bg-surface border border-border/80 shadow-xs mb-2 group-hover:scale-105 transition-transform">
-                          {getProjectIcon(project.slug)}
-                        </div>
-                        <span className="text-xs font-mono text-muted uppercase tracking-wider">
-                          {project.role}
-                        </span>
+                      <div className="p-3 rounded-2xl bg-surface border border-border/80 shadow-xs group-hover:scale-105 transition-transform">
+                        {getProjectIcon(project.slug)}
                       </div>
 
                       {/* Status badge in top right */}
@@ -163,19 +144,19 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                     </div>
 
                     {/* Body */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-text group-hover:text-accent transition-colors">
+                    <div className="p-6 space-y-3">
+                      <h3 className="text-xl font-bold text-text group-hover:text-accent transition-colors leading-snug">
                         <Link href={`/projects/${project.slug}`}>
                           {project.title}
                         </Link>
                       </h3>
 
-                      <p className="mt-3 text-sm text-muted leading-relaxed line-clamp-3">
+                      <p className="text-sm text-muted leading-relaxed line-clamp-3">
                         {project.summary}
                       </p>
 
                       {/* Highlights bullet list */}
-                      <ul className="mt-4 space-y-1.5 text-xs text-muted">
+                      <ul className="pt-2 space-y-1.5 text-xs text-muted">
                         {project.highlights.slice(0, 2).map((hl, i) => (
                           <li key={i} className="flex items-start gap-1.5">
                             <span className="text-accent font-mono">▸</span>
@@ -183,46 +164,12 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                           </li>
                         ))}
                       </ul>
-
-                      {/* Interactive Architecture Snapshot Dropdown */}
-                      <div className="mt-4 pt-3 border-t border-border/50">
-                        <button
-                          type="button"
-                          onClick={() => toggleArch(project.id)}
-                          className="flex items-center justify-between w-full text-[11px] font-mono text-accent hover:underline py-1"
-                        >
-                          <span className="flex items-center gap-1">
-                            <Cpu className="w-3 h-3" />
-                            <span>Architecture Snapshot</span>
-                          </span>
-                          {isArchOpen ? (
-                            <ChevronUp className="w-3.5 h-3.5" />
-                          ) : (
-                            <ChevronDown className="w-3.5 h-3.5" />
-                          )}
-                        </button>
-
-                        {isArchOpen && (
-                          <div className="mt-2 p-2.5 rounded-lg bg-surface-2/60 border border-border text-[11px] font-mono text-muted space-y-1.5 animate-in fade-in duration-200">
-                            <div>
-                              <strong className="text-text">Role:</strong> {project.role}
-                            </div>
-                            <div>
-                              <strong className="text-text">Key Highlight:</strong>{" "}
-                              {project.highlights[0]}
-                            </div>
-                            <div className="text-[10px] text-accent">
-                              Full breakdown in case study →
-                            </div>
-                          </div>
-                        )}
-                      </div>
                     </div>
                   </div>
 
                   {/* Footer with tech chips and actions */}
-                  <div className="p-6 pt-0 border-t border-border/40 mt-4">
-                    <div className="flex flex-wrap gap-1.5 mb-4">
+                  <div className="p-6 pt-0 border-t border-border/40 mt-4 space-y-4">
+                    <div className="flex flex-wrap gap-1.5 pt-4">
                       {project.tech.map((t) => (
                         <span
                           key={t}
@@ -233,7 +180,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                       ))}
                     </div>
 
-                    <div className="flex items-center justify-between pt-2">
+                    <div className="flex items-center justify-between pt-1">
                       <Link
                         href={`/projects/${project.slug}`}
                         className="inline-flex items-center gap-1 text-xs font-semibold text-accent hover:underline"
