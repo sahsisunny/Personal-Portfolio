@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Download,
   ArrowLeft,
@@ -128,13 +129,26 @@ export default function ResumePage() {
               {experience.map((exp) => (
                 <div key={exp.id} className="space-y-4">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <div>
-                      <h3 className="text-lg font-bold text-text print:text-black">
-                        {exp.company}
-                      </h3>
-                      <span className="text-xs font-mono text-muted print:text-neutral-600">
-                        {exp.location} • {exp.employmentType}
-                      </span>
+                    <div className="flex items-center gap-3">
+                      {exp.logo && (
+                        <div className="relative flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-border bg-surface-2 p-1 overflow-hidden print:hidden">
+                          <Image
+                            src={exp.logo}
+                            alt={`${exp.company} logo`}
+                            width={32}
+                            height={32}
+                            className="h-full w-full object-contain"
+                          />
+                        </div>
+                      )}
+                      <div>
+                        <h3 className="text-lg font-bold text-text print:text-black">
+                          {exp.company}
+                        </h3>
+                        <span className="text-xs font-mono text-muted print:text-neutral-600">
+                          {exp.location} • {exp.employmentType}
+                        </span>
+                      </div>
                     </div>
                     <span className="text-xs font-mono text-muted print:text-neutral-600">
                       {formatDate(exp.start)} — {exp.end ? formatDate(exp.end) : "Present"}
@@ -213,13 +227,26 @@ export default function ResumePage() {
 
             {education.map((edu) => (
               <div key={edu.id} className="flex justify-between items-start gap-4 text-xs">
-                <div>
-                  <h3 className="font-bold text-text print:text-black text-sm">
-                    {edu.degree}
-                  </h3>
-                  <p className="text-muted print:text-neutral-600 font-mono">
-                    {edu.institution} • Score: {edu.score}
-                  </p>
+                <div className="flex items-center gap-3">
+                  {edu.logo && (
+                    <div className="relative flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-border bg-surface-2 p-1 overflow-hidden print:hidden">
+                      <Image
+                        src={edu.logo}
+                        alt={`${edu.institution} logo`}
+                        width={32}
+                        height={32}
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <h3 className="font-bold text-text print:text-black text-sm">
+                      {edu.degree}
+                    </h3>
+                    <p className="text-muted print:text-neutral-600 font-mono">
+                      {edu.institution} • Score: {edu.score}
+                    </p>
+                  </div>
                 </div>
                 <span className="font-mono text-muted print:text-neutral-600">
                   {edu.start} — {edu.end || "Present"}

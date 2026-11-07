@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { GitPullRequest, ExternalLink } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import type { OpenSource } from "@/lib/schema";
@@ -29,9 +30,15 @@ export function OpenSourceSection({ openSource }: OpenSourceSectionProps) {
               className="rounded-xl border border-border bg-surface p-6 shadow-xs hover:border-accent/40 transition-colors"
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 border-b border-border/60 pb-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent font-mono font-bold">
-                    RDS
+                <div className="flex items-center gap-3.5">
+                  <div className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-border bg-surface-2 overflow-hidden shadow-xs p-1">
+                    <Image
+                      src="/images/logos/rds.svg"
+                      alt={`${item.org} logo`}
+                      width={48}
+                      height={48}
+                      className="h-full w-full object-contain rounded-lg"
+                    />
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-text">{item.org}</h3>
