@@ -1,34 +1,12 @@
 import type { Skills } from "@/lib/schema";
 import { Cpu, BookOpen } from "lucide-react";
+import { SkillIcon } from "./skill-icons";
 
 interface SkillsSectionProps {
   skills: Skills;
 }
 
 export function SkillsSection({ skills }: SkillsSectionProps) {
-  const getLevelBadge = (level: "daily" | "comfortable" | "learning") => {
-    switch (level) {
-      case "daily":
-        return (
-          <span className="rounded bg-accent/10 px-1.5 py-0.5 text-[10px] font-mono font-medium text-accent border border-accent/20">
-            Daily
-          </span>
-        );
-      case "comfortable":
-        return (
-          <span className="rounded bg-surface-2 px-1.5 py-0.5 text-[10px] font-mono font-medium text-muted border border-border">
-            Comfortable
-          </span>
-        );
-      case "learning":
-        return (
-          <span className="rounded bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-mono font-medium text-amber-600 dark:text-amber-400 border border-amber-500/20">
-            Learning
-          </span>
-        );
-    }
-  };
-
   return (
     <section id="skills" className="py-16 md:py-24 border-b border-border bg-surface-2/20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -41,25 +19,8 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
           Skills & Technologies
         </h2>
         <p className="max-w-2xl text-muted text-base mb-10">
-          Honest self-assessment: daily production tools, comfortable frameworks, and active learning areas.
+          Languages, frameworks, databases, and AI tooling I use to design and ship production software.
         </p>
-
-        {/* Legend */}
-        <div className="flex flex-wrap items-center gap-4 text-xs font-mono mb-8 text-muted">
-          <span>Proficiency:</span>
-          <div className="flex items-center gap-1.5">
-            <span className="h-2 w-2 rounded-full bg-accent" />
-            <span>Daily production</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="h-2 w-2 rounded-full bg-muted" />
-            <span>Comfortable</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="h-2 w-2 rounded-full bg-amber-500" />
-            <span>Currently learning</span>
-          </div>
-        </div>
 
         {/* Skill Groups Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -78,10 +39,14 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
                   {group.items.map((item, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center justify-between rounded-lg bg-surface-2/50 px-3 py-2 text-sm text-text"
+                      className="flex items-center gap-3 rounded-lg bg-surface-2/50 px-3.5 py-2.5 text-sm text-text border border-border/50 hover:border-accent/40 hover:bg-surface-2 transition-colors group"
                     >
-                      <span className="font-medium text-xs sm:text-sm">{item.name}</span>
-                      {getLevelBadge(item.level)}
+                      <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md bg-surface border border-border p-1 shadow-xs group-hover:scale-105 transition-transform">
+                        <SkillIcon name={item.name} className="w-4 h-4" />
+                      </div>
+                      <span className="font-medium text-xs sm:text-sm text-text leading-tight">
+                        {item.name}
+                      </span>
                     </div>
                   ))}
                 </div>
