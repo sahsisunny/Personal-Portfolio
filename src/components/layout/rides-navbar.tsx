@@ -3,16 +3,16 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowLeft, Compass, Gauge, Bike, ShieldCheck, Sparkles, Map } from "lucide-react";
+import { ArrowLeft, Compass } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { CommandPalette } from "@/components/ui/command-palette";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { href: "/rides", label: "Expeditions", icon: Map, exact: true },
-  { href: "/rides/bike", label: "The Bike", icon: Bike },
-  { href: "/rides/gear", label: "Gear & Loadout", icon: ShieldCheck },
-  { href: "/rides/upcoming", label: "Upcoming", icon: Sparkles },
+  { href: "/rides", label: "Expeditions", exact: true },
+  { href: "/rides/bike", label: "The Bike" },
+  { href: "/rides/gear", label: "Gear & Loadout" },
+  { href: "/rides/upcoming", label: "Upcoming" },
 ];
 
 export function RidesNavbar() {
@@ -47,32 +47,24 @@ export function RidesNavbar() {
               ON TWO WHEELS
             </span>
           </Link>
-
-          {/* Odometer Live Badge */}
-          <div className="hidden xl:flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent">
-            <Gauge className="w-3 h-3" />
-            <span>15,480 KM LOGGED</span>
-          </div>
         </div>
 
-        {/* Desktop Navigation items */}
+        {/* Desktop Navigation links */}
         <div className="flex items-center gap-2 sm:gap-4">
-          <nav className="hidden md:flex items-center gap-1 text-xs font-mono uppercase tracking-wider">
+          <nav className="hidden md:flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider" aria-label="Rides navigation">
             {NAV_LINKS.map((link) => {
               const active = isLinkActive(link.href, link.exact);
-              const Icon = link.icon;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all",
+                    "px-3 py-1.5 rounded-lg transition-all",
                     active
                       ? "bg-accent/15 text-accent font-bold border border-accent/30 shadow-xs"
                       : "text-muted hover:text-text hover:bg-surface-2"
                   )}
                 >
-                  <Icon className="w-3.5 h-3.5" />
                   <span>{link.label}</span>
                 </Link>
               );
@@ -91,19 +83,17 @@ export function RidesNavbar() {
         <div className="flex items-center gap-2 min-w-max">
           {NAV_LINKS.map((link) => {
             const active = isLinkActive(link.href, link.exact);
-            const Icon = link.icon;
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "flex items-center gap-1 px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider transition-all",
+                  "px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider transition-all",
                   active
                     ? "bg-accent text-accent-contrast font-bold shadow-xs"
                     : "border border-border/80 bg-surface text-muted hover:text-text"
                 )}
               >
-                <Icon className="w-3 h-3" />
                 <span>{link.label}</span>
               </Link>
             );
