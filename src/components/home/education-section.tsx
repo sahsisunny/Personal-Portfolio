@@ -102,3 +102,4 @@ export function EducationSection({ education }: EducationSectionProps) {
     </section>
   );
 }
+
