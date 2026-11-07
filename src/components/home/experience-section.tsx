@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Briefcase, Calendar, ChevronDown, ChevronUp, Sparkles, ExternalLink, Building2 } from "lucide-react";
+import { Briefcase, Calendar, ChevronDown, ChevronUp, ExternalLink, Building2 } from "lucide-react";
 import type { Experience } from "@/lib/schema";
 import { formatDate } from "@/lib/utils";
 
@@ -120,18 +120,17 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                             : "relative"
                         }
                       >
-                        {/* Promoted indicator for Associate role at Fountane */}
-                        {roleIdx === 0 && hasMultipleRoles && (
-                          <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/30 px-3 py-0.5 text-xs font-semibold mb-2">
-                            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-                            <span>Promoted to Associate Full Stack Developer</span>
-                          </div>
-                        )}
-
                         <div className="flex flex-wrap items-baseline justify-between gap-2">
-                          <h4 className="text-base font-semibold text-text">
-                            {role.title}
-                          </h4>
+                          <div className="flex items-center gap-2">
+                            <h4 className="text-base font-semibold text-text">
+                              {role.title}
+                            </h4>
+                            {roleIdx === 0 && hasMultipleRoles && (
+                              <span className="rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 px-2 py-0.5 text-[10px] font-mono font-semibold">
+                                Promoted
+                              </span>
+                            )}
+                          </div>
                           <span className="text-xs font-mono text-muted">
                             {formatDate(role.start)} — {role.end ? formatDate(role.end) : "Present"}
                           </span>

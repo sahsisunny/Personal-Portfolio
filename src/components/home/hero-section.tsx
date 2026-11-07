@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { ArrowDown, FileText, Mail, MapPin, Sparkles, Laptop } from "lucide-react";
+import { ArrowDown, FileText, Mail, MapPin, Laptop } from "lucide-react";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/icons";
 import type { Person, Socials } from "@/lib/schema";
 
@@ -41,13 +41,9 @@ export function HeroSection({ person, socials }: HeroSectionProps) {
               Hey, I&apos;m <span className="text-accent">{person.name}</span>
             </h1>
 
-            <div className="mt-3 flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+            <div className="mt-3 flex items-center justify-center lg:justify-start">
               <span className="text-xl sm:text-2xl font-semibold text-text">
                 {person.headline}
-              </span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-accent/10 border border-accent/20 px-2.5 py-0.5 text-xs font-semibold text-accent">
-                <Sparkles className="w-3 h-3" />
-                Promoted at Fountane
               </span>
             </div>
 

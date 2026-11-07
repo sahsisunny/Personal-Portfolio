@@ -12,7 +12,7 @@ export default function SiteLayout({
 
   return (
     <div className="flex min-h-screen flex-col bg-bg text-text transition-colors">
-      <SiteNavbar name={person.name} headline={person.headline} />
+      <SiteNavbar name={person.name} />
       <main id="main-content" className="flex-1">
         {children}
       </main>

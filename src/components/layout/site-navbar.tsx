@@ -10,10 +10,9 @@ import { cn } from "@/lib/utils";
 
 interface SiteNavbarProps {
   name: string;
-  headline: string;
 }
 
-export function SiteNavbar({ name, headline }: SiteNavbarProps) {
+export function SiteNavbar({ name }: SiteNavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const pathname = usePathname();
 
@@ -53,7 +52,7 @@ export function SiteNavbar({ name, headline }: SiteNavbarProps) {
               {name}
             </span>
             <span className="text-[11px] text-muted font-mono leading-tight whitespace-nowrap hidden sm:block">
-              {headline}
+              Full Stack Developer
             </span>
           </div>
         </Link>

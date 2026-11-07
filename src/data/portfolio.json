@@ -107,7 +107,7 @@
           "end": null,
           "_note": "Add the exact promotion month, e.g. 2026-10.",
           "highlights": [
-            "Recently promoted from Junior Full Stack Developer after owning features end to end across a Next.js frontend and Go backend.",
+            "Own features end to end across Next.js frontend and Go backend, taking full feature architecture and delivery responsibility.",
             "Building an AI chatbot agent backend that lets users ask questions in natural language and get answers by orchestrating internal APIs through an LLM.",
             "Auditing and hardening the agent service (data accuracy, time-window filtering, session and user context) using AI-assisted code review plus manual verification.",
             "Designing the next phase of the agent: scheduled, event-based and condition-based routines with an approval flow."

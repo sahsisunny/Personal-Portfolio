@@ -20,7 +20,7 @@ export function SiteFooter({ name, socials, email }: SiteFooterProps) {
           <div>
             <p className="text-sm font-semibold text-text">{name}</p>
             <p className="text-xs text-muted">
-              Associate Full Stack Developer • Next.js, Go & AI Agents
+              Full Stack Developer & Solo Rider • Next.js, Go & AI Agents
             </p>
           </div>
 
