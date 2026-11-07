@@ -12,6 +12,9 @@ import {
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/mdx";
 import { formatDate } from "@/lib/utils";
 import { getPerson } from "@/lib/data";
+import { ReadingProgressBar } from "@/components/blog/blog-post-content";
+import { ModernBlogRenderer } from "@/components/blog/modern-blog-renderer";
+import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/icons";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -68,7 +71,11 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   // Find related posts by shared tags
   const relatedPosts = allPosts
-    .filter((p) => p.slug !== slug && p.frontmatter.tags.some((t) => post.frontmatter.tags.includes(t)))
+    .filter(
+      (p) =>
+        p.slug !== slug &&
+        p.frontmatter.tags.some((t) => post.frontmatter.tags.includes(t))
+    )
     .slice(0, 2);
 
   const person = getPerson();
@@ -85,21 +92,6 @@ export default async function BlogPostPage({ params }: PageProps) {
     return { level, text, id };
   });
 
-  // Render markdown content to HTML
-  const formattedHtml = post.content
-    .replace(/^### (.*$)/gim, (_, text) => {
-      const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-      return `<h3 id="${id}" class="text-xl font-bold text-text mt-8 mb-3 scroll-mt-24">${text}</h3>`;
-    })
-    .replace(/^## (.*$)/gim, (_, text) => {
-      const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-      return `<h2 id="${id}" class="text-2xl sm:text-3xl font-bold text-text mt-10 mb-4 scroll-mt-24 border-b border-border/60 pb-2">${text}</h2>`;
-    })
-    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-text font-semibold">$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
-    .replace(/^> (.*$)/gim, '<blockquote class="border-l-4 border-accent pl-4 my-4 italic text-muted bg-surface-2/40 py-2 rounded-r">$1</blockquote>')
-    .replace(/```([\s\S]*?)```/g, '<pre class="p-4 rounded-xl bg-surface-2 font-mono text-xs sm:text-sm overflow-x-auto text-text my-6 border border-border">$1</pre>');
-
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -115,6 +107,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <>
+      {/* Scroll-driven reading progress bar */}
+      <ReadingProgressBar />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -141,7 +136,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             {/* Main Article Content */}
             <article className="lg:col-span-8">
               <header className="border-b border-border pb-8 mb-8">
-                <h1 className="text-3xl font-extrabold tracking-tight text-text sm:text-4xl lg:text-5xl">
+                <h1 className="text-3xl font-extrabold tracking-tight text-text sm:text-4xl lg:text-5xl leading-tight">
                   {post.frontmatter.title}
                 </h1>
 
@@ -152,7 +147,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <div className="mt-6 flex flex-wrap items-center gap-4 text-xs font-mono text-muted">
                   <div className="flex items-center gap-1.5">
                     <User className="w-3.5 h-3.5 text-accent" />
-                    <span>Sunny Sahsi</span>
+                    <span className="font-semibold text-text">Sunny Sahsi</span>
                   </div>
                   <span>•</span>
                   <div className="flex items-center gap-1.5">
@@ -181,11 +176,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
               </header>
 
-              {/* Formatted Post Body */}
-              <div
-                className="prose dark:prose-invert max-w-none text-muted leading-relaxed space-y-5 text-base sm:text-lg"
-                dangerouslySetInnerHTML={{ __html: formattedHtml }}
-              />
+              {/* Modern Interactive Blog Post Renderer */}
+              <ModernBlogRenderer content={post.content} slug={slug} />
 
               {/* Prev / Next Article Navigation */}
               <div className="mt-16 pt-8 border-t border-border flex items-center justify-between gap-4">
@@ -226,7 +218,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             {/* Sticky Table of Contents on Desktop */}
             <aside className="hidden lg:block lg:col-span-4 sticky top-24 space-y-6">
               {toc.length > 0 && (
-                <div className="rounded-xl border border-border bg-surface p-5 shadow-xs">
+                <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs">
                   <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-muted font-bold mb-4">
                     <BookOpen className="w-3.5 h-3.5 text-accent" />
                     <span>Table of Contents</span>
@@ -237,7 +229,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                         key={idx}
                         href={`#${item.id}`}
                         className={`block hover:text-accent transition-colors ${
-                          item.level === 3 ? "pl-3 text-muted/80" : "text-text font-medium"
+                          item.level === 3
+                            ? "pl-3 text-muted/80 text-[11px]"
+                            : "text-text font-medium"
                         }`}
                       >
                         {item.text}
@@ -248,26 +242,49 @@ export default async function BlogPostPage({ params }: PageProps) {
               )}
 
               {/* Author Card */}
-              <div className="rounded-xl border border-border bg-surface-2/40 p-5 space-y-3">
+              <div className="rounded-2xl border border-border bg-surface-2/40 p-5 space-y-3">
                 <span className="text-xs font-mono text-muted uppercase tracking-wider block font-bold">
                   Author
                 </span>
                 <p className="text-sm font-bold text-text">{person.name}</p>
-                <p className="text-xs text-muted leading-relaxed">
-                  {person.shortBio}
+                <p className="text-xs text-muted leading-relaxed font-sans">
+                  Associate Full Stack Developer at Fountane working across Next.js and Go.
+                  Building AI chatbot agent backends and riding solo across India.
                 </p>
-                <Link
-                  href="/#about"
-                  className="text-xs font-mono text-accent hover:underline inline-flex items-center gap-1 pt-1"
-                >
-                  <span>More about Sunny</span>
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
+                <div className="pt-2 flex items-center gap-3 text-muted">
+                  <a
+                    href="https://github.com/sahsisunny"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-accent transition-colors"
+                    aria-label="GitHub"
+                  >
+                    <GithubIcon className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/sahsisunny"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-accent transition-colors"
+                    aria-label="LinkedIn"
+                  >
+                    <LinkedinIcon className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://twitter.com/sahsisunny"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-accent transition-colors"
+                    aria-label="X (Twitter)"
+                  >
+                    <TwitterIcon className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
 
               {/* Related Posts */}
               {relatedPosts.length > 0 && (
-                <div className="rounded-xl border border-border bg-surface p-5 shadow-xs space-y-3">
+                <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs space-y-3">
                   <span className="text-xs font-mono text-muted uppercase tracking-wider block font-bold">
                     Related Articles
                   </span>
