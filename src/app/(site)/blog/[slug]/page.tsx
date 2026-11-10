@@ -14,7 +14,7 @@ import {
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/mdx";
 import { formatDate } from "@/lib/utils";
 import { getPerson } from "@/lib/data";
-import { ReadingProgressBar, TableOfContents } from "@/components/blog/blog-post-content";
+import { ReadingProgressBar } from "@/components/blog/blog-post-content";
 import { ModernBlogRenderer } from "@/components/blog/modern-blog-renderer";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/icons";
 
@@ -126,18 +126,6 @@ export default async function BlogPostPage({ params }: PageProps) {
     .slice(0, 2);
 
   const person = getPerson();
-
-  // Extract table of contents from markdown headings
-  const headingMatches = Array.from(post.content.matchAll(/^(#{2,3})\s+(.*)$/gm));
-  const toc = headingMatches.map((match) => {
-    const level = match[1].length;
-    const text = match[2];
-    const id = text
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
-    return { level, text, id };
-  });
 
   const postUrl = `${BASE_URL}/blog/${post.slug}`;
   const imageUrl = post.coverImage.startsWith("http")
@@ -298,7 +286,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       />
 
       <div className="py-12 md:py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           {/* Top Breadcrumb */}
           <div className="mb-8 flex items-center justify-between">
             <Link
@@ -314,9 +302,8 @@ export default async function BlogPostPage({ params }: PageProps) {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-            {/* Main Article Body */}
-            <article className="lg:col-span-8 blog-content prose-editorial">
+          {/* Main Article Body */}
+          <article className="blog-content prose-editorial">
               <header className="border-b border-border/70 pb-6 mb-8 space-y-4">
                 <h1 className="text-3xl font-bold tracking-tight text-text sm:text-4xl lg:text-5xl leading-tight">
                   {post.frontmatter.title}
@@ -408,8 +395,77 @@ export default async function BlogPostPage({ params }: PageProps) {
               {/* Syntax-colored Markdown Renderer */}
               <ModernBlogRenderer content={post.content} slug={slug} />
 
+              {/* Author Bio Card */}
+              <div className="mt-14 rounded-xl border border-border bg-surface-2/40 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="space-y-1">
+                  <span className="text-[11px] font-mono text-muted uppercase tracking-wider block font-bold">
+                    Written by {person.name}
+                  </span>
+                  <p className="text-xs sm:text-sm text-muted leading-relaxed font-sans max-w-lg">
+                    Associate Full Stack Developer building AI chatbot agents, Go microservices, and modern Next.js web applications.
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 text-muted">
+                  <a
+                    href="https://github.com/sahsisunny"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-accent transition-colors p-2 rounded-lg bg-surface border border-border"
+                    aria-label="GitHub"
+                  >
+                    <GithubIcon className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/sahsisunny"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-accent transition-colors p-2 rounded-lg bg-surface border border-border"
+                    aria-label="LinkedIn"
+                  >
+                    <LinkedinIcon className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://twitter.com/sahsisunny"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-accent transition-colors p-2 rounded-lg bg-surface border border-border"
+                    aria-label="X (Twitter)"
+                  >
+                    <TwitterIcon className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Related Posts */}
+              {relatedPosts.length > 0 && (
+                <div className="mt-12 pt-8 border-t border-border space-y-4">
+                  <span className="text-xs font-mono text-muted uppercase tracking-wider block font-bold">
+                    Related Writing
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {relatedPosts.map((rp) => (
+                      <Link
+                        key={rp.slug}
+                        href={`/blog/${rp.slug}`}
+                        className="rounded-xl border border-border bg-surface p-5 shadow-xs hover:border-accent transition-colors group block"
+                      >
+                        <p className="text-sm font-bold text-text group-hover:text-accent transition-colors line-clamp-1">
+                          {rp.frontmatter.title}
+                        </p>
+                        <p className="text-xs text-muted mt-1.5 line-clamp-2">
+                          {rp.frontmatter.summary}
+                        </p>
+                        <span className="text-[10px] font-mono text-muted mt-3 block">
+                          {formatDate(rp.frontmatter.date)}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Prev / Next Article Navigation */}
-              <div className="mt-14 pt-8 border-t border-border flex items-center justify-between gap-4">
+              <div className="mt-12 pt-8 border-t border-border flex items-center justify-between gap-4">
                 {prevPost ? (
                   <Link
                     href={`/blog/${prevPost.slug}`}
@@ -443,78 +499,6 @@ export default async function BlogPostPage({ params }: PageProps) {
                 )}
               </div>
             </article>
-
-            {/* Sidebar (Table of Contents + Author) */}
-            <aside className="hidden lg:block lg:col-span-4 sticky top-24 space-y-6">
-              {/* Interactive Scroll-Tracking TOC */}
-              {toc.length > 0 && <TableOfContents headings={toc} />}
-
-              {/* Author Box */}
-              <div className="rounded-xl border border-border bg-surface-2/40 p-5 space-y-2.5">
-                <span className="text-[11px] font-mono text-muted uppercase tracking-wider block font-bold">
-                  Author
-                </span>
-                <p className="text-sm font-bold text-text">{person.name}</p>
-                <p className="text-xs text-muted leading-relaxed font-sans">
-                  Associate Full Stack Developer building AI chatbot agents, Go microservices, and modern Next.js web applications.
-                </p>
-                <div className="pt-2 flex items-center gap-3 text-muted">
-                  <a
-                    href="https://github.com/sahsisunny"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-accent transition-colors"
-                    aria-label="GitHub"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                  </a>
-                  <a
-                    href="https://linkedin.com/in/sahsisunny"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-accent transition-colors"
-                    aria-label="LinkedIn"
-                  >
-                    <LinkedinIcon className="w-4 h-4" />
-                  </a>
-                  <a
-                    href="https://twitter.com/sahsisunny"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-accent transition-colors"
-                    aria-label="X (Twitter)"
-                  >
-                    <TwitterIcon className="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Related Posts */}
-              {relatedPosts.length > 0 && (
-                <div className="rounded-xl border border-border bg-surface p-5 shadow-xs space-y-3">
-                  <span className="text-[11px] font-mono text-muted uppercase tracking-wider block font-bold">
-                    Related Writing
-                  </span>
-                  <div className="space-y-3">
-                    {relatedPosts.map((rp) => (
-                      <Link
-                        key={rp.slug}
-                        href={`/blog/${rp.slug}`}
-                        className="block group"
-                      >
-                        <p className="text-xs font-bold text-text group-hover:text-accent transition-colors">
-                          {rp.frontmatter.title}
-                        </p>
-                        <span className="text-[10px] font-mono text-muted">
-                          {formatDate(rp.frontmatter.date)}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </aside>
-          </div>
         </div>
       </div>
     </>
