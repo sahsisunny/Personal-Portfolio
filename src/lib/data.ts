@@ -1,4 +1,4 @@
-import rawPortfolioData from "@/data/portfolio.json";
+import rawPortfolioData from "../../portfolio-data.json";
 import {
   PortfolioSchema,
   type PortfolioData,
@@ -15,13 +15,13 @@ import {
 const parsed = PortfolioSchema.safeParse(rawPortfolioData);
 
 if (!parsed.success) {
-  console.error("❌ CRITICAL: src/data/portfolio.json validation failed!");
+  console.error("❌ CRITICAL: portfolio-data.json validation failed!");
   console.error(
     parsed.error.issues
       .map((issue) => `  - [${issue.path.join(".")}] ${issue.message}`)
       .join("\n")
   );
-  throw new Error("Invalid portfolio.json data structure. Build stopped.");
+  throw new Error("Invalid portfolio-data.json data structure. Build stopped.");
 }
 
 export const portfolioData: PortfolioData = parsed.data;

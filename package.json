@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "validate:data": "tsx -e 'import \"./src/lib/data\"; console.log(\"✓ portfolio.json data is valid\")'",
+    "validate:data": "tsx -e 'import \"./src/lib/data\"; console.log(\"✓ portfolio-data.json data is valid\")'",
     "prebuild": "pnpm validate:data",
     "build": "next build",
     "start": "next start",
