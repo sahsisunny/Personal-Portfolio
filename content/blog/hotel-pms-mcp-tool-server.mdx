@@ -31,7 +31,7 @@ That sounds like “expose our APIs to Claude.” In a multi-service PMS with he
 | Naive approach                                       | What breaks                                                                   |
 | ---------------------------------------------------- | ----------------------------------------------------------------------------- |
 | Forward the user’s browser JWT to MCP                | Long-lived credential leaves the browser trust zone; external client holds it |
-| Forward MCP bearer to reservation/config APIs        | Downstream services interpret `Authorization` differently (M2M vs user)       |
+| Forward MCP bearer to downstream Service 1 / 2 APIs  | Downstream services interpret `Authorization` differently (M2M vs user)       |
 | Let the model pass `propertyId`                      | Cross-property data exfiltration via tool arguments                           |
 | Rely on “don’t call admin APIs” in the system prompt | **Prompt controls do not apply** on MCP—there is no in-house planner             |
 
@@ -53,7 +53,7 @@ flowchart LR
 
   Chat --> ENG["Shared: auth chain, tool filter, property inject, RBAC"]
   MCP --> ENG
-  ENG --> PMS["PMS read APIs"]
+  ENG --> PMS["Downstream read APIs (Service 1-3)"]
 ```
 
 **Merit:** One orchestrator binary, one tool registry filter, one RBAC story.  
@@ -80,7 +80,7 @@ flowchart TB
   Browser["Web staff panel"] --> S1
   S2 --> V
   V --> REG --> EXEC --> AUD
-  EXEC --> APIs["Config / Reservation / Reporting"]
+  EXEC --> APIs["Service 1 / Service 2 / Service 3"]
 ```
 
 Illustrative startup gating (pseudocode):
@@ -182,7 +182,7 @@ sequenceDiagram
   participant MCP as MCP handler
   participant Verifier as Cached verifier
   participant Auth as Token exchange
-  participant API as Reservation service
+  participant API as Downstream Service 2
 
   Client->>MCP: tools/call + Bearer + tool name + arguments
   MCP->>Verifier: Verify bearer
@@ -215,7 +215,7 @@ func executeReadTool(principal Principal, tool string, args map[string]any) {
 }
 ```
 
-**Confused-deputy guard:** Downstream calls use **`X-Token` only**. Setting `Authorization` on PMS clients would conflate M2M keys with user sessions across services.
+**Confused-deputy guard:** Downstream calls use **`X-Token` only**. Setting `Authorization` on downstream clients would conflate M2M keys with user sessions across services.
 
 ---
 
@@ -243,7 +243,7 @@ flowchart LR
     ID["Grants + live permissions"]
   end
   subgraph TB6["Data plane"]
-    DATA["Reservation + config + reporting"]
+    DATA["Service 1 + Service 2 + Service 3"]
   end
 
   U --> CL --> MOD --> LB --> H --> FIL --> ID
@@ -390,7 +390,7 @@ MCP_INTROSPECTION_CACHE_TTL=60s
 MCP_RATE_LIMIT_PER_MINUTE=30
 MCP_RATE_LIMIT_PER_HOUR=500
 AUTH_SERVICE_API_KEY=...   # secret
-PMS_AUTH_INTERNAL_BASE_URL=...
+AUTH_SERVICE_INTERNAL_BASE_URL=...
 
 # Identity service
 MCP_OAUTH_ENABLED=false
@@ -506,7 +506,7 @@ flowchart TB
   MCP --> POL
   ENG --> POL
   POL --> REG
-  REG --> PMS["PMS microservices"]
+  REG --> PMS["Downstream microservices (Service 1-3)"]
   ENG --> RT["Scheduled routines<br/>grant-based automation"]
 ```
 

@@ -410,7 +410,7 @@
       "visibility": "public-after-review",
       "visibilityNote": "Work project: confirm with your employer what you may publish. Keep client names, screenshots with real data and internal API names out of the public site.",
       "summary": "A backend service that lets front-desk and hotelier users ask questions in plain language and get answers pulled from 600+ APIs by an LLM.",
-      "description": "The system sits on top of a multi-service backend (auth, config, reservation, reporting). The agent turns a natural-language question into the right API calls, filters data correctly (for example, a proper 'yesterday' window), and returns a readable answer. A next phase adds scheduled, event-based and condition-based routines with approval steps.",
+      "description": "The system sits on top of a multi-service backend (Service 1 for configuration, Service 2 for bookings & operations, Service 3 for reporting, plus an auth service). The agent turns a natural-language question into the right API calls, filters data correctly (for example, a proper 'yesterday' window), and returns a readable answer. A next phase adds scheduled, event-based and condition-based routines with approval steps.",
       "role": "Backend engineer (design, build, audit)",
       "tech": [
         "Go",

@@ -14,12 +14,12 @@ This project is an **agent orchestrator** that sits between staff (and, on a sep
 
 The property management backend is composed of discrete services:
 
-| Service                   | Responsibility                                                    |
+| Service Domain            | Responsibility                                                    |
 | ------------------------- | ----------------------------------------------------------------- |
-| **Auth & session**        | JWT validation, property membership, RBAC route matrix            |
-| **Reservation & rooms**   | Stays, folios, housekeeping, operational workflows                |
-| **Configuration & rates** | Room types, taxes, rate plans, property metadata (incl. timezone) |
-| **Reporting**             | Aggregated summaries, collections, export-oriented reads          |
+| **Auth & Session**        | JWT validation, property membership, RBAC route matrix            |
+| **Service 1 (Settings)**  | Room types, taxes, rate plans, property metadata (incl. timezone) |
+| **Service 2 (Operations)**| Stays, folios, housekeeping, operational workflows                |
+| **Service 3 (Analytics)** | Aggregated summaries, collections, export-oriented reads          |
 
 ```
 [ Staff question in plain text (+ active property) ]
@@ -169,10 +169,10 @@ flowchart TB
   Q[Staff or MCP client] --> O[Orchestrator]
   O --> BD[Business date + property inject]
   BD --> T[Allowlisted tool execution]
-  T --> A[Auth]
-  T --> R[Reservation]
-  T --> C[Config]
-  T --> P[Reporting]
+  T --> A[Auth Service]
+  T --> S1[Service 1]
+  T --> S2[Service 2]
+  T --> S3[Service 3]
   T --> O
   O --> Out[Cards / stream / MCP JSON]
   O --> DB[(History + audit)]

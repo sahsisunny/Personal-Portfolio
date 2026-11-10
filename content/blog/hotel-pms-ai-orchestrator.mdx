@@ -20,7 +20,7 @@ The hotel PMS AI orchestrator is not “an LLM glued to a database.” It is an 
 
 ## The problem we were solving
 
-A modern hotel PMS is not one API. Configuration, reservations, reporting, and identity each live in separate services with their own OpenAPI surfaces, RBAC rules, and operational semantics (night-audit business date, property time zones, PCI constraints).
+A modern hospitality management platform is not one monolithic API. Core capabilities—such as Service 1 (Platform Configuration & Rates), Service 2 (Operations & Bookings), Service 3 (Analytics & Reporting), and the Identity / Auth layer—each live in separate microservices with their own OpenAPI surfaces, RBAC rules, and operational semantics (night-audit business date, property time zones, PCI constraints).
 
 Staff questions sound simple—“Who checks in today?” or “What was revenue last week?”—but answering them reliably means:
 
@@ -53,11 +53,11 @@ flowchart LR
     PG[("Postgres\nhistory, routines, audit")]
   end
 
-  subgraph Platform["PMS platform services"]
-    AUTH["Identity & permissions"]
-    CFG["Configuration"]
-    RPT["Reporting"]
-    RES["Reservations"]
+  subgraph Platform["Platform downstream services"]
+    AUTH["Identity / Auth Service"]
+    S1["Service 1 (Config)"]
+    S2["Service 2 (Operations)"]
+    S3["Service 3 (Reporting)"]
   end
 
   Web -->|"chat + user session"| HTTP
@@ -67,10 +67,10 @@ flowchart LR
   ENG --> LLM
   ENG --> REG
   RT --> ENG
-  ENG -->|"GET/PATCH with user token"| CFG
+  ENG -->|"GET/PATCH with user token"| S1
   ENG --> AUTH
-  ENG --> RPT
-  ENG --> RES
+  ENG --> S2
+  ENG --> S3
   RT -->|"grant → short-lived token"| AUTH
   ENG --> PG
   RT --> PG
@@ -107,16 +107,17 @@ sequenceDiagram
   participant User
   participant Engine
   participant Model
-  participant APIs as PMS read APIs
+  participant Services as Downstream Services (Service 1-3)
 
   User->>Engine: Natural language question
   Engine->>Model: Structured plan request (allowed reads only)
   Model-->>Engine: Chosen reads + parameters
   Engine->>Engine: Force property scope, fill required dates
-  par Parallel reads
-    Engine->>APIs: GET (user token)
+  rect rgba(30, 41, 59, 0.45)
+    note over Engine,Services: Parallel read execution across downstream services
+    Engine->>Services: GET (user token forwarded)
+    Services-->>Engine: JSON payloads
   end
-  APIs-->>Engine: JSON payloads
   Engine->>Model: Present answer (question + results)
   Model-->>Engine: Text + card payloads
   Engine-->>User: Streamed response
@@ -252,7 +253,7 @@ To avoid import cycles between “pure routine logic” and the heavy conversati
 
 ### Condition triggers and edge detection
 
-Occupancy-style alerts use **edge triggering** with **hysteresis** so flapping at a threshold (80% → 81% → 80%) does not spam staff. Optional Redis pub/sub accelerates reaction to reservation events; a **reconciliation tick** still runs when messages are missed.
+Occupancy-style alerts use **edge triggering** with **hysteresis** so flapping at a threshold (80% → 81% → 80%) does not spam staff. Optional Redis pub/sub accelerates reaction to domain events (e.g. from Service 2); a **reconciliation tick** still runs when messages are missed.
 
 ---
 
@@ -309,9 +310,9 @@ mindmap
 | **Property switch state (some MCP paths)**    | In-memory active property per pod resets on restart / load balancing | Document UX; eventual shared session store                                         |
 | **Grant + exchange dependency**               | Routines fail closed when identity service is down                   | Suspend + notify; retries with backoff                                             |
 | **Event payloads are thin**                   | Redis events signal invalidation, not entity data → extra reads      | Debounce + reconciliation tick                                                     |
-| **Passthrough JSON to models**                | Prompt injection via remarks fields in reservations                  | Treat all tool arguments as hostile; never widen scope                             |
+| **Passthrough JSON to models**                | Prompt injection via freeform text fields in Service 2 payloads      | Treat all tool arguments as hostile; never widen scope                             |
 | **Operational complexity**                    | Two HTTP servers, optional Redis, many feature flags                 | Runbooks, env documentation, staged rollout flags                                  |
-| **Testing burden**                            | Matrix of intents × RBAC × providers × routine steps                 | Fake PMS HTTP in tests; acceptance docs per phase                                  |
+| **Testing burden**                            | Matrix of intents × RBAC × providers × routine steps                 | Mock downstream HTTP in tests; acceptance docs per phase                           |
 
 **Honest architectural tension:** The more capable the orchestrator becomes (writes, autonomous routines, external tool servers), the **less** you can rely on “read-only assistant” mental models from early documentation. Operators must treat the agent as **automation infrastructure**, not a fancy search box.
 

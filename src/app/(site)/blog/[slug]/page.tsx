@@ -230,7 +230,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           name: "Why is the hotel PMS MCP server read-only?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "External models run under their own prompts and reasoning loops. Limiting MCP tools to read-only queries guarantees that third-party AI agents cannot execute unintended mutations against hotel reservation or folio states.",
+            text: "External models run under their own prompts and reasoning loops. Limiting MCP tools to read-only queries guarantees that third-party AI agents cannot execute unintended mutations against booking, reservation, or ledger states.",
           },
         },
       ],
