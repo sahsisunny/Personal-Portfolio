@@ -421,7 +421,7 @@ public/ images/  routes/  og/  resume.pdf
 
 ## 19. Research notes (what was found online)
 
-- **Current portfolio** (`sahsisunny.netlify.app`): still says *Junior Full Stack Developer*, lists skills like HTML, JS, TS, Node, Express, MongoDB, React, Tailwind, Next.js and React Query. It does **not** yet mention Go, AI work, the promotion, the newer projects or the Rides content. The new data file fixes these gaps.
+- **Current portfolio** (`sunnysahsi.com`): still says *Junior Full Stack Developer*, lists skills like HTML, JS, TS, Node, Express, MongoDB, React, Tailwind, Next.js and React Query. It does **not** yet mention Go, AI work, the promotion, the newer projects or the Rides content. The new data file fixes these gaps.
 - **Existing sections:** Experience (Fountane, Real Dev Squad, SmartInternz), Projects (Linktree clone, Gitrackr, Personal Portfolio), Education (BCA, Patna University, 8.36 CGPA), Open Source page.
 - **Links used:** LinkedIn `sahsisunny`, GitHub `sahsisunny`, X `@sahsisunny`, a resume link on Google Drive, email on the portfolio.
 - **Not accessible:** LinkedIn page content and X posts could not be read from outside. A Peerlist resume page shows an outdated title and should be updated or ignored.

@@ -4,7 +4,7 @@ import { getProjects, isFeatureEnabled } from "@/lib/data";
 import { ProjectsView } from "@/components/projects/projects-view";
 import { FolderGit2 } from "lucide-react";
 
-const BASE_URL = "https://sahsisunny.netlify.app";
+const BASE_URL = "https://sunnysahsi.com";
 
 export const metadata: Metadata = {
   title: "Projects & Architecture Case Studies | Sunny Sahsi",

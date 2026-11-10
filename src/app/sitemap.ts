@@ -3,7 +3,7 @@ import { getProjects, getRides, isFeatureEnabled } from "@/lib/data";
 import { getAllBlogPosts } from "@/lib/mdx";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://sahsisunny.netlify.app";
+  const baseUrl = "https://sunnysahsi.com";
   const projects = isFeatureEnabled("projects") ? getProjects() : [];
   const rides = isFeatureEnabled("rides") ? getRides() : [];
   const blogPosts = isFeatureEnabled("blog") ? getAllBlogPosts(false) : [];

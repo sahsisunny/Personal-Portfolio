@@ -22,7 +22,7 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-const BASE_URL = "https://sahsisunny.netlify.app";
+const BASE_URL = "https://sunnysahsi.com";
 
 export async function generateStaticParams() {
   const posts = getAllBlogPosts(true);
@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: "Sunny Sahsi Portfolio",
       publishedTime: post.frontmatter.date,
       modifiedTime: post.frontmatter.updated || post.frontmatter.date,
-      authors: ["https://sahsisunny.netlify.app"],
+      authors: [BASE_URL],
       tags: post.frontmatter.tags,
       images: [
         {

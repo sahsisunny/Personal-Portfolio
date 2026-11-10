@@ -5,7 +5,7 @@ import { getAllBlogPosts, getAllCategories, getAllTags } from "@/lib/mdx";
 import { BlogListView } from "@/components/blog/blog-list-view";
 import { PenLine } from "lucide-react";
 
-const BASE_URL = "https://sahsisunny.netlify.app";
+const BASE_URL = "https://sunnysahsi.com";
 
 export const metadata: Metadata = {
   title: "Writing & Engineering Notes | Sunny Sahsi",

@@ -6,7 +6,7 @@ This project implements a dual-personality architecture in a single Next.js App 
 1. **The Professional Developer Site** (`/`, `/projects`, `/blog`, `/resume`): recruiter-friendly, fast, clean, and technical.
 2. **The Rides Microsite** (`/rides`, `/rides/[slug]`): an adventure journal with its own warm cinematic palette, Bebas Neue display typography, interactive route maps, timeline, and photo galleries for solo trips from Patna to Ladakh and Rameshwaram.
 
-All site data is centrally governed and validated by **Zod** against `src/data/portfolio.json`.
+All site data is centrally governed and validated by **Zod** against `portfolio-data.json`.
 
 ---
 

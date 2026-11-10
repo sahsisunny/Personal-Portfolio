@@ -26,7 +26,7 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-const BASE_URL = "https://sahsisunny.netlify.app";
+const BASE_URL = "https://sunnysahsi.com";
 
 export async function generateStaticParams() {
   const projects = getProjects();

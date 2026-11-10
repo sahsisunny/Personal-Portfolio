@@ -62,7 +62,7 @@ export default async function RideDetailPage({ params }: PageProps) {
   const mdxStory = getRideStoryMdx(slug);
   const storyContent = mdxStory || ride.story;
 
-  const BASE_URL = "https://sahsisunny.netlify.app";
+  const BASE_URL = "https://sunnysahsi.com";
   const rideUrl = `${BASE_URL}/rides/${ride.slug}`;
 
   const tripJsonLd = {

@@ -55,7 +55,7 @@ export default function RidesLandingPage() {
       : null,
   ].filter((s): s is { label: string; value: string } => s !== null);
 
-  const BASE_URL = "https://sahsisunny.netlify.app";
+  const BASE_URL = "https://sunnysahsi.com";
   const ridesCollectionJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",

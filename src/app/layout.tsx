@@ -31,7 +31,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const BASE_URL = "https://sahsisunny.netlify.app";
+const BASE_URL = "https://sunnysahsi.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

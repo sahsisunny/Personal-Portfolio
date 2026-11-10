@@ -2,7 +2,7 @@
   "_readme": "Single source of truth for the portfolio site. Keys starting with '_' are notes for you and are ignored by the site. Every 'null' or empty value is something Sunny still needs to fill in. Never invent numbers: leave null until real.",
   "_sources": {
     "verified": [
-      "https://sahsisunny.netlify.app (current portfolio: experience, skills, projects, education, social links)"
+      "https://sunnysahsi.com (current portfolio: experience, skills, projects, education, social links)"
     ],
     "fromSunny": "Promotion to Associate Full Stack Developer, AI tools used (Claude, Antigravity, Cursor), AI chatbot agent work, Ladakh and Rameshwaram rides from Patna, extra projects and Fountane work details",
     "notFound": [
@@ -14,7 +14,7 @@
   "meta": {
     "siteTitle": "Sunny Sahsi | Associate Full Stack Developer",
     "siteDescription": "Sunny Sahsi is an Associate Full Stack Developer building scalable web apps with Next.js, high-performance Go backend microservices, and autonomous AI agents.",
-    "siteUrl": "https://sahsisunny.netlify.app",
+    "siteUrl": "https://sunnysahsi.com",
     "locale": "en-IN",
     "defaultThemeMode": "system",
     "ogImage": "/images/og-default.svg",
