@@ -26,25 +26,29 @@ export function HeroSection({ person, socials, features }: HeroSectionProps) {
       />
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center sm:text-left">
-        {/* Availability Pill */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted shadow-xs mb-6">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+        {/* Availability Pill & Greeting */}
+        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 mb-6">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted shadow-xs">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            <span>{person.availability.label}</span>
+          </div>
+          <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-mono font-medium text-accent">
+            Hey, welcome to my portfolio
           </span>
-          <span>{person.availability.label}</span>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-text leading-[1.1]">
-          Hey, I&apos;m <span className="text-accent">{person.name}</span>
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-text leading-[1.15]">
+          <span className="text-accent">{person.name}</span>
+          <span className="block mt-2.5 text-xl sm:text-3xl lg:text-4xl font-bold text-text">
+            {person.headline}
+          </span>
         </h1>
 
-        <div className="mt-3 text-lg sm:text-2xl font-semibold text-text">
-          {person.headline}
-        </div>
-
-        <p className="mt-4 max-w-2xl text-base sm:text-lg text-muted leading-relaxed">
-          {person.tagline}
+        <p className="mt-5 max-w-2xl text-base sm:text-lg text-muted leading-relaxed">
+          Hey, I&apos;m <strong className="text-text font-semibold">{person.name}</strong>, an <strong className="text-text font-semibold">{person.headline}</strong> based in {person.location}. {person.tagline}
         </p>
 
         {/* Location & Remote metadata */}

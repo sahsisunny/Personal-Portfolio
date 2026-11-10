@@ -9,7 +9,7 @@ const BASE_URL = "https://sahsisunny.netlify.app";
 export const metadata: Metadata = {
   title: "Projects & Architecture Case Studies | Sunny Sahsi",
   description:
-    "Engineering case studies, Go backend services, AI chatbot agents, and full-stack web applications built by Sunny Sahsi.",
+    "Production case studies, high-performance Go backend microservices, autonomous AI agents, and full-stack web applications built by Sunny Sahsi.",
   keywords: [
     "Software Projects",
     "Go Backend",

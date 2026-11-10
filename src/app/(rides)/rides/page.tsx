@@ -22,7 +22,7 @@ import { IndiaRoutesMapClient } from "@/components/rides/india-routes-map-client
 export const metadata: Metadata = {
   title: "On Two Wheels | Solo Motorcycle Touring across India",
   description:
-    "Patna to Ladakh and Patna to Rameshwaram. Solo motorcycle expeditions, route maps, waypoints, telemetry, gear, and field stories by Sunny Sahsi on a Royal Enfield Meteor 350.",
+    "Solo motorcycle expeditions from Patna to Ladakh and Rameshwaram. Route maps, waypoints, telemetry, and stories by Sunny Sahsi on a Royal Enfield Meteor 350.",
 };
 
 export default function RidesLandingPage() {

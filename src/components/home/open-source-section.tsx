@@ -41,7 +41,7 @@ export function OpenSourceSection({ openSource }: OpenSourceSectionProps) {
                     />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg text-text">{item.org}</h3>
+                    <h3 className="font-bold text-lg text-text">{item.org} (Open Source Community)</h3>
                     <p className="text-xs text-muted font-mono">{item.summary}</p>
                   </div>
                 </div>

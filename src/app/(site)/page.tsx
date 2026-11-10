@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   getPerson,
   getSocials,
@@ -25,6 +26,17 @@ import { EducationSection } from "@/components/home/education-section";
 import { LatestWritingSection } from "@/components/home/latest-writing-section";
 import { RidesTeaserSection } from "@/components/home/rides-teaser-section";
 import { ContactSection } from "@/components/home/contact-section";
+
+export const metadata: Metadata = {
+  title: "Sunny Sahsi | Associate Full Stack Developer",
+  description:
+    "Sunny Sahsi is an Associate Full Stack Developer building scalable web apps with Next.js, high-performance Go backend microservices, and autonomous AI agents.",
+  openGraph: {
+    title: "Sunny Sahsi | Associate Full Stack Developer",
+    description:
+      "Sunny Sahsi is an Associate Full Stack Developer building scalable web apps with Next.js, high-performance Go backend microservices, and autonomous AI agents.",
+  },
+};
 
 export default function HomePage() {
   const person = getPerson();
