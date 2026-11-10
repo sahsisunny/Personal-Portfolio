@@ -89,7 +89,7 @@ export function ReadingProgressBar() {
 }
 
 /**
- * Clean, quiet Table of Contents
+ * Clean, modern Table of Contents with scrollspy and full heading readability
  */
 export function TableOfContents({
   headings,
@@ -107,7 +107,7 @@ export function TableOfContents({
           }
         });
       },
-      { rootMargin: "0% 0% -60% 0%" }
+      { rootMargin: "0% 0% -65% 0%", threshold: 0.1 }
     );
 
     headings.forEach((h) => {
@@ -118,33 +118,69 @@ export function TableOfContents({
     return () => observer.disconnect();
   }, [headings]);
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.pushState(null, "", `#${id}`);
+      setActiveId(id);
+    }
+  };
+
   if (headings.length === 0) return null;
 
   return (
-    <nav className="rounded-xl border border-border bg-surface p-5 shadow-xs space-y-3 sticky top-24">
-      <div className="font-mono text-xs uppercase tracking-wider text-muted font-bold">
-        On This Page
+    <nav
+      aria-label="Table of contents"
+      className="rounded-xl border border-border/80 bg-surface p-5 shadow-xs space-y-3.5"
+    >
+      <div className="flex items-center justify-between border-b border-border/50 pb-2.5">
+        <span className="font-mono text-[11px] uppercase tracking-wider text-muted font-bold flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block" />
+          On This Page
+        </span>
+        <span className="text-[10px] font-mono text-muted/80">
+          {headings.length} sections
+        </span>
       </div>
-      <ul className="space-y-1.5 text-xs font-mono">
-        {headings.map((h) => (
-          <li
-            key={h.id}
-            className={cn(h.level === 3 && "pl-3 text-[11px]")}
-          >
-            <a
-              href={`#${h.id}`}
-              className={cn(
-                "block py-0.5 transition-colors truncate",
-                activeId === h.id
-                  ? "text-accent font-semibold"
-                  : "text-muted hover:text-text"
-              )}
-            >
-              {h.text}
-            </a>
-          </li>
-        ))}
-      </ul>
+
+      <div className="max-h-[calc(100vh-14rem)] overflow-y-auto pr-1 space-y-1 scrollbar-thin">
+        <ul className="space-y-1 border-l border-border/60 ml-1">
+          {headings.map((h) => {
+            const isActive = activeId === h.id;
+            return (
+              <li
+                key={h.id}
+                className={cn(
+                  "relative transition-all",
+                  h.level === 3 ? "pl-5" : "pl-3.5"
+                )}
+              >
+                {/* Active indicator bar on the left track */}
+                {isActive && (
+                  <span className="absolute -left-[1.5px] top-1.5 bottom-1.5 w-[2px] bg-accent rounded-full" />
+                )}
+
+                <a
+                  href={`#${h.id}`}
+                  onClick={(e) => handleClick(e, h.id)}
+                  title={h.text}
+                  className={cn(
+                    "block py-1 text-left text-xs font-sans leading-snug transition-colors rounded-sm break-words",
+                    h.level === 3 ? "text-[11.5px]" : "font-medium",
+                    isActive
+                      ? "text-accent font-semibold"
+                      : "text-muted hover:text-text"
+                  )}
+                >
+                  {h.text}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </nav>
   );
 }

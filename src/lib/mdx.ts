@@ -10,9 +10,15 @@ export const BlogPostFrontmatterSchema = z.object({
   date: z.string(),
   updated: z.string().optional(),
   summary: z.string(),
+  description: z.string().optional(),
   tags: z.array(z.string()).default([]),
   category: z.string(),
   cover: z.string().optional(),
+  image: z.string().optional(),
+  authors: z.array(z.string()).default(["Sunny Sahsi"]),
+  series: z.string().optional(),
+  series_order: z.number().optional(),
+  aliases: z.array(z.string()).default([]),
   draft: z.boolean().default(false),
 });
 
@@ -23,6 +29,7 @@ export interface BlogPost {
   content: string;
   readingTime: string;
   slug: string;
+  coverImage: string;
 }
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
@@ -61,12 +68,17 @@ export function getAllBlogPosts(includeDrafts = process.env.NODE_ENV !== "produc
       }
 
       const readStats = readingTime(content);
+      const coverImage =
+        parsedFrontmatter.data.cover ||
+        parsedFrontmatter.data.image ||
+        `/images/blog/${slug}.svg`;
 
       return {
         frontmatter: parsedFrontmatter.data,
         content,
         readingTime: readStats.text,
         slug,
+        coverImage,
       };
     })
     .filter((post): post is BlogPost => post !== null);
@@ -77,7 +89,11 @@ export function getAllBlogPosts(includeDrafts = process.env.NODE_ENV !== "produc
 
 export function getBlogPostBySlug(slug: string): BlogPost | null {
   const posts = getAllBlogPosts(true);
-  return posts.find((p) => p.slug === slug) || null;
+  return (
+    posts.find(
+      (p) => p.slug === slug || p.frontmatter.aliases.includes(slug)
+    ) || null
+  );
 }
 
 export function getAllCategories(): string[] {

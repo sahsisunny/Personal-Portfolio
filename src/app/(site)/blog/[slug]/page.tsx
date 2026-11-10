@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   ArrowLeft,
@@ -7,6 +8,8 @@ import {
   Calendar,
   Clock,
   User,
+  Sparkles,
+  BookmarkCheck,
 } from "lucide-react";
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/mdx";
 import { formatDate } from "@/lib/utils";
@@ -19,11 +22,22 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+const BASE_URL = "https://sahsisunny.netlify.app";
+
 export async function generateStaticParams() {
   const posts = getAllBlogPosts(true);
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  const slugs = new Set<string>();
+  posts.forEach((post) => {
+    slugs.add(post.slug);
+    if (post.slug === "hotel-pms-ai-orchestrator") {
+      slugs.add("asi-genie-architecture");
+    }
+    if (post.slug === "hotel-pms-mcp-tool-server") {
+      slugs.add("asi-genie-mcp-architecture");
+    }
+    post.frontmatter.aliases.forEach((alias) => slugs.add(alias));
+  });
+  return Array.from(slugs).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -36,21 +50,55 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const postUrl = `${BASE_URL}/blog/${post.slug}`;
+  const imageUrl = post.coverImage.startsWith("http")
+    ? post.coverImage
+    : `${BASE_URL}${post.coverImage}`;
+
   return {
     title: `${post.frontmatter.title} | Sunny Sahsi`,
     description: post.frontmatter.summary,
+    keywords: [
+      ...post.frontmatter.tags,
+      post.frontmatter.category,
+      "Sunny Sahsi",
+      "Software Engineering",
+      "Architecture",
+      "AEO",
+      "AI Systems",
+    ],
+    authors: [{ name: "Sunny Sahsi", url: BASE_URL }],
+    creator: "Sunny Sahsi",
+    publisher: "Sunny Sahsi",
+    alternates: {
+      canonical: postUrl,
+    },
     openGraph: {
       type: "article",
+      url: postUrl,
       title: post.frontmatter.title,
       description: post.frontmatter.summary,
+      siteName: "Sunny Sahsi Portfolio",
       publishedTime: post.frontmatter.date,
-      authors: ["Sunny Sahsi"],
+      modifiedTime: post.frontmatter.updated || post.frontmatter.date,
+      authors: ["https://sahsisunny.netlify.app"],
       tags: post.frontmatter.tags,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 675,
+          alt: post.frontmatter.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.frontmatter.title,
       description: post.frontmatter.summary,
+      images: [imageUrl],
+      creator: "@sahsisunny",
+      site: "@sahsisunny",
     },
   };
 }
@@ -91,27 +139,162 @@ export default async function BlogPostPage({ params }: PageProps) {
     return { level, text, id };
   });
 
-  const articleJsonLd = {
+  const postUrl = `${BASE_URL}/blog/${post.slug}`;
+  const imageUrl = post.coverImage.startsWith("http")
+    ? post.coverImage
+    : `${BASE_URL}${post.coverImage}`;
+
+  // Structured Data (JSON-LD) for SEO and AEO
+  const blogPostingJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: post.frontmatter.title,
     description: post.frontmatter.summary,
+    image: [imageUrl],
     datePublished: post.frontmatter.date,
+    dateModified: post.frontmatter.updated || post.frontmatter.date,
+    inLanguage: "en-US",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": postUrl,
+    },
     author: {
       "@type": "Person",
       name: "Sunny Sahsi",
-      url: "https://sahsisunny.netlify.app",
+      jobTitle: "Associate Full Stack Developer",
+      url: BASE_URL,
+      sameAs: [
+        "https://www.linkedin.com/in/sahsisunny/",
+        "https://github.com/sahsisunny",
+        "https://twitter.com/sahsisunny",
+      ],
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Sunny Sahsi",
+      url: BASE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/images/logos/logo.png`,
+      },
+    },
+    keywords: post.frontmatter.tags.join(", "),
+    articleSection: post.frontmatter.category,
+    wordCount: post.content.split(/\s+/).length,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["article h1", ".aeo-summary-text", ".aeo-key-takeaway"],
     },
   };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: BASE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Writing",
+        item: `${BASE_URL}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.frontmatter.title,
+        item: postUrl,
+      },
+    ],
+  };
+
+  // Specific Answer Engine Optimization (AEO) FAQs per article
+  const isMcpArticle =
+    post.slug.includes("mcp") || post.frontmatter.tags.includes("mcp");
+
+  const faqJsonLd = isMcpArticle
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "What is the Hotel PMS MCP tool server?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "It is a Model Context Protocol remote tool server that enables external AI environments like Claude Code and Cursor to query hotel PMS data with zero client prompts, strict OAuth token exchange, and enforced server-side RBAC.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "How does the MCP tool server prevent cross-property data leaks?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "The tool server injects the verified propertyId directly from the caller's 120-second delegated JWT, preventing external models from specifying or altering property scopes in tool arguments.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Why is the hotel PMS MCP server read-only?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "External models run under their own prompts and reasoning loops. Limiting MCP tools to read-only queries guarantees that third-party AI agents cannot execute unintended mutations against hotel reservation or folio states.",
+            },
+          },
+        ],
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "What is the hotel PMS AI orchestrator's core architectural role?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "It acts as a Go-based orchestration layer connecting hotel staff with hundreds of PMS microservice endpoints while strictly confining queries to a single property scope and caller RBAC permissions.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "How does the AI orchestrator enforce zero-trust security without trusting the LLM?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Security invariants are verified on the server: session tokens lock the propertyId, OpenAPI endpoints are filtered by verified permissions, and numbers are returned via raw JSON passthrough rather than model generation.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "How do scheduled background automations run in the orchestrator?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Automations execute using revocable delegated grants with short-lived tokens, running morning briefings and ledger checks without requiring users to maintain active browser sessions.",
+            },
+          },
+        ],
+      };
 
   return (
     <>
       {/* Scroll-driven reading progress bar */}
       <ReadingProgressBar />
 
+      {/* JSON-LD Schemas for Search & Answer Engines */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <div className="py-12 md:py-16">
@@ -132,14 +315,14 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-            {/* Main Article Body (Clean, moderate, high readability) */}
+            {/* Main Article Body */}
             <article className="lg:col-span-8">
               <header className="border-b border-border/70 pb-6 mb-8 space-y-4">
                 <h1 className="text-3xl font-bold tracking-tight text-text sm:text-4xl lg:text-5xl leading-tight">
                   {post.frontmatter.title}
                 </h1>
 
-                <p className="text-base sm:text-lg text-muted leading-relaxed font-sans">
+                <p className="text-base sm:text-lg text-muted leading-relaxed font-sans aeo-summary-text">
                   {post.frontmatter.summary}
                 </p>
 
@@ -175,7 +358,54 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
               </header>
 
-              {/* Clean, syntax-colored Markdown Renderer */}
+              {/* Cover Image (LCP Candidate: priority + fetchpriority="high") */}
+              {post.coverImage && (
+                <div className="relative mb-10 overflow-hidden rounded-2xl border border-border/80 bg-surface shadow-md">
+                  <Image
+                    src={post.coverImage}
+                    alt={post.frontmatter.title}
+                    width={1200}
+                    height={675}
+                    priority
+                    fetchPriority="high"
+                    className="w-full h-auto object-cover transition-transform duration-500 hover:scale-[1.01]"
+                  />
+                  <div className="absolute top-3 right-3 rounded-md bg-surface/90 backdrop-blur-xs px-2.5 py-1 text-[11px] font-mono text-accent border border-border/80 flex items-center gap-1.5">
+                    <Sparkles className="w-3 h-3" />
+                    <span>Architecture Blueprint</span>
+                  </div>
+                </div>
+              )}
+
+              {/* AEO / AI Summary & Key Architecture Invariants Callout */}
+              <div className="mb-10 rounded-xl border border-accent/30 bg-accent/5 p-5 sm:p-6 shadow-xs">
+                <div className="flex items-center gap-2 text-xs font-mono font-bold text-accent uppercase tracking-wider mb-2">
+                  <BookmarkCheck className="w-4 h-4" />
+                  <span>Key Architecture Takeaways (AEO &amp; Quick Facts)</span>
+                </div>
+                <ul className="space-y-2 text-sm text-text leading-relaxed pt-1">
+                  <li className="flex items-start gap-2 aeo-key-takeaway">
+                    <span className="text-accent font-mono font-bold select-none">•</span>
+                    <span>
+                      <strong>Zero-Trust Invariant:</strong> Security lives strictly in server-side authorization gates and session token validation—never in LLM prompt instructions.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2 aeo-key-takeaway">
+                    <span className="text-accent font-mono font-bold select-none">•</span>
+                    <span>
+                      <strong>Deterministic Tool Execution:</strong> 200+ OpenAPI endpoints are dynamically pruned to domain-specific candidates, eliminating tool hallucinations.
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2 aeo-key-takeaway">
+                    <span className="text-accent font-mono font-bold select-none">•</span>
+                    <span>
+                      <strong>Delegated Grants:</strong> Scheduled automations run using revocable, scoped grants with tight TTLs without exposing root database credentials.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Syntax-colored Markdown Renderer */}
               <ModernBlogRenderer content={post.content} slug={slug} />
 
               {/* Prev / Next Article Navigation */}
@@ -219,14 +449,14 @@ export default async function BlogPostPage({ params }: PageProps) {
               {/* Interactive Scroll-Tracking TOC */}
               {toc.length > 0 && <TableOfContents headings={toc} />}
 
-              {/* Simple Author Box */}
+              {/* Author Box */}
               <div className="rounded-xl border border-border bg-surface-2/40 p-5 space-y-2.5">
                 <span className="text-[11px] font-mono text-muted uppercase tracking-wider block font-bold">
                   Author
                 </span>
                 <p className="text-sm font-bold text-text">{person.name}</p>
                 <p className="text-xs text-muted leading-relaxed font-sans">
-                  Associate Full Stack Developer at Fountane working across Next.js and Go.
+                  Associate Full Stack Developer building AI chatbot agents, Go microservices, and modern Next.js web applications.
                 </p>
                 <div className="pt-2 flex items-center gap-3 text-muted">
                   <a

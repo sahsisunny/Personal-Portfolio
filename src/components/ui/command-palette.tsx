@@ -2,16 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import {
-  Search,
-  X,
-  FolderGit2,
-  PenLine,
-  Compass,
-  FileText,
-  Home,
-  User,
-} from "lucide-react";
+import { Search, X, FolderGit2, PenLine, Compass, FileText, Home, User } from "lucide-react";
 
 interface PaletteItem {
   id: string;
@@ -24,10 +15,34 @@ interface PaletteItem {
 const ITEMS: PaletteItem[] = [
   { id: "home", label: "Home", category: "Navigation", href: "/", icon: Home },
   { id: "exp", label: "Work Experience", category: "Navigation", href: "/#experience", icon: User },
-  { id: "proj-all", label: "All Projects", category: "Navigation", href: "/projects", icon: FolderGit2 },
-  { id: "blog-all", label: "Writing & Notes", category: "Navigation", href: "/blog", icon: PenLine },
-  { id: "rides-home", label: "On Two Wheels (Rides)", category: "Navigation", href: "/rides", icon: Compass },
-  { id: "resume", label: "Printable Resume", category: "Navigation", href: "/resume", icon: FileText },
+  {
+    id: "proj-all",
+    label: "All Projects",
+    category: "Navigation",
+    href: "/projects",
+    icon: FolderGit2,
+  },
+  {
+    id: "blog-all",
+    label: "Writing & Notes",
+    category: "Navigation",
+    href: "/blog",
+    icon: PenLine,
+  },
+  {
+    id: "rides-home",
+    label: "On Two Wheels (Rides)",
+    category: "Navigation",
+    href: "/rides",
+    icon: Compass,
+  },
+  {
+    id: "resume",
+    label: "Printable Resume",
+    category: "Navigation",
+    href: "/resume",
+    icon: FileText,
+  },
 
   // Projects
   {
@@ -82,17 +97,17 @@ const ITEMS: PaletteItem[] = [
 
   // Articles
   {
-    id: "a-agent",
-    label: "Building an AI agent over 200+ APIs: what broke first",
+    id: "a-pms-orchestrator",
+    label: "Inside a Hotel PMS AI Orchestrator: Multi-Service LLMs & Zero-Trust",
     category: "Articles",
-    href: "/blog/building-ai-agent-over-200-apis",
+    href: "/blog/hotel-pms-ai-orchestrator",
     icon: PenLine,
   },
   {
-    id: "a-career",
-    label: "From Junior to Associate in two years: what actually helped",
+    id: "a-pms-mcp",
+    label: "Building a Read-Only MCP Tool Server for Enterprise Hotel PMS Data",
     category: "Articles",
-    href: "/blog/junior-to-associate-full-stack",
+    href: "/blog/hotel-pms-mcp-tool-server",
     icon: PenLine,
   },
 
@@ -137,9 +152,10 @@ export function CommandPalette() {
 
   const filteredItems = React.useMemo(() => {
     if (!query.trim()) return ITEMS;
-    return ITEMS.filter((item) =>
-      item.label.toLowerCase().includes(query.toLowerCase()) ||
-      item.category.toLowerCase().includes(query.toLowerCase())
+    return ITEMS.filter(
+      (item) =>
+        item.label.toLowerCase().includes(query.toLowerCase()) ||
+        item.category.toLowerCase().includes(query.toLowerCase())
     );
   }, [query]);
 
@@ -236,10 +252,14 @@ export function CommandPalette() {
                       }`}
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
-                        <Icon className={`w-4 h-4 flex-shrink-0 ${isSelected ? "text-accent-contrast" : "text-muted"}`} />
+                        <Icon
+                          className={`w-4 h-4 flex-shrink-0 ${isSelected ? "text-accent-contrast" : "text-muted"}`}
+                        />
                         <span className="truncate">{item.label}</span>
                       </div>
-                      <span className={`text-[10px] font-mono uppercase tracking-wider ml-2 flex-shrink-0 ${isSelected ? "text-accent-contrast/80" : "text-muted"}`}>
+                      <span
+                        className={`text-[10px] font-mono uppercase tracking-wider ml-2 flex-shrink-0 ${isSelected ? "text-accent-contrast/80" : "text-muted"}`}
+                      >
                         {item.category}
                       </span>
                     </div>

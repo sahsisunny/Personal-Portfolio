@@ -18,7 +18,7 @@
     "siteUrl": "https://sahsisunny.netlify.app",
     "locale": "en-IN",
     "defaultThemeMode": "system",
-    "ogImage": "/og/default.png",
+    "ogImage": "/images/og-default.svg",
     "favicon": "/favicon.svg",
     "keywords": [
       "Sunny Sahsi",

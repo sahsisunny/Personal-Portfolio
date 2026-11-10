@@ -9,7 +9,7 @@ export async function GET() {
   const siteUrl = meta.siteUrl;
 
   const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>${escapeXml(meta.siteTitle)}</title>
     <link>${siteUrl}</link>
@@ -18,8 +18,11 @@ export async function GET() {
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml"/>
     ${posts
-      .map(
-        (post) => `
+      .map((post) => {
+        const coverRaw = post.coverImage.startsWith("http")
+          ? post.coverImage
+          : `${siteUrl}${post.coverImage}`;
+        return `
     <item>
       <title>${escapeXml(post.frontmatter.title)}</title>
       <link>${siteUrl}/blog/${post.slug}</link>
@@ -28,8 +31,10 @@ export async function GET() {
       <description>${escapeXml(post.frontmatter.summary)}</description>
       <category>${escapeXml(post.frontmatter.category)}</category>
       <author>${escapeXml(person.email)} (${escapeXml(person.name)})</author>
-    </item>`
-      )
+      <media:content url="${escapeXml(coverRaw)}" medium="image" />
+      <enclosure url="${escapeXml(coverRaw)}" type="image/svg+xml" length="0" />
+    </item>`;
+      })
       .join("")}
   </channel>
 </rss>`;
@@ -60,4 +65,3 @@ function escapeXml(unsafe: string): string {
     }
   });
 }
-

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { CodeBlock } from "./blog-post-content";
+import { MermaidBlock } from "./mermaid-block";
 
 interface ModernBlogRendererProps {
   content: string;
@@ -38,10 +39,31 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
           }
         }
 
+        // If language is mermaid, render dedicated interactive Mermaid component
+        const normLang = langRaw.toLowerCase().trim();
+        if (
+          normLang === "mermaid" ||
+          (!normLang &&
+            (codeBody.trim().startsWith("flowchart") ||
+              codeBody.trim().startsWith("sequenceDiagram") ||
+              codeBody.trim().startsWith("classDiagram") ||
+              codeBody.trim().startsWith("stateDiagram") ||
+              codeBody.trim().startsWith("erDiagram") ||
+              codeBody.trim().startsWith("graph ")))
+        ) {
+          elements.push(<MermaidBlock key={`mermaid-${index}`} code={codeBody} />);
+          return;
+        }
+
         // Auto-detect architecture diagram if language isn't specified
         let lang = langRaw;
         if (!lang) {
-          if (codeBody.includes("+---") || codeBody.includes("|    ") || codeBody.includes("↓") || codeBody.includes("▼")) {
+          if (
+            codeBody.includes("+---") ||
+            codeBody.includes("|    ") ||
+            codeBody.includes("↓") ||
+            codeBody.includes("▼")
+          ) {
             lang = "diagram";
           } else {
             lang = "code";
@@ -49,12 +71,7 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
         }
 
         elements.push(
-          <CodeBlock
-            key={`code-${index}`}
-            language={lang}
-            filename={filename}
-            code={codeBody}
-          />
+          <CodeBlock key={`code-${index}`} language={lang} filename={filename} code={codeBody} />
         );
       } else {
         // EVEN INDEX = Prose Text
@@ -189,15 +206,68 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
             }
           }
 
-          // Blockquotes
+          // Horizontal rule
+          if (trimmed === "---" || trimmed === "***" || trimmed === "___") {
+            elements.push(<hr key={`hr-${index}-${pIdx}`} className="my-10 border-border/70" />);
+            return;
+          }
+
+          // Markdown Image: ![alt](url)
+          const standaloneImgMatch = trimmed.match(/^!\[(.*?)\]\((.*?)\)$/);
+          if (standaloneImgMatch) {
+            const alt = standaloneImgMatch[1];
+            const src = standaloneImgMatch[2];
+            elements.push(
+              <figure
+                key={`img-${index}-${pIdx}`}
+                className="my-8 overflow-hidden rounded-xl border border-border/80 bg-surface-2/40 shadow-xs"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={src}
+                  alt={alt || "Article illustration"}
+                  loading="lazy"
+                  className="w-full h-auto object-cover max-h-[520px]"
+                />
+                {alt && (
+                  <figcaption className="p-3 text-center text-xs font-mono text-muted border-t border-border/50 bg-surface-2/60">
+                    {alt}
+                  </figcaption>
+                )}
+              </figure>
+            );
+            return;
+          }
+
+          // Blockquotes and Callouts
           if (trimmed.startsWith("> ")) {
             const quoteContent = trimmed.replace(/^>\s*/gm, "");
+            const isNote = quoteContent.startsWith("[!NOTE]");
+            const isImportant = quoteContent.startsWith("[!IMPORTANT]");
+            const isWarning = quoteContent.startsWith("[!WARNING]");
+
+            let cleanQuote = quoteContent;
+            let calloutClass = "border-l-2 border-accent pl-4 my-5 italic text-muted text-base leading-relaxed";
+
+            if (isNote || isImportant || isWarning) {
+              cleanQuote = quoteContent.replace(/^\[!(NOTE|IMPORTANT|WARNING)\]\s*/, "");
+              calloutClass = isWarning
+                ? "border-l-4 border-amber-500 bg-amber-500/10 p-4 rounded-r-lg my-6 not-italic text-text"
+                : isImportant
+                ? "border-l-4 border-accent bg-accent/10 p-4 rounded-r-lg my-6 not-italic text-text"
+                : "border-l-4 border-blue-500 bg-blue-500/10 p-4 rounded-r-lg my-6 not-italic text-text";
+            }
+
             elements.push(
               <blockquote
                 key={`quote-${index}-${pIdx}`}
-                className="border-l-2 border-accent pl-4 my-5 italic text-muted text-base leading-relaxed"
+                className={calloutClass}
               >
-                {quoteContent}
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: formatInline(cleanQuote),
+                  }}
+                />
               </blockquote>
             );
             return;
@@ -255,9 +325,13 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
   );
 }
 
-// Format basic inline markdown: **bold**, *italic*, `code`, [link](url)
+// Format basic inline markdown: **bold**, *italic*, `code`, ![img](url), [link](url)
 function formatInline(text: string): string {
   return text
+    .replace(
+      /!\[(.*?)\]\((.*?)\)/g,
+      '<img src="$2" alt="$1" class="rounded-lg my-2 max-w-full h-auto border border-border inline-block" loading="lazy" />'
+    )
     .replace(/\*\*(.*?)\*\*/g, '<strong class="text-text font-semibold">$1</strong>')
     .replace(/\*(.*?)\*/g, '<em class="italic text-text/90">$1</em>')
     .replace(

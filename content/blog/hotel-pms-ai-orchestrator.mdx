@@ -1,0 +1,380 @@
+---
+title: "Inside a Hotel PMS AI Orchestrator: Multi-Service LLMs, Automation, and Zero-Trust Access"
+slug: "hotel-pms-ai-orchestrator"
+date: "2026-11-10"
+summary: "How we designed a Go-based AI layer that answers staff questions, runs scheduled workflows, and enforces the same RBAC as the web app—without trusting the model."
+description: "How we designed a Go-based AI layer that answers staff questions, runs scheduled workflows, and enforces the same RBAC as the web app—without trusting the model."
+authors: ["Sunny Sahsi"]
+category: "AI"
+tags: ["architecture", "ai", "go", "hospitality", "orchestration"]
+cover: "/images/blog/hotel-pms-ai-orchestrator.svg"
+image: "/images/blog/hotel-pms-ai-orchestrator.svg"
+draft: false
+---
+
+## TL;DR
+
+The hotel PMS AI orchestrator is not “an LLM glued to a database.” It is an **orchestration layer** between hotel staff (or external AI clients), **multiple backend microservices**, and **one property scope at a time**. The service plans which read APIs to call, runs them with the **caller's credentials**, turns JSON into structured UI cards, and—on a separate track—executes **saved routines** in the background using **revocable delegated grants**. Security lives in **server-side gates**, not in prompt instructions.
+
+---
+
+## The problem we were solving
+
+A modern hotel PMS is not one API. Configuration, reservations, reporting, and identity each live in separate services with their own OpenAPI surfaces, RBAC rules, and operational semantics (night-audit business date, property time zones, PCI constraints).
+
+Staff questions sound simple—“Who checks in today?” or “What was revenue last week?”—but answering them reliably means:
+
+1. Picking the right endpoints and query parameters from hundreds of possibilities.
+2. Never widening scope beyond **one property**.
+3. Never exceeding what the **signed-in user** is allowed to see.
+4. Presenting numbers in a UI-friendly shape (tables, charts, stats)—without letting the model invent figures.
+
+Later, product asked for **automation**: morning briefings, occupancy alerts, and operational workflows that run **while nobody is logged in**—still as the user who created them, still auditable, still revocable.
+
+That combination pushed us toward a **dedicated orchestration service** rather than bolting chat into any single backend.
+
+---
+
+## High-level system view
+
+```mermaid
+flowchart LR
+  subgraph Clients
+    Web["Property staff UI"]
+    Mobile["Mobile app"]
+  end
+
+  subgraph Orchestrator["AI orchestrator service"]
+    HTTP["HTTP API layer"]
+    ENG["Conversation engine"]
+    RT["Routine runtime"]
+    REG["Tool registry\n(OpenAPI-derived)"]
+    LLM["LLM adapter\n(multi-provider)"]
+    PG[("Postgres\nhistory, routines, audit")]
+  end
+
+  subgraph Platform["PMS platform services"]
+    AUTH["Identity & permissions"]
+    CFG["Configuration"]
+    RPT["Reporting"]
+    RES["Reservations"]
+  end
+
+  Web -->|"chat + user session"| HTTP
+  Mobile --> HTTP
+  HTTP --> ENG
+  HTTP --> RT
+  ENG --> LLM
+  ENG --> REG
+  RT --> ENG
+  ENG -->|"GET/PATCH with user token"| CFG
+  ENG --> AUTH
+  ENG --> RPT
+  ENG --> RES
+  RT -->|"grant → short-lived token"| AUTH
+  ENG --> PG
+  RT --> PG
+```
+
+**Design principle:** The orchestrator does not own hotel data. It **coordinates** reads and guarded writes against services that already enforce authorization.
+
+---
+
+## Two conversation modes, one security model
+
+### Interactive chat
+
+The primary path is streaming chat:
+
+```mermaid
+flowchart TD
+  A["Incoming message + property scope"] --> B{"Session valid for property?"}
+  B -- no --> Z["401 / 403"]
+  B -- yes --> C{"Sensitive patterns in message?"}
+  C -- yes --> PCI["Block / mask, no model exposure"]
+  C -- no --> D{"LLM available?"}
+  D -- yes --> P["Plan → execute reads → present answer"]
+  D -- no --> F["Keyword / intent fallback handlers"]
+  P --> S["Persist turn + tool audit"]
+  F --> S
+  PCI --> S
+```
+
+**Planner path (happy path):**
+
+```mermaid
+sequenceDiagram
+  participant User
+  participant Engine
+  participant Model
+  participant APIs as PMS read APIs
+
+  User->>Engine: Natural language question
+  Engine->>Model: Structured plan request (allowed reads only)
+  Model-->>Engine: Chosen reads + parameters
+  Engine->>Engine: Force property scope, fill required dates
+  par Parallel reads
+    Engine->>APIs: GET (user token)
+  end
+  APIs-->>Engine: JSON payloads
+  Engine->>Model: Present answer (question + results)
+  Model-->>Engine: Text + card payloads
+  Engine-->>User: Streamed response
+```
+
+**Fallback path** when the model is down, misconfigured, or the question maps to a hand-tuned handler: a classifier routes to dedicated code paths (arrivals, folio balance, night-audit readiness, etc.).
+
+### Agent goals and guarded writes (evolution)
+
+The orchestrator began as **read-first** for trust and compliance. Product then needed multi-step staff workflows (check-in, assign room, collect payment) and API-shaped creates/updates.
+
+The architecture adds an **agent loop** that:
+
+- Reads until it has enough context.
+- Starts **in-chat flows** that still require human confirmation for sensitive changes, **or**
+- Prepares writes from OpenAPI schemas with **dynamic form cards**, with an explicit save path that marks the request as user-approved.
+
+For **unattended** execution (routines), a separate flag enables autonomous writes under a **routine-specific write allowlist**, with every mutation going through the same audit channel as interactive chat.
+
+This split—**interactive confirmation vs autonomous routine**—is intentional: humans keep the loop for ad-hoc chat; automation gets a narrow, reviewed allowlist.
+
+---
+
+## Tool registry: APIs as typed tools
+
+Instead of hard-coding every integration, the orchestrator **generates a catalog** from sibling services’ Swagger/OpenAPI definitions:
+
+| Stage    | What happens                                                                              |
+| -------- | ----------------------------------------------------------------------------------------- |
+| Codegen  | Read specs → generate HTTP client stubs                                                   |
+| Filter   | Drop admin, internal, export, impersonation, and non-GET tools from the default read pool |
+| Metadata | Attach query param hints, RBAC notes, display labels                                      |
+| Runtime  | Model sees **names and descriptions**, not raw OpenAPI                                    |
+
+Illustrative filter logic (pseudocode—**not production code**):
+
+```go
+func IsPermittedReadTool(tool ToolMeta) bool {
+    if tool.Method != "GET" { return false }
+    if containsAny(tool.Path, []string{"/internal/", "export", "impersonat"}) {
+        return false
+    }
+    return true
+}
+```
+
+At request time, the engine **overwrites** `propertyId` (and path-style property parameters) so even a malicious or confused model cannot pivot to another hotel.
+
+---
+
+## Layered security (what we trust—and what we do not)
+
+```mermaid
+flowchart TB
+  subgraph Untrusted
+    M["Large language model"]
+    U["User-typed text + pasted data"]
+  end
+
+  subgraph Trusted gates
+    A["Property membership check"]
+    F["Tool allowlist"]
+    P["Property injection"]
+    T["User JWT / delegated token forwarding"]
+    RBAC["Downstream RBAC per route"]
+  end
+
+  M --> F
+  U --> A
+  A --> P
+  P --> T
+  T --> RBAC
+```
+
+| Control        | Chat                                          | Routines (background)                            |
+| -------------- | --------------------------------------------- | ------------------------------------------------ |
+| Identity       | User session JWT                              | Revocable **grant** + token exchange             |
+| Property scope | Required on every request                     | Stored on grant; re-checked at exchange          |
+| Permissions    | PMS returns 403 → denied card                 | Same; persistent auth errors **suspend** routine |
+| PCI            | PAN patterns masked before logs/DB/model      | Same validation on saved definitions             |
+| Audit          | Per-tool execution rows + audit log on writes | Same pipelines; `source=routine` on turns        |
+
+**Key insight for leaders:** The orchestrator does not maintain its own permission matrix. If the PMS backend says “no,” the orchestrator says “no.” That avoids a whole class of “AI bypassed RBAC” incidents—at the cost of **opaque error messages** when roles are misconfigured upstream.
+
+---
+
+## Routines: scheduled and event-driven automation
+
+Routines are **JSON definitions** validated by the server (not the model). A routine describes:
+
+- **When** it runs (schedule, one-shot, or condition with hysteresis).
+- **What** steps execute (reads, transforms, capability actions, agent prompts, notifications).
+- **Where** results go (in-app inbox, chat thread, email).
+
+```mermaid
+flowchart TB
+  subgraph Control plane
+    API["Routines HTTP API"]
+    ChatTools["Chat: propose → review card → activate"]
+  end
+
+  subgraph Data plane
+    SCH["Scheduler loop (~30s)"]
+    EVT["Optional Redis event listener"]
+    Q["Postgres queue\nSKIP LOCKED + lease"]
+    W["Worker pool"]
+    PIPE["Step pipeline"]
+    DEL["Delivery"]
+  end
+
+  ChatTools --> API
+  API --> DB[(Routine metadata + encrypted grant secret)]
+  SCH --> Q
+  EVT --> Q
+  Q --> W
+  W --> CRED["Token exchange"]
+  CRED --> PIPE
+  PIPE --> DEL
+```
+
+### Package layering (why it matters)
+
+To avoid import cycles between “pure routine logic” and the heavy conversation engine:
+
+| Layer               | Responsibility                                                         |
+| ------------------- | ---------------------------------------------------------------------- |
+| Pure routine domain | Schema, validation, scheduling math, pipeline DSL                      |
+| Credentials         | Seal grant secrets, cache short-lived tokens                           |
+| Service             | CRUD, scheduler, workers, delivery                                     |
+| Engine adapter      | Implements runtime interface: reads, writes, capabilities, agent steps |
+
+**Queue choice:** Postgres `FOR UPDATE SKIP LOCKED` instead of introducing Temporal/EventBridge on day one—same database the orchestrator already requires, survives restarts, scales horizontally with multiple replicas.
+
+### Condition triggers and edge detection
+
+Occupancy-style alerts use **edge triggering** with **hysteresis** so flapping at a threshold (80% → 81% → 80%) does not spam staff. Optional Redis pub/sub accelerates reaction to reservation events; a **reconciliation tick** still runs when messages are missed.
+
+---
+
+## Observability and the staff experience
+
+**Streaming protocol:** Clients receive `thinking`, per-read `tool_start` / `tool_end`, then text and cards. The **work log** in message metadata is the source of truth for “what the agent did” when replaying history—important when support debugs “it said X but the numbers look wrong.”
+
+**Business date, not clock date:** “Today” means the property’s night-audit working date, cached briefly from configuration—otherwise morning-shift questions drift from operational reality.
+
+**Cards, not blobs:** Answers are constrained (row/column/chart point limits) so the UI stays fast and the model cannot dump megabytes of JSON into the panel.
+
+---
+
+## Merits of this architecture
+
+| Merit                                          | Why it pays off                                                                                                    |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **RBAC parity with the web app**               | No shadow permission system; security reviews stay centralized in identity + route middleware.                     |
+| **OpenAPI-driven expansion**                   | New microservice endpoints can surface as tools after registry regen + filter review—not bespoke glue per feature. |
+| **Defense in depth without prompt reliance**   | Property forcing, tool allowlists, PCI guards, and audit logs survive model changes or provider swaps.             |
+| **Graceful degradation**                       | `LLM_PROVIDER=none` still yields keyword/intent answers—useful in outages or strict environments.                  |
+| **Unified automation story**                   | Routines reuse the same engine, write path, and audit as chat—reduces “batch job bypassed controls” risk.          |
+| **Multi-provider LLM**                         | Adapter layer supports switching vendors without rewriting orchestration.                                          |
+| **Horizontal routine workers**                 | Lease-based claiming lets you scale replicas without double-running the same slot (idempotent `run_key`).          |
+| **Explicit human gate for interactive writes** | Preserves trust for staff who fear “the bot changed my folio.”                                                     |
+
+```mermaid
+mindmap
+  root((Orchestrator strengths))
+    Security
+      User token forwarding
+      Grant-based background runs
+      No prompt-only RBAC
+    Ops
+      Postgres queue
+      Deferred night-audit runs
+      Kill switches per feature
+    Product
+      Cards + streaming UX
+      Chat-created routines
+      Navigate-to-screen on refused writes
+```
+
+---
+
+## Demerits, tradeoffs, and sharp edges
+
+| Demerit                                       | Impact                                                               | Mitigation direction                                                               |
+| --------------------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| **Large flat engine package**                 | Hard to navigate, risky refactors, cycle constraints when splitting  | Incremental extraction (tool-call helpers, policy package) per dependency analysis |
+| **Dual paths (planner vs fallback vs agent)** | Behavior drift if handlers and planner disagree                      | Shared read helpers; tests on golden questions                                     |
+| **LLM cost + latency**                        | Every planned turn may need 2+ model calls                           | Caps on follow-up rounds; routine “recipe” steps that skip the model               |
+| **Registry churn**                            | A bad OpenAPI publish can expose or break tools                      | CI registry gen + allowlist review                                                 |
+| **Property switch state (some MCP paths)**    | In-memory active property per pod resets on restart / load balancing | Document UX; eventual shared session store                                         |
+| **Grant + exchange dependency**               | Routines fail closed when identity service is down                   | Suspend + notify; retries with backoff                                             |
+| **Event payloads are thin**                   | Redis events signal invalidation, not entity data → extra reads      | Debounce + reconciliation tick                                                     |
+| **Passthrough JSON to models**                | Prompt injection via remarks fields in reservations                  | Treat all tool arguments as hostile; never widen scope                             |
+| **Operational complexity**                    | Two HTTP servers, optional Redis, many feature flags                 | Runbooks, env documentation, staged rollout flags                                  |
+| **Testing burden**                            | Matrix of intents × RBAC × providers × routine steps                 | Fake PMS HTTP in tests; acceptance docs per phase                                  |
+
+**Honest architectural tension:** The more capable the orchestrator becomes (writes, autonomous routines, external tool servers), the **less** you can rely on “read-only assistant” mental models from early documentation. Operators must treat the agent as **automation infrastructure**, not a fancy search box.
+
+---
+
+## Configuration surface (illustrative)
+
+Environment toggles let you roll out safely—names are representative; values belong only in secure config stores:
+
+```bash
+# Core
+PORT=8090
+LLM_PROVIDER=openai   # or anthropic, gemini, none
+
+# Automation
+ROUTINES_ENABLED=true
+ROUTINE_WRITES_ENABLED=true
+ROUTINE_EVENTS_ENABLED=false
+
+# Optional acceleration for condition routines
+REDIS_URL=...
+```
+
+Feature flags are a **merit** for incremental delivery and a **demerit** when drift between staging and production hides integration bugs—discipline on defaults matters.
+
+---
+
+## What we would do again—and what we might change
+
+**Would do again:**
+
+- Server-side property injection before any downstream call.
+- Separate **validation authority** for routine JSON vs model prose.
+- Postgres-backed work queue before adopting workflow engines.
+- Keeping identity as the only source of “who is this token.”
+
+**Might change with hindsight:**
+
+- Earlier extraction of a small `toolcall` package shared by chat and external protocol servers (covered in the **next** post).
+- Stronger contract tests between generated registry and live microservice deployments.
+- Clearer product docs when writes and routines shipped—so support and compliance teams share one story.
+
+---
+
+## Roadmap teaser: external AI clients
+
+The same binary exposes a **second HTTP listener** designed for Model Context Protocol (MCP) clients: no in-house planner, OAuth at the edge, short-lived delegated tokens, and the **same read tool filter** as chat. That design gets its own deep dive in the companion article: _“[Building a Read-Only MCP Tool Server: Zero-Trust PMS Data Access for Claude, Cursor, and Beyond](/blog/hotel-pms-mcp-tool-server).”_
+
+---
+
+## Glossary (reader-friendly)
+
+| Term              | Meaning                                                                        |
+| ----------------- | ------------------------------------------------------------------------------ |
+| **Orchestrator**  | Service that plans, calls APIs, and formats responses—not the system of record |
+| **Business date** | Hotel operational “today” per night audit                                      |
+| **Card**          | Typed UI payload (table, chart, stat, form, confirm, navigate)                 |
+| **Routine**       | Saved, validated automation definition with triggers and delivery              |
+| **Grant**         | User-consented credential allowing background token exchange                   |
+| **Tool**          | Named, schema-bound call into a PMS HTTP API                                   |
+
+---
+
+## Summary
+
+The system architecture is a **policy-enforced orchestration layer** on top of an existing microservice PMS: multi-path conversation handling, OpenAPI-derived tools, Postgres-backed automation, and a security model that **delegates authority** instead of **elevating** the AI. The merits are RBAC fidelity, extensibility, and a unified audit story; the demerits are complexity, coupling to OpenAPI quality, and the ongoing cost of keeping **three execution modes** (planner, handlers, agent/routines) aligned.
