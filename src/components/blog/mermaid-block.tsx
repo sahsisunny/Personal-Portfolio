@@ -18,9 +18,14 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
   const [copied, setCopied] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
 
+  const isDark = resolvedTheme ? resolvedTheme === "dark" : true;
+
   const cleanCode = React.useMemo(() => {
     let text = code.trim();
-    // Preprocess sequence diagrams: semicolons and markdown asterisks inside message labels break Mermaid parsing
+
+    // Preprocess sequence diagrams:
+    // 1. Unescaped semicolons and markdown asterisks break Mermaid parsing
+    // 2. Light hardcoded rect backgrounds (e.g. rect rgb(240,248,255)) become unreadable in dark mode
     if (text.startsWith("sequenceDiagram")) {
       text = text
         .split("\n")
@@ -39,9 +44,17 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
           return line;
         })
         .join("\n");
+
+      if (isDark) {
+        text = text
+          .replace(/rect\s+rgb\(\s*24[0-9]\s*,\s*24[0-9]\s*,\s*25[0-9]\s*\)/gi, "rect rgba(30, 41, 59, 0.45)")
+          .replace(/rect\s+rgb\(\s*25[0-9]\s*,\s*24[0-9]\s*,\s*24[0-9]\s*\)/gi, "rect rgba(55, 48, 163, 0.25)")
+          .replace(/rect\s+rgb\(\s*25[0-5]\s*,\s*25[0-5]\s*,\s*25[0-5]\s*\)/gi, "rect rgba(30, 41, 59, 0.45)");
+      }
     }
+
     return text;
-  }, [code]);
+  }, [code, isDark]);
 
   React.useEffect(() => {
     let isMounted = true;
@@ -53,7 +66,6 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
 
       try {
         const mermaid = (await import("mermaid")).default;
-        const isDark = resolvedTheme === "dark";
 
         mermaid.initialize({
           startOnLoad: false,
@@ -65,14 +77,60 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
             ? {
                 darkMode: true,
                 background: "#0d1117",
+                mainBkg: "#0d1117",
                 primaryColor: "#1e293b",
-                primaryTextColor: "#f1f5f9",
+                primaryTextColor: "#f8fafc",
                 primaryBorderColor: "#475569",
                 lineColor: "#94a3b8",
                 secondaryColor: "#0f172a",
+                secondaryTextColor: "#f8fafc",
                 tertiaryColor: "#1e293b",
+                tertiaryTextColor: "#f8fafc",
                 edgeLabelBackground: "#0d1117",
-                nodeTextColor: "#f1f5f9",
+                nodeTextColor: "#f8fafc",
+                titleColor: "#f8fafc",
+                textColor: "#e2e8f0",
+                // Sequence diagram variables
+                actorTextColor: "#f8fafc",
+                actorBorder: "#475569",
+                actorBkg: "#1e293b",
+                actorLineColor: "#475569",
+                signalColor: "#cbd5e1",
+                signalTextColor: "#f8fafc",
+                labelBoxBkgColor: "#1e293b",
+                labelBoxBorderColor: "#475569",
+                labelTextColor: "#f8fafc",
+                loopTextColor: "#f8fafc",
+                noteBkgColor: "#1e293b",
+                noteBorderColor: "#475569",
+                noteTextColor: "#f8fafc",
+                activationBorderColor: "#3b82f6",
+                activationBkgColor: "#1e3a8a",
+                sequenceNumberColor: "#ffffff",
+                rectBkgColor: "rgba(30, 41, 59, 0.45)",
+                // Mindmap root & branch node variables
+                git0: "#2563eb",
+                gitBranchLabel0: "#ffffff",
+                gitBranchLabel1: "#ffffff",
+                gitBranchLabel2: "#ffffff",
+                gitBranchLabel3: "#ffffff",
+                scaleLabelColor: "#ffffff",
+                cScale0: "#1e3a5f",
+                cScale1: "#0f766e",
+                cScale2: "#831843",
+                cScale3: "#1e3a8a",
+                cScale4: "#701a75",
+                cScale5: "#854d0e",
+                cScale6: "#3730a3",
+                cScale7: "#155e75",
+                cScaleLabel0: "#ffffff",
+                cScaleLabel1: "#ffffff",
+                cScaleLabel2: "#ffffff",
+                cScaleLabel3: "#ffffff",
+                cScaleLabel4: "#ffffff",
+                cScaleLabel5: "#ffffff",
+                cScaleLabel6: "#ffffff",
+                cScaleLabel7: "#ffffff",
               }
             : {
                 darkMode: false,
@@ -85,6 +143,8 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
                 tertiaryColor: "#f1f5f9",
                 edgeLabelBackground: "#ffffff",
                 nodeTextColor: "#0f172a",
+                scaleLabelColor: "#0f172a",
+                gitBranchLabel0: "#0f172a",
               },
         });
 
@@ -115,7 +175,7 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
     return () => {
       isMounted = false;
     };
-  }, [cleanCode, resolvedTheme]);
+  }, [cleanCode, isDark]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(cleanCode);
@@ -125,6 +185,147 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
 
   return (
     <div className="relative my-8 rounded-xl border border-border/80 bg-surface shadow-xs overflow-hidden">
+      {/* Scoped CSS for high-contrast, beautiful diagrams in dark & light themes */}
+      <style>{`
+        /* Dark mode overrides */
+        .dark .mermaid-svg-container text,
+        .dark .mermaid-svg-container tspan,
+        .dark .mermaid-svg-container span {
+          fill: #f8fafc !important;
+          color: #f8fafc !important;
+        }
+
+        /* Mindmap nodes and labels */
+        .dark .mermaid-svg-container .mindmap-node text,
+        .dark .mermaid-svg-container .mindmap-node span,
+        .dark .mermaid-svg-container .mindmap-node tspan,
+        .dark .mermaid-svg-container .section-root text,
+        .dark .mermaid-svg-container .section-root span,
+        .dark .mermaid-svg-container [class*="section-"] text,
+        .dark .mermaid-svg-container [class*="section-"] span {
+          fill: #ffffff !important;
+          color: #ffffff !important;
+          font-weight: 500 !important;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+        }
+        .dark .mermaid-svg-container .section-root circle,
+        .dark .mermaid-svg-container .section-root rect {
+          fill: #2563eb !important;
+          stroke: #3b82f6 !important;
+        }
+        .dark .mermaid-svg-container .section-0 circle,
+        .dark .mermaid-svg-container .section-0 rect,
+        .dark .mermaid-svg-container .section-0 path,
+        .dark .mermaid-svg-container .section-0 polygon {
+          fill: #0f766e !important;
+          stroke: #14b8a6 !important;
+        }
+        .dark .mermaid-svg-container .section-1 circle,
+        .dark .mermaid-svg-container .section-1 rect,
+        .dark .mermaid-svg-container .section-1 path,
+        .dark .mermaid-svg-container .section-1 polygon {
+          fill: #831843 !important;
+          stroke: #f43f5e !important;
+        }
+        .dark .mermaid-svg-container .section-2 circle,
+        .dark .mermaid-svg-container .section-2 rect,
+        .dark .mermaid-svg-container .section-2 path,
+        .dark .mermaid-svg-container .section-2 polygon {
+          fill: #1e3a8a !important;
+          stroke: #3b82f6 !important;
+        }
+        .dark .mermaid-svg-container .section-3 circle,
+        .dark .mermaid-svg-container .section-3 rect,
+        .dark .mermaid-svg-container .section-3 path,
+        .dark .mermaid-svg-container .section-3 polygon {
+          fill: #701a75 !important;
+          stroke: #c026d3 !important;
+        }
+        .dark .mermaid-svg-container .edge,
+        .dark .mermaid-svg-container .mindmap-edge {
+          stroke: #64748b !important;
+          stroke-width: 2px !important;
+        }
+
+        /* Sequence diagram overrides */
+        .dark .mermaid-svg-container rect[fill*="240"],
+        .dark .mermaid-svg-container rect[fill*="255"],
+        .dark .mermaid-svg-container rect[fill*="rgb(240"],
+        .dark .mermaid-svg-container rect[fill*="rgb(255"],
+        .dark .mermaid-svg-container .rect {
+          fill: rgba(30, 41, 59, 0.45) !important;
+          stroke: rgba(148, 163, 184, 0.3) !important;
+        }
+        .dark .mermaid-svg-container .messageText {
+          fill: #f8fafc !important;
+          stroke: none !important;
+          font-weight: 500 !important;
+        }
+        .dark .mermaid-svg-container .messageLine0,
+        .dark .mermaid-svg-container .messageLine1 {
+          stroke: #94a3b8 !important;
+        }
+        .dark .mermaid-svg-container .note {
+          fill: #1e293b !important;
+          stroke: #475569 !important;
+        }
+        .dark .mermaid-svg-container .noteText,
+        .dark .mermaid-svg-container .noteText > tspan {
+          fill: #f8fafc !important;
+          color: #f8fafc !important;
+          font-weight: 600 !important;
+        }
+        .dark .mermaid-svg-container .actor {
+          fill: #1e293b !important;
+          stroke: #475569 !important;
+        }
+        .dark .mermaid-svg-container text.actor > tspan,
+        .dark .mermaid-svg-container .actor text,
+        .dark .mermaid-svg-container .actor span {
+          fill: #f8fafc !important;
+          color: #f8fafc !important;
+          font-weight: 600 !important;
+        }
+        .dark .mermaid-svg-container .actor-line {
+          stroke: #334155 !important;
+        }
+
+        /* Flowchart nodes and clusters */
+        .dark .mermaid-svg-container .node rect,
+        .dark .mermaid-svg-container .node circle,
+        .dark .mermaid-svg-container .node polygon,
+        .dark .mermaid-svg-container .node path {
+          fill: #1e293b !important;
+          stroke: #475569 !important;
+        }
+        .dark .mermaid-svg-container .node text,
+        .dark .mermaid-svg-container .node span,
+        .dark .mermaid-svg-container .label text,
+        .dark .mermaid-svg-container .label span {
+          fill: #f8fafc !important;
+          color: #f8fafc !important;
+          font-weight: 500 !important;
+        }
+        .dark .mermaid-svg-container .cluster rect {
+          fill: rgba(15, 23, 42, 0.6) !important;
+          stroke: #334155 !important;
+        }
+        .dark .mermaid-svg-container .cluster-label span,
+        .dark .mermaid-svg-container .cluster-label text {
+          fill: #94a3b8 !important;
+          color: #94a3b8 !important;
+          font-weight: 600 !important;
+        }
+        .dark .mermaid-svg-container .edgePath path {
+          stroke: #64748b !important;
+        }
+        .dark .mermaid-svg-container .edgeLabel {
+          background-color: #0b0f17 !important;
+          color: #cbd5e1 !important;
+          fill: #cbd5e1 !important;
+        }
+      `}</style>
+
       {/* Header Bar */}
       <div className="flex items-center justify-between border-b border-border/60 bg-surface-2/70 px-3.5 py-2">
         <div className="flex items-center gap-2">

@@ -331,7 +331,7 @@ sequenceDiagram
   participant Orchestrator
   participant Client
 
-  rect rgb(240,248,255)
+  rect rgba(30, 41, 59, 0.5)
     note over Admin,Client: User revokes connector grant
     Admin->>Auth: Delete/revoke grant
     Client->>Orchestrator: tools/call
@@ -340,7 +340,7 @@ sequenceDiagram
     Orchestrator-->>Client: 401 invalid_token
   end
 
-  rect rgb(255,248,240)
+  rect rgba(55, 48, 163, 0.25)
     note over Admin,Client: RBAC role changed
     Admin->>Auth: Remove feature permission
     Client->>Orchestrator: Sensitive report tool
