@@ -440,24 +440,7 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
 
       {/* Body */}
       {activeTab === "diagram" && !error ? (
-        <div className="relative p-4 sm:p-6 overflow-x-auto flex items-center justify-center min-h-[180px] bg-surface/50 group">
-          {/* Quick Expand Button on Canvas Hover */}
-          {!isLoading && svgHtml && (
-            <button
-              type="button"
-              onClick={() => {
-                setIsFullscreen(true);
-                setZoomLevel(1);
-              }}
-              className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center gap-1.5 rounded-lg bg-surface/90 hover:bg-surface border border-border px-2.5 py-1 text-xs font-mono text-muted hover:text-accent shadow-xs backdrop-blur-xs hover:scale-105"
-              title="Open in Large Modal"
-              aria-label="Enlarge diagram"
-            >
-              <Maximize2 className="w-3.5 h-3.5 text-accent" />
-              <span className="text-[11px] font-medium">Enlarge</span>
-            </button>
-          )}
-
+        <div className="relative p-4 sm:p-6 overflow-x-auto flex items-center justify-center min-h-[180px] bg-surface/50">
           {isLoading ? (
             <div className="flex flex-col items-center gap-2 text-muted text-xs font-mono py-8">
               <div className="w-5 h-5 border-2 border-accent border-t-transparent rounded-full animate-spin" />
