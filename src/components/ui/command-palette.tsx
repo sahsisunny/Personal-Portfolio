@@ -155,16 +155,22 @@ export function CommandPalette({ features }: CommandPaletteProps = {}) {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  const isEnabled = (val: boolean | { enabled?: boolean } | undefined, defaultVal = true) => {
+    if (val === undefined) return defaultVal;
+    if (typeof val === "boolean") return val;
+    return val?.enabled ?? defaultVal;
+  };
+
   const availableItems = React.useMemo(() => {
     return ITEMS.filter((item) => {
-      if (item.category === "Projects") return features?.projects ?? true;
-      if (item.category === "Articles") return features?.blog ?? true;
-      if (item.category === "Rides") return features?.rides ?? true;
-      if (item.id === "exp") return features?.experience ?? true;
-      if (item.id === "proj-all") return features?.projects ?? true;
-      if (item.id === "blog-all") return features?.blog ?? true;
-      if (item.id === "rides-home") return features?.rides ?? true;
-      if (item.id === "resume") return features?.resume ?? true;
+      if (item.category === "Projects") return isEnabled(features?.projects);
+      if (item.category === "Articles") return isEnabled(features?.blog);
+      if (item.category === "Rides") return isEnabled(features?.rides);
+      if (item.id === "exp") return isEnabled(features?.experience);
+      if (item.id === "proj-all") return isEnabled(features?.projects);
+      if (item.id === "blog-all") return isEnabled(features?.blog);
+      if (item.id === "rides-home") return isEnabled(features?.rides);
+      if (item.id === "resume") return isEnabled(features?.resume);
       return true;
     });
   }, [features]);

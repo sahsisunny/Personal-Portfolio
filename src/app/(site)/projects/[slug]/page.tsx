@@ -13,7 +13,12 @@ import {
   Workflow,
 } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
-import { getProjects, getProjectBySlug, isFeatureEnabled } from "@/lib/data";
+import {
+  getProjects,
+  getProjectBySlug,
+  isFeatureEnabled,
+  isChildFeatureEnabled,
+} from "@/lib/data";
 import { getProjectCaseStudyMdx } from "@/lib/mdx";
 import { formatDate } from "@/lib/utils";
 import { ModernBlogRenderer } from "@/components/blog/modern-blog-renderer";
@@ -272,7 +277,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               <div>
                 <span className="text-muted block mb-1">Artifacts</span>
                 <div className="flex items-center gap-2">
-                  {project.links.repo ? (
+                  {project.links.repo && isChildFeatureEnabled("projects", "githubLinks") ? (
                     <a
                       href={project.links.repo}
                       target="_blank"
@@ -282,10 +287,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                       <GithubIcon className="w-3.5 h-3.5" />
                       <span>Repo</span>
                     </a>
-                  ) : (
+                  ) : !project.links.repo ? (
                     <span className="text-muted">Private</span>
-                  )}
-                  {project.links.live && (
+                  ) : null}
+                  {project.links.live && isChildFeatureEnabled("projects", "liveLinks") && (
                     <a
                       href={project.links.live}
                       target="_blank"
@@ -364,7 +369,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </section>
 
             {/* Deep Dive Case Study Content with Syntax Highlighted Code Blocks */}
-            {mdxContent && (
+            {mdxContent && isChildFeatureEnabled("projects", "caseStudy") && (
               <section className="rounded-xl border border-border bg-surface p-6 sm:p-8 shadow-xs">
                 <ModernBlogRenderer content={mdxContent} slug={project.slug} />
               </section>

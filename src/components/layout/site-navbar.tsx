@@ -30,12 +30,18 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
     };
   }, [mobileMenuOpen]);
 
+  const isEnabled = (val: boolean | { enabled?: boolean } | undefined, defaultVal = true) => {
+    if (val === undefined) return defaultVal;
+    if (typeof val === "boolean") return val;
+    return val?.enabled ?? defaultVal;
+  };
+
   const navLinks = [
     { label: "Home", href: "/", show: true },
-    { label: "Experience", href: "/#experience", show: features?.experience ?? true },
-    { label: "Projects", href: "/projects", show: features?.projects ?? true },
-    { label: "Blog", href: "/blog", show: features?.blog ?? true },
-    { label: "Contact", href: "/#contact", show: features?.contact ?? true },
+    { label: "Experience", href: "/#experience", show: isEnabled(features?.experience) },
+    { label: "Projects", href: "/projects", show: isEnabled(features?.projects) },
+    { label: "Blog", href: "/blog", show: isEnabled(features?.blog) },
+    { label: "Contact", href: "/#contact", show: isEnabled(features?.contact) },
   ].filter((link) => link.show);
 
   return (
@@ -85,7 +91,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
           })}
 
           {/* Highlighted Rides Link with Badge */}
-          {(features?.rides ?? true) && (
+          {isEnabled(features?.rides) && (
             <Link
               href="/rides"
               className="ml-1 inline-flex items-center gap-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-300 hover:bg-amber-500/20 hover:border-amber-500/60 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 flex-shrink-0 whitespace-nowrap"
@@ -101,7 +107,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
           <div className="mx-1.5 h-4 w-px bg-border flex-shrink-0" />
 
           {/* Resume button */}
-          {(features?.resume ?? true) && (
+          {isEnabled(features?.resume) && (
             <Link
               href="/resume"
               className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted hover:text-text hover:bg-surface-2 transition-colors border border-border flex-shrink-0 whitespace-nowrap"
@@ -112,7 +118,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
           )}
 
           {/* Command Palette */}
-          {(features?.commandPalette ?? true) && <CommandPalette features={features} />}
+          {isEnabled(features?.commandPalette) && <CommandPalette features={features} />}
 
           {/* Theme Toggle */}
           <ThemeToggle className="ml-1 flex-shrink-0" />
@@ -120,7 +126,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
 
         {/* Medium Screen Navigation (between md and lg) */}
         <div className="hidden md:flex lg:hidden items-center gap-2">
-          {(features?.projects ?? true) && (
+          {isEnabled(features?.projects) && (
             <Link
               href="/projects"
               className="rounded-md px-2 py-1 text-xs font-medium text-muted hover:text-text"
@@ -128,7 +134,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
               Projects
             </Link>
           )}
-          {(features?.blog ?? true) && (
+          {isEnabled(features?.blog) && (
             <Link
               href="/blog"
               className="rounded-md px-2 py-1 text-xs font-medium text-muted hover:text-text"
@@ -136,7 +142,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
               Blog
             </Link>
           )}
-          {(features?.rides ?? true) && (
+          {isEnabled(features?.rides) && (
             <Link
               href="/rides"
               className="inline-flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-300"
@@ -145,7 +151,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
               <span>Rides</span>
             </Link>
           )}
-          {(features?.commandPalette ?? true) && <CommandPalette features={features} />}
+          {isEnabled(features?.commandPalette) && <CommandPalette features={features} />}
           <ThemeToggle />
           <button
             type="button"
@@ -160,7 +166,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
 
         {/* Mobile controls: Search + Theme toggle + Hamburger */}
         <div className="flex items-center gap-2 md:hidden">
-          {(features?.commandPalette ?? true) && <CommandPalette features={features} />}
+          {isEnabled(features?.commandPalette) && <CommandPalette features={features} />}
           <ThemeToggle />
           <button
             type="button"
@@ -195,7 +201,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
               </Link>
             ))}
 
-            {(features?.rides ?? true) && (
+            {isEnabled(features?.rides) && (
               <div className="my-2 border-t border-border pt-2">
                 <Link
                   href="/rides"
@@ -213,7 +219,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
               </div>
             )}
 
-            {(features?.resume ?? true) && (
+            {isEnabled(features?.resume) && (
               <Link
                 href="/resume"
                 onClick={() => setMobileMenuOpen(false)}

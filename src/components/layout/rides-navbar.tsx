@@ -8,15 +8,25 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { CommandPalette } from "@/components/ui/command-palette";
 import { cn } from "@/lib/utils";
 
-const NAV_LINKS = [
-  { href: "/rides", label: "Expeditions", exact: true },
-  { href: "/rides/bike", label: "The Bike" },
-  { href: "/rides/gear", label: "Gear & Loadout" },
-  { href: "/rides/upcoming", label: "Upcoming" },
-];
+interface RidesNavbarProps {
+  ridesFlags?: {
+    bike?: boolean;
+    gear?: boolean;
+    upcoming?: boolean;
+  };
+}
 
-export function RidesNavbar() {
+export function RidesNavbar({ ridesFlags }: RidesNavbarProps = {}) {
   const pathname = usePathname();
+
+  const links = React.useMemo(() => {
+    return [
+      { href: "/rides", label: "Expeditions", exact: true, show: true },
+      { href: "/rides/bike", label: "The Bike", show: ridesFlags?.bike ?? true },
+      { href: "/rides/gear", label: "Gear & Loadout", show: ridesFlags?.gear ?? true },
+      { href: "/rides/upcoming", label: "Upcoming", show: ridesFlags?.upcoming ?? true },
+    ].filter((l) => l.show);
+  }, [ridesFlags]);
 
   const isLinkActive = (href: string, exact?: boolean) => {
     if (exact) {
@@ -52,7 +62,7 @@ export function RidesNavbar() {
         {/* Desktop Navigation links */}
         <div className="flex items-center gap-2 sm:gap-4">
           <nav className="hidden md:flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider" aria-label="Rides navigation">
-            {NAV_LINKS.map((link) => {
+            {links.map((link) => {
               const active = isLinkActive(link.href, link.exact);
               return (
                 <Link
@@ -81,7 +91,7 @@ export function RidesNavbar() {
       {/* Mobile Horizontal Sub-Navigation Scroll Strip */}
       <div className="md:hidden border-t border-border/60 bg-surface/95 px-4 py-2 overflow-x-auto no-scrollbar">
         <div className="flex items-center gap-2 min-w-max">
-          {NAV_LINKS.map((link) => {
+          {links.map((link) => {
             const active = isLinkActive(link.href, link.exact);
             return (
               <Link

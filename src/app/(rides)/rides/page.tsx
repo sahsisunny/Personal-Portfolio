@@ -11,7 +11,12 @@ import {
   Sparkles,
   ChevronRight,
 } from "lucide-react";
-import { getRidesSection, getSocials, getBikeDetails } from "@/lib/data";
+import {
+  getRidesSection,
+  getSocials,
+  getBikeDetails,
+  isChildFeatureEnabled,
+} from "@/lib/data";
 import { InstagramIcon, YoutubeIcon } from "@/components/ui/icons";
 import { IndiaRoutesMapClient } from "@/components/rides/india-routes-map-client";
 
@@ -130,33 +135,39 @@ export default function RidesLandingPage() {
               <span>Completed Expeditions</span>
               <ChevronRight className="w-4 h-4" />
             </a>
-            <Link
-              href="/rides/bike"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-xs font-mono uppercase font-bold text-text hover:border-accent hover:text-accent transition-all"
-            >
-              <Bike className="w-4 h-4 text-accent" />
-              <span>The Meteor 350</span>
-            </Link>
-            <Link
-              href="/rides/gear"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-xs font-mono uppercase font-bold text-text hover:border-accent hover:text-accent transition-all"
-            >
-              <ShieldCheck className="w-4 h-4 text-accent" />
-              <span>Gear & Loadout</span>
-            </Link>
-            <Link
-              href="/rides/upcoming"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-xs font-mono uppercase font-bold text-text hover:border-accent hover:text-accent transition-all"
-            >
-              <Sparkles className="w-4 h-4 text-accent" />
-              <span>Upcoming Rides</span>
-            </Link>
+            {isChildFeatureEnabled("rides", "bike") && (
+              <Link
+                href="/rides/bike"
+                className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-xs font-mono uppercase font-bold text-text hover:border-accent hover:text-accent transition-all"
+              >
+                <Bike className="w-4 h-4 text-accent" />
+                <span>The Meteor 350</span>
+              </Link>
+            )}
+            {isChildFeatureEnabled("rides", "gear") && (
+              <Link
+                href="/rides/gear"
+                className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-xs font-mono uppercase font-bold text-text hover:border-accent hover:text-accent transition-all"
+              >
+                <ShieldCheck className="w-4 h-4 text-accent" />
+                <span>Gear & Loadout</span>
+              </Link>
+            )}
+            {isChildFeatureEnabled("rides", "upcoming") && (
+              <Link
+                href="/rides/upcoming"
+                className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-xs font-mono uppercase font-bold text-text hover:border-accent hover:text-accent transition-all"
+              >
+                <Sparkles className="w-4 h-4 text-accent" />
+                <span>Upcoming Rides</span>
+              </Link>
+            )}
           </div>
         </div>
       </section>
 
       {/* Stats strip */}
-      {statsList.length > 0 && (
+      {statsList.length > 0 && isChildFeatureEnabled("rides", "stats") && (
         <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 p-6 rounded-2xl border border-border bg-surface shadow-xs">
             {statsList.map((st, idx) => (
@@ -186,134 +197,142 @@ export default function RidesLandingPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1: The Bike */}
-          <Link
-            href="/rides/bike"
-            className="group flex flex-col justify-between rounded-2xl border-2 border-border bg-surface overflow-hidden shadow-xs hover:border-accent hover:shadow-xl transition-all duration-300"
-          >
-            <div>
-              <div className="relative aspect-16/10 w-full bg-slate-950 flex items-center justify-center p-4 overflow-hidden border-b border-border">
-                <Image
-                  src={bike.image}
-                  alt={bike.name}
-                  width={600}
-                  height={375}
-                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute top-3 left-3 rounded-full bg-surface/90 border border-accent/40 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent">
-                  349CC SOHC J-SERIES
+          {isChildFeatureEnabled("rides", "bike") && (
+            <Link
+              href="/rides/bike"
+              className="group flex flex-col justify-between rounded-2xl border-2 border-border bg-surface overflow-hidden shadow-xs hover:border-accent hover:shadow-xl transition-all duration-300"
+            >
+              <div>
+                <div className="relative aspect-16/10 w-full bg-slate-950 flex items-center justify-center p-4 overflow-hidden border-b border-border">
+                  <Image
+                    src={bike.image}
+                    alt={bike.name}
+                    width={600}
+                    height={375}
+                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute top-3 left-3 rounded-full bg-surface/90 border border-accent/40 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent">
+                    349CC SOHC J-SERIES
+                  </div>
+                </div>
+                <div className="p-5 space-y-2">
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-accent font-bold">
+                    <Bike className="w-3.5 h-3.5" />
+                    <span>THE MACHINE</span>
+                  </div>
+                  <h3 className="font-display text-2xl uppercase tracking-wide text-text group-hover:text-accent transition-colors font-bold">
+                    Royal Enfield Meteor 350
+                  </h3>
+                  <p className="text-xs text-muted leading-relaxed line-clamp-3">
+                    {bike.description}
+                  </p>
                 </div>
               </div>
-              <div className="p-5 space-y-2">
-                <div className="flex items-center gap-1.5 text-xs font-mono text-accent font-bold">
-                  <Bike className="w-3.5 h-3.5" />
-                  <span>THE MACHINE</span>
-                </div>
-                <h3 className="font-display text-2xl uppercase tracking-wide text-text group-hover:text-accent transition-colors font-bold">
-                  Royal Enfield Meteor 350
-                </h3>
-                <p className="text-xs text-muted leading-relaxed line-clamp-3">
-                  {bike.description}
-                </p>
+              <div className="p-5 pt-0 flex items-center gap-2 text-xs font-mono font-bold text-accent uppercase tracking-wider group-hover:underline">
+                <span>Inspect Bike Specs & Mods</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
               </div>
-            </div>
-            <div className="p-5 pt-0 flex items-center gap-2 text-xs font-mono font-bold text-accent uppercase tracking-wider group-hover:underline">
-              <span>Inspect Bike Specs & Mods</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-            </div>
-          </Link>
+            </Link>
+          )}
 
           {/* Card 2: Gear & Loadout */}
-          <Link
-            href="/rides/gear"
-            className="group flex flex-col justify-between rounded-2xl border-2 border-border bg-surface overflow-hidden shadow-xs hover:border-accent hover:shadow-xl transition-all duration-300"
-          >
-            <div>
-              <div className="relative aspect-16/10 w-full bg-slate-950 flex items-center justify-center p-4 overflow-hidden border-b border-border">
-                <Image
-                  src="/images/gear/rynox-jacket.svg"
-                  alt="Touring Gear"
-                  width={600}
-                  height={375}
-                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute top-3 left-3 rounded-full bg-surface/90 border border-accent/40 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent">
-                  CE LEVEL 2 • 8 ARSENAL ITEMS
+          {isChildFeatureEnabled("rides", "gear") && (
+            <Link
+              href="/rides/gear"
+              className="group flex flex-col justify-between rounded-2xl border-2 border-border bg-surface overflow-hidden shadow-xs hover:border-accent hover:shadow-xl transition-all duration-300"
+            >
+              <div>
+                <div className="relative aspect-16/10 w-full bg-slate-950 flex items-center justify-center p-4 overflow-hidden border-b border-border">
+                  <Image
+                    src="/images/gear/rynox-jacket.svg"
+                    alt="Touring Gear"
+                    width={600}
+                    height={375}
+                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute top-3 left-3 rounded-full bg-surface/90 border border-accent/40 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent">
+                    CE LEVEL 2 • 8 ARSENAL ITEMS
+                  </div>
+                </div>
+                <div className="p-5 space-y-2">
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-accent font-bold">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    <span>ARMOUR & LUGGAGE</span>
+                  </div>
+                  <h3 className="font-display text-2xl uppercase tracking-wide text-text group-hover:text-accent transition-colors font-bold">
+                    Touring Gear & Loadout
+                  </h3>
+                  <p className="text-xs text-muted leading-relaxed line-clamp-3">
+                    CE Level 2 armour, ECE helmets, 55L radio-welded dry saddlebags, and survival tools tested across 15,480 km.
+                  </p>
                 </div>
               </div>
-              <div className="p-5 space-y-2">
-                <div className="flex items-center gap-1.5 text-xs font-mono text-accent font-bold">
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>ARMOUR & LUGGAGE</span>
-                </div>
-                <h3 className="font-display text-2xl uppercase tracking-wide text-text group-hover:text-accent transition-colors font-bold">
-                  Touring Gear & Loadout
-                </h3>
-                <p className="text-xs text-muted leading-relaxed line-clamp-3">
-                  CE Level 2 armour, ECE helmets, 55L radio-welded dry saddlebags, and survival tools tested across 15,480 km.
-                </p>
+              <div className="p-5 pt-0 flex items-center gap-2 text-xs font-mono font-bold text-accent uppercase tracking-wider group-hover:underline">
+                <span>View Gear Loadout</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
               </div>
-            </div>
-            <div className="p-5 pt-0 flex items-center gap-2 text-xs font-mono font-bold text-accent uppercase tracking-wider group-hover:underline">
-              <span>View Gear Loadout</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-            </div>
-          </Link>
+            </Link>
+          )}
 
           {/* Card 3: Upcoming Expeditions */}
-          <Link
-            href="/rides/upcoming"
-            className="group flex flex-col justify-between rounded-2xl border-2 border-border bg-surface overflow-hidden shadow-xs hover:border-accent hover:shadow-xl transition-all duration-300"
-          >
-            <div>
-              <div className="relative aspect-16/10 w-full bg-slate-950 flex items-center justify-center overflow-hidden border-b border-border">
-                <Image
-                  src="/images/rides/spiti-cover.svg"
-                  alt="Spiti Valley & Sach Pass"
-                  width={600}
-                  height={375}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute top-3 left-3 rounded-full bg-surface/90 border border-accent/40 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent">
-                  AUTUMN 2025 • PLANNING
+          {isChildFeatureEnabled("rides", "upcoming") && (
+            <Link
+              href="/rides/upcoming"
+              className="group flex flex-col justify-between rounded-2xl border-2 border-border bg-surface overflow-hidden shadow-xs hover:border-accent hover:shadow-xl transition-all duration-300"
+            >
+              <div>
+                <div className="relative aspect-16/10 w-full bg-slate-950 flex items-center justify-center overflow-hidden border-b border-border">
+                  <Image
+                    src="/images/rides/spiti-cover.svg"
+                    alt="Spiti Valley & Sach Pass"
+                    width={600}
+                    height={375}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute top-3 left-3 rounded-full bg-surface/90 border border-accent/40 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent">
+                    AUTUMN 2025 • PLANNING
+                  </div>
+                </div>
+                <div className="p-5 space-y-2">
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-accent font-bold">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>NEXT HORIZON</span>
+                  </div>
+                  <h3 className="font-display text-2xl uppercase tracking-wide text-text group-hover:text-accent transition-colors font-bold">
+                    Spiti & Sach Pass
+                  </h3>
+                  <p className="text-xs text-muted leading-relaxed line-clamp-3">
+                    Tackling the most treacherous cliff-carved mountain roads on earth: Hindustan-Tibet Highway and Sach Pass cliff-hangers.
+                  </p>
                 </div>
               </div>
-              <div className="p-5 space-y-2">
-                <div className="flex items-center gap-1.5 text-xs font-mono text-accent font-bold">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>NEXT HORIZON</span>
-                </div>
-                <h3 className="font-display text-2xl uppercase tracking-wide text-text group-hover:text-accent transition-colors font-bold">
-                  Spiti & Sach Pass
-                </h3>
-                <p className="text-xs text-muted leading-relaxed line-clamp-3">
-                  Tackling the most treacherous cliff-carved mountain roads on earth: Hindustan-Tibet Highway and Sach Pass cliff-hangers.
-                </p>
+              <div className="p-5 pt-0 flex items-center gap-2 text-xs font-mono font-bold text-accent uppercase tracking-wider group-hover:underline">
+                <span>View Route Blueprint</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
               </div>
-            </div>
-            <div className="p-5 pt-0 flex items-center gap-2 text-xs font-mono font-bold text-accent uppercase tracking-wider group-hover:underline">
-              <span>View Route Blueprint</span>
-              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-            </div>
-          </Link>
+            </Link>
+          )}
         </div>
       </section>
 
       {/* Interactive India Map */}
-      <section id="map" className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6">
-        <div>
-          <span className="text-xs font-mono text-accent uppercase tracking-widest font-semibold block mb-1">
-            Expedition Routes
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl uppercase tracking-wide text-text font-bold">
-            Fanning Out From Patna
-          </h2>
-          <p className="text-sm text-muted max-w-xl mt-1">
-            Routes stretching North into the Ladakh mountain passes (Khardung La, 17,590 ft) and South all the way across 9 states to Rameshwaram at the Indian Ocean edge.
-          </p>
-        </div>
+      {isChildFeatureEnabled("rides", "routesMap") && (
+        <section id="map" className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6">
+          <div>
+            <span className="text-xs font-mono text-accent uppercase tracking-widest font-semibold block mb-1">
+              Expedition Routes
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl uppercase tracking-wide text-text font-bold">
+              Fanning Out From Patna
+            </h2>
+            <p className="text-sm text-muted max-w-xl mt-1">
+              Routes stretching North into the Ladakh mountain passes (Khardung La, 17,590 ft) and South all the way across 9 states to Rameshwaram at the Indian Ocean edge.
+            </p>
+          </div>
 
-        <IndiaRoutesMapClient />
-      </section>
+          <IndiaRoutesMapClient />
+        </section>
+      )}
 
       {/* Ride Cards (Completed Expeditions) */}
       <section

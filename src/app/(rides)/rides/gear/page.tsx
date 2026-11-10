@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ShieldCheck, ArrowRight, PackageCheck, Layers } from "lucide-react";
-import { getGearItems } from "@/lib/data";
+import { getGearItems, isChildFeatureEnabled } from "@/lib/data";
 import { GearShowcase } from "@/components/rides/gear-showcase";
 
 export const metadata: Metadata = {
@@ -11,6 +12,10 @@ export const metadata: Metadata = {
 };
 
 export default function GearPage() {
+  if (!isChildFeatureEnabled("rides", "gear")) {
+    notFound();
+  }
+
   const gearItems = getGearItems();
 
   return (

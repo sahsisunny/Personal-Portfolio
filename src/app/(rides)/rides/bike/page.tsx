@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import {
   Bike,
   Gauge,
@@ -11,7 +12,7 @@ import {
   ArrowRight,
   Zap,
 } from "lucide-react";
-import { getBikeDetails, getRides } from "@/lib/data";
+import { getBikeDetails, getRides, isChildFeatureEnabled } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "The Machine | Royal Enfield Meteor 350 Touring Rig",
@@ -20,6 +21,10 @@ export const metadata: Metadata = {
 };
 
 export default function BikePage() {
+  if (!isChildFeatureEnabled("rides", "bike")) {
+    notFound();
+  }
+
   const bike = getBikeDetails();
   const rides = getRides();
 

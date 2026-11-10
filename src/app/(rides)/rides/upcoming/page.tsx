@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import {
   Sparkles,
   MapPin,
@@ -9,7 +10,7 @@ import {
   CircleDashed,
   Compass,
 } from "lucide-react";
-import { getPlannedRides, getSocials } from "@/lib/data";
+import { getPlannedRides, getSocials, isChildFeatureEnabled } from "@/lib/data";
 import { InstagramIcon, YoutubeIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
@@ -19,6 +20,10 @@ export const metadata: Metadata = {
 };
 
 export default function UpcomingRidesPage() {
+  if (!isChildFeatureEnabled("rides", "upcoming")) {
+    notFound();
+  }
+
   const plannedRides = getPlannedRides();
   const socials = getSocials();
 

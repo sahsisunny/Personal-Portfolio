@@ -12,7 +12,7 @@ import {
   Shield,
   Lightbulb,
 } from "lucide-react";
-import { getRides, getRideBySlug } from "@/lib/data";
+import { getRides, getRideBySlug, isChildFeatureEnabled } from "@/lib/data";
 import { getRideStoryMdx } from "@/lib/mdx";
 import { RideGallery } from "@/components/rides/ride-gallery";
 import { DayByDayTimeline } from "@/components/rides/day-by-day-timeline";
@@ -236,7 +236,7 @@ export default async function RideDetailPage({ params }: PageProps) {
         </section>
 
         {/* Day-by-Day Timeline */}
-        {ride.dayByDay.length > 0 && (
+        {ride.dayByDay.length > 0 && isChildFeatureEnabled("rides", "timeline") && (
           <section className="pt-12 space-y-4">
             <span className="text-xs font-mono uppercase text-accent font-semibold block mb-0.5">
               Itinerary
@@ -249,18 +249,20 @@ export default async function RideDetailPage({ params }: PageProps) {
         )}
 
         {/* Gallery */}
-        <section className="pt-12 space-y-4">
-          <span className="text-xs font-mono uppercase text-accent font-semibold block mb-0.5">
-            Photo Dispatch
-          </span>
-          <h2 className="font-display text-2xl sm:text-3xl uppercase tracking-wide text-text font-bold">
-            Gallery & Moments
-          </h2>
-          <RideGallery items={ride.gallery} />
-        </section>
+        {isChildFeatureEnabled("rides", "gallery") && (
+          <section className="pt-12 space-y-4">
+            <span className="text-xs font-mono uppercase text-accent font-semibold block mb-0.5">
+              Photo Dispatch
+            </span>
+            <h2 className="font-display text-2xl sm:text-3xl uppercase tracking-wide text-text font-bold">
+              Gallery & Moments
+            </h2>
+            <RideGallery items={ride.gallery} />
+          </section>
+        )}
 
         {/* YouTube Video if available */}
-        {ride.videos && ride.videos.length > 0 && (
+        {ride.videos && ride.videos.length > 0 && isChildFeatureEnabled("rides", "videos") && (
           <section className="pt-12 space-y-4">
             <span className="text-xs font-mono uppercase text-accent font-semibold block mb-0.5">
               Motion
@@ -279,7 +281,7 @@ export default async function RideDetailPage({ params }: PageProps) {
         {/* Lessons & Gear */}
         {(ride.lessons.length > 0 || ride.gearUsed.length > 0) && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-12">
-            {ride.lessons.length > 0 && (
+            {ride.lessons.length > 0 && isChildFeatureEnabled("rides", "lessons") && (
               <div className="rounded-2xl border border-border bg-surface p-6 shadow-xs space-y-3">
                 <div className="flex items-center gap-2 text-xs font-mono uppercase text-amber-500 font-bold">
                   <Lightbulb className="w-4 h-4" />

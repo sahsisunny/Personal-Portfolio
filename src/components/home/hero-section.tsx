@@ -4,12 +4,13 @@ import * as React from "react";
 import Link from "next/link";
 import { ArrowDown, FileText, Mail, MapPin, Laptop } from "lucide-react";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/icons";
-import type { Person, Socials, FeatureFlags } from "@/lib/schema";
+import type { Person, Socials } from "@/lib/schema";
+import type { NormalizedFeatureFlags } from "@/lib/data";
 
 interface HeroSectionProps {
   person: Person;
   socials: Socials;
-  features?: FeatureFlags;
+  features?: NormalizedFeatureFlags;
 }
 
 export function HeroSection({ person, socials, features }: HeroSectionProps) {
@@ -27,13 +28,15 @@ export function HeroSection({ person, socials, features }: HeroSectionProps) {
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center sm:text-left">
         {/* Availability Pill */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted shadow-xs mb-6">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-          </span>
-          <span>{person.availability.label}</span>
-        </div>
+        {(features?.hero?.statusPill ?? true) && (
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted shadow-xs mb-6">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            <span>{person.availability.label}</span>
+          </div>
+        )}
 
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-text leading-[1.1]">
           Hey, I&apos;m <span className="text-accent">{person.name}</span>
@@ -61,24 +64,26 @@ export function HeroSection({ person, socials, features }: HeroSectionProps) {
         </div>
 
         {/* Key Developer Highlights Strip (Replaces bulky terminal with clean lightweight signals) */}
-        <div className="mt-6 flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-2">
-          <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
-            ⚡ 2+ Yrs in Production
-          </span>
-          <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
-            🚀 600+ APIs Agent Orchestration
-          </span>
-          <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
-            🛠️ Go + Next.js + TypeScript
-          </span>
-          <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
-            🏍️ 15,480 KM Solo Touring
-          </span>
-        </div>
+        {(features?.hero?.highlightsStrip ?? true) && (
+          <div className="mt-6 flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-2">
+            <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
+              ⚡ 2+ Yrs in Production
+            </span>
+            <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
+              🚀 600+ APIs Agent Orchestration
+            </span>
+            <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
+              🛠️ Go + Next.js + TypeScript
+            </span>
+            <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
+              🏍️ 15,480 KM Solo Touring
+            </span>
+          </div>
+        )}
 
         {/* CTAs */}
         <div className="mt-8 flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-4">
-          {(features?.projects ?? true) && (
+          {(features?.hero?.projectsCta ?? true) && (features?.projects?.enabled ?? true) && (
             <Link
               href="#projects"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-accent-contrast shadow-sm hover:opacity-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
@@ -87,7 +92,7 @@ export function HeroSection({ person, socials, features }: HeroSectionProps) {
               <ArrowDown className="w-4 h-4" />
             </Link>
           )}
-          {(features?.resume ?? true) && (
+          {(features?.hero?.resumeCta ?? true) && (features?.resume ?? true) && (
             <Link
               href="/resume"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-text shadow-xs hover:bg-surface-2 hover:border-accent transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
@@ -96,7 +101,7 @@ export function HeroSection({ person, socials, features }: HeroSectionProps) {
               <span>Resume</span>
             </Link>
           )}
-          {(features?.contact ?? true) && (
+          {(features?.hero?.contactCta ?? true) && (features?.contact?.enabled ?? true) && (
             <Link
               href="#contact"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-muted hover:text-text hover:bg-surface-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"

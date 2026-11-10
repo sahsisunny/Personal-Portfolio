@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getProjects, getRides, isFeatureEnabled } from "@/lib/data";
+import { getProjects, getRides, isFeatureEnabled, isChildFeatureEnabled } from "@/lib/data";
 import { getAllBlogPosts } from "@/lib/mdx";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -13,9 +13,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: "/blog", priority: 0.9, freq: "weekly" as const, enabled: isFeatureEnabled("blog") },
     { route: "/projects", priority: 0.9, freq: "monthly" as const, enabled: isFeatureEnabled("projects") },
     { route: "/rides", priority: 0.8, freq: "monthly" as const, enabled: isFeatureEnabled("rides") },
-    { route: "/rides/bike", priority: 0.7, freq: "monthly" as const, enabled: isFeatureEnabled("rides") },
-    { route: "/rides/gear", priority: 0.7, freq: "monthly" as const, enabled: isFeatureEnabled("rides") },
-    { route: "/rides/upcoming", priority: 0.7, freq: "monthly" as const, enabled: isFeatureEnabled("rides") },
+    { route: "/rides/bike", priority: 0.7, freq: "monthly" as const, enabled: isChildFeatureEnabled("rides", "bike") },
+    { route: "/rides/gear", priority: 0.7, freq: "monthly" as const, enabled: isChildFeatureEnabled("rides", "gear") },
+    { route: "/rides/upcoming", priority: 0.7, freq: "monthly" as const, enabled: isChildFeatureEnabled("rides", "upcoming") },
     { route: "/resume", priority: 0.8, freq: "monthly" as const, enabled: isFeatureEnabled("resume") },
   ];
 
