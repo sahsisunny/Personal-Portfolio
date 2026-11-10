@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { Search, X, FolderGit2, PenLine, Compass, FileText, Home, User } from "lucide-react";
+import type { FeatureFlags } from "@/lib/schema";
 
 interface PaletteItem {
   id: string;
@@ -128,7 +129,11 @@ const ITEMS: PaletteItem[] = [
   },
 ];
 
-export function CommandPalette() {
+interface CommandPaletteProps {
+  features?: FeatureFlags;
+}
+
+export function CommandPalette({ features }: CommandPaletteProps = {}) {
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -150,14 +155,28 @@ export function CommandPalette() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  const availableItems = React.useMemo(() => {
+    return ITEMS.filter((item) => {
+      if (item.category === "Projects") return features?.projects ?? true;
+      if (item.category === "Articles") return features?.blog ?? true;
+      if (item.category === "Rides") return features?.rides ?? true;
+      if (item.id === "exp") return features?.experience ?? true;
+      if (item.id === "proj-all") return features?.projects ?? true;
+      if (item.id === "blog-all") return features?.blog ?? true;
+      if (item.id === "rides-home") return features?.rides ?? true;
+      if (item.id === "resume") return features?.resume ?? true;
+      return true;
+    });
+  }, [features]);
+
   const filteredItems = React.useMemo(() => {
-    if (!query.trim()) return ITEMS;
-    return ITEMS.filter(
+    if (!query.trim()) return availableItems;
+    return availableItems.filter(
       (item) =>
         item.label.toLowerCase().includes(query.toLowerCase()) ||
         item.category.toLowerCase().includes(query.toLowerCase())
     );
-  }, [query]);
+  }, [availableItems, query]);
 
   const selectItem = (item: PaletteItem) => {
     setOpen(false);

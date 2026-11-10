@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/mdx";
 import { formatDate } from "@/lib/utils";
-import { getPerson } from "@/lib/data";
+import { getPerson, isFeatureEnabled } from "@/lib/data";
 import { ReadingProgressBar } from "@/components/blog/blog-post-content";
 import { ModernBlogRenderer } from "@/components/blog/modern-blog-renderer";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/icons";
@@ -41,6 +41,12 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  if (!isFeatureEnabled("blog")) {
+    return {
+      title: "Post Not Found",
+    };
+  }
+
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
 
@@ -104,6 +110,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
+  if (!isFeatureEnabled("blog")) {
+    notFound();
+  }
+
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
 

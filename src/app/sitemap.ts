@@ -1,28 +1,32 @@
 import type { MetadataRoute } from "next";
-import { getProjects, getRides } from "@/lib/data";
+import { getProjects, getRides, isFeatureEnabled } from "@/lib/data";
 import { getAllBlogPosts } from "@/lib/mdx";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://sahsisunny.netlify.app";
-  const projects = getProjects();
-  const rides = getRides();
-  const blogPosts = getAllBlogPosts(false);
+  const projects = isFeatureEnabled("projects") ? getProjects() : [];
+  const rides = isFeatureEnabled("rides") ? getRides() : [];
+  const blogPosts = isFeatureEnabled("blog") ? getAllBlogPosts(false) : [];
 
-  const staticRoutes = [
-    { route: "", priority: 1.0, freq: "weekly" as const },
-    { route: "/blog", priority: 0.9, freq: "weekly" as const },
-    { route: "/projects", priority: 0.9, freq: "monthly" as const },
-    { route: "/rides", priority: 0.8, freq: "monthly" as const },
-    { route: "/rides/bike", priority: 0.7, freq: "monthly" as const },
-    { route: "/rides/gear", priority: 0.7, freq: "monthly" as const },
-    { route: "/rides/upcoming", priority: 0.7, freq: "monthly" as const },
-    { route: "/resume", priority: 0.8, freq: "monthly" as const },
-  ].map((item) => ({
-    url: `${baseUrl}${item.route}`,
-    lastModified: new Date(),
-    changeFrequency: item.freq,
-    priority: item.priority,
-  }));
+  const rawStatic = [
+    { route: "", priority: 1.0, freq: "weekly" as const, enabled: true },
+    { route: "/blog", priority: 0.9, freq: "weekly" as const, enabled: isFeatureEnabled("blog") },
+    { route: "/projects", priority: 0.9, freq: "monthly" as const, enabled: isFeatureEnabled("projects") },
+    { route: "/rides", priority: 0.8, freq: "monthly" as const, enabled: isFeatureEnabled("rides") },
+    { route: "/rides/bike", priority: 0.7, freq: "monthly" as const, enabled: isFeatureEnabled("rides") },
+    { route: "/rides/gear", priority: 0.7, freq: "monthly" as const, enabled: isFeatureEnabled("rides") },
+    { route: "/rides/upcoming", priority: 0.7, freq: "monthly" as const, enabled: isFeatureEnabled("rides") },
+    { route: "/resume", priority: 0.8, freq: "monthly" as const, enabled: isFeatureEnabled("resume") },
+  ];
+
+  const staticRoutes = rawStatic
+    .filter((item) => item.enabled)
+    .map((item) => ({
+      url: `${baseUrl}${item.route}`,
+      lastModified: new Date(),
+      changeFrequency: item.freq,
+      priority: item.priority,
+    }));
 
   const projectRoutes = projects.map((p) => ({
     url: `${baseUrl}/projects/${p.slug}`,

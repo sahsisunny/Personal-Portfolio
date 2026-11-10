@@ -13,7 +13,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
-import { getProjects, getProjectBySlug } from "@/lib/data";
+import { getProjects, getProjectBySlug, isFeatureEnabled } from "@/lib/data";
 import { getProjectCaseStudyMdx } from "@/lib/mdx";
 import { formatDate } from "@/lib/utils";
 import { ModernBlogRenderer } from "@/components/blog/modern-blog-renderer";
@@ -32,6 +32,12 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  if (!isFeatureEnabled("projects")) {
+    return {
+      title: "Project Not Found",
+    };
+  }
+
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
@@ -92,6 +98,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function ProjectDetailPage({ params }: PageProps) {
+  if (!isFeatureEnabled("projects")) {
+    notFound();
+  }
+
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 

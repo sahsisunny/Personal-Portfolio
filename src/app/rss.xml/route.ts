@@ -1,7 +1,11 @@
 import { getAllBlogPosts } from "@/lib/mdx";
-import { getMeta, getPerson } from "@/lib/data";
+import { getMeta, getPerson, isFeatureEnabled } from "@/lib/data";
 
 export async function GET() {
+  if (!isFeatureEnabled("blog")) {
+    return new Response("Not Found", { status: 404 });
+  }
+
   const meta = getMeta();
   const person = getPerson();
   const posts = getAllBlogPosts(false);

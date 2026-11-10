@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import {
   Download,
   ArrowLeft,
@@ -17,6 +18,7 @@ import {
   getEducation,
   getSkills,
   getSocials,
+  isFeatureEnabled,
 } from "@/lib/data";
 import { formatDate } from "@/lib/utils";
 
@@ -27,6 +29,10 @@ export const metadata: Metadata = {
 };
 
 export default function ResumePage() {
+  if (!isFeatureEnabled("resume")) {
+    notFound();
+  }
+
   const person = getPerson();
   const experience = getExperiences();
   const education = getEducation();

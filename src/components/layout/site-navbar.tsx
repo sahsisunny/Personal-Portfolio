@@ -7,12 +7,14 @@ import { Menu, X, Compass, FileText, ArrowUpRight } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { CommandPalette } from "@/components/ui/command-palette";
 import { cn } from "@/lib/utils";
+import type { FeatureFlags } from "@/lib/schema";
 
 interface SiteNavbarProps {
   name: string;
+  features?: FeatureFlags;
 }
 
-export function SiteNavbar({ name }: SiteNavbarProps) {
+export function SiteNavbar({ name, features }: SiteNavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const pathname = usePathname();
 
@@ -29,12 +31,12 @@ export function SiteNavbar({ name }: SiteNavbarProps) {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "Experience", href: "/#experience" },
-    { label: "Projects", href: "/projects" },
-    { label: "Blog", href: "/blog" },
-    { label: "Contact", href: "/#contact" },
-  ];
+    { label: "Home", href: "/", show: true },
+    { label: "Experience", href: "/#experience", show: features?.experience ?? true },
+    { label: "Projects", href: "/projects", show: features?.projects ?? true },
+    { label: "Blog", href: "/blog", show: features?.blog ?? true },
+    { label: "Contact", href: "/#contact", show: features?.contact ?? true },
+  ].filter((link) => link.show);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/80 bg-surface/80 backdrop-blur-md transition-colors">
@@ -83,30 +85,34 @@ export function SiteNavbar({ name }: SiteNavbarProps) {
           })}
 
           {/* Highlighted Rides Link with Badge */}
-          <Link
-            href="/rides"
-            className="ml-1 inline-flex items-center gap-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-300 hover:bg-amber-500/20 hover:border-amber-500/60 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 flex-shrink-0 whitespace-nowrap"
-          >
-            <Compass className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 flex-shrink-0" />
-            <span className="font-semibold">Rides</span>
-            <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider font-bold text-amber-800 dark:text-amber-200 whitespace-nowrap leading-none">
-              Off the clock
-            </span>
-          </Link>
+          {(features?.rides ?? true) && (
+            <Link
+              href="/rides"
+              className="ml-1 inline-flex items-center gap-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-300 hover:bg-amber-500/20 hover:border-amber-500/60 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 flex-shrink-0 whitespace-nowrap"
+            >
+              <Compass className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 flex-shrink-0" />
+              <span className="font-semibold">Rides</span>
+              <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider font-bold text-amber-800 dark:text-amber-200 whitespace-nowrap leading-none">
+                Off the clock
+              </span>
+            </Link>
+          )}
 
           <div className="mx-1.5 h-4 w-px bg-border flex-shrink-0" />
 
           {/* Resume button */}
-          <Link
-            href="/resume"
-            className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted hover:text-text hover:bg-surface-2 transition-colors border border-border flex-shrink-0 whitespace-nowrap"
-          >
-            <FileText className="w-3.5 h-3.5 flex-shrink-0" />
-            <span>Resume</span>
-          </Link>
+          {(features?.resume ?? true) && (
+            <Link
+              href="/resume"
+              className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted hover:text-text hover:bg-surface-2 transition-colors border border-border flex-shrink-0 whitespace-nowrap"
+            >
+              <FileText className="w-3.5 h-3.5 flex-shrink-0" />
+              <span>Resume</span>
+            </Link>
+          )}
 
           {/* Command Palette */}
-          <CommandPalette />
+          {(features?.commandPalette ?? true) && <CommandPalette features={features} />}
 
           {/* Theme Toggle */}
           <ThemeToggle className="ml-1 flex-shrink-0" />
@@ -114,26 +120,32 @@ export function SiteNavbar({ name }: SiteNavbarProps) {
 
         {/* Medium Screen Navigation (between md and lg) */}
         <div className="hidden md:flex lg:hidden items-center gap-2">
-          <Link
-            href="/projects"
-            className="rounded-md px-2 py-1 text-xs font-medium text-muted hover:text-text"
-          >
-            Projects
-          </Link>
-          <Link
-            href="/blog"
-            className="rounded-md px-2 py-1 text-xs font-medium text-muted hover:text-text"
-          >
-            Blog
-          </Link>
-          <Link
-            href="/rides"
-            className="inline-flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-300"
-          >
-            <Compass className="w-3 h-3" />
-            <span>Rides</span>
-          </Link>
-          <CommandPalette />
+          {(features?.projects ?? true) && (
+            <Link
+              href="/projects"
+              className="rounded-md px-2 py-1 text-xs font-medium text-muted hover:text-text"
+            >
+              Projects
+            </Link>
+          )}
+          {(features?.blog ?? true) && (
+            <Link
+              href="/blog"
+              className="rounded-md px-2 py-1 text-xs font-medium text-muted hover:text-text"
+            >
+              Blog
+            </Link>
+          )}
+          {(features?.rides ?? true) && (
+            <Link
+              href="/rides"
+              className="inline-flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-300"
+            >
+              <Compass className="w-3 h-3" />
+              <span>Rides</span>
+            </Link>
+          )}
+          {(features?.commandPalette ?? true) && <CommandPalette features={features} />}
           <ThemeToggle />
           <button
             type="button"
@@ -148,7 +160,7 @@ export function SiteNavbar({ name }: SiteNavbarProps) {
 
         {/* Mobile controls: Search + Theme toggle + Hamburger */}
         <div className="flex items-center gap-2 md:hidden">
-          <CommandPalette />
+          {(features?.commandPalette ?? true) && <CommandPalette features={features} />}
           <ThemeToggle />
           <button
             type="button"
@@ -183,33 +195,37 @@ export function SiteNavbar({ name }: SiteNavbarProps) {
               </Link>
             ))}
 
-            <div className="my-2 border-t border-border pt-2">
+            {(features?.rides ?? true) && (
+              <div className="my-2 border-t border-border pt-2">
+                <Link
+                  href="/rides"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3.5 text-base font-semibold text-amber-800 dark:text-amber-200"
+                >
+                  <div className="flex items-center gap-2">
+                    <Compass className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                    <span>On Two Wheels (Rides)</span>
+                  </div>
+                  <span className="rounded-full bg-amber-500/20 px-2 py-0.5 font-mono text-xs uppercase">
+                    Off the clock
+                  </span>
+                </Link>
+              </div>
+            )}
+
+            {(features?.resume ?? true) && (
               <Link
-                href="/rides"
+                href="/resume"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3.5 text-base font-semibold text-amber-800 dark:text-amber-200"
+                className="flex items-center justify-between rounded-lg border border-border px-4 py-3 text-base font-medium text-text hover:bg-surface-2"
               >
                 <div className="flex items-center gap-2">
-                  <Compass className="h-5 w-5 text-amber-600 dark:text-amber-400" />
-                  <span>On Two Wheels (Rides)</span>
+                  <FileText className="h-4 w-4 text-muted" />
+                  <span>Resume</span>
                 </div>
-                <span className="rounded-full bg-amber-500/20 px-2 py-0.5 font-mono text-xs uppercase">
-                  Off the clock
-                </span>
+                <ArrowUpRight className="h-4 w-4 text-muted" />
               </Link>
-            </div>
-
-            <Link
-              href="/resume"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between rounded-lg border border-border px-4 py-3 text-base font-medium text-text hover:bg-surface-2"
-            >
-              <div className="flex items-center gap-2">
-                <FileText className="h-4 w-4 text-muted" />
-                <span>Resume</span>
-              </div>
-              <ArrowUpRight className="h-4 w-4 text-muted" />
-            </Link>
+            )}
           </div>
 
           <div className="pt-6 text-center text-xs text-muted border-t border-border">

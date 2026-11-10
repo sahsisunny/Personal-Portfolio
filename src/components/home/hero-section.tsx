@@ -4,14 +4,15 @@ import * as React from "react";
 import Link from "next/link";
 import { ArrowDown, FileText, Mail, MapPin, Laptop } from "lucide-react";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/icons";
-import type { Person, Socials } from "@/lib/schema";
+import type { Person, Socials, FeatureFlags } from "@/lib/schema";
 
 interface HeroSectionProps {
   person: Person;
   socials: Socials;
+  features?: FeatureFlags;
 }
 
-export function HeroSection({ person, socials }: HeroSectionProps) {
+export function HeroSection({ person, socials, features }: HeroSectionProps) {
   return (
     <section className="relative overflow-hidden pt-12 pb-16 md:pt-20 md:pb-28 border-b border-border">
       {/* Subtle background pattern */}
@@ -77,27 +78,33 @@ export function HeroSection({ person, socials }: HeroSectionProps) {
 
         {/* CTAs */}
         <div className="mt-8 flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-4">
-          <Link
-            href="#projects"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-accent-contrast shadow-sm hover:opacity-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-          >
-            <span>View Projects</span>
-            <ArrowDown className="w-4 h-4" />
-          </Link>
-          <Link
-            href="/resume"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-text shadow-xs hover:bg-surface-2 hover:border-accent transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-          >
-            <FileText className="w-4 h-4 text-muted" />
-            <span>Resume</span>
-          </Link>
-          <Link
-            href="#contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-muted hover:text-text hover:bg-surface-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-          >
-            <Mail className="w-4 h-4" />
-            <span>Contact</span>
-          </Link>
+          {(features?.projects ?? true) && (
+            <Link
+              href="#projects"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-accent-contrast shadow-sm hover:opacity-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              <span>View Projects</span>
+              <ArrowDown className="w-4 h-4" />
+            </Link>
+          )}
+          {(features?.resume ?? true) && (
+            <Link
+              href="/resume"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-text shadow-xs hover:bg-surface-2 hover:border-accent transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              <FileText className="w-4 h-4 text-muted" />
+              <span>Resume</span>
+            </Link>
+          )}
+          {(features?.contact ?? true) && (
+            <Link
+              href="#contact"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-muted hover:text-text hover:bg-surface-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              <Mail className="w-4 h-4" />
+              <span>Contact</span>
+            </Link>
+          )}
         </div>
 
         {/* Social Links */}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/icons";
+import type { FeatureFlags } from "@/lib/schema";
 
 interface SiteFooterProps {
   name: string;
@@ -10,9 +11,10 @@ interface SiteFooterProps {
     x?: string | null;
   };
   email: string;
+  features?: FeatureFlags;
 }
 
-export function SiteFooter({ name, socials, email }: SiteFooterProps) {
+export function SiteFooter({ name, socials, email, features }: SiteFooterProps) {
   return (
     <footer className="border-t border-border bg-surface-2/40 py-12 transition-colors">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -70,10 +72,14 @@ export function SiteFooter({ name, socials, email }: SiteFooterProps) {
 
           <div className="flex items-center gap-4 text-xs text-muted">
             <span>Built with Next.js & Go spirit</span>
-            <span>•</span>
-            <Link href="/rides" className="hover:text-accent underline underline-offset-4">
-              Explore Rides →
-            </Link>
+            {(features?.rides ?? true) && (
+              <>
+                <span>•</span>
+                <Link href="/rides" className="hover:text-accent underline underline-offset-4">
+                  Explore Rides →
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>

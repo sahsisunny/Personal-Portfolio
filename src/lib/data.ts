@@ -10,6 +10,7 @@ import {
   type GearItem,
   type PlannedRide,
   type OpenSource,
+  type FeatureFlags,
 } from "./schema";
 
 const parsed = PortfolioSchema.safeParse(rawPortfolioData);
@@ -119,5 +120,29 @@ export function getSeo() {
 
 export function getMeta() {
   return portfolioData.meta;
+}
+
+export function getFeatureFlags(): FeatureFlags {
+  const flags = portfolioData.features;
+  return {
+    blog: flags?.blog ?? (portfolioData.blog?.enabled ?? true),
+    projects: flags?.projects ?? true,
+    experience: flags?.experience ?? true,
+    rides: flags?.rides ?? (portfolioData.rides?.enabled ?? true),
+    skills: flags?.skills ?? true,
+    education: flags?.education ?? true,
+    openSource: flags?.openSource ?? true,
+    contact: flags?.contact ?? true,
+    testimonials: flags?.testimonials ?? false,
+    stats: flags?.stats ?? true,
+    now: flags?.now ?? true,
+    resume: flags?.resume ?? true,
+    commandPalette: flags?.commandPalette ?? true,
+  };
+}
+
+export function isFeatureEnabled(feature: keyof FeatureFlags): boolean {
+  const flags = getFeatureFlags();
+  return Boolean(flags[feature]);
 }
 

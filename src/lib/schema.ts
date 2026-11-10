@@ -320,6 +320,36 @@ export const RidesSectionSchema = z.object({
   }),
 });
 
+export const FeatureFlagsSchema = z.object({
+  blog: z.boolean().default(true),
+  projects: z.boolean().default(true),
+  experience: z.boolean().default(true),
+  rides: z.boolean().default(true),
+  skills: z.boolean().default(true),
+  education: z.boolean().default(true),
+  openSource: z.boolean().default(true),
+  contact: z.boolean().default(true),
+  testimonials: z.boolean().default(false),
+  stats: z.boolean().default(true),
+  now: z.boolean().default(true),
+  resume: z.boolean().default(true),
+  commandPalette: z.boolean().default(true),
+}).default({
+  blog: true,
+  projects: true,
+  experience: true,
+  rides: true,
+  skills: true,
+  education: true,
+  openSource: true,
+  contact: true,
+  testimonials: false,
+  stats: true,
+  now: true,
+  resume: true,
+  commandPalette: true,
+});
+
 export const PortfolioSchema = z.object({
   meta: z.object({
     siteTitle: z.string(),
@@ -331,6 +361,7 @@ export const PortfolioSchema = z.object({
     favicon: z.string(),
     keywords: z.array(z.string()),
   }),
+  features: FeatureFlagsSchema.optional(),
   person: PersonSchema,
   socials: SocialsSchema,
   navigation: NavigationSchema,
@@ -399,3 +430,4 @@ export type BikeDetails = z.infer<typeof BikeDetailsSchema>;
 export type GearItem = z.infer<typeof GearItemSchema>;
 export type PlannedRide = z.infer<typeof PlannedRideSchema>;
 export type OpenSource = z.infer<typeof OpenSourceSchema>;
+export type FeatureFlags = z.infer<typeof FeatureFlagsSchema>;

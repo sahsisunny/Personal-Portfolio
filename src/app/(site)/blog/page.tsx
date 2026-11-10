@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { isFeatureEnabled } from "@/lib/data";
 import { getAllBlogPosts, getAllCategories, getAllTags } from "@/lib/mdx";
 import { BlogListView } from "@/components/blog/blog-list-view";
 import { PenLine } from "lucide-react";
@@ -50,6 +52,10 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  if (!isFeatureEnabled("blog")) {
+    notFound();
+  }
+
   const posts = getAllBlogPosts(true);
   const categories = getAllCategories();
   const tags = getAllTags();

@@ -11,6 +11,7 @@ import {
   getRidesSection,
   getContact,
   getSeo,
+  getFeatureFlags,
 } from "@/lib/data";
 import { getAllBlogPosts } from "@/lib/mdx";
 import { HeroSection } from "@/components/home/hero-section";
@@ -39,6 +40,7 @@ export default function HomePage() {
   const rides = getRidesSection();
   const contact = getContact();
   const seo = getSeo();
+  const features = getFeatureFlags();
 
   return (
     <>
@@ -50,22 +52,24 @@ export default function HomePage() {
         }}
       />
 
-      <HeroSection person={person} socials={socials} />
-      <NowSection now={now} />
-      <AboutSection person={person} stats={stats} />
-      <ExperienceSection experience={experience} />
-      <SkillsSection skills={skills} />
-      <FeaturedProjectsSection projects={featuredProjects} />
-      <OpenSourceSection openSource={openSource} />
-      <EducationSection education={education} />
-      <LatestWritingSection posts={blogPosts} />
-      <RidesTeaserSection ridesData={rides} />
-      <ContactSection
-        email={contact.email}
-        heading={contact.heading}
-        subheading={contact.subheading}
-        socials={socials}
-      />
+      <HeroSection person={person} socials={socials} features={features} />
+      {features.now && <NowSection now={now} />}
+      <AboutSection person={person} stats={features.stats ? stats : []} />
+      {features.experience && <ExperienceSection experience={experience} />}
+      {features.skills && <SkillsSection skills={skills} />}
+      {features.projects && <FeaturedProjectsSection projects={featuredProjects} />}
+      {features.openSource && <OpenSourceSection openSource={openSource} />}
+      {features.education && <EducationSection education={education} />}
+      {features.blog && <LatestWritingSection posts={blogPosts} />}
+      {features.rides && <RidesTeaserSection ridesData={rides} />}
+      {features.contact && (
+        <ContactSection
+          email={contact.email}
+          heading={contact.heading}
+          subheading={contact.subheading}
+          socials={socials}
+        />
+      )}
     </>
   );
 }

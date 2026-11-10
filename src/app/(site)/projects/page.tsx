@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { getProjects } from "@/lib/data";
+import { notFound } from "next/navigation";
+import { getProjects, isFeatureEnabled } from "@/lib/data";
 import { ProjectsView } from "@/components/projects/projects-view";
 import { FolderGit2 } from "lucide-react";
 
@@ -48,6 +49,10 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
+  if (!isFeatureEnabled("projects")) {
+    notFound();
+  }
+
   const projects = getProjects();
 
   const collectionJsonLd = {

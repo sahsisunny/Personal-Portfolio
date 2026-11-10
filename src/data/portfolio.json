@@ -30,6 +30,21 @@
       "motorcycle touring"
     ]
   },
+  "features": {
+    "blog": true,
+    "projects": true,
+    "experience": true,
+    "rides": true,
+    "skills": true,
+    "education": true,
+    "openSource": true,
+    "contact": true,
+    "testimonials": false,
+    "stats": true,
+    "now": true,
+    "resume": true,
+    "commandPalette": true
+  },
   "person": {
     "name": "Sunny Sahsi",
     "firstName": "Sunny",
