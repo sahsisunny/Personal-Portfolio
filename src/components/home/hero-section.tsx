@@ -65,7 +65,7 @@ export function HeroSection({ person, socials }: HeroSectionProps) {
             ⚡ 2+ Yrs in Production
           </span>
           <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
-            🚀 200+ APIs Agent Orchestration
+            🚀 600+ APIs Agent Orchestration
           </span>
           <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
             🛠️ Go + Next.js + TypeScript

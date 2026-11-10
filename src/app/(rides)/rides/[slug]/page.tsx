@@ -63,7 +63,7 @@ export default async function RideDetailPage({ params }: PageProps) {
   const storyContent = mdxStory || ride.story;
 
   return (
-    <article className="py-12 md:py-20 space-y-16">
+    <article className="py-12 md:py-20 space-y-16 ride-content prose-editorial">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         {/* Navigation back */}
         <div className="mb-8">
@@ -87,7 +87,7 @@ export default async function RideDetailPage({ params }: PageProps) {
             {ride.title}
           </h1>
 
-          <p className="text-lg sm:text-xl text-muted font-serif italic max-w-2xl">
+          <p className="text-lg sm:text-xl text-muted font-serif italic max-w-2xl text-justify hyphens-auto">
             {ride.summary}
           </p>
 
@@ -166,7 +166,7 @@ export default async function RideDetailPage({ params }: PageProps) {
           </h2>
 
           {storyContent ? (
-            <div className="rounded-2xl border border-border bg-surface p-6 sm:p-10 shadow-xs prose dark:prose-invert max-w-none text-muted leading-relaxed space-y-4 text-base sm:text-lg">
+            <div className="rounded-2xl border border-border bg-surface p-6 sm:p-10 shadow-xs prose dark:prose-invert max-w-none text-muted leading-relaxed space-y-4 text-base sm:text-lg text-justify hyphens-auto">
               <div
                 dangerouslySetInnerHTML={{
                   __html: storyContent

@@ -181,7 +181,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }}
       />
 
-      <article className="py-12 md:py-20">
+      <article className="py-12 md:py-20 project-content prose-editorial">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           {/* Navigation Breadcrumb */}
           <div className="mb-8 flex items-center justify-between">
@@ -212,7 +212,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               {project.title}
             </h1>
 
-            <p className="mt-4 text-lg sm:text-xl text-muted leading-relaxed">
+            <p className="mt-4 text-lg sm:text-xl text-muted leading-relaxed text-justify hyphens-auto">
               {project.summary}
             </p>
 
@@ -312,7 +312,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 <span>1. The Problem &amp; Context</span>
               </div>
               <h2 className="text-2xl font-bold text-text">Why this project was initiated</h2>
-              <p className="text-base sm:text-lg text-muted leading-relaxed">
+              <p className="text-base sm:text-lg text-muted leading-relaxed text-justify hyphens-auto">
                 {project.description}
               </p>
             </section>
@@ -348,7 +348,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {/* Outcome & What I'd Do Next */}
             <section className="rounded-xl border border-border bg-surface-2/40 p-6 sm:p-8 space-y-4">
               <h3 className="text-xl font-bold text-text">Engineering Outcome &amp; Takeaways</h3>
-              <p className="text-sm sm:text-base text-muted leading-relaxed">
+              <p className="text-sm sm:text-base text-muted leading-relaxed text-justify hyphens-auto">
                 Shipping this project reinforced the value of clean architectural boundaries, automated verification loops, and clear error telemetry. In subsequent iterations, I focus on system observability, end-to-end integration test suites, and strict performance profiling under load.
               </p>
             </section>

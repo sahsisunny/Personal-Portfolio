@@ -316,13 +316,13 @@ export default async function BlogPostPage({ params }: PageProps) {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* Main Article Body */}
-            <article className="lg:col-span-8">
+            <article className="lg:col-span-8 blog-content prose-editorial">
               <header className="border-b border-border/70 pb-6 mb-8 space-y-4">
                 <h1 className="text-3xl font-bold tracking-tight text-text sm:text-4xl lg:text-5xl leading-tight">
                   {post.frontmatter.title}
                 </h1>
 
-                <p className="text-base sm:text-lg text-muted leading-relaxed font-sans aeo-summary-text">
+                <p className="text-base sm:text-lg text-muted leading-relaxed font-sans aeo-summary-text text-justify hyphens-auto">
                   {post.frontmatter.summary}
                 </p>
 

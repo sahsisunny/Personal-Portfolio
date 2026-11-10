@@ -99,6 +99,20 @@ body {
   color: #e2e8f0;
 }
 
+/* Editorial prose formatting: clean justification with automatic hyphenation to eliminate white-space rivers */
+article p,
+.blog-content p,
+.project-content p,
+.ride-content p,
+.prose p,
+.prose-editorial p,
+.text-justify {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
 .code-highlight .token.comment,
 .code-highlight .token.prolog,
 .code-highlight .token.doctype,

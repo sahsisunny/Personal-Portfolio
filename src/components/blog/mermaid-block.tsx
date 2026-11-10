@@ -2,7 +2,19 @@
 
 import * as React from "react";
 import { useTheme } from "next-themes";
-import { Check, Copy, Code, Eye, Workflow, AlertCircle } from "lucide-react";
+import {
+  Check,
+  Copy,
+  Code,
+  Eye,
+  Workflow,
+  AlertCircle,
+  Maximize2,
+  ZoomIn,
+  ZoomOut,
+  RotateCcw,
+  X,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface MermaidBlockProps {
@@ -16,6 +28,8 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
   const [isLoading, setIsLoading] = React.useState(true);
   const [activeTab, setActiveTab] = React.useState<"diagram" | "code">("diagram");
   const [copied, setCopied] = React.useState(false);
+  const [isFullscreen, setIsFullscreen] = React.useState(false);
+  const [zoomLevel, setZoomLevel] = React.useState(1);
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   const isDark = resolvedTheme ? resolvedTheme === "dark" : true;
@@ -177,6 +191,26 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
     };
   }, [cleanCode, isDark]);
 
+  // Lock body scroll and listen for Escape key when fullscreen
+  React.useEffect(() => {
+    if (!isFullscreen) return;
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsFullscreen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isFullscreen]);
+
   const handleCopy = () => {
     navigator.clipboard.writeText(cleanCode);
     setCopied(true);
@@ -333,7 +367,7 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
           <span className="text-xs font-mono font-medium text-text">Architecture Diagram</span>
         </div>
 
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Tab selector */}
           <div className="flex items-center rounded-lg bg-surface border border-border/60 p-0.5 text-xs font-mono">
             <button
@@ -365,6 +399,23 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
             </button>
           </div>
 
+          {/* Full Screen Button */}
+          {activeTab === "diagram" && !error && svgHtml && (
+            <button
+              type="button"
+              onClick={() => {
+                setIsFullscreen(true);
+                setZoomLevel(1);
+              }}
+              className="flex items-center gap-1 rounded-md px-2 py-1 text-xs font-mono text-muted hover:text-accent hover:bg-surface border border-transparent hover:border-border transition-colors"
+              title="View full screen or large size"
+              aria-label="View diagram in full screen"
+            >
+              <Maximize2 className="w-3 h-3 text-accent" />
+              <span className="hidden sm:inline text-[11px]">Full Screen</span>
+            </button>
+          )}
+
           {/* Copy Button */}
           <button
             type="button"
@@ -389,7 +440,24 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
 
       {/* Body */}
       {activeTab === "diagram" && !error ? (
-        <div className="p-4 sm:p-6 overflow-x-auto flex items-center justify-center min-h-[180px] bg-surface/50">
+        <div className="relative p-4 sm:p-6 overflow-x-auto flex items-center justify-center min-h-[180px] bg-surface/50 group">
+          {/* Quick Expand Button on Canvas Hover */}
+          {!isLoading && svgHtml && (
+            <button
+              type="button"
+              onClick={() => {
+                setIsFullscreen(true);
+                setZoomLevel(1);
+              }}
+              className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center gap-1.5 rounded-lg bg-surface/90 hover:bg-surface border border-border px-2.5 py-1 text-xs font-mono text-muted hover:text-accent shadow-xs backdrop-blur-xs hover:scale-105"
+              title="Expand to Full Screen / Large Size"
+              aria-label="Expand diagram"
+            >
+              <Maximize2 className="w-3.5 h-3.5 text-accent" />
+              <span className="text-[11px] font-medium">Expand</span>
+            </button>
+          )}
+
           {isLoading ? (
             <div className="flex flex-col items-center gap-2 text-muted text-xs font-mono py-8">
               <div className="w-5 h-5 border-2 border-accent border-t-transparent rounded-full animate-spin" />
@@ -414,6 +482,129 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
           <pre className="p-4 sm:p-5 overflow-x-auto leading-relaxed font-mono text-xs sm:text-[13px] bg-[#0d1117] text-[#e2e8f0]">
             <code>{cleanCode}</code>
           </pre>
+        </div>
+      )}
+
+      {/* Fullscreen Interactive Modal */}
+      {isFullscreen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Full screen diagram viewer"
+          className="fixed inset-0 z-50 flex flex-col bg-bg/95 backdrop-blur-md animate-in fade-in duration-200"
+        >
+          {/* Fullscreen Top Navigation Bar */}
+          <div className="flex items-center justify-between border-b border-border bg-surface px-4 py-3 sm:px-6 shadow-xs">
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 rounded-lg bg-accent/10 border border-accent/20">
+                <Workflow className="w-4 h-4 text-accent" />
+              </div>
+              <div>
+                <span className="font-mono text-xs sm:text-sm font-bold text-text block">
+                  Architecture Diagram
+                </span>
+                <span className="text-[10px] font-mono text-muted">
+                  Interactive Large Size View
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 sm:gap-4">
+              {/* Zoom Controls */}
+              <div className="flex items-center rounded-lg border border-border bg-surface-2/60 p-0.5 text-xs font-mono">
+                <button
+                  type="button"
+                  onClick={() => setZoomLevel((z) => Math.max(0.4, Number((z - 0.2).toFixed(2))))}
+                  className="p-1.5 rounded hover:bg-surface text-muted hover:text-text transition-colors"
+                  title="Zoom Out"
+                  aria-label="Zoom out"
+                >
+                  <ZoomOut className="w-4 h-4" />
+                </button>
+                <span className="px-2 font-mono text-xs text-text font-semibold select-none min-w-[50px] text-center">
+                  {Math.round(zoomLevel * 100)}%
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setZoomLevel((z) => Math.min(3, Number((z + 0.2).toFixed(2))))}
+                  className="p-1.5 rounded hover:bg-surface text-muted hover:text-text transition-colors"
+                  title="Zoom In"
+                  aria-label="Zoom in"
+                >
+                  <ZoomIn className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setZoomLevel(1)}
+                  className="p-1.5 rounded hover:bg-surface text-muted hover:text-text transition-colors border-l border-border/60 ml-0.5"
+                  title="Reset Zoom to 100%"
+                  aria-label="Reset zoom"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              {/* Copy Diagram Source */}
+              <button
+                type="button"
+                onClick={handleCopy}
+                className="hidden sm:flex items-center gap-1.5 rounded-lg border border-border bg-surface px-3 py-1.5 text-xs font-mono text-muted hover:text-text hover:border-accent/40 transition-colors"
+                title="Copy diagram code"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <span className="text-emerald-400 font-medium">Copied</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Copy</span>
+                  </>
+                )}
+              </button>
+
+              {/* Close Button */}
+              <button
+                type="button"
+                onClick={() => setIsFullscreen(false)}
+                className="flex items-center gap-1.5 rounded-lg bg-surface border border-border px-3 py-1.5 text-xs font-mono text-muted hover:text-accent hover:border-accent transition-colors"
+                title="Close fullscreen view (Esc)"
+                aria-label="Close fullscreen"
+              >
+                <X className="w-4 h-4" />
+                <span className="hidden sm:inline">Close</span>
+                <kbd className="hidden md:inline text-[10px] px-1 py-0.5 rounded bg-surface-2 border border-border ml-1">
+                  ESC
+                </kbd>
+              </button>
+            </div>
+          </div>
+
+          {/* Fullscreen Canvas */}
+          <div
+            className="flex-1 overflow-auto p-4 sm:p-10 flex items-center justify-center cursor-default bg-surface/30"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
+                setIsFullscreen(false);
+              }
+            }}
+          >
+            <div
+              className="mermaid-svg-container transition-transform duration-150 ease-out flex justify-center [&_svg]:max-w-none [&_svg]:h-auto [&_svg]:rounded-xl [&_svg]:drop-shadow-2xl"
+              style={{
+                transform: `scale(${zoomLevel})`,
+                transformOrigin: "center center",
+              }}
+              dangerouslySetInnerHTML={{ __html: svgHtml }}
+            />
+          </div>
+
+          {/* Footer Bar */}
+          <div className="flex items-center justify-between border-t border-border bg-surface/80 px-4 py-2 text-[11px] font-mono text-muted">
+            <span>Use +/- or zoom controls to scale up to 300%. Scroll to pan freely.</span>
+            <span>Press <kbd className="px-1 py-0.5 rounded bg-surface-2 border border-border">ESC</kbd> or click Close to return</span>
+          </div>
         </div>
       )}
     </div>

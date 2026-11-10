@@ -67,7 +67,7 @@ export function DayByDayTimeline({ days }: DayByDayTimelineProps) {
                 </div>
 
                 {d.note && (
-                  <p className="mt-1.5 text-xs text-muted leading-relaxed font-sans">
+                  <p className="mt-1.5 text-xs text-muted leading-relaxed font-sans text-justify hyphens-auto">
                     {d.note}
                   </p>
                 )}

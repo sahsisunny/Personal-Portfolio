@@ -110,7 +110,7 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
               elements.push(
                 <p
                   key={`p-after-h3-${index}-${pIdx}`}
-                  className="text-base sm:text-[17px] text-muted leading-relaxed font-sans"
+                  className="text-base sm:text-[17px] text-muted leading-relaxed font-sans text-justify hyphens-auto"
                   dangerouslySetInnerHTML={{
                     __html: formatInline(remainingText),
                   }}
@@ -144,7 +144,7 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
               elements.push(
                 <p
                   key={`p-after-h2-${index}-${pIdx}`}
-                  className="text-base sm:text-[17px] text-muted leading-relaxed font-sans"
+                  className="text-base sm:text-[17px] text-muted leading-relaxed font-sans text-justify hyphens-auto"
                   dangerouslySetInnerHTML={{
                     __html: formatInline(remainingText),
                   }}
@@ -303,7 +303,7 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
           elements.push(
             <p
               key={`p-${index}-${pIdx}`}
-              className="text-base sm:text-[17px] text-muted leading-relaxed font-sans"
+              className="text-base sm:text-[17px] text-muted leading-relaxed font-sans text-justify hyphens-auto"
               dangerouslySetInnerHTML={{
                 __html: formatInline(trimmed),
               }}
@@ -317,7 +317,7 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
   }, [content]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 blog-content prose-editorial">
       <div className="prose dark:prose-invert max-w-none text-muted leading-relaxed space-y-5">
         {blocks}
       </div>
