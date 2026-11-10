@@ -560,13 +560,13 @@
     {
       "id": "ai-chatbot-agent",
       "slug": "ai-chatbot-agent",
-      "title": "AI Chatbot Agent for a Property Management System",
+      "title": "Enterprise AI Chatbot & Agent Orchestrator",
       "status": "in-progress",
       "featured": true,
       "visibility": "public-after-review",
-      "visibilityNote": "Work project: confirm with your employer what you may publish. Keep client names, screenshots with real data and internal API names out of the public site.",
-      "summary": "A backend service that lets front-desk and hotelier users ask questions in plain language and get answers pulled from 600+ APIs by an LLM.",
-      "description": "The system sits on top of a multi-service backend (Service 1 for configuration, Service 2 for bookings & operations, Service 3 for reporting, plus an auth service). The agent turns a natural-language question into the right API calls, filters data correctly (for example, a proper 'yesterday' window), and returns a readable answer. A next phase adds scheduled, event-based and condition-based routines with approval steps.",
+      "visibilityNote": "Staging verified. Currently parked in corporate deployment limbo due to classic enterprise office politics & roadmap reshuffling. Generic architecture pattern & template coming soon.",
+      "summary": "A Go backend service that lets operational teams ask questions in plain language and get accurate answers pulled from 600+ microservice APIs by an LLM.",
+      "description": "The system sits on top of a multi-service backend (Service 1 for configuration, Service 2 for business operations, Service 3 for reporting, plus an auth service). The agent turns a natural-language question into the right API calls, filters tenant data strictly in code, and returns a verified structured answer. Note: Code is battle-tested in staging; production deployment is currently awaiting clearance from corporate steering committee politics.",
       "role": "Solo developer",
       "tech": [
         "Go",

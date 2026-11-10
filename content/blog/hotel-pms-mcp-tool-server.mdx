@@ -1,39 +1,42 @@
 ---
-title: "Building a Read-Only MCP Tool Server: Zero-Trust Hotel PMS Access for Claude, Cursor, and Beyond"
+title: "Building a Read-Only MCP Tool Server: Zero-Trust Enterprise Data Access for Claude, Cursor, and Beyond"
 slug: "hotel-pms-mcp-tool-server"
 date: "2026-11-10"
-summary: "How we added a second HTTP interface to our hotel PMS orchestrator: OAuth at the edge, opaque grants, 120-second delegated JWTs, and the same RBAC as the web app—with no prompt-based security."
-description: "How we added a second HTTP interface to our hotel PMS orchestrator: OAuth at the edge, opaque grants, 120-second delegated JWTs, and the same RBAC as the web app—with no prompt-based security."
+summary: "How we added a second HTTP interface to our enterprise orchestrator: OAuth at the edge, opaque grants, 120-second delegated JWTs, and the same RBAC as the web app—with no prompt-based security."
+description: "How we added a second HTTP interface to our enterprise orchestrator: OAuth at the edge, opaque grants, 120-second delegated JWTs, and the same RBAC as the web app—with no prompt-based security."
 authors: ["Sunny Sahsi"]
 category: "AI"
-tags: ["mcp", "oauth", "security", "ai", "hospitality", "architecture"]
+tags: ["mcp", "oauth", "security", "ai", "enterprise", "architecture", "templates"]
 cover: "/images/blog/hotel-pms-mcp-tool-server.svg"
 image: "/images/blog/hotel-pms-mcp-tool-server.svg"
 draft: false
-series: "Hotel PMS AI Architecture"
+series: "Enterprise AI & Tool Architecture"
 series_order: 2
 ---
 
-_Companion to: [Inside a Hotel PMS AI Orchestrator: Multi-Service LLMs, Automation, and Zero-Trust Access](/blog/hotel-pms-ai-orchestrator)_
+_Companion to: [Inside an Enterprise AI Orchestrator: Multi-Service LLMs, Automation, and Zero-Trust Access](/blog/hotel-pms-ai-orchestrator)_
 
 ## TL;DR
 
-The in-product chat path owns the **model, prompts, and UX**. The **Model Context Protocol (MCP)** path is deliberately different: the orchestrator becomes a **tool server**—no planner, no `present_answer`, no chip UX. External clients (e.g. Claude on the web, Claude Code, Cursor remote MCP) bring their own system prompts and reasoning. Security cannot live in instructions; it must live in **OAuth consent, token exchange, tool allowlists, mandatory property injection, downstream RBAC, rate limits, and audit**. v1 is **read-only**, parity-filtered with interactive chat, with JSON **passthrough** like the chat executor.
+The in-product chat path owns the **model, prompts, and UX**. The **Model Context Protocol (MCP)** path is deliberately different: the orchestrator becomes a **tool server**—no planner, no `present_answer`, no chip UX. External clients (e.g. Claude on the web, Claude Code, Cursor remote MCP) bring their own system prompts and reasoning. Security cannot live in instructions; it must live in **OAuth consent, token exchange, tool allowlists, mandatory tenant injection, downstream RBAC, rate limits, and audit**. v1 is **read-only**, parity-filtered with interactive chat, with JSON **passthrough** like the chat executor.
+
+> [!TIP]
+> **Blueprint & Template Notice:** This architecture serves as a generic, production-ready template for exposing internal microservices safely to external MCP clients (Cursor, Claude Desktop, Windsurf) without prompt leakage or privilege escalation. Open-source starter templates are coming soon!
 
 ---
 
 ## Why a second interface?
 
-Staff already ask questions inside the PMS via the in-app chat agent. Product also wanted **the same hotel data** available where power users already work: AI-native IDEs and assistants that speak MCP.
+Teams already ask questions inside the web application via the in-app assistant. Product also wanted **the same enterprise data** available where power users already work: AI-native IDEs and assistants that speak MCP.
 
-That sounds like “expose our APIs to Claude.” In a multi-service PMS with heterogeneous auth header semantics and no audience on legacy session JWTs, the naive approach fails quickly:
+That sounds like “expose our APIs to Claude.” In a multi-service backend with heterogeneous auth header semantics and no audience on legacy session JWTs, the naive approach fails quickly:
 
 | Naive approach                                       | What breaks                                                                   |
 | ---------------------------------------------------- | ----------------------------------------------------------------------------- |
 | Forward the user’s browser JWT to MCP                | Long-lived credential leaves the browser trust zone; external client holds it |
 | Forward MCP bearer to downstream Service 1 / 2 APIs  | Downstream services interpret `Authorization` differently (M2M vs user)       |
-| Let the model pass `propertyId`                      | Cross-property data exfiltration via tool arguments                           |
-| Rely on “don’t call admin APIs” in the system prompt | **Prompt controls do not apply** on MCP—there is no in-house planner             |
+| Let the model pass `tenantId`                        | Cross-tenant data exfiltration via tool arguments                             |
+| Rely on “don’t call admin APIs” in the system prompt | **Prompt controls do not apply** on MCP—there is no in-house planner          |
 
 The MCP design accepts a hard split:
 
@@ -77,7 +80,7 @@ flowchart TB
   end
 
   Client["MCP client"] --> S2
-  Browser["Web staff panel"] --> S1
+  Browser["Web workspace panel"] --> S1
   S2 --> V
   V --> REG --> EXEC --> AUD
   EXEC --> APIs["Service 1 / Service 2 / Service 3"]
@@ -113,9 +116,9 @@ flowchart TD
 | OAuth code       | Client ↔ Auth       | Seconds          | Token endpoint only                    |
 | MCP access token | External AI client  | ~1 hour          | `Authorization: Bearer` on `/mcp` only |
 | Service API key  | Orchestrator ↔ Auth | Rotation-managed | Internal exchange only                 |
-| Delegated JWT    | Orchestrator memory | ~120 seconds     | `X-Token` on **one** PMS call          |
+| Delegated JWT    | Orchestrator memory | ~120 seconds     | `X-Token` on **one** downstream call   |
 
-**R1 — Opaque bearer:** The MCP access token is meaningless to PMS APIs. Only the identity service’s grant table can interpret it.
+**R1 — Opaque bearer:** The MCP access token is meaningless to downstream APIs. Only the identity service’s grant table can interpret it.
 
 **R2 — Delegated JWT never egresses:** Minted for one downstream call, dropped immediately—never returned to Anthropic, never logged, not cached like introspection.
 
@@ -164,9 +167,9 @@ Product-locked v1 behavior:
 | Requirement         | Behavior                                                                                                  |
 | ------------------- | --------------------------------------------------------------------------------------------------------- |
 | Read-only           | No write tools; same GET filter as chat planner pool (~hundreds of tools, not exact count in public docs) |
-| Coarse OAuth scope  | e.g. `pms:read` gates _whether_ MCP attempts reads; **RBAC on each route** still decides success          |
-| One active property | Default `propertyId` on grant; answers are for **one hotel context** like chat                            |
-| Property switch     | Meta-tool to change active property after live permission re-check                                        |
+| Coarse OAuth scope  | e.g. `tools:read` gates _whether_ MCP attempts reads; **RBAC on each route** still decides success       |
+| One active tenant   | Default `tenantId` on grant; answers are for **one tenant context** like chat                             |
+| Tenant switch       | Meta-tool to change active tenant after live permission re-check                                          |
 | Data egress         | **Passthrough JSON** like chat `execTool`—no MCP-only field stripping                                     |
 
 RFC 8707-style **resource** binding ties tokens to the canonical MCP URI so audience confusion across environments is harder.
@@ -192,7 +195,7 @@ sequenceDiagram
     Auth-->>Verifier: Principal + 120s delegated JWT
   end
   MCP->>MCP: Tool in read allowlist? Scope OK? Validate args
-  MCP->>MCP: Drop client propertyId and inject grant property
+  MCP->>MCP: Drop client tenantId and inject grant tenantId
   MCP->>API: GET with X-Token only (no Authorization)
   API->>API: Existing user RBAC middleware
   API-->>MCP: JSON body
@@ -237,7 +240,7 @@ flowchart LR
     H["Protocol + auth gate"]
   end
   subgraph TB4["Orchestrator internals"]
-    FIL["Allowlist + property inject + rate limit"]
+    FIL["Allowlist + tenant inject + rate limit"]
   end
   subgraph TB5["Identity plane"]
     ID["Grants + live permissions"]
@@ -252,14 +255,14 @@ flowchart LR
 
 | Boundary             | What crosses                       | Control                                        |
 | -------------------- | ---------------------------------- | ---------------------------------------------- |
-| User → AI cloud      | OAuth grant intent                 | Consent UI names property + client             |
+| User → AI cloud      | OAuth grant intent                 | Consent UI names tenant + client               |
 | AI → your edge       | Opaque bearer, tool args           | TLS, optional egress IP allowlist, rate limits |
-| Handler → internals  | Resolved user, client id, property | Introspection + audience check                 |
+| Handler → internals  | Resolved user, client id, tenant   | Introspection + audience check                 |
 | Internals → identity | Subject token only                 | Service API key, no user impersonation params  |
 | Internals → data     | Short-lived user JWT               | RBAC per route, 20s read timeout (v1)          |
 | Data → AI            | Full JSON (passthrough)            | Same egress as chat-to-LLM—**including PII**   |
 
-**The uncomfortable truth (demerit):** The model may read reservation remarks, guest notes, or any field RBAC allows. An attacker who can influence text the model later reads (e.g. malicious booking comments) can attempt **indirect prompt injection**. MCP mitigation is **not** “tell Claude to ignore remarks”—it is **treat every tool argument as hostile**, never trust client-supplied property scope, and monitor audit for anomalous tools.
+**The uncomfortable truth (demerit):** The model may read freeform text remarks, operational notes, or any field RBAC allows. An attacker who can influence text the model later reads can attempt **indirect prompt injection**. MCP mitigation is **not** “tell Claude to ignore remarks”—it is **treat every tool argument as hostile**, never trust client-supplied tenant scope, and monitor audit for anomalous tools.
 
 ---
 
@@ -308,15 +311,15 @@ flowchart LR
 | -------------- | ------------------------------------------------------ |
 | Method         | Non-GET operations                                     |
 | Path fragments | Admin, internal routes, export, impersonation, invites |
-| Property scope | Org-wide listings outside active property              |
+| Tenant scope   | Cross-tenant listings outside active workspace/org     |
 | Product v1     | All writes                                             |
 
 Chat **narrows** which reads the planner mentions; MCP **lists** the full filtered set so the client model can call any read the user’s role already allows—aligned with “show me everything I’m permitted to see.”
 
 **Meta-tools (v1):**
 
-- Set active property (re-validates permissions).
-- Get session context (active property, user attribution for client UX).
+- Set active tenant (re-validates permissions).
+- Get session context (active tenant, user attribution for client UX).
 
 Input schemas on read tools are intentionally **permissive** (`additionalProperties`) so nested query objects (e.g. report PDF parameters) match chat’s parameter preparation—at the cost of weaker JSON Schema validation at the MCP edge.
 
@@ -409,7 +412,7 @@ Official Go MCP SDK on modern Go; Streamable HTTP with **stateless** requests—
 | **No second RBAC system**               | OAuth scopes are coarse; `rbacRoutes.json` + middleware remain authoritative |
 | **No service account reads**            | Every call traces to a staff user who consented                              |
 | **Parity with chat reads**              | Same `IsAllowedReadTool` filter—security fixes propagate to both surfaces    |
-| **Opaque tokens**                       | Stolen bearer cannot be replayed on PMS APIs directly                        |
+| **Opaque tokens**                       | Stolen bearer cannot be replayed on downstream APIs directly                 |
 | **Short delegated JWT**                 | Blast radius of a mishandled downstream credential is two minutes            |
 | **Kill switch default off**             | `MCP_ENABLED` absent/false means **no listener**—not a soft 403              |
 | **Extensible capability registry**      | Future writes/events add kinds + scopes without new binaries                 |
@@ -520,7 +523,7 @@ flowchart TB
 
 1. **Split “AI app” from “AI tool server”** early—shared filters, not shared prompts.
 2. **Treat the model as untrusted input** to your tool layer, especially with passthrough JSON.
-3. **Never let the client name the tenant** (property/hotel/org)—inject from grant server-side.
+3. **Never let the client name the tenant** (workspace/org/account)—inject from grant server-side.
 4. **Opaque + exchange** beats “give the LLM a long-lived API key.”
 5. **Measure connector activity separately** from chat turns—different abuse patterns.
 6. **Default off** beats “enabled with 403” for regulated rollouts.
@@ -530,4 +533,4 @@ flowchart TB
 
 ## Summary
 
-The hotel PMS MCP layer is a **read-only, OAuth-gated, RBAC-faithful tool server** sitting beside—not inside—the conversational agent stack. It trades the safety of prompt engineering for the rigor of **token exchange, allowlists, property injection, and audit attribution**. The merits are alignment with existing permissions, no service accounts, and a clean path to future capability kinds; the demerits are passthrough data egress to third-party models, wider read exposure, operational dualism, and session-state quirks at scale.
+The enterprise MCP layer is a **read-only, OAuth-gated, RBAC-faithful tool server** sitting beside—not inside—the conversational agent stack. It trades the safety of prompt engineering for the rigor of **token exchange, allowlists, tenant injection, and audit attribution**. The merits are alignment with existing permissions, no service accounts, and a clean path to future capability kinds; the demerits are passthrough data egress to third-party models, wider read exposure, operational dualism, and session-state quirks at scale.

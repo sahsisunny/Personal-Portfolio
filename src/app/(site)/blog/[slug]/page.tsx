@@ -222,15 +222,15 @@ export default async function BlogPostPage({ params }: PageProps) {
           name: "How does the MCP tool server prevent cross-property data leaks?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "The tool server injects the verified propertyId directly from the caller's 120-second delegated JWT, preventing external models from specifying or altering property scopes in tool arguments.",
+            text: "The tool server injects the verified tenantId directly from the caller's 120-second delegated JWT, preventing external models from specifying or altering tenant scopes in tool arguments.",
           },
         },
         {
           "@type": "Question",
-          name: "Why is the hotel PMS MCP server read-only?",
+          name: "Why is the enterprise MCP server read-only?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "External models run under their own prompts and reasoning loops. Limiting MCP tools to read-only queries guarantees that third-party AI agents cannot execute unintended mutations against booking, reservation, or ledger states.",
+            text: "External models run under their own prompts and reasoning loops. Limiting MCP tools to read-only queries guarantees that third-party AI agents cannot execute unintended mutations against production database or entity states.",
           },
         },
       ],
@@ -241,10 +241,10 @@ export default async function BlogPostPage({ params }: PageProps) {
       mainEntity: [
         {
           "@type": "Question",
-          name: "What is the hotel PMS AI orchestrator's core architectural role?",
+          name: "What is the enterprise AI orchestrator's core architectural role?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "It acts as a Go-based orchestration layer connecting hotel staff with hundreds of PMS microservice endpoints while strictly confining queries to a single property scope and caller RBAC permissions.",
+            text: "It acts as a Go-based orchestration layer connecting users with hundreds of microservice endpoints while strictly confining queries to a single tenant scope and caller RBAC permissions.",
           },
         },
         {
@@ -252,7 +252,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           name: "How does the AI orchestrator enforce zero-trust security without trusting the LLM?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Security invariants are verified on the server: session tokens lock the propertyId, OpenAPI endpoints are filtered by verified permissions, and numbers are returned via raw JSON passthrough rather than model generation.",
+            text: "Security invariants are verified on the server: session tokens lock the tenantId, OpenAPI endpoints are filtered by verified permissions, and numbers are returned via raw JSON passthrough rather than model generation.",
           },
         },
         {
@@ -260,7 +260,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           name: "How do scheduled background automations run in the orchestrator?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Automations execute using revocable delegated grants with short-lived tokens, running morning briefings and ledger checks without requiring users to maintain active browser sessions.",
+            text: "Automations execute using revocable delegated grants with short-lived tokens, running daily briefings and reconciliation checks without requiring users to maintain active browser sessions.",
           },
         },
       ],

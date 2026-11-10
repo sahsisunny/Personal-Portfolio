@@ -98,14 +98,14 @@ const ITEMS: PaletteItem[] = [
   // Articles
   {
     id: "a-pms-orchestrator",
-    label: "Inside a Hotel PMS AI Orchestrator: Multi-Service LLMs & Zero-Trust",
+    label: "Inside an Enterprise AI Orchestrator: Multi-Service LLMs & Zero-Trust",
     category: "Articles",
     href: "/blog/hotel-pms-ai-orchestrator",
     icon: PenLine,
   },
   {
     id: "a-pms-mcp",
-    label: "Building a Read-Only MCP Tool Server for Enterprise Hotel PMS Data",
+    label: "Building a Read-Only MCP Tool Server for Enterprise Microservice Data",
     category: "Articles",
     href: "/blog/hotel-pms-mcp-tool-server",
     icon: PenLine,

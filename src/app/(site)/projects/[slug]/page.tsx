@@ -216,8 +216,23 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               {project.summary}
             </p>
 
+            {/* Office Politics / Shipping Status Notice */}
+            {project.slug === "ai-chatbot-agent" && (
+              <div className="mt-6 rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 text-xs font-mono text-amber-800 dark:text-amber-200 flex items-start gap-3">
+                <span className="text-xl select-none">🏛️</span>
+                <div>
+                  <span className="font-bold block mb-0.5 text-text">
+                    Deployment Status: Staging Verified (Parked in Office Politics Limbo)
+                  </span>
+                  <span className="leading-relaxed text-muted">
+                    Fully engineered, tested, and battle-proven in staging. Deployment to production is currently delayed due to classic corporate roadmap politics, steering committee debates, and OKR reshuffling. Architecture patterns and generic open-source templates shared below!
+                  </span>
+                </div>
+              </div>
+            )}
+
             {/* Confidentiality notice */}
-            {isConfidential && (
+            {isConfidential && project.slug !== "ai-chatbot-agent" && (
               <div className="mt-6 rounded-xl border border-amber-500/30 bg-amber-500/10 p-4 text-xs font-mono text-amber-800 dark:text-amber-200 flex items-start gap-3">
                 <ShieldAlert className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
                 <div>

@@ -1,35 +1,40 @@
 ## Deep Dive: Agent Architecture & Tool Orchestration
 
-**Project:** AI assistant and tool layer for a multi-service hotel property management system  
+> [!NOTE]
+> **Production Status (The Real Talk):**  
+> Architected, built, and thoroughly battle-tested in staging. However, it is currently parked in legendary corporate deployment limbo due to classic enterprise office politics & roadmap reshuffling (yes, the code works; no, the steering committee hasn't agreed on who clicks "Deploy" or whose quarterly OKR gets the glory).  
+> *Status: Fully functional Go orchestrator, awaiting bureaucratic clearance. A generalized open-source template and architectural blueprint are shared below!*
+
+**Project:** Enterprise AI Assistant and Tool Layer for Multi-Service Platforms  
 **Role:** Backend / platform engineering — orchestrator, tool registry, security gates, automation hooks  
 **Stack:** Go, PostgreSQL, OpenAPI-derived tools, multi-provider LLM adapter, OAuth/MCP (read path), scheduled routines
 
-In hotel operations, front-desk and night-audit staff need answers immediately—whether reconciling yesterday’s business day, verifying guest balances before checkout, or checking room and housekeeping status across buildings. A single “chat API” cannot answer those questions safely: data lives behind several REST services, permissions differ by role, and **“today”** on the wall clock is not **today** in the hotel’s books.
+In enterprise operations, business and operational teams need answers immediately—whether reconciling yesterday’s accounts, verifying entity statuses, or checking operational records across distributed systems. A single “chat API” cannot answer those questions safely: data lives behind several REST microservices, permissions differ by role, and **“today”** on the wall clock is not **today** in the accounting books.
 
-This project is an **agent orchestrator** that sits between staff (and, on a separate surface, external AI clients) and the PMS. It does not own reservations or ledgers. It **plans reads**, **executes only allowlisted GETs under the caller’s credentials**, **forces property scope in code**, and **turns JSON into structured answers**—with a fallback path when the model is unavailable.
+This project is an **agent orchestrator** that sits between staff (and, on a separate surface, external AI clients) and downstream services. It does not own ledgers or entity records directly. It **plans reads**, **executes only allowlisted GETs under the caller’s credentials**, **forces tenant scope in code**, and **turns JSON into structured answers**—with a fallback path when the model is unavailable.
 
 ---
 
 ### Multi-Service Topology
 
-The property management backend is composed of discrete services:
+The enterprise backend is composed of discrete services:
 
 | Service Domain            | Responsibility                                                    |
 | ------------------------- | ----------------------------------------------------------------- |
-| **Auth & Session**        | JWT validation, property membership, RBAC route matrix            |
-| **Service 1 (Settings)**  | Room types, taxes, rate plans, property metadata (incl. timezone) |
-| **Service 2 (Operations)**| Stays, folios, housekeeping, operational workflows                |
+| **Auth & Session**        | JWT validation, tenant membership, RBAC route matrix              |
+| **Service 1 (Settings)**  | Type definitions, configurations, rates, operational metadata     |
+| **Service 2 (Operations)**| Core domain entities, workflows, operational lifecycles           |
 | **Service 3 (Analytics)** | Aggregated summaries, collections, export-oriented reads          |
 
 ```
-[ Staff question in plain text (+ active property) ]
+[ Staff question in plain text (+ active tenant) ]
                         ↓
 [ Agent Orchestrator (Go) — single binary ]
-   ├── Session gate: token valid + user allowed on property
-   ├── Business-date resolution (night-audit anchor, not server clock)
+   ├── Session gate: token valid + user allowed on tenant
+   ├── Business-date resolution (reconciliation anchor, not server clock)
    ├── Intent / planner path OR keyword handler fallback
    ├── Tool allowlist (OpenAPI-generated reads, admin/export/internal stripped)
-   ├── Property injection on every downstream call (model cannot widen scope)
+   ├── Tenant injection on every downstream call (model cannot widen scope)
    └── Parallel GET execution → user JWT forwarded as downstream identity header
                         ↓
 [ Internal REST APIs — RBAC enforced per route ]
@@ -49,18 +54,18 @@ Parallel tracks (same security philosophy, different front door):
 
 ### Critical Problem: “Today,” Time Zones, and Missing Query Params
 
-When queries used relative language—_“yesterday,” “last week,” “who arrives today”_—naive LLM-orchestrated API calls failed in predictable ways:
+When queries used relative language—_“yesterday,” “last week,” “which accounts renewed today”_—naive LLM-orchestrated API calls failed in predictable ways:
 
-1. The model assumed **UTC or server local time**, not the property’s IANA zone and **night-audit working date**.
+1. The model assumed **UTC or server local time**, not the organization’s operational business date.
 2. OpenAPI tools often require **paired date fields** or explicit filters; omitted params yielded empty reports or 400s the model could not recover from.
-3. Letting the model freely set `propertyId` would violate **one-property-at-a-time** product rules.
+3. Letting the model freely set `tenantId` would violate **one-tenant-at-a-time** isolation rules.
 
 **Resolution:** A three-layer contract—
 
 | Layer              | Behavior                                                                                                                                                                                                   |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Anchor context** | Resolve “today” from night-audit working date (cached briefly from property config), with property timezone for display and scheduling.                                                                    |
-| **Dispatcher**     | Before any outbound GET: overwrite path/query `propertyId` (and property path segments) with the active property; fill required dates from business date or copy partner fields (`startDate` ↔ `endDate`). |
+| **Anchor context** | Resolve “today” from the business operating date (cached briefly from Service 1 configuration), with timezone for display and scheduling.                                                                  |
+| **Dispatcher**     | Before any outbound GET: overwrite path/query `tenantId` (and tenant path segments) with the active tenant; fill required dates from business date or copy partner fields (`startDate` ↔ `endDate`).       |
 | **Planner policy** | Model chooses _which_ allowlisted tools to call; it does not own tenant scope or the authoritative calendar.                                                                                               |
 
 Illustrative orchestration (portfolio pseudocode—not production):
@@ -75,10 +80,10 @@ import (
 )
 
 type ReadRequest struct {
-	PropertyID    int
+	TenantID      string
 	UserToken     string
-	BusinessDate  time.Time // night-audit "today"
-	PropertyTZ    *time.Location
+	BusinessDate  time.Time // reconciliation "today"
+	LocationTZ    *time.Location
 	PlannedReads  []PlannedToolCall
 }
 
@@ -89,14 +94,14 @@ func (e *Engine) ExecuteReads(ctx context.Context, req ReadRequest) ([]ReadResul
 			return nil, ErrToolNotInPolicy
 		}
 		// Invariant: scope and dates are server-owned
-		call.Args = e.forcePropertyScope(call.Args, req.PropertyID)
-		call.Args = e.fillRequiredDates(call.Args, req.BusinessDate, req.PropertyTZ)
+		call.Args = e.forceTenantScope(call.Args, req.TenantID)
+		call.Args = e.fillRequiredDates(call.Args, req.BusinessDate, req.LocationTZ)
 	}
 	return e.runParallelGETs(ctx, req.UserToken, req.PlannedReads)
 }
 ```
 
-**Outcome:** Relative questions map to the same windows front-desk staff expect on reports, without trusting the model to guess ISO boundaries or property ids.
+**Outcome:** Relative questions map to the same windows operational teams expect on reports, without trusting the model to guess ISO boundaries or tenant ids.
 
 ---
 
@@ -104,7 +109,7 @@ func (e *Engine) ExecuteReads(ctx context.Context, req ReadRequest) ([]ReadResul
 
 Interactive chat benefits from prompts (“refuse writes,” “mask card numbers,” narrow scope). **External MCP clients bring their own models and prompts**—so MCP and automation paths rely only on:
 
-- OAuth consent with an explicit **property** on the grant
+- OAuth consent with an explicit **tenant** on the grant
 - Opaque access token → **token exchange** → ~120s delegated user JWT used **once** per downstream call
 - Same read allowlist as chat; **no write tools** in v1 MCP
 - Separate **audit** rows attributing user, client, grant, tool, and outcome
@@ -124,18 +129,18 @@ Allowlisted GET reads only (~300+ tools, minus admin/internal/export)
         ↓ planner or MCP tools/list
 Subset chosen per turn OR full list exposed to MCP client
         ↓ dispatcher
-Forced propertyId + date/param completion → parallel execution
+Forced tenantId + date/param completion → parallel execution
         ↓
 Presenter (chat) OR passthrough JSON (MCP)
 ```
 
-**Multi-step staff workflows** (check-in, assign room, collect payment) use an **agent loop**: reads until context is sufficient, then **in-chat confirmation flows** or schema-driven write forms—writes never bypass the user’s token and the PMS’s RBAC. **Background routines** reuse the same engine with a reviewed definition, grant-based tokens, and an allowlisted autonomous write path where product requires it.
+**Multi-step operational workflows** (approvals, entity assignment, status changes) use an **agent loop**: reads until context is sufficient, then **in-chat confirmation flows** or schema-driven write forms—writes never bypass the user’s token and downstream RBAC. **Background routines** reuse the same engine with a reviewed definition, grant-based tokens, and an allowlisted autonomous write path where product requires it.
 
 ---
 
 ### What I Learned
 
-1. **Enterprise agents are state machines with guardrails.** The LLM proposes tool names and parameters; invariants (property, business date, allowlist, PCI patterns) belong in Go.
+1. **Enterprise agents are state machines with guardrails.** The LLM proposes tool names and parameters; invariants (tenant scope, business date, allowlist, compliance patterns) belong in Go.
 2. **OpenAPI as the tool contract** scales better than hand-written integrations—if paired with a strict filter and CI regen from service specs.
 3. **One permission system.** The orchestrator does not maintain a shadow RBAC matrix; 403 from upstream becomes a denied or error card—simpler audits, sharper UX when roles are wrong.
 4. **Two HTTP personalities in one process** (chat streaming vs MCP streams) avoid timeout and trust-boundary mistakes.
@@ -149,14 +154,14 @@ Presenter (chat) OR passthrough JSON (MCP)
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Shipped / in tree** | Scheduled and conditional **routines** (Postgres queue, workers, inbox/chat/email delivery); **MCP** read-only tool server with OAuth                       |
 | **Next**              | Webhook- and event-driven routine triggers with debounced condition evaluation; richer MCP capability kinds (guarded writes, notifications) with re-consent |
-| **Product**           | Human approval for high-risk autonomous writes in automation; multi-replica session state for MCP property switching                                        |
+| **Product**           | Human approval for high-risk autonomous writes in automation; multi-replica session state for MCP tenant switching                                           |
 
 ---
 
 ### Architectural Highlights
 
-- Built a **Go orchestrator** between a Next.js front-desk panel and four PMS microservices, with streaming SSE and card-based answers.
-- Solved **business-date and timezone anchoring** so relative staff language maps to correct report windows.
+- Built a **Go orchestrator** between a Next.js workspace panel and multiple microservices, with streaming SSE and card-based answers.
+- Solved **business-date and timezone anchoring** so relative user language maps to correct report windows.
 - Designed **MCP + OAuth token exchange** so external AI tools inherit the same read allowlist and RBAC as the in-app chat agent—without forwarding long-lived browser JWTs.
 - Introduced **routines** as validated JSON pipelines with grant-based background execution and audit parity with interactive chat.
 
@@ -167,7 +172,7 @@ Presenter (chat) OR passthrough JSON (MCP)
 ```mermaid
 flowchart TB
   Q[Staff or MCP client] --> O[Orchestrator]
-  O --> BD[Business date + property inject]
+  O --> BD[Business date + tenant inject]
   BD --> T[Allowlisted tool execution]
   T --> A[Auth Service]
   T --> S1[Service 1]
@@ -184,5 +189,5 @@ flowchart TB
 
 ### Related Architecture Deep Dives
 
-- [Inside a Hotel PMS AI Orchestrator: Multi-Service LLMs, Automation, and Zero-Trust Access](/blog/hotel-pms-ai-orchestrator)
-- [Building a Read-Only MCP Tool Server: Zero-Trust Hotel PMS Access for Claude, Cursor, and Beyond](/blog/hotel-pms-mcp-tool-server)
+- [Inside an Enterprise AI Orchestrator: Multi-Service LLMs, Automation, and Zero-Trust Access](/blog/hotel-pms-ai-orchestrator)
+- [Building a Read-Only MCP Tool Server: Zero-Trust Enterprise Data Access for Claude, Cursor, and Beyond](/blog/hotel-pms-mcp-tool-server)
