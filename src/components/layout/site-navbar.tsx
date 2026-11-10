@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Compass, FileText, ArrowUpRight } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { CommandPalette } from "@/components/ui/command-palette";
 import { cn } from "@/lib/utils";
 import type { FeatureFlags } from "@/lib/schema";
 
@@ -117,9 +116,6 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
             </Link>
           )}
 
-          {/* Command Palette */}
-          {isEnabled(features?.commandPalette) && <CommandPalette features={features} />}
-
           {/* Theme Toggle */}
           <ThemeToggle className="ml-1 flex-shrink-0" />
         </nav>
@@ -151,7 +147,6 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
               <span>Rides</span>
             </Link>
           )}
-          {isEnabled(features?.commandPalette) && <CommandPalette features={features} />}
           <ThemeToggle />
           <button
             type="button"
@@ -164,9 +159,8 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
           </button>
         </div>
 
-        {/* Mobile controls: Search + Theme toggle + Hamburger */}
+        {/* Mobile controls: Theme toggle + Hamburger */}
         <div className="flex items-center gap-2 md:hidden">
-          {isEnabled(features?.commandPalette) && <CommandPalette features={features} />}
           <ThemeToggle />
           <button
             type="button"

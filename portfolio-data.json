@@ -42,8 +42,7 @@
     "testimonials": false,
     "stats": true,
     "now": true,
-    "resume": true,
-    "commandPalette": true
+    "resume": true
   },
   "person": {
     "name": "Sunny Sahsi",

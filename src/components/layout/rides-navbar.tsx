@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowLeft, Compass } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { CommandPalette } from "@/components/ui/command-palette";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -73,7 +72,6 @@ export function RidesNavbar() {
 
           <div className="h-4 w-px bg-border hidden md:block" />
 
-          <CommandPalette />
           <ThemeToggle />
         </div>
       </div>

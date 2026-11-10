@@ -347,7 +347,6 @@ export const FeatureFlagsSchema = z.object({
   stats: z.boolean().default(true),
   now: z.boolean().default(true),
   resume: z.boolean().default(true),
-  commandPalette: z.boolean().default(true),
 }).default({
   blog: true,
   projects: true,
@@ -361,7 +360,6 @@ export const FeatureFlagsSchema = z.object({
   stats: true,
   now: true,
   resume: true,
-  commandPalette: true,
 });
 
 export const PortfolioSchema = z.object({

@@ -150,7 +150,6 @@ export function getFeatureFlags(): FeatureFlags {
     stats: flags?.stats ?? true,
     now: flags?.now ?? true,
     resume: flags?.resume ?? true,
-    commandPalette: flags?.commandPalette ?? true,
   };
 }
 

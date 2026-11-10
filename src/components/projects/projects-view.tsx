@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, FolderGit2, ArrowRight, ExternalLink, ShieldAlert, Bot, MapPin, Heart, Sparkles, Layers, Globe } from "lucide-react";
+import { FolderGit2, ArrowRight, ExternalLink, ShieldAlert, Bot, MapPin, Heart, Sparkles, Layers, Globe } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import type { Project } from "@/lib/schema";
 
@@ -12,7 +12,6 @@ interface ProjectsViewProps {
 }
 
 export function ProjectsView({ initialProjects }: ProjectsViewProps) {
-  const [search, setSearch] = React.useState("");
   const [selectedTech, setSelectedTech] = React.useState<string>("All");
   const [selectedStatus, setSelectedStatus] = React.useState<string>("All");
 
@@ -27,19 +26,13 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
 
   const filteredProjects = initialProjects
     .filter((project) => {
-      const matchesSearch =
-        search === "" ||
-        project.title.toLowerCase().includes(search.toLowerCase()) ||
-        project.summary.toLowerCase().includes(search.toLowerCase()) ||
-        project.tech.some((t) => t.toLowerCase().includes(search.toLowerCase()));
-
       const matchesTech =
         selectedTech === "All" || project.tech.includes(selectedTech);
 
       const matchesStatus =
         selectedStatus === "All" || project.status === selectedStatus;
 
-      return matchesSearch && matchesTech && matchesStatus;
+      return matchesTech && matchesStatus;
     })
     .sort((a, b) => {
       // Featured first
@@ -82,38 +75,23 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
 
   return (
     <div className="space-y-8">
-      {/* Search and Filters */}
-      <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between">
-        {/* Search bar */}
-        <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search by title, technology, or keywords..."
-            className="w-full pl-10 pr-4 py-2 text-sm rounded-lg border border-border bg-surface text-text placeholder:text-muted/60 focus:outline-none focus:ring-1 focus:ring-accent focus:border-accent"
-          />
-        </div>
-
-        {/* Status filter pills */}
-        <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-xs font-mono text-muted mr-1">Status:</span>
-          {statuses.map((status) => (
-            <button
-              key={status}
-              type="button"
-              onClick={() => setSelectedStatus(status)}
-              className={`px-2.5 py-1 text-xs font-mono rounded-full border transition-colors ${
-                selectedStatus === status
-                  ? "bg-accent text-accent-contrast border-accent font-semibold"
-                  : "bg-surface text-muted border-border hover:border-accent/40"
-              }`}
-            >
-              {status === "All" ? "All" : status.replace("-", " ")}
-            </button>
-          ))}
-        </div>
+      {/* Status filter pills */}
+      <div className="flex flex-wrap items-center gap-1.5">
+        <span className="text-xs font-mono text-muted mr-1">Status:</span>
+        {statuses.map((status) => (
+          <button
+            key={status}
+            type="button"
+            onClick={() => setSelectedStatus(status)}
+            className={`px-2.5 py-1 text-xs font-mono rounded-full border transition-colors ${
+              selectedStatus === status
+                ? "bg-accent text-accent-contrast border-accent font-semibold"
+                : "bg-surface text-muted border-border hover:border-accent/40"
+            }`}
+          >
+            {status === "All" ? "All" : status.replace("-", " ")}
+          </button>
+        ))}
       </div>
 
       {/* Tech tags row - scrollable on mobile, wrapping on desktop */}
@@ -140,11 +118,10 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
         <div className="text-center py-16 border border-dashed border-border rounded-xl">
           <FolderGit2 className="w-10 h-10 text-muted mx-auto mb-3" />
           <h3 className="text-base font-bold text-text">No projects match your filter</h3>
-          <p className="text-xs text-muted mt-1">Try resetting the search keyword or filter chips.</p>
+          <p className="text-xs text-muted mt-1">Try selecting a different filter chip.</p>
           <button
             type="button"
             onClick={() => {
-              setSearch("");
               setSelectedTech("All");
               setSelectedStatus("All");
             }}
