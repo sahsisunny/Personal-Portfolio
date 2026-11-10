@@ -1,16 +1,21 @@
 import { getAllBlogPosts } from "@/lib/mdx";
-import { getProjects, getPerson, getMeta, getSkills } from "@/lib/data";
+import { getProjects, getPerson, getMeta, getSkills, isFeatureEnabled } from "@/lib/data";
 
 export async function GET() {
   const meta = getMeta();
   const person = getPerson();
-  const projects = getProjects();
-  const posts = getAllBlogPosts(false);
-  const skills = getSkills();
-
   const baseUrl = meta.siteUrl;
 
-  const content = `# Full Knowledge Base: ${person.name} (${person.headline})
+  const showProjects = isFeatureEnabled("projects");
+  const showBlog = isFeatureEnabled("blog");
+  const showSkills = isFeatureEnabled("skills");
+
+  const projects = showProjects ? getProjects() : [];
+  const posts = showBlog ? getAllBlogPosts(false) : [];
+  const skills = showSkills ? getSkills() : { groups: [] };
+
+  const parts: string[] = [
+    `# Full Knowledge Base: ${person.name} (${person.headline})
 
 Website: ${baseUrl}
 Contact: ${person.email}
@@ -20,17 +25,17 @@ LinkedIn: https://www.linkedin.com/in/sahsisunny/
 ================================================================================
 PART 1: PROFILE & SKILLS
 ================================================================================
-${person.longBio.join("\n\n")}
-
-Core Skills:
-${skills.groups
+${person.longBio.join("\n\n")}${skills.groups.length > 0 ? `\n\nCore Skills:\n` + skills.groups
   .map(
     (g) =>
       `• ${g.label}: ${g.items.map((i) => `${i.name} [${i.level}]`).join(", ")}`
   )
-  .join("\n")}
+  .join("\n") : ""}`
+  ];
 
-================================================================================
+  if (showBlog && posts.length > 0) {
+    parts.push(
+      `================================================================================
 PART 2: ARCHITECTURE & TECHNICAL ARTICLES
 ================================================================================
 ${posts
@@ -48,9 +53,13 @@ Cover Image: ${baseUrl}${post.coverImage}
 ${post.content}
 `
   )
-  .join("\n\n")}
+  .join("\n\n")}`
+    );
+  }
 
-================================================================================
+  if (showProjects && projects.length > 0) {
+    parts.push(
+      `================================================================================
 PART 3: KEY PROJECTS & CASE STUDIES
 ================================================================================
 ${projects
@@ -74,8 +83,11 @@ Highlights:
 ${p.highlights.map((h) => `- ${h}`).join("\n")}
 `
   )
-  .join("\n\n")}
-`;
+  .join("\n\n")}`
+    );
+  }
+
+  const content = parts.join("\n\n") + "\n";
 
   return new Response(content, {
     headers: {

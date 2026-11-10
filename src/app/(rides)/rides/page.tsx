@@ -51,8 +51,51 @@ export default function RidesLandingPage() {
       : null,
   ].filter((s): s is { label: string; value: string } => s !== null);
 
+  const BASE_URL = "https://sahsisunny.netlify.app";
+  const ridesCollectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "On Two Wheels | Solo Motorcycle Touring across India",
+    description: "Solo motorcycle adventures across India by Sunny Sahsi.",
+    url: `${BASE_URL}/rides`,
+    hasPart: ridesData.rides.map((r) => ({
+      "@type": "TouristTrip",
+      name: r.title,
+      description: r.summary,
+      url: `${BASE_URL}/rides/${r.slug}`,
+      touristType: "Solo Motorcycle Touring",
+    })),
+  };
+
+  const breadcrumbsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: BASE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Rides",
+        item: `${BASE_URL}/rides`,
+      },
+    ],
+  };
+
   return (
     <div className="space-y-20 pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ridesCollectionJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }}
+      />
       {/* Cinematic Hero */}
       <section className="relative overflow-hidden py-20 sm:py-28 border-b border-border bg-gradient-to-b from-surface via-surface-2/40 to-bg">
         <div

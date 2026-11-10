@@ -62,8 +62,58 @@ export default async function RideDetailPage({ params }: PageProps) {
   const mdxStory = getRideStoryMdx(slug);
   const storyContent = mdxStory || ride.story;
 
+  const BASE_URL = "https://sahsisunny.netlify.app";
+  const rideUrl = `${BASE_URL}/rides/${ride.slug}`;
+
+  const tripJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TouristTrip",
+    name: ride.title,
+    description: ride.summary,
+    url: rideUrl,
+    touristType: "Solo Motorcycle Touring",
+    subTrip: (ride.dayByDay ?? []).map((d) => ({
+      "@type": "TouristTrip",
+      name: `Day ${d.day}: ${d.from} to ${d.to}`,
+      description: d.note || `${d.from} to ${d.to}`,
+    })),
+  };
+
+  const breadcrumbsJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: BASE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Rides",
+        item: `${BASE_URL}/rides`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: ride.title,
+        item: rideUrl,
+      },
+    ],
+  };
+
   return (
     <article className="py-12 md:py-20 space-y-16 ride-content prose-editorial">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tripJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }}
+      />
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         {/* Navigation back */}
         <div className="mb-8">
