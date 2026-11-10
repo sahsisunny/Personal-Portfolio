@@ -328,98 +328,21 @@ export const RidesSectionSchema = z.object({
   }),
 });
 
-export const BlogFeatureFlagsSchema = z.union([
-  z.boolean(),
-  z.object({
-    enabled: z.boolean().default(true),
-    search: z.boolean().default(true),
-    categories: z.boolean().default(true),
-    tags: z.boolean().default(true),
-    toc: z.boolean().default(true),
-    diagrams: z.boolean().default(true),
-    readingTime: z.boolean().default(true),
-    relatedPosts: z.boolean().default(true),
-    shareButtons: z.boolean().default(true),
-  }),
-]).default(true);
-
-export const ProjectsFeatureFlagsSchema = z.union([
-  z.boolean(),
-  z.object({
-    enabled: z.boolean().default(true),
-    search: z.boolean().default(true),
-    filter: z.boolean().default(true),
-    metrics: z.boolean().default(true),
-    caseStudy: z.boolean().default(true),
-    liveLinks: z.boolean().default(true),
-    githubLinks: z.boolean().default(true),
-  }),
-]).default(true);
-
-export const RidesFeatureFlagsSchema = z.union([
-  z.boolean(),
-  z.object({
-    enabled: z.boolean().default(true),
-    routesMap: z.boolean().default(true),
-    stats: z.boolean().default(true),
-    bike: z.boolean().default(true),
-    gear: z.boolean().default(true),
-    upcoming: z.boolean().default(true),
-    gallery: z.boolean().default(true),
-    timeline: z.boolean().default(true),
-    videos: z.boolean().default(true),
-    lessons: z.boolean().default(true),
-  }),
-]).default(true);
-
-export const ExperienceFeatureFlagsSchema = z.union([
-  z.boolean(),
-  z.object({
-    enabled: z.boolean().default(true),
-    currentRoleHighlight: z.boolean().default(true),
-    techStackPills: z.boolean().default(true),
-  }),
-]).default(true);
-
-export const SkillsFeatureFlagsSchema = z.union([
-  z.boolean(),
-  z.object({
-    enabled: z.boolean().default(true),
-    proficiencyBadges: z.boolean().default(true),
-  }),
-]).default(true);
-
-export const ContactFeatureFlagsSchema = z.union([
-  z.boolean(),
-  z.object({
-    enabled: z.boolean().default(true),
-    form: z.boolean().default(true),
-    socials: z.boolean().default(true),
-  }),
-]).default(true);
-
-export const HeroFeatureFlagsSchema = z.union([
-  z.boolean(),
-  z.object({
-    enabled: z.boolean().default(true),
-    statusPill: z.boolean().default(true),
-    highlightsStrip: z.boolean().default(true),
-    projectsCta: z.boolean().default(true),
-    resumeCta: z.boolean().default(true),
-    contactCta: z.boolean().default(true),
-  }),
-]).default(true);
+export const BlogPostConfigSchema = z.object({
+  slug: z.string(),
+  title: z.string().optional(),
+  enabled: z.boolean().default(true),
+});
 
 export const FeatureFlagsSchema = z.object({
-  blog: BlogFeatureFlagsSchema,
-  projects: ProjectsFeatureFlagsSchema,
-  experience: ExperienceFeatureFlagsSchema,
-  rides: RidesFeatureFlagsSchema,
-  skills: SkillsFeatureFlagsSchema,
+  blog: z.boolean().default(true),
+  projects: z.boolean().default(true),
+  experience: z.boolean().default(true),
+  rides: z.boolean().default(true),
+  skills: z.boolean().default(true),
   education: z.boolean().default(true),
   openSource: z.boolean().default(true),
-  contact: ContactFeatureFlagsSchema,
-  hero: HeroFeatureFlagsSchema,
+  contact: z.boolean().default(true),
   testimonials: z.boolean().default(false),
   stats: z.boolean().default(true),
   now: z.boolean().default(true),
@@ -434,7 +357,6 @@ export const FeatureFlagsSchema = z.object({
   education: true,
   openSource: true,
   contact: true,
-  hero: true,
   testimonials: false,
   stats: true,
   now: true,
@@ -472,7 +394,7 @@ export const PortfolioSchema = z.object({
     source: z.string(),
     contentDir: z.string(),
     categories: z.array(z.string()),
-    posts: z.array(z.any()).default([]),
+    posts: z.array(BlogPostConfigSchema).default([]),
     postIdeas: z.array(z.object({
       title: z.string(),
       category: z.string(),

@@ -72,7 +72,7 @@ export function SiteFooter({ name, socials, email, features }: SiteFooterProps) 
 
           <div className="flex items-center gap-4 text-xs text-muted">
             <span>Built with Next.js & Go spirit</span>
-            {((typeof features?.rides === "boolean" ? features.rides : features?.rides?.enabled) ?? true) && (
+            {(features?.rides ?? true) && (
               <>
                 <span>•</span>
                 <Link href="/rides" className="hover:text-accent underline underline-offset-4">

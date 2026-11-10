@@ -10,7 +10,7 @@ import {
   CircleDashed,
   Compass,
 } from "lucide-react";
-import { getPlannedRides, getSocials, isChildFeatureEnabled } from "@/lib/data";
+import { getPlannedRides, getSocials, isFeatureEnabled } from "@/lib/data";
 import { InstagramIcon, YoutubeIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 export default function UpcomingRidesPage() {
-  if (!isChildFeatureEnabled("rides", "upcoming")) {
+  if (!isFeatureEnabled("rides")) {
     notFound();
   }
 

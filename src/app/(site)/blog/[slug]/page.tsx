@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/mdx";
 import { formatDate } from "@/lib/utils";
-import { getPerson, isFeatureEnabled, isChildFeatureEnabled } from "@/lib/data";
+import { getPerson, isFeatureEnabled } from "@/lib/data";
 import { ReadingProgressBar } from "@/components/blog/blog-post-content";
 import { ModernBlogRenderer } from "@/components/blog/modern-blog-renderer";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/icons";
@@ -335,19 +335,15 @@ export default async function BlogPostPage({ params }: PageProps) {
                       {formatDate(post.frontmatter.date)}
                     </time>
                   </div>
-                  {isChildFeatureEnabled("blog", "readingTime") && (
-                    <>
-                      <span>•</span>
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5" />
-                        <span>{post.readingTime}</span>
-                      </div>
-                    </>
-                  )}
+                  <span>•</span>
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5" />
+                    <span>{post.readingTime}</span>
+                  </div>
                 </div>
 
                 {/* Tags */}
-                {isChildFeatureEnabled("blog", "tags") && (
+                {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 pt-1">
                     {post.frontmatter.tags.map((t) => (
                       <span
@@ -453,7 +449,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
 
               {/* Related Posts */}
-              {relatedPosts.length > 0 && isChildFeatureEnabled("blog", "relatedPosts") && (
+              {relatedPosts.length > 0 && (
                 <div className="mt-12 pt-8 border-t border-border space-y-4">
                   <span className="text-xs font-mono text-muted uppercase tracking-wider block font-bold">
                     Related Writing

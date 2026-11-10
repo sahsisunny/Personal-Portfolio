@@ -17,7 +17,6 @@ import {
   getProjects,
   getProjectBySlug,
   isFeatureEnabled,
-  isChildFeatureEnabled,
 } from "@/lib/data";
 import { getProjectCaseStudyMdx } from "@/lib/mdx";
 import { formatDate } from "@/lib/utils";
@@ -277,7 +276,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               <div>
                 <span className="text-muted block mb-1">Artifacts</span>
                 <div className="flex items-center gap-2">
-                  {project.links.repo && isChildFeatureEnabled("projects", "githubLinks") ? (
+                  {project.links.repo ? (
                     <a
                       href={project.links.repo}
                       target="_blank"
@@ -287,10 +286,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                       <GithubIcon className="w-3.5 h-3.5" />
                       <span>Repo</span>
                     </a>
-                  ) : !project.links.repo ? (
+                  ) : (
                     <span className="text-muted">Private</span>
-                  ) : null}
-                  {project.links.live && isChildFeatureEnabled("projects", "liveLinks") && (
+                  )}
+                  {project.links.live && (
                     <a
                       href={project.links.live}
                       target="_blank"
@@ -369,7 +368,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </section>
 
             {/* Deep Dive Case Study Content with Syntax Highlighted Code Blocks */}
-            {mdxContent && isChildFeatureEnabled("projects", "caseStudy") && (
+            {mdxContent && (
               <section className="rounded-xl border border-border bg-surface p-6 sm:p-8 shadow-xs">
                 <ModernBlogRenderer content={mdxContent} slug={project.slug} />
               </section>

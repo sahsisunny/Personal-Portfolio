@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
 import { z } from "zod";
+import portfolioData from "../../portfolio-data.json";
 
 export const BlogPostFrontmatterSchema = z.object({
   title: z.string(),
@@ -20,6 +21,8 @@ export const BlogPostFrontmatterSchema = z.object({
   series_order: z.number().optional(),
   aliases: z.array(z.string()).default([]),
   draft: z.boolean().default(false),
+  enabled: z.boolean().default(true),
+  published: z.boolean().default(true),
 });
 
 export type BlogPostFrontmatter = z.infer<typeof BlogPostFrontmatterSchema>;
@@ -60,6 +63,19 @@ export function getAllBlogPosts(includeDrafts = process.env.NODE_ENV !== "produc
 
       if (!parsedFrontmatter.success) {
         console.warn(`Warning: Invalid frontmatter in ${file}:`, parsedFrontmatter.error.issues);
+        return null;
+      }
+
+      // Check if disabled in portfolio-data.json (blog.posts array)
+      const configuredPost = (portfolioData.blog?.posts ?? []).find(
+        (p: { slug?: string }) => p?.slug === slug
+      );
+      if (configuredPost && configuredPost.enabled === false) {
+        return null;
+      }
+
+      // Check frontmatter flags
+      if (parsedFrontmatter.data.enabled === false || parsedFrontmatter.data.published === false) {
         return null;
       }
 

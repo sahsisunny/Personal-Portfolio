@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getSocials, isFeatureEnabled, getFeatureFlags } from "@/lib/data";
+import { getSocials, isFeatureEnabled } from "@/lib/data";
 import { RidesNavbar } from "@/components/layout/rides-navbar";
 import { RidesFooter } from "@/components/layout/rides-footer";
 import { RiderBackgroundEffects } from "@/components/rides/rider-background-effects";
@@ -20,12 +20,11 @@ export default function RidesLayout({
   }
 
   const socials = getSocials();
-  const features = getFeatureFlags();
 
   return (
     <div className="rides-realm flex min-h-screen flex-col bg-bg text-text transition-colors relative overflow-x-hidden">
       <RiderBackgroundEffects />
-      <RidesNavbar ridesFlags={features.rides} />
+      <RidesNavbar />
       <main id="main-content" className="flex-1 relative z-10">
         {children}
       </main>

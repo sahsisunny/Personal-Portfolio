@@ -12,7 +12,7 @@ import {
   Shield,
   Lightbulb,
 } from "lucide-react";
-import { getRides, getRideBySlug, isChildFeatureEnabled } from "@/lib/data";
+import { getRides, getRideBySlug } from "@/lib/data";
 import { getRideStoryMdx } from "@/lib/mdx";
 import { RideGallery } from "@/components/rides/ride-gallery";
 import { DayByDayTimeline } from "@/components/rides/day-by-day-timeline";
@@ -236,7 +236,7 @@ export default async function RideDetailPage({ params }: PageProps) {
         </section>
 
         {/* Day-by-Day Timeline */}
-        {ride.dayByDay.length > 0 && isChildFeatureEnabled("rides", "timeline") && (
+        {ride.dayByDay.length > 0 && (
           <section className="pt-12 space-y-4">
             <span className="text-xs font-mono uppercase text-accent font-semibold block mb-0.5">
               Itinerary
@@ -249,7 +249,7 @@ export default async function RideDetailPage({ params }: PageProps) {
         )}
 
         {/* Gallery */}
-        {isChildFeatureEnabled("rides", "gallery") && (
+        {ride.gallery && ride.gallery.length > 0 && (
           <section className="pt-12 space-y-4">
             <span className="text-xs font-mono uppercase text-accent font-semibold block mb-0.5">
               Photo Dispatch
@@ -262,7 +262,7 @@ export default async function RideDetailPage({ params }: PageProps) {
         )}
 
         {/* YouTube Video if available */}
-        {ride.videos && ride.videos.length > 0 && isChildFeatureEnabled("rides", "videos") && (
+        {ride.videos && ride.videos.length > 0 && (
           <section className="pt-12 space-y-4">
             <span className="text-xs font-mono uppercase text-accent font-semibold block mb-0.5">
               Motion
@@ -281,7 +281,7 @@ export default async function RideDetailPage({ params }: PageProps) {
         {/* Lessons & Gear */}
         {(ride.lessons.length > 0 || ride.gearUsed.length > 0) && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-12">
-            {ride.lessons.length > 0 && isChildFeatureEnabled("rides", "lessons") && (
+            {ride.lessons.length > 0 && (
               <div className="rounded-2xl border border-border bg-surface p-6 shadow-xs space-y-3">
                 <div className="flex items-center gap-2 text-xs font-mono uppercase text-amber-500 font-bold">
                   <Lightbulb className="w-4 h-4" />

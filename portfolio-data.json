@@ -31,62 +31,14 @@
     ]
   },
   "features": {
-    "blog": {
-      "enabled": false,
-      "search": true,
-      "categories": true,
-      "tags": true,
-      "toc": true,
-      "diagrams": true,
-      "readingTime": true,
-      "relatedPosts": true,
-      "shareButtons": true
-    },
-    "projects": {
-      "enabled": true,
-      "search": true,
-      "filter": true,
-      "metrics": true,
-      "caseStudy": true,
-      "liveLinks": true,
-      "githubLinks": true
-    },
-    "experience": {
-      "enabled": true,
-      "currentRoleHighlight": true,
-      "techStackPills": true
-    },
-    "rides": {
-      "enabled": false,
-      "routesMap": true,
-      "stats": true,
-      "bike": true,
-      "gear": true,
-      "upcoming": true,
-      "gallery": true,
-      "timeline": true,
-      "videos": true,
-      "lessons": true
-    },
-    "skills": {
-      "enabled": true,
-      "proficiencyBadges": true
-    },
+    "blog": true,
+    "projects": true,
+    "experience": true,
+    "rides": true,
+    "skills": true,
     "education": true,
     "openSource": true,
-    "contact": {
-      "enabled": true,
-      "form": true,
-      "socials": true
-    },
-    "hero": {
-      "enabled": true,
-      "statusPill": true,
-      "highlightsStrip": true,
-      "projectsCta": true,
-      "resumeCta": true,
-      "contactCta": true
-    },
+    "contact": true,
     "testimonials": false,
     "stats": true,
     "now": true,
@@ -467,6 +419,7 @@
     {
       "id": "care-ring",
       "slug": "care-ring",
+      "enabled": true,
       "title": "CareRing",
       "status": "completed",
       "featured": true,
@@ -506,6 +459,7 @@
     {
       "id": "home-assets",
       "slug": "home-assets",
+      "enabled": true,
       "title": "Home Asset Manager",
       "status": "completed",
       "featured": true,
@@ -547,6 +501,7 @@
     {
       "id": "gittrackr",
       "slug": "gittrackr",
+      "enabled": true,
       "title": "GitTrackr",
       "status": "completed",
       "featured": true,
@@ -586,6 +541,7 @@
     {
       "id": "linktree",
       "slug": "linktree",
+      "enabled": true,
       "title": "LinkHub",
       "status": "completed",
       "featured": true,
@@ -623,6 +579,7 @@
     {
       "id": "ai-chatbot-agent",
       "slug": "ai-chatbot-agent",
+      "enabled": true,
       "title": "Enterprise AI Chatbot & Agent Orchestrator",
       "status": "in-progress",
       "featured": true,
@@ -665,6 +622,7 @@
     {
       "id": "shadi-invitations",
       "slug": "shadi-invitations",
+      "enabled": true,
       "title": "Shadi Invitation Website",
       "status": "completed",
       "featured": false,
@@ -700,6 +658,7 @@
     {
       "id": "sweetcart",
       "slug": "sweetcart",
+      "enabled": true,
       "title": "SweetCart",
       "status": "completed",
       "featured": false,
@@ -760,7 +719,18 @@
       "Career",
       "Rides"
     ],
-    "posts": [],
+    "posts": [
+      {
+        "slug": "hotel-pms-ai-orchestrator",
+        "title": "Inside an Enterprise AI Orchestrator: Multi-Service LLMs & Zero-Trust",
+        "enabled": true
+      },
+      {
+        "slug": "hotel-pms-mcp-tool-server",
+        "title": "Building a Read-Only MCP Tool Server for Enterprise Microservice Data",
+        "enabled": true
+      }
+    ],
     "_postFrontmatter": {
       "title": "string",
       "slug": "string (kebab-case)",
@@ -828,6 +798,7 @@
       {
         "id": "patna-to-ladakh",
         "slug": "patna-to-ladakh",
+        "enabled": true,
         "title": "Patna to Ladakh",
         "type": "solo",
         "origin": "Patna, Bihar",
@@ -992,6 +963,7 @@
       {
         "id": "patna-to-rameshwaram",
         "slug": "patna-to-rameshwaram",
+        "enabled": true,
         "title": "Patna to Rameshwaram",
         "type": "solo",
         "origin": "Patna, Bihar",
@@ -1306,6 +1278,7 @@
       {
         "id": "spiti-valley-sach-pass",
         "slug": "spiti-valley-sach-pass",
+        "enabled": true,
         "title": "Spiti Valley & Sach Pass Circuit",
         "status": "Route Reconnaissance & Scouting",
         "origin": "Patna, Bihar",
@@ -1382,6 +1355,7 @@
       {
         "id": "bhutan-eastern-circuit",
         "slug": "bhutan-eastern-circuit",
+        "enabled": true,
         "title": "Bhutan & Eastern Himalayas Expedition",
         "status": "Route Mapping & Permit Research",
         "origin": "Patna, Bihar",
