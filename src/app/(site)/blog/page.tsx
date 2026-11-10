@@ -8,7 +8,7 @@ const BASE_URL = "https://sahsisunny.netlify.app";
 export const metadata: Metadata = {
   title: "Writing & Engineering Notes | Sunny Sahsi",
   description:
-    "Engineering reflections on building Go backend architectures, orchestrating AI chatbot agents across 200+ microservice APIs, Model Context Protocol (MCP), and solo motorcycle touring.",
+    "Engineering reflections on building Go backend architectures, orchestrating AI chatbot agents across 600+ microservice APIs, Model Context Protocol (MCP), and solo motorcycle touring.",
   keywords: [
     "Software Architecture",
     "Go Backend",

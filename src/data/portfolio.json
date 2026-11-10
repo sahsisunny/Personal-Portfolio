@@ -11,7 +11,6 @@
       "Peerlist resume snippet looks outdated/inconsistent (shows 'Software Development Engineer 1'), ignore it or update it"
     ]
   },
-
   "meta": {
     "siteTitle": "Sunny Sahsi | Associate Full Stack Developer",
     "siteDescription": "Portfolio of Sunny Sahsi: Associate Full Stack Developer from Patna, India building web apps, backend services in Go and AI chatbot agents. Also a solo motorcycle rider.",
@@ -31,7 +30,6 @@
       "motorcycle touring"
     ]
   },
-
   "person": {
     "name": "Sunny Sahsi",
     "firstName": "Sunny",
@@ -58,7 +56,6 @@
     "resumeLocalPath": null,
     "_note": "Resume link is the one on the current portfolio. Replace with an updated PDF in /public/resume.pdf once the new title is added."
   },
-
   "socials": {
     "linkedin": "https://www.linkedin.com/in/sahsisunny/",
     "github": "https://www.github.com/sahsisunny",
@@ -68,27 +65,54 @@
     "peerlist": "https://peerlist.io/sahsisunny",
     "_note": "Instagram and YouTube exist but handles are not known yet, add them so the Rides page can link to them."
   },
-
   "navigation": {
     "main": [
-      { "label": "Home", "href": "/" },
-      { "label": "Experience", "href": "/#experience" },
-      { "label": "Projects", "href": "/projects" },
-      { "label": "Blog", "href": "/blog" },
-      { "label": "Contact", "href": "/#contact" }
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Experience",
+        "href": "/#experience"
+      },
+      {
+        "label": "Projects",
+        "href": "/projects"
+      },
+      {
+        "label": "Blog",
+        "href": "/blog"
+      },
+      {
+        "label": "Contact",
+        "href": "/#contact"
+      }
     ],
-    "rides": { "label": "Rides", "href": "/rides", "badge": "Off the clock", "style": "highlight" }
+    "rides": {
+      "label": "Rides",
+      "href": "/rides",
+      "badge": "Off the clock",
+      "style": "highlight"
+    }
   },
-
   "stats": {
     "_note": "Shown as small counters on Home. Only keep numbers that are true and easy to defend.",
     "items": [
-      { "label": "Years building professionally", "value": "2+", "computedFrom": "2024-08" },
-      { "label": "Solo long-distance rides", "value": "2" },
-      { "label": "Primary stack", "value": "Next.js + Go" }
+      {
+        "label": "Years building professionally",
+        "value": "2+",
+        "computedFrom": "2024-08"
+      },
+      {
+        "label": "Solo long-distance rides",
+        "value": "2"
+      },
+      {
+        "label": "Primary stack",
+        "value": "Next.js + Go"
+      }
     ]
   },
-
   "experience": [
     {
       "id": "fountane",
@@ -129,7 +153,17 @@
           ]
         }
       ],
-      "tech": ["Next.js", "TypeScript", "Ant Design", "Go", "MySQL", "PostgreSQL", "GitLab CI/CD", "Vitest", "Jira"],
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Ant Design",
+        "Go",
+        "MySQL",
+        "PostgreSQL",
+        "GitLab CI/CD",
+        "Vitest",
+        "Jira"
+      ],
       "confidentialityNote": "Client and product names stay generic on the public site unless Fountane approves naming them."
     },
     {
@@ -156,7 +190,13 @@
           ]
         }
       ],
-      "tech": ["Vue.js", "Vuetify", "React", "Next.js", "Ember"]
+      "tech": [
+        "Vue.js",
+        "Vuetify",
+        "React",
+        "Next.js",
+        "Ember"
+      ]
     },
     {
       "id": "smartinternz",
@@ -180,10 +220,13 @@
           ]
         }
       ],
-      "tech": ["Kotlin", "Android", "Material Design"]
+      "tech": [
+        "Kotlin",
+        "Android",
+        "Material Design"
+      ]
     }
   ],
-
   "education": [
     {
       "id": "bca-patna",
@@ -193,10 +236,15 @@
       "start": "2019",
       "end": "2022",
       "logo": "/images/logos/patna-university.png",
-      "topics": ["C, C++, Java, Python, JavaScript", "Database management", "Web development", "Software engineering", "Networking and administration"]
+      "topics": [
+        "C, C++, Java, Python, JavaScript",
+        "Database management",
+        "Web development",
+        "Software engineering",
+        "Networking and administration"
+      ]
     }
   ],
-
   "skills": {
     "_note": "Group by what you actually use. 'level' is a self-assessment: 'daily' (used every week), 'comfortable', 'learning'. Be honest, it helps in interviews.",
     "groups": [
@@ -204,69 +252,154 @@
         "id": "languages",
         "label": "Languages",
         "items": [
-          { "name": "TypeScript", "level": "daily" },
-          { "name": "JavaScript", "level": "daily" },
-          { "name": "Go", "level": "daily" },
-          { "name": "HTML / CSS", "level": "daily" },
-          { "name": "SQL", "level": "comfortable" }
+          {
+            "name": "TypeScript",
+            "level": "daily"
+          },
+          {
+            "name": "JavaScript",
+            "level": "daily"
+          },
+          {
+            "name": "Go",
+            "level": "daily"
+          },
+          {
+            "name": "HTML / CSS",
+            "level": "daily"
+          },
+          {
+            "name": "SQL",
+            "level": "comfortable"
+          }
         ]
       },
       {
         "id": "frontend",
         "label": "Frontend",
         "items": [
-          { "name": "React", "level": "daily" },
-          { "name": "Next.js", "level": "daily" },
-          { "name": "Ant Design", "level": "daily" },
-          { "name": "Tailwind CSS", "level": "comfortable" },
-          { "name": "React Query", "level": "comfortable" }
+          {
+            "name": "React",
+            "level": "daily"
+          },
+          {
+            "name": "Next.js",
+            "level": "daily"
+          },
+          {
+            "name": "Ant Design",
+            "level": "daily"
+          },
+          {
+            "name": "Tailwind CSS",
+            "level": "comfortable"
+          },
+          {
+            "name": "React Query",
+            "level": "comfortable"
+          }
         ]
       },
       {
         "id": "backend",
         "label": "Backend and APIs",
         "items": [
-          { "name": "Go services and REST APIs", "level": "daily" },
-          { "name": "Node.js / Express", "level": "comfortable" },
-          { "name": "Payment API integration", "level": "comfortable" },
-          { "name": "Role-based access control", "level": "comfortable" }
+          {
+            "name": "Go services and REST APIs",
+            "level": "daily"
+          },
+          {
+            "name": "Node.js / Express",
+            "level": "comfortable"
+          },
+          {
+            "name": "Payment API integration",
+            "level": "comfortable"
+          },
+          {
+            "name": "Role-based access control",
+            "level": "comfortable"
+          }
         ]
       },
       {
         "id": "databases",
         "label": "Databases",
         "items": [
-          { "name": "PostgreSQL", "level": "comfortable" },
-          { "name": "MySQL", "level": "comfortable" },
-          { "name": "MongoDB", "level": "comfortable" }
+          {
+            "name": "PostgreSQL",
+            "level": "comfortable"
+          },
+          {
+            "name": "MySQL",
+            "level": "comfortable"
+          },
+          {
+            "name": "MongoDB",
+            "level": "comfortable"
+          }
         ]
       },
       {
         "id": "ai",
         "label": "AI and agents",
         "items": [
-          { "name": "LLM-powered chatbot / agent backends", "level": "comfortable" },
-          { "name": "Tool/API orchestration for agents", "level": "learning" },
-          { "name": "Claude", "level": "daily" },
-          { "name": "Cursor", "level": "daily" },
-          { "name": "Antigravity", "level": "daily" }
+          {
+            "name": "LLM-powered chatbot / agent backends",
+            "level": "comfortable"
+          },
+          {
+            "name": "Tool/API orchestration for agents",
+            "level": "learning"
+          },
+          {
+            "name": "Claude",
+            "level": "daily"
+          },
+          {
+            "name": "Cursor",
+            "level": "daily"
+          },
+          {
+            "name": "Antigravity",
+            "level": "daily"
+          }
         ]
       },
       {
         "id": "tools",
         "label": "Tools and workflow",
         "items": [
-          { "name": "Git, GitHub, GitLab", "level": "daily" },
-          { "name": "GitLab CI/CD", "level": "comfortable" },
-          { "name": "Vitest (unit and integration tests)", "level": "comfortable" },
-          { "name": "Jira", "level": "comfortable" },
-          { "name": "Linux", "level": "comfortable" }
+          {
+            "name": "Git, GitHub, GitLab",
+            "level": "daily"
+          },
+          {
+            "name": "GitLab CI/CD",
+            "level": "comfortable"
+          },
+          {
+            "name": "Vitest (unit and integration tests)",
+            "level": "comfortable"
+          },
+          {
+            "name": "Jira",
+            "level": "comfortable"
+          },
+          {
+            "name": "Linux",
+            "level": "comfortable"
+          }
         ]
       }
     ],
-    "currentlyLearning": ["AWS and cloud deployment", "System design", "Distributed systems", "Agent evaluation and guardrails"]
+    "currentlyLearning": [
+      "AWS and cloud deployment",
+      "System design",
+      "Distributed systems",
+      "Agent evaluation and guardrails"
+    ]
   },
-
   "projects": [
     {
       "id": "care-ring",
@@ -278,16 +411,34 @@
       "summary": "Privacy-first real-time family location intelligence, safety, and emergency response platform with sub-50ms WebSocket telemetry propagation, geofencing, and sub-1% battery drain.",
       "description": "CareRing is an open-source, production-engineered family safety ecosystem designed with zero telemetry monetization. Combines hardware-accelerated motion coprocessor filtering for sub-1% battery drain per hour, sub-50ms WebSocket telemetry propagation, and PostGIS spatial indexing for instant safe-zone arrival/departure triggers.",
       "role": "Solo developer",
-      "tech": ["React Native", "Expo SDK", "Fastify", "Node.js", "PostgreSQL", "PostGIS", "WebSocket", "TypeScript"],
+      "tech": [
+        "React Native",
+        "Expo SDK",
+        "Fastify",
+        "Node.js",
+        "PostgreSQL",
+        "PostGIS",
+        "WebSocket",
+        "TypeScript"
+      ],
       "highlights": [
         "Sub-50ms WebSocket telemetry propagation with 60 FPS mobile coordinate interpolation.",
         "Hardware-accelerated motion coprocessor filtering with sub-1% battery drain per hour.",
         "Dynamic geofencing with PostGIS spatial indexing for instant safe-zone arrival/departure triggers.",
         "One-touch emergency SOS broadcast with zero-knowledge encrypted contact alerts."
       ],
-      "links": { "repo": "https://github.com/sahsisunny/care-ring", "live": "https://care-ring.netlify.app/", "caseStudy": null },
-      "images": ["/images/projects/care-ring.svg"],
-      "period": { "start": "2024-03", "end": "2024-09" }
+      "links": {
+        "repo": "https://github.com/sahsisunny/care-ring",
+        "live": "https://care-ring.netlify.app/",
+        "caseStudy": null
+      },
+      "images": [
+        "/images/projects/care-ring.svg"
+      ],
+      "period": {
+        "start": "2024-03",
+        "end": "2024-09"
+      }
     },
     {
       "id": "home-assets",
@@ -299,16 +450,36 @@
       "summary": "A personal digital operating system for household assets, purchase invoices, warranty lifecycles, and automated maintenance schedules with multimodal AI invoice OCR.",
       "description": "Turborepo monorepo encompassing a Next.js 14 web dashboard, React Native mobile app with camera viewfinder capture, and a modular Node.js/TypeScript backend. Features Gemini 2.5 Flash multimodal OCR for invoice extraction and Redis/BullMQ background queues for automated warranty expiration and appliance maintenance reminders.",
       "role": "Solo developer",
-      "tech": ["Next.js", "React Native", "Expo SDK", "Node.js", "PostgreSQL", "Prisma", "Redis", "BullMQ", "Gemini AI", "TypeScript"],
+      "tech": [
+        "Next.js",
+        "React Native",
+        "Expo SDK",
+        "Node.js",
+        "PostgreSQL",
+        "Prisma",
+        "Redis",
+        "BullMQ",
+        "Gemini AI",
+        "TypeScript"
+      ],
       "highlights": [
         "Turborepo monorepo sharing strict Zod schemas and validation models across web, mobile, and API.",
         "Gemini 2.5 Flash multimodal OCR for automated extraction of invoice serial numbers, vendors, and warranty dates.",
         "Distributed BullMQ background job queues with Redis for warranty expiry alerts and recurring maintenance reminders.",
         "Multi-platform UI with Next.js 14 App Router for desktop management and Expo React Native for mobile camera capture."
       ],
-      "links": { "repo": "https://github.com/sahsisunny/home-assets", "live": null, "caseStudy": null },
-      "images": ["/images/projects/home-assets.svg"],
-      "period": { "start": "2024-06", "end": "2024-11" }
+      "links": {
+        "repo": "https://github.com/sahsisunny/home-assets",
+        "live": null,
+        "caseStudy": null
+      },
+      "images": [
+        "/images/projects/home-assets.svg"
+      ],
+      "period": {
+        "start": "2024-06",
+        "end": "2024-11"
+      }
     },
     {
       "id": "gittrackr",
@@ -320,16 +491,34 @@
       "summary": "An engineering management dashboard that allows engineering teams and open-source organizations to monitor, triage, and manage GitHub issues, PRs, and contributor velocity.",
       "description": "Built with Next.js, NextAuth, and React Query, GitTrackr connects to the GitHub REST and GraphQL APIs to provide unified multi-repo issue triage, pull request lifecycle tracking, team velocity summaries, and contributor activity graphs with Vitest test coverage.",
       "role": "Solo developer",
-      "tech": ["Next.js", "TypeScript", "NextAuth", "React Query", "Redux", "GitHub API", "Vitest", "Tailwind CSS"],
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "NextAuth",
+        "React Query",
+        "Redux",
+        "GitHub API",
+        "Vitest",
+        "Tailwind CSS"
+      ],
       "highlights": [
         "Unified organization issue and pull request dashboard with multi-repo search and smart labeling.",
         "GitHub OAuth authentication via NextAuth with fine-grained repository access scopes.",
         "Real-time data synchronization using React Query with optimistic UI updates and cache invalidation.",
         "Comprehensive test coverage with Vitest and React Testing Library for mission-critical triage flows."
       ],
-      "links": { "repo": "https://github.com/sahsisunny/gittrackr", "live": "https://gittrackr.netlify.app/", "caseStudy": null },
-      "images": ["/images/projects/gittrackr.png"],
-      "period": { "start": "2023-08", "end": "2024-01" }
+      "links": {
+        "repo": "https://github.com/sahsisunny/gittrackr",
+        "live": "https://gittrackr.netlify.app/",
+        "caseStudy": null
+      },
+      "images": [
+        "/images/projects/gittrackr.png"
+      ],
+      "period": {
+        "start": "2023-08",
+        "end": "2024-01"
+      }
     },
     {
       "id": "linktree",
@@ -341,16 +530,32 @@
       "summary": "A link-in-bio platform allowing creators and developers to consolidate social presence, portfolio links, and content into a single high-performance page.",
       "description": "Built with Next.js 14, MongoDB, Mongoose, and NextAuth. Provides dynamic slug routing, custom link ordering, responsive mobile layout, and analytics tracking for link visits.",
       "role": "Solo developer",
-      "tech": ["Next.js", "TypeScript", "NextAuth", "MongoDB", "Mongoose", "Tailwind CSS"],
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "NextAuth",
+        "MongoDB",
+        "Mongoose",
+        "Tailwind CSS"
+      ],
       "highlights": [
         "Dynamic user profile slug generation with Next.js App Router and server-side rendering for optimal SEO.",
         "MongoDB schema design with Mongoose handling link order, click counters, and social icons.",
         "Secure authentication with NextAuth and MongoDB adapter for seamless link dashboard management.",
         "Fully responsive mobile-first UI with custom themes, drag-and-drop link ordering, and share previews."
       ],
-      "links": { "repo": "https://github.com/sahsisunny/linktree", "live": "https://litree.netlify.app/", "caseStudy": null },
-      "images": ["/images/projects/linktree.jpeg"],
-      "period": { "start": "2023-11", "end": "2024-03" }
+      "links": {
+        "repo": "https://github.com/sahsisunny/linktree",
+        "live": "https://litree.netlify.app/",
+        "caseStudy": null
+      },
+      "images": [
+        "/images/projects/linktree.jpeg"
+      ],
+      "period": {
+        "start": "2023-11",
+        "end": "2024-03"
+      }
     },
     {
       "id": "ai-chatbot-agent",
@@ -360,20 +565,39 @@
       "featured": true,
       "visibility": "public-after-review",
       "visibilityNote": "Work project: confirm with your employer what you may publish. Keep client names, screenshots with real data and internal API names out of the public site.",
-      "summary": "A backend service that lets front-desk and hotelier users ask questions in plain language and get answers pulled from 200+ APIs by an LLM.",
+      "summary": "A backend service that lets front-desk and hotelier users ask questions in plain language and get answers pulled from 600+ APIs by an LLM.",
       "description": "The system sits on top of a multi-service backend (auth, config, reservation, reporting). The agent turns a natural-language question into the right API calls, filters data correctly (for example, a proper 'yesterday' window), and returns a readable answer. A next phase adds scheduled, event-based and condition-based routines with approval steps.",
       "role": "Solo developer",
-      "tech": ["Go", "LLM APIs", "REST", "Cursor", "Claude"],
+      "tech": [
+        "Go",
+        "LLM APIs",
+        "REST",
+        "Cursor",
+        "Claude"
+      ],
       "highlights": [
         "Built the chatbot backend service on top of an existing multi-service system.",
         "Ran an AI-assisted audit to find implementation issues, then fixed them with manual verification.",
         "Handled data-accuracy problems such as fixed reporting windows and missing user names in session data.",
         "Drafted a phased plan for agent routines with approvals."
       ],
-      "metrics": { "_note": "Add real numbers only (response accuracy, latency, tools supported).", "toolsCount": null, "avgLatencyMs": null },
-      "links": { "repo": null, "live": null, "caseStudy": null },
-      "images": ["/images/projects/ai-chatbot-agent.svg"],
-      "period": { "start": "2024", "end": null }
+      "metrics": {
+        "_note": "Add real numbers only (response accuracy, latency, tools supported).",
+        "toolsCount": null,
+        "avgLatencyMs": null
+      },
+      "links": {
+        "repo": null,
+        "live": null,
+        "caseStudy": null
+      },
+      "images": [
+        "/images/projects/ai-chatbot-agent.svg"
+      ],
+      "period": {
+        "start": "2024",
+        "end": null
+      }
     },
     {
       "id": "shadi-invitations",
@@ -385,16 +609,30 @@
       "summary": "A mobile-first Hindi wedding invitation site with multiple templates, a template gallery landing page and an animated opening-gate reveal.",
       "description": "Next.js + TypeScript project built around reusable invitation templates. Includes an opening gate (doors) animation, animated couple illustrations, a map view option for the venue and a tap-to-call button for the organizer. Numbers are shown in English digits for readability.",
       "role": "Solo developer",
-      "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
       "highlights": [
         "Template system: add a new template without touching core code.",
         "Landing page gallery that lists every template.",
         "Opening-gate animation and animated illustrations, tuned for mobile.",
         "Venue map option and one-tap organizer call."
       ],
-      "links": { "repo": null, "live": null, "caseStudy": null },
-      "images": ["/images/projects/shadi-invitations.svg"],
-      "period": { "start": "2024", "end": null }
+      "links": {
+        "repo": null,
+        "live": null,
+        "caseStudy": null
+      },
+      "images": [
+        "/images/projects/shadi-invitations.svg"
+      ],
+      "period": {
+        "start": "2024",
+        "end": null
+      }
     },
     {
       "id": "sweetcart",
@@ -406,7 +644,12 @@
       "summary": "Modern e-commerce storefront with reactive product catalog, cart persistence, and Framer Motion micro-interactions.",
       "description": "An e-commerce web application built using React, Next.js, and Tailwind CSS. Features Commerce.js API integration for real-time inventory management, responsive product catalog, and seamless cart checkout flow.",
       "role": "Solo developer",
-      "tech": ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
+      "tech": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
       "highlights": [
         "Dynamic product catalog and category filters connected to headless commerce APIs.",
         "Smooth page and cart transition animations built with Framer Motion.",
@@ -417,16 +660,22 @@
         "live": "https://sweetcarts.netlify.app/",
         "caseStudy": null
       },
-      "images": ["/images/projects/sweetcart.png"],
-      "period": { "start": "2023", "end": "2023" }
+      "images": [
+        "/images/projects/sweetcart.png"
+      ],
+      "period": {
+        "start": "2023",
+        "end": "2023"
+      }
     }
   ],
-
   "openSource": [
     {
       "org": "Real Dev Squad",
       "summary": "Contributions across Vue.js, React, Next.js and Ember projects.",
-      "links": { "github": "https://github.com/Real-Dev-Squad" },
+      "links": {
+        "github": "https://github.com/Real-Dev-Squad"
+      },
       "contributions": [
         "Goal form modal (Vue.js + Vuetify)",
         "Accordion lock for unauthorized users",
@@ -436,14 +685,18 @@
       "_note": "Add PR links for each contribution, they are strong proof."
     }
   ],
-
   "blog": {
     "enabled": true,
     "title": "Writing",
     "subtitle": "Notes on building software, working with AI tools, and the road.",
     "source": "mdx",
     "contentDir": "content/blog",
-    "categories": ["Engineering", "AI", "Career", "Rides"],
+    "categories": [
+      "Engineering",
+      "AI",
+      "Career",
+      "Rides"
+    ],
     "posts": [],
     "_postFrontmatter": {
       "title": "string",
@@ -451,21 +704,46 @@
       "date": "YYYY-MM-DD",
       "updated": "YYYY-MM-DD (optional)",
       "summary": "string, under 160 characters",
-      "tags": ["string"],
+      "tags": [
+        "string"
+      ],
       "category": "one of blog.categories",
       "cover": "/images/blog/<slug>.jpg (optional)",
       "draft": false
     },
     "postIdeas": [
-      { "title": "Building an AI agent over 200+ APIs: what broke first", "category": "AI", "why": "Your current work, rare topic, strong signal." },
-      { "title": "How I use Claude, Cursor and Antigravity without shipping bugs", "category": "AI", "why": "Honest workflow post; cover review and verification habits." },
-      { "title": "Designing a payment API integration in Go: a checklist", "category": "Engineering", "why": "Practical and searchable." },
-      { "title": "From Junior to Associate in two years: what actually helped", "category": "Career", "why": "Timely given the promotion." },
-      { "title": "Patna to Ladakh solo: planning, gear and mistakes", "category": "Rides", "why": "Cross-links to the Rides page and reaches a different audience." },
-      { "title": "Patna to Rameshwaram: 5 lessons from the road", "category": "Rides", "why": "Story-led, good for social sharing." }
+      {
+        "title": "Building an AI agent over 600+ APIs: what broke first",
+        "category": "AI",
+        "why": "Your current work, rare topic, strong signal."
+      },
+      {
+        "title": "How I use Claude, Cursor and Antigravity without shipping bugs",
+        "category": "AI",
+        "why": "Honest workflow post; cover review and verification habits."
+      },
+      {
+        "title": "Designing a payment API integration in Go: a checklist",
+        "category": "Engineering",
+        "why": "Practical and searchable."
+      },
+      {
+        "title": "From Junior to Associate in two years: what actually helped",
+        "category": "Career",
+        "why": "Timely given the promotion."
+      },
+      {
+        "title": "Patna to Ladakh solo: planning, gear and mistakes",
+        "category": "Rides",
+        "why": "Cross-links to the Rides page and reaches a different audience."
+      },
+      {
+        "title": "Patna to Rameshwaram: 5 lessons from the road",
+        "category": "Rides",
+        "why": "Story-led, good for social sharing."
+      }
     ]
   },
-
   "rides": {
     "_note": "Powers the separate /rides page with its own look. Fill the nulls with real values. Do not guess distances or dates.",
     "enabled": true,
@@ -504,16 +782,76 @@
           "geojsonFile": null,
           "gpxFile": null,
           "waypoints": [
-            { "name": "Patna (Origin)", "lat": 25.5941, "lng": 85.1376, "day": 1, "note": "Expedition flag-off at 5:00 AM." },
-            { "name": "Varanasi", "lat": 25.3176, "lng": 82.9739, "day": 1, "note": "First fuel stop and evening Ganga Aarti." },
-            { "name": "Delhi", "lat": 28.7041, "lng": 77.1025, "day": 2, "note": "Yamuna Expressway transit." },
-            { "name": "Chandigarh", "lat": 30.7333, "lng": 76.7794, "day": 3, "note": "Pre-Himalaya bike inspection." },
-            { "name": "Manali", "lat": 32.2432, "lng": 77.1892, "day": 4, "note": "Acclimatization and permit clearance." },
-            { "name": "Keylong / Jispa", "lat": 32.5714, "lng": 77.0324, "day": 5, "note": "Atal Tunnel transit into Lahaul Valley." },
-            { "name": "Sarchu", "lat": 32.9061, "lng": 77.5833, "day": 6, "note": "Freezing winds at 14,000 ft border camp." },
-            { "name": "Leh, Ladakh", "lat": 34.1526, "lng": 77.5771, "day": 7, "note": "Himalayan base camp reached." },
-            { "name": "Khardung La Pass", "lat": 34.2787, "lng": 77.6047, "day": 9, "note": "Summit at 17,590 ft altitude." },
-            { "name": "Pangong Tso", "lat": 33.7595, "lng": 78.6674, "day": 11, "note": "Endorheic salt lake at 14,270 ft." }
+            {
+              "name": "Patna (Origin)",
+              "lat": 25.5941,
+              "lng": 85.1376,
+              "day": 1,
+              "note": "Expedition flag-off at 5:00 AM."
+            },
+            {
+              "name": "Varanasi",
+              "lat": 25.3176,
+              "lng": 82.9739,
+              "day": 1,
+              "note": "First fuel stop and evening Ganga Aarti."
+            },
+            {
+              "name": "Delhi",
+              "lat": 28.7041,
+              "lng": 77.1025,
+              "day": 2,
+              "note": "Yamuna Expressway transit."
+            },
+            {
+              "name": "Chandigarh",
+              "lat": 30.7333,
+              "lng": 76.7794,
+              "day": 3,
+              "note": "Pre-Himalaya bike inspection."
+            },
+            {
+              "name": "Manali",
+              "lat": 32.2432,
+              "lng": 77.1892,
+              "day": 4,
+              "note": "Acclimatization and permit clearance."
+            },
+            {
+              "name": "Keylong / Jispa",
+              "lat": 32.5714,
+              "lng": 77.0324,
+              "day": 5,
+              "note": "Atal Tunnel transit into Lahaul Valley."
+            },
+            {
+              "name": "Sarchu",
+              "lat": 32.9061,
+              "lng": 77.5833,
+              "day": 6,
+              "note": "Freezing winds at 14,000 ft border camp."
+            },
+            {
+              "name": "Leh, Ladakh",
+              "lat": 34.1526,
+              "lng": 77.5771,
+              "day": 7,
+              "note": "Himalayan base camp reached."
+            },
+            {
+              "name": "Khardung La Pass",
+              "lat": 34.2787,
+              "lng": 77.6047,
+              "day": 9,
+              "note": "Summit at 17,590 ft altitude."
+            },
+            {
+              "name": "Pangong Tso",
+              "lat": 33.7595,
+              "lng": 78.6674,
+              "day": 11,
+              "note": "Endorheic salt lake at 14,270 ft."
+            }
           ]
         },
         "highlights": [
@@ -523,13 +861,55 @@
           "Maintained 100% mechanical reliability across 3,850 km of rugged mountain terrain."
         ],
         "dayByDay": [
-          { "day": 1, "from": "Patna", "to": "Varanasi", "km": 260, "note": "Early morning start avoiding highway traffic." },
-          { "day": 2, "from": "Varanasi", "to": "Agra / Delhi", "km": 720, "note": "Longest single-day highway marathon." },
-          { "day": 3, "from": "Delhi", "to": "Manali", "km": 540, "note": "Transitioning from plains to mountain foothills." },
-          { "day": 4, "from": "Manali", "to": "Jispa", "km": 140, "note": "Crossing through Atal Tunnel into Lahaul." },
-          { "day": 5, "from": "Jispa", "to": "Sarchu", "km": 115, "note": "Baralacha La pass crossing at 16,040 ft." },
-          { "day": 6, "from": "Sarchu", "to": "Leh", "km": 250, "note": "Gata Loops and More Plains crossing." },
-          { "day": 7, "from": "Leh", "to": "Khardung La", "km": 80, "note": "Ascended to the highest motorable road." }
+          {
+            "day": 1,
+            "from": "Patna",
+            "to": "Varanasi",
+            "km": 260,
+            "note": "Early morning start avoiding highway traffic."
+          },
+          {
+            "day": 2,
+            "from": "Varanasi",
+            "to": "Agra / Delhi",
+            "km": 720,
+            "note": "Longest single-day highway marathon."
+          },
+          {
+            "day": 3,
+            "from": "Delhi",
+            "to": "Manali",
+            "km": 540,
+            "note": "Transitioning from plains to mountain foothills."
+          },
+          {
+            "day": 4,
+            "from": "Manali",
+            "to": "Jispa",
+            "km": 140,
+            "note": "Crossing through Atal Tunnel into Lahaul."
+          },
+          {
+            "day": 5,
+            "from": "Jispa",
+            "to": "Sarchu",
+            "km": 115,
+            "note": "Baralacha La pass crossing at 16,040 ft."
+          },
+          {
+            "day": 6,
+            "from": "Sarchu",
+            "to": "Leh",
+            "km": 250,
+            "note": "Gata Loops and More Plains crossing."
+          },
+          {
+            "day": 7,
+            "from": "Leh",
+            "to": "Khardung La",
+            "km": 80,
+            "note": "Ascended to the highest motorable road."
+          }
         ],
         "gallery": [],
         "videos": [],
@@ -566,14 +946,62 @@
           "geojsonFile": null,
           "gpxFile": null,
           "waypoints": [
-            { "name": "Patna", "lat": 25.5941, "lng": 85.1376, "day": 1, "note": "Start southward." },
-            { "name": "Ranchi", "lat": 23.3441, "lng": 85.3096, "day": 1, "note": "Chota Nagpur plateau ascent." },
-            { "name": "Raipur", "lat": 21.2514, "lng": 81.6296, "day": 3, "note": "Chhattisgarh transit." },
-            { "name": "Hyderabad", "lat": 17.3850, "lng": 78.4867, "day": 5, "note": "Deccan highway intersection." },
-            { "name": "Bengaluru", "lat": 12.9716, "lng": 77.5946, "day": 8, "note": "Technical maintenance check." },
-            { "name": "Madurai", "lat": 9.9252, "lng": 78.1198, "day": 10, "note": "Tamil heartland." },
-            { "name": "Pamban Sea Bridge", "lat": 9.2789, "lng": 79.2062, "day": 11, "note": "Ocean sea crossing on two wheels." },
-            { "name": "Dhanushkodi", "lat": 9.1783, "lng": 79.4183, "day": 12, "note": "Edge of the Indian map reached." }
+            {
+              "name": "Patna",
+              "lat": 25.5941,
+              "lng": 85.1376,
+              "day": 1,
+              "note": "Start southward."
+            },
+            {
+              "name": "Ranchi",
+              "lat": 23.3441,
+              "lng": 85.3096,
+              "day": 1,
+              "note": "Chota Nagpur plateau ascent."
+            },
+            {
+              "name": "Raipur",
+              "lat": 21.2514,
+              "lng": 81.6296,
+              "day": 3,
+              "note": "Chhattisgarh transit."
+            },
+            {
+              "name": "Hyderabad",
+              "lat": 17.3850,
+              "lng": 78.4867,
+              "day": 5,
+              "note": "Deccan highway intersection."
+            },
+            {
+              "name": "Bengaluru",
+              "lat": 12.9716,
+              "lng": 77.5946,
+              "day": 8,
+              "note": "Technical maintenance check."
+            },
+            {
+              "name": "Madurai",
+              "lat": 9.9252,
+              "lng": 78.1198,
+              "day": 10,
+              "note": "Tamil heartland."
+            },
+            {
+              "name": "Pamban Sea Bridge",
+              "lat": 9.2789,
+              "lng": 79.2062,
+              "day": 11,
+              "note": "Ocean sea crossing on two wheels."
+            },
+            {
+              "name": "Dhanushkodi",
+              "lat": 9.1783,
+              "lng": 79.4183,
+              "day": 12,
+              "note": "Edge of the Indian map reached."
+            }
           ]
         },
         "highlights": [
@@ -583,12 +1011,48 @@
           "Zero chain drops or tire failures thanks to strict 500 km maintenance protocols."
         ],
         "dayByDay": [
-          { "day": 1, "from": "Patna", "to": "Ranchi", "km": 330, "note": "Scenic highway through Jharkhand." },
-          { "day": 2, "from": "Ranchi", "to": "Raipur", "km": 560, "note": "Dense forest corridors." },
-          { "day": 3, "from": "Raipur", "to": "Hyderabad", "km": 680, "note": "Long dry southern stretch." },
-          { "day": 4, "from": "Hyderabad", "to": "Bengaluru", "km": 570, "note": "Smooth NH44 4-lane blacktop." },
-          { "day": 5, "from": "Bengaluru", "to": "Madurai", "km": 435, "note": "Passing windmills and coconut groves." },
-          { "day": 6, "from": "Madurai", "to": "Rameshwaram", "km": 170, "note": "Arrival at the Indian Ocean." }
+          {
+            "day": 1,
+            "from": "Patna",
+            "to": "Ranchi",
+            "km": 330,
+            "note": "Scenic highway through Jharkhand."
+          },
+          {
+            "day": 2,
+            "from": "Ranchi",
+            "to": "Raipur",
+            "km": 560,
+            "note": "Dense forest corridors."
+          },
+          {
+            "day": 3,
+            "from": "Raipur",
+            "to": "Hyderabad",
+            "km": 680,
+            "note": "Long dry southern stretch."
+          },
+          {
+            "day": 4,
+            "from": "Hyderabad",
+            "to": "Bengaluru",
+            "km": 570,
+            "note": "Smooth NH44 4-lane blacktop."
+          },
+          {
+            "day": 5,
+            "from": "Bengaluru",
+            "to": "Madurai",
+            "km": 435,
+            "note": "Passing windmills and coconut groves."
+          },
+          {
+            "day": 6,
+            "from": "Madurai",
+            "to": "Rameshwaram",
+            "km": 170,
+            "note": "Arrival at the Indian Ocean."
+          }
         ],
         "gallery": [],
         "videos": [],
@@ -655,10 +1119,26 @@
         }
       ],
       "telemetryStats": [
-        { "label": "Top Solo Odometer", "value": "15,480 KM", "subtext": "Logged across 14 states" },
-        { "label": "Highest Elevation Summit", "value": "17,590 FT", "subtext": "Khardung La Pass, Ladakh" },
-        { "label": "Lowest Route Point", "value": "0 FT", "subtext": "Pamban Sea Bridge, Tamil Nadu" },
-        { "label": "Mechanical Breakdown", "value": "0 Issues", "subtext": "100% mechanical reliability" }
+        {
+          "label": "Top Solo Odometer",
+          "value": "15,480 KM",
+          "subtext": "Logged across 14 states"
+        },
+        {
+          "label": "Highest Elevation Summit",
+          "value": "17,590 FT",
+          "subtext": "Khardung La Pass, Ladakh"
+        },
+        {
+          "label": "Lowest Route Point",
+          "value": "0 FT",
+          "subtext": "Pamban Sea Bridge, Tamil Nadu"
+        },
+        {
+          "label": "Mechanical Breakdown",
+          "value": "0 Issues",
+          "subtext": "100% mechanical reliability"
+        }
       ]
     },
     "gearItems": [
@@ -782,19 +1262,58 @@
           "Field testing cold-weather engine thermal management and air filtration in Spiti desert dust."
         ],
         "checkpoints": [
-          { "point": "Patna Flag-Off", "altitude": "53 m", "note": "Plains transit through Uttar Pradesh." },
-          { "point": "Shimla & Narkanda", "altitude": "2,708 m", "note": "Himalayan gateway & mountain baseline." },
-          { "point": "Kalpa & Kinnaur Valley", "altitude": "2,960 m", "note": "Cliff corridors alongside the roaring Satluj river." },
-          { "point": "Kaza (Spiti Capital)", "altitude": "3,650 m", "note": "High-altitude desert base camp & monastery plateaus." },
-          { "point": "Kunzum La Summit", "altitude": "4,551 m", "note": "High mountain pass linking Spiti to Lahaul." },
-          { "point": "Sach Pass Summit", "altitude": "4,414 m", "note": "Treacherous unpaved rocky cliff-hangers." }
+          {
+            "point": "Patna Flag-Off",
+            "altitude": "53 m",
+            "note": "Plains transit through Uttar Pradesh."
+          },
+          {
+            "point": "Shimla & Narkanda",
+            "altitude": "2,708 m",
+            "note": "Himalayan gateway & mountain baseline."
+          },
+          {
+            "point": "Kalpa & Kinnaur Valley",
+            "altitude": "2,960 m",
+            "note": "Cliff corridors alongside the roaring Satluj river."
+          },
+          {
+            "point": "Kaza (Spiti Capital)",
+            "altitude": "3,650 m",
+            "note": "High-altitude desert base camp & monastery plateaus."
+          },
+          {
+            "point": "Kunzum La Summit",
+            "altitude": "4,551 m",
+            "note": "High mountain pass linking Spiti to Lahaul."
+          },
+          {
+            "point": "Sach Pass Summit",
+            "altitude": "4,414 m",
+            "note": "Treacherous unpaved rocky cliff-hangers."
+          }
         ],
         "preparationList": [
-          { "task": "Physical high-altitude respiratory endurance training", "done": true },
-          { "task": "Royal Enfield Meteor 350 heavy-duty sump bash plate installed", "done": true },
-          { "task": "Auxiliary high-penetration amber fog illumination wired", "done": true },
-          { "task": "Inner-line permits & Pangi Valley road status monitoring", "done": false },
-          { "task": "Satellite SOS beacon & high-altitude emergency oxygen canister", "done": false }
+          {
+            "task": "Physical high-altitude respiratory endurance training",
+            "done": true
+          },
+          {
+            "task": "Royal Enfield Meteor 350 heavy-duty sump bash plate installed",
+            "done": true
+          },
+          {
+            "task": "Auxiliary high-penetration amber fog illumination wired",
+            "done": true
+          },
+          {
+            "task": "Inner-line permits & Pangi Valley road status monitoring",
+            "done": false
+          },
+          {
+            "task": "Satellite SOS beacon & high-altitude emergency oxygen canister",
+            "done": false
+          }
         ]
       },
       {
@@ -819,17 +1338,49 @@
           "Experiencing Bhutan's Carbon-Negative roads and preservation-first mountain ethos."
         ],
         "checkpoints": [
-          { "point": "Patna Flag-Off", "altitude": "53 m", "note": "Eastbound transit across Bihar." },
-          { "point": "Siliguri & Dooars", "altitude": "122 m", "note": "Tea garden highways at the foothills." },
-          { "point": "Phuentsholing Border", "altitude": "293 m", "note": "Border entry & motorcycle immigration." },
-          { "point": "Thimphu", "altitude": "2,334 m", "note": "Capital city in alpine valley." },
-          { "point": "Chele La Pass", "altitude": "3,988 m", "note": "Highest motorable mountain pass in Bhutan." }
+          {
+            "point": "Patna Flag-Off",
+            "altitude": "53 m",
+            "note": "Eastbound transit across Bihar."
+          },
+          {
+            "point": "Siliguri & Dooars",
+            "altitude": "122 m",
+            "note": "Tea garden highways at the foothills."
+          },
+          {
+            "point": "Phuentsholing Border",
+            "altitude": "293 m",
+            "note": "Border entry & motorcycle immigration."
+          },
+          {
+            "point": "Thimphu",
+            "altitude": "2,334 m",
+            "note": "Capital city in alpine valley."
+          },
+          {
+            "point": "Chele La Pass",
+            "altitude": "3,988 m",
+            "note": "Highest motorable mountain pass in Bhutan."
+          }
         ],
         "preparationList": [
-          { "task": "Overland motorcycle international entry permit documentation", "done": false },
-          { "task": "Route mapping across Paro, Punakha, and Dochula Pass", "done": true },
-          { "task": "Mandatory local licensed motorcycle guide coordination", "done": false },
-          { "task": "Cold-weather rain gear and high-altitude thermal loadout", "done": true }
+          {
+            "task": "Overland motorcycle international entry permit documentation",
+            "done": false
+          },
+          {
+            "task": "Route mapping across Paro, Punakha, and Dochula Pass",
+            "done": true
+          },
+          {
+            "task": "Mandatory local licensed motorcycle guide coordination",
+            "done": false
+          },
+          {
+            "task": "Cold-weather rain gear and high-altitude thermal loadout",
+            "done": true
+          }
         ]
       }
     ],
@@ -851,18 +1402,23 @@
     },
     "cta": {
       "label": "Follow the rides",
-      "links": ["instagram", "youtube"]
+      "links": [
+        "instagram",
+        "youtube"
+      ]
     }
   },
-
   "contact": {
     "heading": "Let's build something",
     "subheading": "Open to interesting engineering conversations, collaborations and ride stories.",
     "email": "sahsisunny@gmail.com",
-    "form": { "enabled": true, "provider": "formspree-or-resend", "spamProtection": "honeypot+rate-limit" },
+    "form": {
+      "enabled": true,
+      "provider": "formspree-or-resend",
+      "spamProtection": "honeypot+rate-limit"
+    },
     "responseTime": null
   },
-
   "now": {
     "updated": "2026-11",
     "items": [
@@ -872,25 +1428,38 @@
       "Planning the next ride and editing footage from the last ones."
     ]
   },
-
   "tools": {
     "_note": "Powers an optional /uses page.",
-    "ai": ["Claude", "Cursor", "Antigravity"],
-    "dev": ["Git, GitHub, GitLab", "Linux", "VS Code or Cursor"],
+    "ai": [
+      "Claude",
+      "Cursor",
+      "Antigravity"
+    ],
+    "dev": [
+      "Git, GitHub, GitLab",
+      "Linux",
+      "VS Code or Cursor"
+    ],
     "hardware": [],
     "riding": []
   },
-
   "testimonials": [],
-
   "seo": {
     "jsonLd": {
       "@type": "Person",
       "name": "Sunny Sahsi",
       "jobTitle": "Associate Full Stack Developer",
-      "worksFor": { "@type": "Organization", "name": "Fountane Inc." },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Fountane Inc."
+      },
       "alumniOf": "Patna University",
-      "address": { "@type": "PostalAddress", "addressLocality": "Patna", "addressRegion": "Bihar", "addressCountry": "IN" },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Patna",
+        "addressRegion": "Bihar",
+        "addressCountry": "IN"
+      },
       "sameAs": [
         "https://www.linkedin.com/in/sahsisunny/",
         "https://www.github.com/sahsisunny",

@@ -218,65 +218,65 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const faqJsonLd = isMcpArticle
     ? {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "What is the Hotel PMS MCP tool server?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "It is a Model Context Protocol remote tool server that enables external AI environments like Claude Code and Cursor to query hotel PMS data with zero client prompts, strict OAuth token exchange, and enforced server-side RBAC.",
-            },
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What is the Hotel PMS MCP tool server?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "It is a Model Context Protocol remote tool server that enables external AI environments like Claude Code and Cursor to query hotel PMS data with zero client prompts, strict OAuth token exchange, and enforced server-side RBAC.",
           },
-          {
-            "@type": "Question",
-            name: "How does the MCP tool server prevent cross-property data leaks?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "The tool server injects the verified propertyId directly from the caller's 120-second delegated JWT, preventing external models from specifying or altering property scopes in tool arguments.",
-            },
+        },
+        {
+          "@type": "Question",
+          name: "How does the MCP tool server prevent cross-property data leaks?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "The tool server injects the verified propertyId directly from the caller's 120-second delegated JWT, preventing external models from specifying or altering property scopes in tool arguments.",
           },
-          {
-            "@type": "Question",
-            name: "Why is the hotel PMS MCP server read-only?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "External models run under their own prompts and reasoning loops. Limiting MCP tools to read-only queries guarantees that third-party AI agents cannot execute unintended mutations against hotel reservation or folio states.",
-            },
+        },
+        {
+          "@type": "Question",
+          name: "Why is the hotel PMS MCP server read-only?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "External models run under their own prompts and reasoning loops. Limiting MCP tools to read-only queries guarantees that third-party AI agents cannot execute unintended mutations against hotel reservation or folio states.",
           },
-        ],
-      }
+        },
+      ],
+    }
     : {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "What is the hotel PMS AI orchestrator's core architectural role?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "It acts as a Go-based orchestration layer connecting hotel staff with hundreds of PMS microservice endpoints while strictly confining queries to a single property scope and caller RBAC permissions.",
-            },
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What is the hotel PMS AI orchestrator's core architectural role?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "It acts as a Go-based orchestration layer connecting hotel staff with hundreds of PMS microservice endpoints while strictly confining queries to a single property scope and caller RBAC permissions.",
           },
-          {
-            "@type": "Question",
-            name: "How does the AI orchestrator enforce zero-trust security without trusting the LLM?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Security invariants are verified on the server: session tokens lock the propertyId, OpenAPI endpoints are filtered by verified permissions, and numbers are returned via raw JSON passthrough rather than model generation.",
-            },
+        },
+        {
+          "@type": "Question",
+          name: "How does the AI orchestrator enforce zero-trust security without trusting the LLM?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Security invariants are verified on the server: session tokens lock the propertyId, OpenAPI endpoints are filtered by verified permissions, and numbers are returned via raw JSON passthrough rather than model generation.",
           },
-          {
-            "@type": "Question",
-            name: "How do scheduled background automations run in the orchestrator?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Automations execute using revocable delegated grants with short-lived tokens, running morning briefings and ledger checks without requiring users to maintain active browser sessions.",
-            },
+        },
+        {
+          "@type": "Question",
+          name: "How do scheduled background automations run in the orchestrator?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Automations execute using revocable delegated grants with short-lived tokens, running morning briefings and ledger checks without requiring users to maintain active browser sessions.",
           },
-        ],
-      };
+        },
+      ],
+    };
 
   return (
     <>
@@ -393,7 +393,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <li className="flex items-start gap-2 aeo-key-takeaway">
                     <span className="text-accent font-mono font-bold select-none">•</span>
                     <span>
-                      <strong>Deterministic Tool Execution:</strong> 200+ OpenAPI endpoints are dynamically pruned to domain-specific candidates, eliminating tool hallucinations.
+                      <strong>Deterministic Tool Execution:</strong> 600+ OpenAPI endpoints are dynamically pruned to domain-specific candidates, eliminating tool hallucinations.
                     </span>
                   </li>
                   <li className="flex items-start gap-2 aeo-key-takeaway">

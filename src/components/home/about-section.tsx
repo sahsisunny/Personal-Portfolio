@@ -31,7 +31,7 @@ export function AboutSection({ person }: AboutSectionProps) {
             <Sparkles className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
             <div className="text-xs sm:text-sm text-text font-mono leading-relaxed">
               <strong className="text-accent font-bold">Current Focus:</strong> Orchestrating
-              LLM agents over 200+ internal backend APIs at Fountane, with strict verification
+              LLM agents over 600+ internal backend APIs at Fountane, with strict verification
               and time-window accuracy.
             </div>
           </div>

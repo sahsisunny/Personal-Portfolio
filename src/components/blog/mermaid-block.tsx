@@ -399,7 +399,7 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
             </button>
           </div>
 
-          {/* Full Screen Button */}
+          {/* Enlarge Modal Button */}
           {activeTab === "diagram" && !error && svgHtml && (
             <button
               type="button"
@@ -408,11 +408,11 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
                 setZoomLevel(1);
               }}
               className="flex items-center gap-1 rounded-md px-2 py-1 text-xs font-mono text-muted hover:text-accent hover:bg-surface border border-transparent hover:border-border transition-colors"
-              title="View full screen or large size"
-              aria-label="View diagram in full screen"
+              title="View in large modal window"
+              aria-label="View diagram in large modal"
             >
               <Maximize2 className="w-3 h-3 text-accent" />
-              <span className="hidden sm:inline text-[11px]">Full Screen</span>
+              <span className="hidden sm:inline text-[11px]">Enlarge</span>
             </button>
           )}
 
@@ -450,11 +450,11 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
                 setZoomLevel(1);
               }}
               className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center gap-1.5 rounded-lg bg-surface/90 hover:bg-surface border border-border px-2.5 py-1 text-xs font-mono text-muted hover:text-accent shadow-xs backdrop-blur-xs hover:scale-105"
-              title="Expand to Full Screen / Large Size"
-              aria-label="Expand diagram"
+              title="Open in Large Modal"
+              aria-label="Enlarge diagram"
             >
               <Maximize2 className="w-3.5 h-3.5 text-accent" />
-              <span className="text-[11px] font-medium">Expand</span>
+              <span className="text-[11px] font-medium">Enlarge</span>
             </button>
           )}
 
@@ -485,125 +485,133 @@ export function MermaidBlock({ code }: MermaidBlockProps) {
         </div>
       )}
 
-      {/* Fullscreen Interactive Modal */}
+      {/* Centered Large-View Modal with Dark Backdrop */}
       {isFullscreen && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Full screen diagram viewer"
-          className="fixed inset-0 z-50 flex flex-col bg-bg/95 backdrop-blur-md animate-in fade-in duration-200"
+          aria-label="Expanded diagram modal"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setIsFullscreen(false);
+            }
+          }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200"
         >
-          {/* Fullscreen Top Navigation Bar */}
-          <div className="flex items-center justify-between border-b border-border bg-surface px-4 py-3 sm:px-6 shadow-xs">
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 rounded-lg bg-accent/10 border border-accent/20">
-                <Workflow className="w-4 h-4 text-accent" />
+          {/* Centered Modal Container */}
+          <div className="relative w-full max-w-6xl h-[85vh] max-h-[850px] flex flex-col rounded-2xl border border-border bg-surface shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200">
+            {/* Modal Top Navigation Bar */}
+            <div className="flex items-center justify-between border-b border-border bg-surface px-4 py-3 sm:px-6 shadow-xs flex-shrink-0">
+              <div className="flex items-center gap-2.5">
+                <div className="p-1.5 rounded-lg bg-accent/10 border border-accent/20">
+                  <Workflow className="w-4 h-4 text-accent" />
+                </div>
+                <div>
+                  <span className="font-mono text-xs sm:text-sm font-bold text-text block">
+                    Architecture Diagram
+                  </span>
+                  <span className="text-[10px] font-mono text-muted">
+                    Expanded Modal View
+                  </span>
+                </div>
               </div>
-              <div>
-                <span className="font-mono text-xs sm:text-sm font-bold text-text block">
-                  Architecture Diagram
-                </span>
-                <span className="text-[10px] font-mono text-muted">
-                  Interactive Large Size View
-                </span>
+
+              <div className="flex items-center gap-2 sm:gap-3">
+                {/* Zoom Controls */}
+                <div className="flex items-center rounded-lg border border-border bg-surface-2/60 p-0.5 text-xs font-mono">
+                  <button
+                    type="button"
+                    onClick={() => setZoomLevel((z) => Math.max(0.4, Number((z - 0.2).toFixed(2))))}
+                    className="p-1.5 rounded hover:bg-surface text-muted hover:text-text transition-colors"
+                    title="Zoom Out"
+                    aria-label="Zoom out"
+                  >
+                    <ZoomOut className="w-4 h-4" />
+                  </button>
+                  <span className="px-2 font-mono text-xs text-text font-semibold select-none min-w-[50px] text-center">
+                    {Math.round(zoomLevel * 100)}%
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setZoomLevel((z) => Math.min(3, Number((z + 0.2).toFixed(2))))}
+                    className="p-1.5 rounded hover:bg-surface text-muted hover:text-text transition-colors"
+                    title="Zoom In"
+                    aria-label="Zoom in"
+                  >
+                    <ZoomIn className="w-4 h-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setZoomLevel(1)}
+                    className="p-1.5 rounded hover:bg-surface text-muted hover:text-text transition-colors border-l border-border/60 ml-0.5"
+                    title="Reset Zoom to 100%"
+                    aria-label="Reset zoom"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+
+                {/* Copy Diagram Source */}
+                <button
+                  type="button"
+                  onClick={handleCopy}
+                  className="hidden sm:flex items-center gap-1.5 rounded-lg border border-border bg-surface px-3 py-1.5 text-xs font-mono text-muted hover:text-text hover:border-accent/40 transition-colors"
+                  title="Copy diagram code"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="text-emerald-400 font-medium">Copied</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
+
+                {/* Close Button */}
+                <button
+                  type="button"
+                  onClick={() => setIsFullscreen(false)}
+                  className="flex items-center gap-1.5 rounded-lg bg-surface border border-border px-3 py-1.5 text-xs font-mono text-muted hover:text-accent hover:border-accent transition-colors"
+                  title="Close modal view (Esc)"
+                  aria-label="Close modal"
+                >
+                  <X className="w-4 h-4" />
+                  <span className="hidden sm:inline">Close</span>
+                  <kbd className="hidden md:inline text-[10px] px-1 py-0.5 rounded bg-surface-2 border border-border ml-1">
+                    ESC
+                  </kbd>
+                </button>
               </div>
             </div>
 
-            <div className="flex items-center gap-2 sm:gap-4">
-              {/* Zoom Controls */}
-              <div className="flex items-center rounded-lg border border-border bg-surface-2/60 p-0.5 text-xs font-mono">
-                <button
-                  type="button"
-                  onClick={() => setZoomLevel((z) => Math.max(0.4, Number((z - 0.2).toFixed(2))))}
-                  className="p-1.5 rounded hover:bg-surface text-muted hover:text-text transition-colors"
-                  title="Zoom Out"
-                  aria-label="Zoom out"
-                >
-                  <ZoomOut className="w-4 h-4" />
-                </button>
-                <span className="px-2 font-mono text-xs text-text font-semibold select-none min-w-[50px] text-center">
-                  {Math.round(zoomLevel * 100)}%
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setZoomLevel((z) => Math.min(3, Number((z + 0.2).toFixed(2))))}
-                  className="p-1.5 rounded hover:bg-surface text-muted hover:text-text transition-colors"
-                  title="Zoom In"
-                  aria-label="Zoom in"
-                >
-                  <ZoomIn className="w-4 h-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setZoomLevel(1)}
-                  className="p-1.5 rounded hover:bg-surface text-muted hover:text-text transition-colors border-l border-border/60 ml-0.5"
-                  title="Reset Zoom to 100%"
-                  aria-label="Reset zoom"
-                >
-                  <RotateCcw className="w-3.5 h-3.5" />
-                </button>
-              </div>
-
-              {/* Copy Diagram Source */}
-              <button
-                type="button"
-                onClick={handleCopy}
-                className="hidden sm:flex items-center gap-1.5 rounded-lg border border-border bg-surface px-3 py-1.5 text-xs font-mono text-muted hover:text-text hover:border-accent/40 transition-colors"
-                title="Copy diagram code"
-              >
-                {copied ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-emerald-400 font-medium">Copied</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>Copy</span>
-                  </>
-                )}
-              </button>
-
-              {/* Close Button */}
-              <button
-                type="button"
-                onClick={() => setIsFullscreen(false)}
-                className="flex items-center gap-1.5 rounded-lg bg-surface border border-border px-3 py-1.5 text-xs font-mono text-muted hover:text-accent hover:border-accent transition-colors"
-                title="Close fullscreen view (Esc)"
-                aria-label="Close fullscreen"
-              >
-                <X className="w-4 h-4" />
-                <span className="hidden sm:inline">Close</span>
-                <kbd className="hidden md:inline text-[10px] px-1 py-0.5 rounded bg-surface-2 border border-border ml-1">
-                  ESC
-                </kbd>
-              </button>
-            </div>
-          </div>
-
-          {/* Fullscreen Canvas */}
-          <div
-            className="flex-1 overflow-auto p-4 sm:p-10 flex items-center justify-center cursor-default bg-surface/30"
-            onClick={(e) => {
-              if (e.target === e.currentTarget) {
-                setIsFullscreen(false);
-              }
-            }}
-          >
+            {/* Modal Canvas Body */}
             <div
-              className="mermaid-svg-container transition-transform duration-150 ease-out flex justify-center [&_svg]:max-w-none [&_svg]:h-auto [&_svg]:rounded-xl [&_svg]:drop-shadow-2xl"
-              style={{
-                transform: `scale(${zoomLevel})`,
-                transformOrigin: "center center",
+              className="flex-1 overflow-auto p-4 sm:p-8 flex items-center justify-center cursor-default bg-surface-2/30"
+              onClick={(e) => {
+                if (e.target === e.currentTarget) {
+                  setIsFullscreen(false);
+                }
               }}
-              dangerouslySetInnerHTML={{ __html: svgHtml }}
-            />
-          </div>
+            >
+              <div
+                className="mermaid-svg-container transition-transform duration-150 ease-out flex justify-center [&_svg]:max-w-none [&_svg]:h-auto [&_svg]:rounded-xl [&_svg]:drop-shadow-lg"
+                style={{
+                  transform: `scale(${zoomLevel})`,
+                  transformOrigin: "center center",
+                }}
+                dangerouslySetInnerHTML={{ __html: svgHtml }}
+              />
+            </div>
 
-          {/* Footer Bar */}
-          <div className="flex items-center justify-between border-t border-border bg-surface/80 px-4 py-2 text-[11px] font-mono text-muted">
-            <span>Use +/- or zoom controls to scale up to 300%. Scroll to pan freely.</span>
-            <span>Press <kbd className="px-1 py-0.5 rounded bg-surface-2 border border-border">ESC</kbd> or click Close to return</span>
+            {/* Modal Footer Bar */}
+            <div className="flex items-center justify-between border-t border-border bg-surface/90 px-4 py-2.5 text-[11px] font-mono text-muted flex-shrink-0">
+              <span>Use +/- buttons to zoom up to 300%. Scroll to pan freely.</span>
+              <span>Click outside or press <kbd className="px-1 py-0.5 rounded bg-surface-2 border border-border">ESC</kbd> to close</span>
+            </div>
           </div>
         </div>
       )}
