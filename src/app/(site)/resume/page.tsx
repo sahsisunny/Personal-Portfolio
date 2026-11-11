@@ -137,13 +137,13 @@ export default function ResumePage() {
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <div className="flex items-center gap-3">
                       {exp.logo && (
-                        <div className="relative flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-border bg-surface-2 p-1 overflow-hidden print:hidden">
+                        <div className="relative flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-border bg-white p-1 overflow-hidden print:hidden">
                           <Image
                             src={exp.logo}
                             alt={`${exp.company} logo`}
                             width={32}
                             height={32}
-                            className="h-full w-full object-contain"
+                            className="h-full w-full object-contain bg-white"
                           />
                         </div>
                       )}
@@ -235,13 +235,13 @@ export default function ResumePage() {
               <div key={edu.id} className="flex justify-between items-start gap-4 text-xs">
                 <div className="flex items-center gap-3">
                   {edu.logo && (
-                    <div className="relative flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-border bg-surface-2 p-1 overflow-hidden print:hidden">
+                    <div className="relative flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-border bg-white p-1 overflow-hidden print:hidden">
                       <Image
                         src={edu.logo}
                         alt={`${edu.institution} logo`}
                         width={32}
                         height={32}
-                        className="h-full w-full object-contain"
+                        className="h-full w-full object-contain bg-white"
                       />
                     </div>
                   )}

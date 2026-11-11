@@ -225,14 +225,14 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
                     <div className="flex items-start gap-3.5 sm:gap-4 min-w-0">
                       {/* Company Logo */}
-                      <div className="relative flex h-12 w-12 sm:h-14 sm:w-14 flex-shrink-0 items-center justify-center rounded-xl border border-border bg-surface-2 overflow-hidden shadow-xs p-1.5">
+                      <div className="relative flex h-12 w-12 sm:h-14 sm:w-14 flex-shrink-0 items-center justify-center rounded-xl border border-border bg-white overflow-hidden shadow-xs p-1.5">
                         {exp.logo ? (
                           <Image
                             src={exp.logo}
                             alt={`${exp.company} logo`}
                             width={56}
                             height={56}
-                            className="h-full w-full object-contain rounded-lg"
+                            className="h-full w-full object-contain rounded-lg bg-white"
                           />
                         ) : (
                           <Building2 className="w-6 h-6 text-muted" />

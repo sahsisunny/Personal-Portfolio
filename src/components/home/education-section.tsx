@@ -39,14 +39,14 @@ export function EducationSection({ education }: EducationSectionProps) {
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-5 sm:gap-6">
                 <div className="flex items-start gap-3.5 sm:gap-5 min-w-0">
                   {/* University Logo */}
-                  <div className="relative flex h-12 w-12 sm:h-16 sm:w-16 flex-shrink-0 items-center justify-center rounded-2xl border border-border bg-surface-2 overflow-hidden shadow-xs p-1.5">
+                  <div className="relative flex h-12 w-12 sm:h-16 sm:w-16 flex-shrink-0 items-center justify-center rounded-2xl border border-border bg-white overflow-hidden shadow-xs p-1.5">
                     {edu.logo ? (
                       <Image
                         src={edu.logo}
                         alt={`${edu.institution} logo`}
                         width={64}
                         height={64}
-                        className="h-full w-full object-contain rounded-xl"
+                        className="h-full w-full object-contain rounded-xl bg-white"
                       />
                     ) : (
                       <GraduationCap className="w-8 h-8 text-accent" />

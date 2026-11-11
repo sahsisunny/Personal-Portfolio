@@ -31,13 +31,13 @@ export function OpenSourceSection({ openSource }: OpenSourceSectionProps) {
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 border-b border-border/60 pb-4">
                 <div className="flex items-center gap-3.5">
-                  <div className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-border bg-surface-2 overflow-hidden shadow-xs p-1">
+                  <div className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-border bg-white overflow-hidden shadow-xs p-1">
                     <Image
                       src="/images/logos/rds.png"
                       alt={`${item.org} logo`}
                       width={48}
                       height={48}
-                      className="h-full w-full object-contain rounded-lg"
+                      className="h-full w-full object-contain rounded-lg bg-white"
                     />
                   </div>
                   <div>
