@@ -148,7 +148,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-x-0 top-16 bottom-0 z-50 flex flex-col justify-between border-t border-border bg-surface/98 p-6 backdrop-blur-xl lg:hidden overflow-y-auto"
+          className="fixed left-0 right-0 top-16 bottom-0 z-50 flex flex-col justify-between border-t border-border bg-surface p-6 shadow-2xl lg:hidden overflow-y-auto"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation"
@@ -159,7 +159,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium text-text hover:bg-surface-2 hover:text-accent transition-colors"
+                className="flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium text-text bg-surface-2/60 hover:bg-surface-2 hover:text-accent transition-colors border border-border/50"
               >
                 <span>{link.label}</span>
                 <ArrowUpRight className="h-4 w-4 text-muted" />
@@ -171,7 +171,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
                 <Link
                   href="/rides"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-between rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3.5 text-base font-semibold text-amber-800 dark:text-amber-200"
+                  className="flex items-center justify-between rounded-lg border border-amber-500/40 bg-amber-500/15 px-4 py-3.5 text-base font-semibold text-amber-800 dark:text-amber-200"
                 >
                   <div className="flex items-center gap-2">
                     <Compass className="h-5 w-5 text-amber-600 dark:text-amber-400" />
@@ -188,7 +188,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
               <Link
                 href="/resume"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between rounded-lg border border-border px-4 py-3 text-base font-medium text-text hover:bg-surface-2"
+                className="flex items-center justify-between rounded-lg border border-border px-4 py-3 text-base font-medium text-text bg-surface-2/60 hover:bg-surface-2"
               >
                 <div className="flex items-center gap-2">
                   <FileText className="h-4 w-4 text-muted" />
@@ -199,7 +199,7 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
             )}
           </div>
 
-          <div className="pt-6 text-center text-xs text-muted border-t border-border">
+          <div className="pt-6 text-center text-xs text-muted font-mono border-t border-border">
             Patna, India • Remote Full Stack Developer
           </div>
         </div>
