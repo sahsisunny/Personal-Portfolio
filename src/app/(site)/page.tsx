@@ -29,14 +29,15 @@ import { ContactSection } from "@/components/home/contact-section";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Sunny Sahsi | Associate Full Stack Developer",
+    absolute: "Sunny Sahsi | Full Stack & Systems Engineer",
   },
   description:
-    "Sunny Sahsi is an Associate Full Stack Developer building scalable web apps with Next.js, high-performance Go backends, and AI chatbot agents.",
+    "Sunny Sahsi is a Full Stack & Systems Engineer building scalable web apps with Next.js, high-performance Go backends, and enterprise AI agent orchestration platforms.",
   openGraph: {
-    title: "Sunny Sahsi | Associate Full Stack Developer",
+    title: "Sunny Sahsi | Full Stack & Systems Engineer",
     description:
-      "Sunny Sahsi is an Associate Full Stack Developer building scalable web apps with Next.js, high-performance Go backends, and AI chatbot agents.",
+      "Sunny Sahsi is a Full Stack & Systems Engineer building scalable web apps with Next.js, high-performance Go backends, and enterprise AI agent orchestration platforms.",
+    images: ["/og/default.png"],
   },
 };
 

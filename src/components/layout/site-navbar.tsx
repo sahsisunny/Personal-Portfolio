@@ -120,30 +120,14 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
           <ThemeToggle className="ml-1 flex-shrink-0" />
         </nav>
 
-        {/* Medium Screen Navigation (between md and lg) */}
-        <div className="hidden md:flex lg:hidden items-center gap-2">
-          {isEnabled(features?.projects) && (
-            <Link
-              href="/projects"
-              className="rounded-md px-2 py-1 text-xs font-medium text-muted hover:text-text"
-            >
-              Projects
-            </Link>
-          )}
-          {isEnabled(features?.blog) && (
-            <Link
-              href="/blog"
-              className="rounded-md px-2 py-1 text-xs font-medium text-muted hover:text-text"
-            >
-              Blog
-            </Link>
-          )}
+        {/* Mobile & Tablet controls (below lg): Theme toggle + Hamburger */}
+        <div className="flex items-center gap-2 lg:hidden">
           {isEnabled(features?.rides) && (
             <Link
               href="/rides"
-              className="inline-flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-300"
+              className="hidden sm:inline-flex items-center gap-1 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-xs font-medium text-amber-600 dark:text-amber-300 mr-1"
             >
-              <Compass className="w-3 h-3" />
+              <Compass className="w-3.5 h-3.5" />
               <span>Rides</span>
             </Link>
           )}
@@ -151,25 +135,11 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted hover:text-text hover:bg-surface-2 transition-colors"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted hover:text-text hover:bg-surface-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-          </button>
-        </div>
-
-        {/* Mobile controls: Theme toggle + Hamburger */}
-        <div className="flex items-center gap-2 md:hidden">
-          <ThemeToggle />
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-muted hover:text-text hover:bg-surface-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-            aria-expanded={mobileMenuOpen}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>

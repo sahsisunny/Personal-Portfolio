@@ -48,7 +48,7 @@ export function HeroSection({ person, socials, features }: HeroSectionProps) {
         </h1>
 
         <p className="mt-5 max-w-2xl text-base sm:text-lg text-muted leading-relaxed">
-          Hey, I&apos;m <strong className="text-text font-semibold">{person.name}</strong>, an <strong className="text-text font-semibold">{person.headline}</strong> based in {person.location}. {person.tagline}
+          Hey, I&apos;m <strong className="text-text font-semibold">{person.name}</strong>, a <strong className="text-text font-semibold">{person.headline}</strong> based in {person.location}. {person.tagline}
         </p>
 
         {/* Location & Remote metadata */}
@@ -64,19 +64,19 @@ export function HeroSection({ person, socials, features }: HeroSectionProps) {
           </span>
         </div>
 
-        {/* Key Developer Highlights Strip (Replaces bulky terminal with clean lightweight signals) */}
+        {/* Key Developer Highlights Strip */}
         <div className="mt-6 flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-2">
           <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
             ⚡ 2+ Yrs in Production
           </span>
           <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
-            🚀 600+ APIs Agent Orchestration
+            🤖 Multi-Service AI Orchestration (600+ Endpoints)
           </span>
           <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
             🛠️ Go + Next.js + TypeScript
           </span>
           <span className="rounded-lg bg-surface border border-border px-3 py-1 text-xs font-mono text-muted">
-            🏍️ 15,480 KM Solo Touring
+            🛡️ Zero-Trust RBAC &amp; Distributed Systems
           </span>
         </div>
 

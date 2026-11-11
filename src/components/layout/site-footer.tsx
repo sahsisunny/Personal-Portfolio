@@ -22,7 +22,7 @@ export function SiteFooter({ name, socials, email, features }: SiteFooterProps) 
           <div>
             <p className="text-sm font-semibold text-text">{name}</p>
             <p className="text-xs text-muted">
-              Full Stack Developer & Solo Rider • Next.js, Go & AI Agents
+              Full Stack & Systems Engineer • Next.js, TypeScript & Go
             </p>
           </div>
 
@@ -71,7 +71,7 @@ export function SiteFooter({ name, socials, email, features }: SiteFooterProps) 
           </div>
 
           <div className="flex items-center gap-4 text-xs text-muted">
-            <span>Built with Next.js & Go spirit</span>
+            <span>Built with Next.js &amp; Tailwind CSS</span>
             {(features?.rides ?? true) && (
               <>
                 <span>•</span>

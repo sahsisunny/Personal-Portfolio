@@ -8,9 +8,9 @@ import { PenLine } from "lucide-react";
 const BASE_URL = "https://sunnysahsi.com";
 
 export const metadata: Metadata = {
-  title: "Writing & Engineering Notes | Sunny Sahsi",
+  title: "Writing & Engineering Notes",
   description:
-    "Engineering reflections on Go backend architectures, AI agent orchestration across 600+ APIs, Model Context Protocol (MCP), and solo motorcycle touring.",
+    "Engineering reflections on Go backend architectures, enterprise AI agent orchestration across 600+ microservice endpoints, Model Context Protocol (MCP), and distributed systems.",
   keywords: [
     "Software Architecture",
     "Go Backend",
@@ -28,13 +28,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Writing & Engineering Notes | Sunny Sahsi",
     description:
-      "Deep dives into multi-service AI orchestration, zero-trust RBAC in hotel PMS, and building MCP tool servers for Claude & Cursor.",
+      "Deep dives into multi-service AI orchestration, zero-trust RBAC in enterprise platforms, and building MCP tool servers for Claude & Cursor.",
     url: `${BASE_URL}/blog`,
     type: "website",
     siteName: "Sunny Sahsi Portfolio",
     images: [
       {
-        url: `${BASE_URL}/images/og-default.svg`,
+        url: `${BASE_URL}/og/default.png`,
         width: 1200,
         height: 630,
         alt: "Sunny Sahsi Writing & Engineering Notes",
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Writing & Engineering Notes | Sunny Sahsi",
     description:
-      "Deep dives into multi-service AI orchestration, zero-trust RBAC in hotel PMS, and building MCP tool servers for Claude & Cursor.",
-    images: [`${BASE_URL}/images/og-default.svg`],
+      "Deep dives into multi-service AI orchestration, zero-trust RBAC in enterprise platforms, and building MCP tool servers for Claude & Cursor.",
+    images: [`${BASE_URL}/og/default.png`],
     creator: "@sahsisunny",
   },
 };

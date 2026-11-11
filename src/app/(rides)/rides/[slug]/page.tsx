@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${ride.title} | On Two Wheels | Sunny Sahsi`,
+    title: `${ride.title} | On Two Wheels`,
     description: ride.summary,
     openGraph: {
       title: `${ride.title} | On Two Wheels`,

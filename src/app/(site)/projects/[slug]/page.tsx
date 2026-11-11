@@ -56,11 +56,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ? typeof project.images[0] === "string"
       ? project.images[0]
       : project.images[0].src
-    : "/images/og-default.svg";
+    : "/og/default.png";
   const imageUrl = firstImg.startsWith("http") ? firstImg : `${BASE_URL}${firstImg}`;
 
   return {
-    title: `${project.title} | Case Study & Architecture | Sunny Sahsi`,
+    title: `${project.title} | Case Study & Architecture`,
     description: project.summary,
     keywords: [
       ...project.tech,

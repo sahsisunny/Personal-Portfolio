@@ -1,20 +1,21 @@
 ---
 title: "Building a Read-Only MCP Tool Server: Zero-Trust Enterprise Data Access for Claude, Cursor, and Beyond"
-slug: "hotel-pms-mcp-tool-server"
+slug: "enterprise-mcp-tool-server"
 date: "2026-11-10"
 summary: "Building a read-only Model Context Protocol (MCP) tool server for Claude and Cursor with edge OAuth, 120-second delegated JWTs, and zero-trust RBAC."
 description: "Building a read-only Model Context Protocol (MCP) tool server for Claude and Cursor with edge OAuth, 120-second delegated JWTs, and zero-trust RBAC."
 authors: ["Sunny Sahsi"]
 category: "AI"
-tags: ["mcp", "oauth", "security", "ai", "enterprise", "architecture", "templates"]
-cover: "/images/blog/hotel-pms-mcp-tool-server.svg"
-image: "/images/blog/hotel-pms-mcp-tool-server.svg"
+tags: ["mcp", "oauth", "security", "ai", "enterprise", "architecture"]
+aliases: ["hotel-pms-mcp-tool-server", "asi-genie-mcp-architecture"]
+cover: "/images/blog/enterprise-mcp-tool-server.svg"
+image: "/images/blog/enterprise-mcp-tool-server.svg"
 draft: false
 series: "Enterprise AI & Tool Architecture"
 series_order: 2
 ---
 
-_Companion to: [Inside an Enterprise AI Orchestrator: Multi-Service LLMs, Automation, and Zero-Trust Access](/blog/hotel-pms-ai-orchestrator)_
+_Companion to: [Inside an Enterprise AI Orchestrator: Multi-Service LLMs, Automation, and Zero-Trust Access](/blog/enterprise-ai-orchestrator)_
 
 ## TL;DR
 
@@ -56,7 +57,7 @@ flowchart LR
 
   Chat --> ENG["Shared: auth chain, tool filter, property inject, RBAC"]
   MCP --> ENG
-  ENG --> PMS["Downstream read APIs (Service 1-3)"]
+  ENG --> APIS["Downstream read APIs (Service 1-3)"]
 ```
 
 **Merit:** One orchestrator binary, one tool registry filter, one RBAC story.  
@@ -509,7 +510,7 @@ flowchart TB
   MCP --> POL
   ENG --> POL
   POL --> REG
-  REG --> PMS["Downstream microservices (Service 1-3)"]
+  REG --> APIS["Downstream microservices (Service 1-3)"]
   ENG --> RT["Scheduled routines<br/>grant-based automation"]
 ```
 

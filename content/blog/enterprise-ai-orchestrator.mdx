@@ -1,14 +1,15 @@
 ---
 title: "Inside an Enterprise AI Orchestrator: Multi-Service LLMs, Automation, and Zero-Trust Access"
-slug: "hotel-pms-ai-orchestrator"
+slug: "enterprise-ai-orchestrator"
 date: "2026-11-10"
 summary: "Inside a Go-based enterprise AI orchestrator answering team queries, running scheduled routines, and enforcing strict zero-trust RBAC without trusting the LLM."
 description: "Inside a Go-based enterprise AI orchestrator answering team queries, running scheduled routines, and enforcing strict zero-trust RBAC without trusting the LLM."
 authors: ["Sunny Sahsi"]
 category: "AI"
-tags: ["architecture", "ai", "go", "systems", "orchestration", "templates"]
-cover: "/images/blog/hotel-pms-ai-orchestrator.svg"
-image: "/images/blog/hotel-pms-ai-orchestrator.svg"
+tags: ["architecture", "ai", "go", "systems", "orchestration"]
+aliases: ["hotel-pms-ai-orchestrator", "asi-genie-architecture"]
+cover: "/images/blog/enterprise-ai-orchestrator.svg"
+image: "/images/blog/enterprise-ai-orchestrator.svg"
 draft: false
 ---
 
@@ -362,7 +363,7 @@ Feature flags are a **merit** for incremental delivery and a **demerit** when dr
 
 ## Roadmap teaser: external AI clients
 
-The same binary exposes a **second HTTP listener** designed for Model Context Protocol (MCP) clients: no in-house planner, OAuth at the edge, short-lived delegated tokens, and the **same read tool filter** as chat. That design gets its own deep dive in the companion article: _“[Building a Read-Only MCP Tool Server: Zero-Trust Enterprise Data Access for Claude, Cursor, and Beyond](/blog/hotel-pms-mcp-tool-server).”_
+The same binary exposes a **second HTTP listener** designed for Model Context Protocol (MCP) clients: no in-house planner, OAuth at the edge, short-lived delegated tokens, and the **same read tool filter** as chat. That design gets its own deep dive in the companion article: _“[Building a Read-Only MCP Tool Server: Zero-Trust Enterprise Data Access for Claude, Cursor, and Beyond](/blog/enterprise-mcp-tool-server).”_
 
 ---
 

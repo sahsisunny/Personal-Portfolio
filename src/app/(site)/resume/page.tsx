@@ -23,9 +23,18 @@ import {
 import { formatDate } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Resume | Sunny Sahsi | Associate Full Stack Developer",
+  title: "Resume & Experience",
   description:
-    "Curriculum Vitae and professional resume of Sunny Sahsi: Associate Full Stack Developer specializing in Next.js, Go, and AI chatbot agents.",
+    "Curriculum Vitae and professional engineering resume of Sunny Sahsi: Full Stack & Systems Engineer specializing in Next.js, Go, and AI agent orchestration.",
+  alternates: {
+    canonical: "https://sunnysahsi.com/resume",
+  },
+  openGraph: {
+    title: "Resume & Experience | Sunny Sahsi",
+    description:
+      "Curriculum Vitae and professional engineering resume of Sunny Sahsi: Full Stack & Systems Engineer.",
+    images: ["/og/default.png"],
+  },
 };
 
 export default function ResumePage() {

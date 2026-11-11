@@ -29,10 +29,14 @@ export async function generateStaticParams() {
   const slugs = new Set<string>();
   posts.forEach((post) => {
     slugs.add(post.slug);
-    if (post.slug === "hotel-pms-ai-orchestrator") {
+    if (post.slug === "enterprise-ai-orchestrator" || post.slug === "hotel-pms-ai-orchestrator") {
+      slugs.add("enterprise-ai-orchestrator");
+      slugs.add("hotel-pms-ai-orchestrator");
       slugs.add("asi-genie-architecture");
     }
-    if (post.slug === "hotel-pms-mcp-tool-server") {
+    if (post.slug === "enterprise-mcp-tool-server" || post.slug === "hotel-pms-mcp-tool-server") {
+      slugs.add("enterprise-mcp-tool-server");
+      slugs.add("hotel-pms-mcp-tool-server");
       slugs.add("asi-genie-mcp-architecture");
     }
     post.frontmatter.aliases.forEach((alias) => slugs.add(alias));
@@ -62,7 +66,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : `${BASE_URL}${post.coverImage}`;
 
   return {
-    title: `${post.frontmatter.title} | Sunny Sahsi`,
+    title: post.frontmatter.title,
     description: post.frontmatter.summary,
     keywords: [
       ...post.frontmatter.tags,
@@ -70,7 +74,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       "Sunny Sahsi",
       "Software Engineering",
       "Architecture",
-      "AEO",
       "AI Systems",
     ],
     authors: [{ name: "Sunny Sahsi", url: BASE_URL }],
@@ -381,7 +384,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               <div className="mb-10 rounded-xl border border-accent/30 bg-accent/5 p-5 sm:p-6 shadow-xs">
                 <div className="flex items-center gap-2 text-xs font-mono font-bold text-accent uppercase tracking-wider mb-2">
                   <BookmarkCheck className="w-4 h-4" />
-                  <span>Key Architecture Takeaways (AEO &amp; Quick Facts)</span>
+                  <span>Key Architecture Takeaways &amp; Executive Summary</span>
                 </div>
                 <ul className="space-y-2 text-sm text-text leading-relaxed pt-1">
                   <li className="flex items-start gap-2 aeo-key-takeaway">

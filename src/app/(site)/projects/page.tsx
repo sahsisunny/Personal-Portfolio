@@ -7,7 +7,7 @@ import { FolderGit2 } from "lucide-react";
 const BASE_URL = "https://sunnysahsi.com";
 
 export const metadata: Metadata = {
-  title: "Projects & Architecture Case Studies | Sunny Sahsi",
+  title: "Projects & Architecture Case Studies",
   description:
     "Production case studies, high-performance Go backend microservices, autonomous AI agents, and full-stack web applications built by Sunny Sahsi.",
   keywords: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "Sunny Sahsi Portfolio",
     images: [
       {
-        url: `${BASE_URL}/images/og-default.svg`,
+        url: `${BASE_URL}/og/default.png`,
         width: 1200,
         height: 630,
         alt: "Sunny Sahsi Projects & Case Studies",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: "Projects & Architecture Case Studies | Sunny Sahsi",
     description:
       "A curated collection of web apps, microservice integrations, and AI agent architectures built with Next.js, Go, and TypeScript.",
-    images: [`${BASE_URL}/images/og-default.svg`],
+    images: [`${BASE_URL}/og/default.png`],
     creator: "@sahsisunny",
   },
 };
