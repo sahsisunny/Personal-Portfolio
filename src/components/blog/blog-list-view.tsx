@@ -93,7 +93,7 @@ export function BlogListView({ initialPosts, categories, tags }: BlogListViewPro
                           {post.frontmatter.category}
                         </span>
                         {post.frontmatter.draft && (
-                          <span className="rounded-md bg-amber-500/10 px-2 py-0.5 text-amber-600 font-semibold">
+                          <span className="rounded-md bg-amber-500/10 px-2 py-0.5 text-amber-800 dark:text-amber-300 font-semibold">
                             Draft
                           </span>
                         )}

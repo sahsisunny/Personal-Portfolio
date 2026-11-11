@@ -26,7 +26,7 @@ export function RiderBackgroundEffects() {
           prefersReducedMotion ? "" : "animate-[spin_40s_linear_infinite]"
         }`}
       >
-        <svg viewBox="0 0 200 200" className="w-full h-full" fill="none">
+        <svg aria-hidden="true" viewBox="0 0 200 200" className="w-full h-full" fill="none">
           {/* Outer Tire & Knobby Tread */}
           <circle cx="100" cy="100" r="94" stroke="currentColor" strokeWidth="3" />
           <circle cx="100" cy="100" r="88" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
@@ -74,7 +74,7 @@ export function RiderBackgroundEffects() {
           prefersReducedMotion ? "" : "animate-[spin_55s_linear_infinite_reverse]"
         }`}
       >
-        <svg viewBox="0 0 200 200" className="w-full h-full" fill="none">
+        <svg aria-hidden="true" viewBox="0 0 200 200" className="w-full h-full" fill="none">
           <circle cx="100" cy="100" r="92" stroke="currentColor" strokeWidth="2.5" />
           <circle cx="100" cy="100" r="82" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
           <circle cx="100" cy="100" r="48" stroke="currentColor" strokeWidth="2" />

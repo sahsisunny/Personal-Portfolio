@@ -57,7 +57,7 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
         );
       case "work-in-progress":
         return (
-          <span className="rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 px-2.5 py-0.5 text-xs font-mono font-medium">
+          <span className="rounded-full bg-amber-500/10 text-amber-800 dark:text-amber-300 border border-amber-500/20 px-2.5 py-0.5 text-xs font-mono font-medium">
             WIP
           </span>
         );
@@ -166,7 +166,7 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
                     {/* Status badge */}
                     <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
                       {project.featured && (
-                        <span className="rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30 px-2 py-0.5 text-[10px] font-mono font-semibold flex items-center gap-1">
+                        <span className="rounded-full bg-amber-500/15 text-amber-800 dark:text-amber-300 border border-amber-500/30 px-2 py-0.5 text-[10px] font-mono font-semibold flex items-center gap-1">
                           <Sparkles className="w-2.5 h-2.5" />
                           Featured
                         </span>

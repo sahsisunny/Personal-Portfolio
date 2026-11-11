@@ -209,7 +209,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
             <div className="flex items-center gap-2">
               {project.featured && (
-                <span className="rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 px-2.5 py-0.5 text-xs font-mono font-medium flex items-center gap-1">
+                <span className="rounded-full bg-amber-500/10 text-amber-800 dark:text-amber-300 border border-amber-500/20 px-2.5 py-0.5 text-xs font-mono font-medium flex items-center gap-1">
                   <Sparkles className="w-3 h-3" />
                   Featured Project
                 </span>

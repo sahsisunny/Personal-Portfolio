@@ -57,7 +57,7 @@ export function RidesTeaserSection({ ridesData }: RidesTeaserSectionProps) {
             <div className="pt-4">
               <Link
                 href="/rides"
-                className="inline-flex items-center gap-2 rounded-lg bg-amber-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg hover:bg-amber-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+                className="inline-flex items-center gap-2 rounded-lg bg-amber-500 px-6 py-3.5 text-sm font-bold text-stone-950 shadow-lg hover:bg-amber-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
               >
                 <span>Explore the Rides Microsite</span>
                 <ArrowRight className="w-4 h-4" />
