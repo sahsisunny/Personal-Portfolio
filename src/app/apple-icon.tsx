@@ -14,19 +14,32 @@ export default function AppleIcon() {
           width: "100%",
           height: "100%",
           display: "flex",
+          position: "relative",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #6366F1 0%, #4338CA 100%)",
+          background: "linear-gradient(135deg, #2E7C86 0%, #14212B 100%)",
           borderRadius: "40px",
-          border: "4px solid rgba(199, 210, 254, 0.4)",
-          color: "#ffffff",
-          fontSize: "88px",
-          fontWeight: 900,
-          fontFamily: "monospace",
-          letterSpacing: "-3px",
+          border: "4px solid rgba(194, 174, 143, 0.45)",
+          color: "#F4F5F2",
+          fontSize: "92px",
+          fontWeight: 700,
+          fontFamily: "sans-serif",
+          letterSpacing: "-2px",
         }}
       >
-        SS
+        <span>SS</span>
+        {/* Milestone yellow marker dot */}
+        <div
+          style={{
+            position: "absolute",
+            top: "22px",
+            right: "22px",
+            width: "16px",
+            height: "16px",
+            borderRadius: "50%",
+            backgroundColor: "#E1AD1C",
+          }}
+        />
       </div>
     ),
     {
@@ -34,4 +47,3 @@ export default function AppleIcon() {
     }
   );
 }
-

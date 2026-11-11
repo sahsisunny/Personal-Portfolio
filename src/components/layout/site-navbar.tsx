@@ -37,9 +37,10 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
 
   const navLinks = [
     { label: "Home", href: "/", show: true },
+    { label: "Projects", href: "/#projects", show: isEnabled(features?.projects) },
     { label: "Experience", href: "/#experience", show: isEnabled(features?.experience) },
-    { label: "Projects", href: "/projects", show: isEnabled(features?.projects) },
-    { label: "Blog", href: "/blog", show: isEnabled(features?.blog) },
+    { label: "Writing", href: "/#writing", show: isEnabled(features?.blog) },
+    { label: "Skills", href: "/#skills", show: isEnabled(features?.skills) },
     { label: "Contact", href: "/#contact", show: isEnabled(features?.contact) },
   ].filter((link) => link.show);
 

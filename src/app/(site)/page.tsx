@@ -68,14 +68,14 @@ export default function HomePage() {
       />
 
       <HeroSection person={person} socials={socials} features={features} />
+      {features.projects && <FeaturedProjectsSection projects={featuredProjects} />}
+      {features.experience && <ExperienceSection experience={experience} />}
+      {features.blog && <LatestWritingSection posts={blogPosts} />}
+      {features.skills && <SkillsSection skills={skills} />}
       {features.now && <NowSection now={now} />}
       <AboutSection person={person} stats={features.stats ? stats : []} />
-      {features.experience && <ExperienceSection experience={experience} />}
-      {features.skills && <SkillsSection skills={skills} />}
-      {features.projects && <FeaturedProjectsSection projects={featuredProjects} />}
       {features.openSource && <OpenSourceSection openSource={openSource} />}
       {features.education && <EducationSection education={education} />}
-      {features.blog && <LatestWritingSection posts={blogPosts} />}
       {features.rides && <RidesTeaserSection ridesData={rides} />}
       {features.contact && (
         <ContactSection

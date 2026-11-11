@@ -17,10 +17,6 @@ export function EducationSection({ education }: EducationSectionProps) {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-accent font-semibold mb-2">
-            <GraduationCap className="w-4 h-4" />
-            <span>Academic Background</span>
-          </div>
           <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
             Education
           </h2>

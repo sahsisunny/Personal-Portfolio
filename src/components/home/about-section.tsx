@@ -11,11 +11,6 @@ export function AboutSection({ person }: AboutSectionProps) {
     <section id="about" className="py-16 md:py-24 border-b border-border">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="space-y-6">
-          <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-accent font-semibold">
-            <User className="w-4 h-4" />
-            <span>About Me</span>
-          </div>
-
           <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl leading-tight">
             Building reliable web backends, intuitive UIs, and agent workflows.
           </h2>

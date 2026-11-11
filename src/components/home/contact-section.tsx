@@ -73,11 +73,6 @@ export function ContactSection({ email, heading, subheading, socials }: ContactS
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Info */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-accent font-semibold">
-              <Mail className="w-4 h-4" />
-              <span>Get In Touch</span>
-            </div>
-
             <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
               {heading}
             </h2>

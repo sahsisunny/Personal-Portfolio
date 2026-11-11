@@ -1,32 +1,29 @@
-/* Rides Microsite Design Tokens (Adventure Journal) */
-/* Light: Sand / Earth palette */
+/* Rides realm tokens */
 .rides-realm,
 [data-theme-realm="rides"] {
-  --bg: #FBF7F0;
+  --bg: #F4F5F2;
   --surface: #FFFFFF;
-  --surface-2: #F5EFEB;
-  --text: #1C1917;
-  --muted: #57534E;
-  --border: #E7E5E4;
-  --accent: #C2410C; /* burnt orange */
-  --accent-contrast: #FFFFFF;
-  --accent-2: #0E7490; /* glacier blue */
-  --success: #15803D;
+  --surface-2: #ECEEE9;
+  --text: #14212B;
+  --muted: #4A5963;
+  --border: #D8DDD9;
+  --dust: #C2AE8F;
+  --marker: #E1AD1C;
 }
 
-/* Dark: Asphalt / Night ride palette */
 html.dark .rides-realm,
 html.dark [data-theme-realm="rides"],
 .dark.rides-realm {
-  --bg: #0A0A0B;
-  --surface: #151517;
-  --surface-2: #1F1F24;
-  --text: #F5F5F4;
-  --muted: #A8A29E;
-  --border: #27272A;
-  --accent: #FB923C;
-  --accent-contrast: #0A0A0B;
-  --accent-2: #22D3EE;
-  --success: #4ADE80;
+  --bg: #101B24;
+  --surface: #0F1920;
+  --surface-2: #172231;
+  --text: #F4F5F2;
+  --muted: #A9B6BE;
+  --border: #1E2D38;
+  --dust: #C2AE8F;
+  --marker: #E1AD1C;
 }
 
+/* Per-ride accent tokens */
+.ride-ladakh  { --ride-accent: #2E7C86; --ride-warm: #C2AE8F; }
+.ride-rameshwaram { --ride-accent: #7FC8C2; --ride-warm: #E1AD1C; }

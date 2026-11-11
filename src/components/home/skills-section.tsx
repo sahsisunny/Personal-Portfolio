@@ -12,13 +12,8 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="space-y-3 mb-12">
-          <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-accent font-semibold">
-            <Cpu className="w-4 h-4" />
-            <span>Technical Skills</span>
-          </div>
-
           <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-            Skills & Technologies
+            Skills &amp; Technologies
           </h2>
 
           <p className="max-w-2xl text-muted text-base leading-relaxed">

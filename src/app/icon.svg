@@ -1,27 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <defs>
-    <linearGradient id="ss-brand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6366F1" />
-      <stop offset="100%" stop-color="#4338CA" />
+    <!-- Editorial Palette: Pangong Teal (#2E7C86) to Ink-Blue (#14212B) with Khardung Dust border -->
+    <linearGradient id="ss-editorial-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2E7C86" />
+      <stop offset="100%" stop-color="#14212B" />
     </linearGradient>
     <filter id="ss-subtle-shadow" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="0" dy="1" stdDeviation="0.6" flood-opacity="0.35" />
     </filter>
   </defs>
-  <!-- Background Squircle Badge matching site branding -->
-  <rect width="32" height="32" rx="7.5" fill="url(#ss-brand-grad)" />
-  <rect width="31" height="31" x="0.5" y="0.5" rx="7" fill="none" stroke="#C7D2FE" stroke-width="0.8" stroke-opacity="0.5" />
-  <!-- Monogram SS in bold monospace font -->
+  <!-- Background Squircle Badge -->
+  <rect width="32" height="32" rx="7" fill="url(#ss-editorial-grad)" />
+  <rect width="31" height="31" x="0.5" y="0.5" rx="6.5" fill="none" stroke="#C2AE8F" stroke-width="0.8" stroke-opacity="0.5" />
+  <!-- Monogram SS in clean condensed display aesthetic -->
   <text
     x="16"
-    y="22"
-    font-family="JetBrains Mono, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
-    font-size="14.5"
-    font-weight="900"
+    y="22.5"
+    font-family="Barlow Condensed, 'Trebuchet MS', 'Arial Black', sans-serif"
+    font-size="16"
+    font-weight="700"
     letter-spacing="-0.5"
-    fill="#FFFFFF"
+    fill="#F4F5F2"
     text-anchor="middle"
     filter="url(#ss-subtle-shadow)"
   >SS</text>
+  <!-- Milestone marker accent dot -->
+  <circle cx="25" cy="7" r="2" fill="#E1AD1C" />
 </svg>
-

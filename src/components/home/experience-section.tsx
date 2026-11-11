@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Briefcase, Calendar, ChevronDown, ChevronUp, ExternalLink, Building2 } from "lucide-react";
+import { Calendar, ChevronDown, ChevronUp, ExternalLink, Building2 } from "lucide-react";
 import {
   motion,
   useScroll,
@@ -118,11 +118,6 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
   return (
     <section id="experience" className="py-16 md:py-24 border-b border-border">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-accent font-semibold mb-2">
-          <Briefcase className="w-4 h-4" />
-          <span>Career Journey</span>
-        </div>
-
         <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl mb-4">
           Work Experience &amp; Backend Services
         </h2>
@@ -308,7 +303,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
 
                         {/* Highlights list */}
                         <ul className="mt-3 space-y-2 text-sm text-muted">
-                          {(isExpanded ? role.highlights : role.highlights.slice(0, 2)).map(
+                          {(isExpanded ? role.highlights : role.highlights.slice(0, 3)).map(
                             (hl, hlIdx) => (
                               <li key={hlIdx} className="flex items-start gap-2.5">
                                 <span className="text-accent mt-1 select-none font-mono">▸</span>
@@ -339,7 +334,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                       onClick={() => toggleExpand(exp.id)}
                       className="inline-flex items-center gap-1 text-xs font-medium text-accent hover:underline focus-visible:outline-none"
                     >
-                      <span>{isExpanded ? "Show fewer details" : "Show all achievements"}</span>
+                      <span>{isExpanded ? "Show less" : "Show more"}</span>
                       {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                     </button>
                   </div>

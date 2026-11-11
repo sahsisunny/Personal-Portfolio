@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import {
   Compass,
   ArrowLeft,
-  ArrowRight,
   MapPin,
   Clock,
   Bike,
@@ -128,11 +127,6 @@ export default async function RideDetailPage({ params }: PageProps) {
 
         {/* Hero Header */}
         <header className="border-b border-border pb-10 space-y-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3.5 py-1 text-xs font-mono font-semibold uppercase tracking-wider text-accent">
-            <Compass className="w-3.5 h-3.5" />
-            <span>Solo Expedition</span>
-          </div>
-
           <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl tracking-wide uppercase text-text font-bold">
             {ride.title}
           </h1>
@@ -176,9 +170,10 @@ export default async function RideDetailPage({ params }: PageProps) {
 
           {/* Cover Landscape Illustration */}
           <div className="relative aspect-16/9 sm:aspect-21/9 w-full rounded-2xl border-2 border-border bg-slate-950 overflow-hidden shadow-xl mt-6">
+            {/* Real photo goes here — replace coverImage with your actual photo path */}
             <Image
               src={ride.coverImage}
-              alt={ride.title}
+              alt={`${ride.origin} to ${ride.destination} ride cover`}
               title={ride.title}
               width={1200}
               height={550}
@@ -192,11 +187,8 @@ export default async function RideDetailPage({ params }: PageProps) {
         <section className="pt-8 space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-xs font-mono uppercase text-accent font-semibold block mb-0.5">
-                Route Track
-              </span>
               <h2 className="font-display text-2xl sm:text-3xl uppercase tracking-wide text-text font-bold">
-                Interactive Waypoints
+                Route
               </h2>
             </div>
             <span className="text-xs font-mono text-muted hidden sm:inline">
@@ -209,11 +201,8 @@ export default async function RideDetailPage({ params }: PageProps) {
 
         {/* The Field Story */}
         <section className="pt-12 space-y-4">
-          <span className="text-xs font-mono uppercase text-accent font-semibold block mb-0.5">
-            Field Journal
-          </span>
           <h2 className="font-display text-2xl sm:text-3xl uppercase tracking-wide text-text font-bold">
-            The Story From The Road
+            Field notes
           </h2>
 
           {storyContent ? (
@@ -239,11 +228,8 @@ export default async function RideDetailPage({ params }: PageProps) {
         {/* Day-by-Day Timeline */}
         {ride.dayByDay.length > 0 && (
           <section className="pt-12 space-y-4">
-            <span className="text-xs font-mono uppercase text-accent font-semibold block mb-0.5">
-              Itinerary
-            </span>
             <h2 className="font-display text-2xl sm:text-3xl uppercase tracking-wide text-text font-bold">
-              Day-by-Day Milestones
+              Days
             </h2>
             <DayByDayTimeline days={ride.dayByDay} />
           </section>
@@ -252,11 +238,8 @@ export default async function RideDetailPage({ params }: PageProps) {
         {/* Gallery */}
         {ride.gallery && ride.gallery.length > 0 && (
           <section className="pt-12 space-y-4">
-            <span className="text-xs font-mono uppercase text-accent font-semibold block mb-0.5">
-              Photo Dispatch
-            </span>
             <h2 className="font-display text-2xl sm:text-3xl uppercase tracking-wide text-text font-bold">
-              Gallery & Moments
+              Photos
             </h2>
             <RideGallery items={ride.gallery} />
           </section>
@@ -265,11 +248,8 @@ export default async function RideDetailPage({ params }: PageProps) {
         {/* YouTube Video if available */}
         {ride.videos && ride.videos.length > 0 && (
           <section className="pt-12 space-y-4">
-            <span className="text-xs font-mono uppercase text-accent font-semibold block mb-0.5">
-              Motion
-            </span>
             <h2 className="font-display text-2xl sm:text-3xl uppercase tracking-wide text-text font-bold">
-              Expedition Video
+              Video
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {ride.videos.map((vid, idx) => (
@@ -286,7 +266,7 @@ export default async function RideDetailPage({ params }: PageProps) {
               <div className="rounded-2xl border border-border bg-surface p-6 shadow-xs space-y-3">
                 <div className="flex items-center gap-2 text-xs font-mono uppercase text-amber-500 font-bold">
                   <Lightbulb className="w-4 h-4" />
-                  <span>Lessons Learned</span>
+                  <span>What I&apos;d change</span>
                 </div>
                 <ul className="space-y-2 text-xs sm:text-sm text-muted">
                   {ride.lessons.map((l, i) => (
@@ -303,7 +283,7 @@ export default async function RideDetailPage({ params }: PageProps) {
               <div className="rounded-2xl border border-border bg-surface p-6 shadow-xs space-y-3">
                 <div className="flex items-center gap-2 text-xs font-mono uppercase text-accent font-bold">
                   <Shield className="w-4 h-4" />
-                  <span>Key Gear Used</span>
+                  <span>Gear</span>
                 </div>
                 <ul className="space-y-2 text-xs sm:text-sm text-muted">
                   {ride.gearUsed.map((g, i) => (
@@ -326,7 +306,7 @@ export default async function RideDetailPage({ params }: PageProps) {
               className="group flex flex-col text-left max-w-[45%]"
             >
               <span className="text-xs font-mono text-muted flex items-center gap-1 group-hover:text-accent">
-                <ArrowLeft className="w-3.5 h-3.5" /> Previous Expedition
+                Previous
               </span>
               <span className="font-display text-xl sm:text-2xl uppercase tracking-wide text-text group-hover:text-accent truncate font-bold">
                 {prevRide.title}
@@ -342,7 +322,7 @@ export default async function RideDetailPage({ params }: PageProps) {
               className="group flex flex-col text-right max-w-[45%]"
             >
               <span className="text-xs font-mono text-muted flex items-center justify-end gap-1 group-hover:text-accent">
-                Next Expedition <ArrowRight className="w-3.5 h-3.5" />
+                Next
               </span>
               <span className="font-display text-xl sm:text-2xl uppercase tracking-wide text-text group-hover:text-accent truncate font-bold">
                 {nextRide.title}

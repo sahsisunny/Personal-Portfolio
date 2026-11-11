@@ -11,11 +11,6 @@ export function OpenSourceSection({ openSource }: OpenSourceSectionProps) {
   return (
     <section className="py-16 border-b border-border bg-surface-2/20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-accent font-semibold mb-2">
-          <GitPullRequest className="w-4 h-4" />
-          <span>Community Impact</span>
-        </div>
-
         <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl mb-3">
           Open Source Contributions
         </h2>

@@ -77,12 +77,8 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-accent font-semibold mb-2">
-              <FolderGit2 className="w-4 h-4" />
-              <span>Selected Work</span>
-            </div>
             <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-              Featured Projects &amp; AI Chatbot Agents
+              Selected Work
             </h2>
             <p className="mt-2 text-muted text-base max-w-xl">
               Production web applications, Go backend services, and AI chatbot agents built with rigor.
@@ -152,9 +148,11 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                       )}
 
                       {/* Status badge in top right */}
-                      <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
-                        {getStatusBadge(project.status)}
-                      </div>
+                      {project.status !== "completed" && (
+                        <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
+                          {getStatusBadge(project.status)}
+                        </div>
+                      )}
 
                       {/* Work project notice if confidential */}
                       {isConfidential && (
@@ -192,7 +190,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                   {/* Footer with tech chips and actions */}
                   <div className="p-6 pt-0 border-t border-border/40 mt-4 space-y-4">
                     <div className="flex flex-wrap gap-1.5 pt-4">
-                      {project.tech.map((t) => (
+                      {project.tech.slice(0, 5).map((t) => (
                         <span
                           key={t}
                           className="rounded bg-surface-2 px-2 py-0.5 text-xs font-mono text-muted border border-border/60"
@@ -200,6 +198,11 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                           {t}
                         </span>
                       ))}
+                      {project.tech.length > 5 && (
+                        <span className="rounded bg-surface-2 px-2 py-0.5 text-xs font-mono text-muted border border-border/60">
+                          +{project.tech.length - 5}
+                        </span>
+                      )}
                     </div>
 
                     <div className="flex items-center justify-between pt-1">

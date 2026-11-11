@@ -9,7 +9,6 @@ import {
   Bike,
   ShieldCheck,
   Sparkles,
-  ChevronRight,
 } from "lucide-react";
 import {
   getRidesSection,
@@ -107,21 +106,16 @@ export default function RidesLandingPage() {
           className="pointer-events-none absolute inset-0 bg-topo-pattern opacity-30 -z-10"
         />
 
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/15 px-4 py-1 text-xs font-mono font-bold uppercase tracking-widest text-accent">
-            <Compass className="w-3.5 h-3.5 animate-spin-slow" />
-            <span>{ridesData.page.eyebrow} • SOLO MOTORCYCLE EXPEDITIONS</span>
-          </div>
-
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6">
           <h1 className="font-display text-4xl sm:text-6xl lg:text-8xl tracking-wider uppercase font-bold text-text">
             {ridesData.page.title}
           </h1>
 
-          <p className="text-xl sm:text-2xl font-serif italic text-muted max-w-2xl mx-auto">
+          <p className="text-xl sm:text-2xl font-serif italic text-muted max-w-2xl">
             &ldquo;{ridesData.page.tagline}&rdquo;
           </p>
 
-          <p className="text-base sm:text-lg text-muted max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-muted max-w-2xl leading-relaxed">
             {ridesData.page.intro}
           </p>
 
@@ -132,7 +126,6 @@ export default function RidesLandingPage() {
               className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-xs font-mono uppercase font-bold text-accent-contrast shadow-md hover:opacity-95 transition-all"
             >
               <span>Completed Expeditions</span>
-              <ChevronRight className="w-4 h-4" />
             </a>
             <Link
               href="/rides/bike"
@@ -357,10 +350,7 @@ export default function RidesLandingPage() {
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"
                   />
 
-                  <div className="absolute top-3 left-3 rounded-full bg-surface/90 backdrop-blur-xs border border-accent/40 px-3 py-1 text-[11px] font-mono font-bold text-accent">
-                    Solo Expedition • {ride.year}
-                  </div>
-
+                  {/* Route overlay at bottom */}
                   <div className="absolute bottom-3 left-3 right-3 bg-surface/85 backdrop-blur-xs border border-border/80 px-3 py-1.5 rounded-lg flex items-center justify-between text-xs font-mono">
                     <span className="font-bold text-text uppercase">
                       {ride.origin} ➔ {ride.destination}
@@ -419,8 +409,7 @@ export default function RidesLandingPage() {
                   href={`/rides/${ride.slug}`}
                   className="inline-flex items-center gap-2 text-xs font-bold font-mono text-accent uppercase tracking-wider hover:underline"
                 >
-                  <span>View Expedition Map & Log</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>View expedition</span>
                 </Link>
               </div>
             </div>

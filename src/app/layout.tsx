@@ -1,12 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Bebas_Neue } from "next/font/google";
+import { Barlow_Condensed, Barlow, Newsreader, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const inter = Inter({
+const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-barlow-condensed",
   display: "swap",
+});
+
+const barlow = Barlow({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-barlow",
+  display: "swap",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
+  display: "swap",
+  style: ["normal", "italic"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -15,17 +30,10 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const bebasNeue = Bebas_Neue({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-bebas-neue",
-  display: "swap",
-});
-
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#FAFAF9" },
-    { media: "(prefers-color-scheme: dark)", color: "#0B0F17" },
+    { media: "(prefers-color-scheme: light)", color: "#F4F5F2" },
+    { media: "(prefers-color-scheme: dark)", color: "#101B24" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -178,7 +186,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable} ${bebasNeue.variable}`}
+      className={`${barlowCondensed.variable} ${barlow.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <meta name="color-scheme" content="light dark" />

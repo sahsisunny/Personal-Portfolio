@@ -16,10 +16,6 @@ export function LatestWritingSection({ posts }: LatestWritingSectionProps) {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-accent font-semibold mb-2">
-              <PenLine className="w-4 h-4" />
-              <span>Articles & Notes</span>
-            </div>
             <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
               Latest Writing
             </h2>
