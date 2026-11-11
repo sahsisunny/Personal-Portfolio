@@ -179,6 +179,7 @@ export default async function RideDetailPage({ params }: PageProps) {
             <Image
               src={ride.coverImage}
               alt={ride.title}
+              title={ride.title}
               width={1200}
               height={550}
               priority

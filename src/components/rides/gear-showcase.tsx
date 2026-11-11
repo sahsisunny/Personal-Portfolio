@@ -92,6 +92,7 @@ export function GearShowcase({ initialItems }: GearShowcaseProps) {
                 <Image
                   src={gear.image}
                   alt={gear.name}
+                  title={`${gear.brand} ${gear.name}`}
                   width={600}
                   height={450}
                   className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-103"

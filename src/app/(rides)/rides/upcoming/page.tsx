@@ -68,6 +68,7 @@ export default function UpcomingRidesPage() {
               <Image
                 src={expedition.image}
                 alt={expedition.title}
+                title={expedition.title}
                 width={1200}
                 height={500}
                 priority={idx === 0}

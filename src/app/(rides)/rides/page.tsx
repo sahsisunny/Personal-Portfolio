@@ -199,6 +199,7 @@ export default function RidesLandingPage() {
                 <Image
                   src={bike.image}
                   alt={bike.name}
+                  title={bike.name}
                   width={600}
                   height={375}
                   className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
@@ -236,6 +237,7 @@ export default function RidesLandingPage() {
                 <Image
                   src="/images/gear/rynox-jacket.svg"
                   alt="Touring Gear"
+                  title="Touring Gear and Loadout"
                   width={600}
                   height={375}
                   className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
@@ -273,6 +275,7 @@ export default function RidesLandingPage() {
                 <Image
                   src="/images/rides/spiti-cover.svg"
                   alt="Spiti Valley & Sach Pass"
+                  title="Spiti Valley & Sach Pass Expedition"
                   width={600}
                   height={375}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -348,6 +351,7 @@ export default function RidesLandingPage() {
                   <Image
                     src={ride.coverImage}
                     alt={ride.title}
+                    title={ride.title}
                     width={800}
                     height={500}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103"

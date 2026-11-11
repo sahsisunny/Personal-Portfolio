@@ -69,6 +69,7 @@ export default function BikePage() {
               <Image
                 src={bike.image}
                 alt={bike.name}
+                title={bike.name}
                 width={1200}
                 height={675}
                 priority
