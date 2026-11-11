@@ -35,6 +35,7 @@ export function OpenSourceSection({ openSource }: OpenSourceSectionProps) {
                     <Image
                       src="/images/logos/rds.png"
                       alt={`${item.org} logo`}
+                      title={`${item.org} logo`}
                       width={48}
                       height={48}
                       className="h-full w-full object-contain rounded-lg bg-white"

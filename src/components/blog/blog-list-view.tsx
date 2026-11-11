@@ -78,6 +78,7 @@ export function BlogListView({ initialPosts, categories, tags }: BlogListViewPro
                       <Image
                         src={post.coverImage}
                         alt={post.frontmatter.title}
+                        title={post.frontmatter.title}
                         fill
                         sizes="(max-width: 640px) 100vw, 208px"
                         loading="lazy"

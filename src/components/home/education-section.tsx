@@ -44,6 +44,7 @@ export function EducationSection({ education }: EducationSectionProps) {
                       <Image
                         src={edu.logo}
                         alt={`${edu.institution} logo`}
+                        title={`${edu.institution} logo`}
                         width={64}
                         height={64}
                         className="h-full w-full object-contain rounded-xl bg-white"

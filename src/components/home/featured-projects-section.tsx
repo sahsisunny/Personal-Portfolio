@@ -82,10 +82,10 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
               <span>Selected Work</span>
             </div>
             <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-              Featured Projects
+              Featured Projects &amp; AI Chatbot Agents
             </h2>
             <p className="mt-2 text-muted text-base max-w-xl">
-              Production systems, AI chatbot agents, and software built with rigor.
+              Production web applications, Go backend services, and AI chatbot agents built with rigor.
             </p>
           </div>
 
@@ -134,7 +134,8 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                         <>
                           <Image
                             src={typeof project.images[0] === "string" ? project.images[0] : project.images[0].src}
-                            alt={typeof project.images[0] === "string" ? `${project.title} screenshot` : project.images[0].alt || `${project.title} screenshot`}
+                            alt={`${project.title} - ${project.summary}`}
+                            title={`${project.title} - ${project.summary}`}
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             loading="lazy"

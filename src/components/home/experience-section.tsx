@@ -124,10 +124,10 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
         </div>
 
         <h2 className="text-3xl font-bold tracking-tight text-text sm:text-4xl mb-4">
-          Work Experience
+          Work Experience &amp; Backend Services
         </h2>
         <p className="max-w-2xl text-muted text-base mb-12">
-          From open-source foundations to owning end-to-end features and backend services at Fountane.
+          From open source foundations to owning end-to-end features, Go backend services, and AI agents at Fountane.
         </p>
 
         {/* Timeline Container */}
@@ -230,6 +230,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
                           <Image
                             src={exp.logo}
                             alt={`${exp.company} logo`}
+                            title={`${exp.company} logo`}
                             width={56}
                             height={56}
                             className="h-full w-full object-contain rounded-lg bg-white"

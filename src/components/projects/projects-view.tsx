@@ -147,7 +147,8 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
                       <>
                         <Image
                           src={typeof project.images[0] === "string" ? project.images[0] : project.images[0].src}
-                          alt={typeof project.images[0] === "string" ? `${project.title} screenshot` : project.images[0].alt || `${project.title} screenshot`}
+                          alt={`${project.title} - ${project.summary}`}
+                          title={`${project.title} - ${project.summary}`}
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           loading="lazy"

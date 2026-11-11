@@ -363,6 +363,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <Image
                     src={post.coverImage}
                     alt={post.frontmatter.title}
+                    title={post.frontmatter.title}
                     width={1200}
                     height={675}
                     priority

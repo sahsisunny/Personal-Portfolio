@@ -13,7 +13,7 @@
   },
   "meta": {
     "siteTitle": "Sunny Sahsi | Associate Full Stack Developer",
-    "siteDescription": "Sunny Sahsi is an Associate Full Stack Developer building scalable web apps with Next.js, high-performance Go backend microservices, and autonomous AI agents.",
+    "siteDescription": "Sunny Sahsi is an Associate Full Stack Developer building scalable web apps with Next.js, high-performance Go backends, and AI chatbot agents.",
     "siteUrl": "https://sunnysahsi.com",
     "locale": "en-IN",
     "defaultThemeMode": "system",
@@ -49,7 +49,7 @@
     "firstName": "Sunny",
     "handle": "sahsisunny",
     "headline": "Associate Full Stack Developer",
-    "tagline": "I build web apps, backend services and AI agents that solve real-world problems.",
+    "tagline": "I build web apps, backend services and AI chatbot agents that solve real-world problems.",
     "location": "Patna, Bihar, India",
     "workMode": "Remote",
     "availability": {
@@ -578,7 +578,7 @@
     {
       "id": "ai-chatbot-agent",
       "slug": "ai-chatbot-agent",
-      "enabled": true,
+      "enabled": false,
       "title": "Enterprise AI Chatbot & Agent Orchestrator",
       "status": "in-progress",
       "featured": true,

@@ -52,6 +52,7 @@ export function LatestWritingSection({ posts }: LatestWritingSectionProps) {
                     <Image
                       src={post.coverImage}
                       alt={post.frontmatter.title}
+                      title={post.frontmatter.title}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       loading="lazy"

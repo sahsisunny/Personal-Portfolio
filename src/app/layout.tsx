@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     template: "%s | Sunny Sahsi",
   },
   description:
-    "Sunny Sahsi is an Associate Full Stack Developer building scalable web apps with Next.js, high-performance Go backend microservices, and autonomous AI agents.",
+    "Sunny Sahsi is an Associate Full Stack Developer building scalable web apps with Next.js, high-performance Go backends, and AI chatbot agents.",
   keywords: [
     "Sunny Sahsi",
     "Associate Full Stack Developer",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     url: BASE_URL,
     title: "Sunny Sahsi | Associate Full Stack Developer",
     description:
-      "Sunny Sahsi is an Associate Full Stack Developer building scalable web apps with Next.js, high-performance Go backend microservices, and autonomous AI agents.",
+      "Sunny Sahsi is an Associate Full Stack Developer building scalable web apps with Next.js, high-performance Go backends, and AI chatbot agents.",
     siteName: "Sunny Sahsi Portfolio",
     images: [
       {
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sunny Sahsi | Associate Full Stack Developer",
     description:
-      "Sunny Sahsi is an Associate Full Stack Developer building scalable web apps with Next.js, high-performance Go backend microservices, and autonomous AI agents.",
+      "Sunny Sahsi is an Associate Full Stack Developer building scalable web apps with Next.js, high-performance Go backends, and AI chatbot agents.",
     creator: "@sahsisunny",
     site: "@sahsisunny",
     images: ["/images/og-default.svg"],

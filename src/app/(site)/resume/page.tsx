@@ -141,6 +141,7 @@ export default function ResumePage() {
                           <Image
                             src={exp.logo}
                             alt={`${exp.company} logo`}
+                            title={`${exp.company} logo`}
                             width={32}
                             height={32}
                             className="h-full w-full object-contain bg-white"
@@ -239,6 +240,7 @@ export default function ResumePage() {
                       <Image
                         src={edu.logo}
                         alt={`${edu.institution} logo`}
+                        title={`${edu.institution} logo`}
                         width={32}
                         height={32}
                         className="h-full w-full object-contain bg-white"

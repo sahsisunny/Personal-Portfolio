@@ -322,7 +322,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             <div className="relative aspect-video w-full mb-12 overflow-hidden rounded-2xl border border-border bg-surface-2 shadow-md">
               <Image
                 src={typeof project.images[0] === "string" ? project.images[0] : project.images[0].src}
-                alt={typeof project.images[0] === "string" ? `${project.title} screenshot` : project.images[0].alt || `${project.title} screenshot`}
+                alt={`${project.title} - ${project.summary}`}
+                title={`${project.title} - ${project.summary}`}
                 fill
                 sizes="(max-width: 1200px) 100vw, 1200px"
                 priority
