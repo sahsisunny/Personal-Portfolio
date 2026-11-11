@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Compass, FileText, ArrowUpRight } from "lucide-react";
@@ -15,7 +16,12 @@ interface SiteNavbarProps {
 
 export function SiteNavbar({ name, features }: SiteNavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
   const pathname = usePathname();
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Prevent scroll when mobile menu is open
   React.useEffect(() => {
@@ -145,65 +151,138 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div
-          className="fixed left-0 right-0 top-16 bottom-0 z-50 flex flex-col justify-between border-t border-border bg-surface p-6 shadow-2xl lg:hidden overflow-y-auto"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile Navigation"
-        >
-          <div className="flex flex-col space-y-3">
-            {navLinks.map((link) => (
+      {/* Mobile Drawer rendered via Portal at document.body level */}
+      {mounted &&
+        mobileMenuOpen &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[1000] flex flex-col justify-between bg-surface/98 backdrop-blur-2xl px-6 py-6 lg:hidden overflow-y-auto animate-in fade-in duration-200"
+            style={{ backgroundColor: "var(--surface)" }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile Navigation"
+          >
+            {/* Top Bar with Brand & Actions */}
+            <div className="flex items-center justify-between pb-5 border-b border-border/60">
               <Link
-                key={link.href}
-                href={link.href}
+                href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium text-text bg-surface-2/60 hover:bg-surface-2 hover:text-accent transition-colors border border-border/50"
+                className="flex items-center gap-3"
               >
-                <span>{link.label}</span>
-                <ArrowUpRight className="h-4 w-4 text-muted" />
-              </Link>
-            ))}
-
-            {isEnabled(features?.rides) && (
-              <div className="my-2 border-t border-border pt-2">
-                <Link
-                  href="/rides"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-between rounded-lg border border-amber-500/40 bg-amber-500/15 px-4 py-3.5 text-base font-semibold text-amber-800 dark:text-amber-200"
-                >
-                  <div className="flex items-center gap-2">
-                    <Compass className="h-5 w-5 text-amber-600 dark:text-amber-400" />
-                    <span>On Two Wheels (Rides)</span>
-                  </div>
-                  <span className="rounded-full bg-amber-500/20 px-2 py-0.5 font-mono text-xs uppercase">
-                    Off the clock
-                  </span>
-                </Link>
-              </div>
-            )}
-
-            {isEnabled(features?.resume) && (
-              <Link
-                href="/resume"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between rounded-lg border border-border px-4 py-3 text-base font-medium text-text bg-surface-2/60 hover:bg-surface-2"
-              >
-                <div className="flex items-center gap-2">
-                  <FileText className="h-4 w-4 text-muted" />
-                  <span>Resume</span>
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-contrast font-mono font-bold text-sm shadow-sm">
+                  SS
                 </div>
-                <ArrowUpRight className="h-4 w-4 text-muted" />
+                <div className="flex flex-col">
+                  <span className="font-bold text-text text-base tracking-tight leading-none">
+                    {name}
+                  </span>
+                  <span className="text-[11px] text-muted font-mono mt-1">
+                    Full Stack Developer
+                  </span>
+                </div>
               </Link>
-            )}
-          </div>
+              <div className="flex items-center gap-2">
+                <ThemeToggle />
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border/80 bg-surface text-text hover:bg-surface-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  aria-label="Close menu"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
 
-          <div className="pt-6 text-center text-xs text-muted font-mono border-t border-border">
-            Patna, India • Remote Full Stack Developer
-          </div>
-        </div>
-      )}
+            {/* Editorial Nav List */}
+            <div className="py-6 flex-1 flex flex-col justify-center">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-muted mb-3 font-semibold">
+                Index
+              </span>
+              <nav className="flex flex-col space-y-1">
+                {navLinks.map((link, idx) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="group flex items-baseline justify-between py-2.5 px-3 rounded-xl transition-all hover:bg-surface-2"
+                  >
+                    <div className="flex items-baseline gap-3">
+                      <span className="font-mono text-xs text-muted/60 group-hover:text-accent transition-colors">
+                        0{idx + 1}
+                      </span>
+                      <span
+                        className="text-2xl font-bold text-text group-hover:text-accent group-hover:translate-x-1 transition-all"
+                        style={{ fontFamily: "var(--font-barlow-condensed)" }}
+                      >
+                        {link.label}
+                      </span>
+                    </div>
+                    <ArrowUpRight className="h-4 w-4 text-muted/40 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  </Link>
+                ))}
+              </nav>
+
+              {/* Special Expeditions & Resume Highlight Strip */}
+              <div className="mt-6 pt-5 border-t border-border/60 space-y-2.5">
+                {isEnabled(features?.rides) && (
+                  <Link
+                    href="/rides"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="group flex items-center justify-between p-3.5 rounded-xl border border-accent/30 bg-accent/5 hover:bg-accent/10 hover:border-accent/50 transition-all"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-1.5 rounded-lg bg-accent/15 text-accent">
+                        <Compass className="h-4 w-4" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-bold text-text group-hover:text-accent transition-colors leading-tight">
+                          On Two Wheels
+                        </span>
+                        <span className="text-[10px] font-mono text-muted">
+                          Solo motorcycle expeditions
+                        </span>
+                      </div>
+                    </div>
+                    <span className="rounded-full bg-accent/15 border border-accent/25 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider font-bold text-accent">
+                      Off the clock
+                    </span>
+                  </Link>
+                )}
+
+                {isEnabled(features?.resume) && (
+                  <Link
+                    href="/resume"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="group flex items-center justify-between p-3.5 rounded-xl border border-border/80 bg-surface-2/40 hover:bg-surface-2 hover:border-accent/40 transition-all"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-1.5 rounded-lg bg-surface border border-border text-muted group-hover:text-accent transition-colors">
+                        <FileText className="h-4 w-4" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-semibold text-text group-hover:text-accent transition-colors leading-tight">
+                          Curriculum Vitae
+                        </span>
+                        <span className="text-[10px] font-mono text-muted">
+                          Full stack &amp; Go systems resume
+                        </span>
+                      </div>
+                    </div>
+                    <ArrowUpRight className="h-4 w-4 text-muted group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  </Link>
+                )}
+              </div>
+            </div>
+
+            {/* Bottom Footer Details */}
+            <div className="pt-4 border-t border-border/60 flex items-center justify-between text-xs font-mono text-muted">
+              <span>Patna, Bihar</span>
+              <span className="text-accent font-semibold">Remote Engineer</span>
+            </div>
+          </div>,
+          document.body
+        )}
     </header>
   );
 }
