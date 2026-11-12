@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { PenLine, ArrowRight, Calendar, Clock } from "lucide-react";
+import { ArrowRight, Calendar, Clock } from "lucide-react";
 import type { BlogPost } from "@/lib/mdx";
 import { formatDate } from "@/lib/utils";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Mail, Copy, Check, Send } from "lucide-react";
+import { Copy, Check, Send } from "lucide-react";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/icons";
 import type { Socials } from "@/lib/schema";
 

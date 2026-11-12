@@ -1,6 +1,5 @@
 import * as React from "react";
 import type { Skills } from "@/lib/schema";
-import { Cpu } from "lucide-react";
 
 interface SkillsSectionProps {
   skills: Skills;

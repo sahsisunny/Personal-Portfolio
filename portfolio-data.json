@@ -180,6 +180,38 @@
       "confidentialityNote": "Client and product names stay generic on the public site unless Fountane approves naming them."
     },
     {
+      "id": "real-dev-squad",
+      "company": "Real Dev Squad",
+      "companyUrl": "https://realdevsquad.com",
+      "logo": "/images/logos/rds.png",
+      "location": "Remote",
+      "employmentType": "Open source",
+      "start": "2022-12",
+      "end": null,
+      "current": true,
+      "roles": [
+        {
+          "title": "Open Source Contributor",
+          "start": "2022-12",
+          "end": null,
+          "highlights": [
+            "Worked across React, Next.js, Ember and Vue.js codebases.",
+            "Built the Goal form modal using Vue.js and Vuetify.",
+            "Added a feature to lock the accordion for unauthorized users.",
+            "Added a filter to list users by status.",
+            "Built a feature to show a user's pull requests on their profile page."
+          ]
+        }
+      ],
+      "tech": [
+        "Vue.js",
+        "Vuetify",
+        "React",
+        "Next.js",
+        "Ember"
+      ]
+    },
+    {
       "id": "smartinternz",
       "company": "SmartInternz",
       "companyUrl": null,

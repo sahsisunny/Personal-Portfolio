@@ -9,7 +9,6 @@ import {
   type BikeDetails,
   type GearItem,
   type PlannedRide,
-  type OpenSource,
   type FeatureFlags,
 } from "./schema";
 
@@ -82,11 +81,6 @@ export function getProjectBySlug(slug: string): Project | undefined {
   return portfolioData.projects.find((p) => p.slug === slug && p.enabled !== false);
 }
 
-export function getOpenSource(): OpenSource[] {
-  if (!isFeatureEnabled("openSource")) return [];
-  return portfolioData.openSource.filter((o) => o.enabled !== false);
-}
-
 export function getRidesSection() {
   return portfolioData.rides;
 }
@@ -129,10 +123,6 @@ export function getPlannedRides(): PlannedRide[] {
 
 export function getNow() {
   return portfolioData.now;
-}
-
-export function getTools() {
-  return portfolioData.tools;
 }
 
 export function getContact() {

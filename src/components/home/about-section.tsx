@@ -1,5 +1,5 @@
 import type { Person, StatItem } from "@/lib/schema";
-import { User, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 interface AboutSectionProps {
   person: Person;

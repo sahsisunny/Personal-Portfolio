@@ -16,12 +16,7 @@ interface SiteNavbarProps {
 
 export function SiteNavbar({ name, features }: SiteNavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const [mounted, setMounted] = React.useState(false);
   const pathname = usePathname();
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Prevent scroll when mobile menu is open
   React.useEffect(() => {
@@ -152,8 +147,8 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
       </div>
 
       {/* Mobile Drawer rendered via Portal at document.body level */}
-      {mounted &&
-        mobileMenuOpen &&
+      {mobileMenuOpen &&
+        typeof document !== "undefined" &&
         createPortal(
           <div
             className="fixed inset-0 z-[1000] flex flex-col justify-between bg-surface/98 backdrop-blur-2xl px-6 py-6 lg:hidden overflow-y-auto animate-in fade-in duration-200"
