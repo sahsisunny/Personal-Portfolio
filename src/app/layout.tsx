@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     "Model Context Protocol",
     "MCP",
     "Zero-Trust Architecture",
-    "Patna Bihar",
+    "India",
   ],
   authors: [{ name: "Sunny Sahsi", url: BASE_URL }],
   creator: "Sunny Sahsi",
@@ -150,8 +150,6 @@ const personJsonLd = {
   },
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Patna",
-    addressRegion: "Bihar",
     addressCountry: "IN",
   },
   url: BASE_URL,

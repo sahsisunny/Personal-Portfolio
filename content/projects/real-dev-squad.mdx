@@ -1,0 +1,102 @@
+## Deep Dive: Open Source Engineering with Real Dev Squad
+
+**Real Dev Squad (RDS)** is a community-driven open-source developer ecosystem that empowers software engineers to collaborate on production-grade web applications, developer triage portals, and real-time community tools.
+
+Contributing to Real Dev Squad involved working across diverse frontend technology stacks—including **Vue.js**, **Vuetify**, **React**, **Next.js**, and **Ember.js**—under strict distributed peer review standards, test automation, and accessibility requirements.
+
+### Architecture Topology & Contribution Modules
+
+```
++-------------------------------------------------------------------------+
+|                  Real Dev Squad Open Source Ecosystem                   |
++------------------------------------+------------------------------------+
+                                     |
+    +--------------------------------+--------------------------------+
+    |                                |                                |
+    v                                v                                v
++----------------------+  +----------------------+  +----------------------+
+|  Vue.js & Vuetify    |  |  React & Next.js     |  |  Ember.js & APIs     |
+|  • Goal Form Modal   |  |  • PR Activity List  |  |  • Status Dashboard  |
+|  • Schema Validation |  |  • Profile Integrat. |  |  • Peer Review Flows |
+|  • RBAC Accordion    |  |  • User Filtering    |  |  • Multi-repo Triage |
++----------------------+  +----------------------+  +----------------------+
+```
+
+### 1. Goal Form Modal & Schema Validation (Vue.js + Vuetify)
+
+Engineered an interactive, accessible Goal Creation modal using **Vue.js** and **Vuetify**. The component captures user objectives, deadlines, and milestone categories with instant client-side validation:
+
+```html
+<!-- components/GoalModal.vue -->
+<template>
+  <v-dialog v-model="dialog" max-width="540px" persistent>
+    <v-card class="elevation-4 rounded-lg">
+      <v-card-title class="headline primary white--text">
+        Create Community Goal
+      </v-card-title>
+      <v-card-text class="pt-4">
+        <v-form ref="form" v-model="isValid" lazy-validation>
+          <v-text-field
+            v-model="goal.title"
+            :rules="[rules.required, rules.minLength]"
+            label="Goal Title"
+            outlined
+            dense
+            required
+          />
+          <v-textarea
+            v-model="goal.description"
+            :rules="[rules.required]"
+            label="Key Milestones & Deliverables"
+            outlined
+            rows="3"
+          />
+        </v-form>
+      </v-card-text>
+      <v-card-actions class="pb-4 px-4">
+        <v-spacer></v-spacer>
+        <v-btn text @click="closeModal">Cancel</v-btn>
+        <v-btn color="primary" :disabled="!isValid" :loading="isSubmitting" @click="submitGoal">
+          Create Goal
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+</template>
+```
+
+### 2. Role-Based Accordion Lock & Security Guardrails
+
+Implemented access control restrictions on sensitive administrative configuration accordions. When a user lacking required permissions views the accordion, the interactive toggle is disabled and displays a clean visual indicator informing them of insufficient permissions, preventing unauthenticated state mutations:
+
+```javascript
+// composables/useAccordionGuard.js
+export function useAccordionGuard(currentUser, requiredRole = "admin") {
+  const isAuthorized = computed(() => {
+    if (!currentUser.value) return false;
+    return currentUser.value.roles?.includes(requiredRole);
+  });
+
+  const handleAccordionToggle = (accordionId) => {
+    if (!isAuthorized.value) {
+      notify({
+        type: "warning",
+        message: "You must have contributor or administrator permissions to modify this section.",
+      });
+      return false;
+    }
+    return true;
+  };
+
+  return { isAuthorized, handleAccordionToggle };
+}
+```
+
+### 3. Member Status Triage & Pull Request Activity Tracker
+
+To improve community engagement visibility and member tracking, contributed features across community dashboards:
+
+- **Status Filters:** Added dynamic filtering to list members based on active status, onboarding state, or inactive standing, streamlining triage for community leaders.
+- **Profile PR Tracker:** Built an automated widget that interfaces with GitHub API metadata to display a contributor's merged and open pull requests directly on their public community profile page.
+- **Collaborative Code Reviews:** Actively reviewed community pull requests, adhered to conventional commits, and ensured test coverage across multiple repositories.
+

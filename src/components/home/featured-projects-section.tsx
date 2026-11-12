@@ -13,6 +13,7 @@ import {
   ShieldAlert,
   Layers,
   Globe,
+  GitPullRequest,
 } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
@@ -29,6 +30,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
     { id: "all", label: "All Featured" },
     { id: "ai", label: "AI & Agents" },
     { id: "fullstack", label: "Full Stack & Web" },
+    { id: "opensource", label: "Open Source" },
     { id: "mobile", label: "Mobile & Real-Time" },
   ];
 
@@ -36,6 +38,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
     if (filter === "all") return true;
     if (filter === "ai") return p.slug.includes("ai-chatbot") || p.tech.some((t) => t.includes("LLM") || t.includes("Claude") || t.includes("Gemini"));
     if (filter === "fullstack") return p.tech.includes("Next.js") || p.tech.includes("Go") || p.tech.includes("Fastify");
+    if (filter === "opensource") return p.slug.includes("real-dev-squad") || p.slug.includes("rds") || p.role.toLowerCase().includes("open source") || p.summary.toLowerCase().includes("open-source");
     if (filter === "mobile") return p.slug.includes("care-ring") || p.slug.includes("home-assets") || p.tech.includes("React Native");
     return true;
   });
@@ -69,6 +72,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
     if (slug.includes("home-assets")) return <Layers className="w-8 h-8 text-accent" />;
     if (slug.includes("linktree")) return <Globe className="w-8 h-8 text-accent" />;
     if (slug.includes("shadi")) return <Heart className="w-8 h-8 text-accent" />;
+    if (slug.includes("real-dev-squad") || slug.includes("rds")) return <GitPullRequest className="w-8 h-8 text-accent" />;
     return <FolderGit2 className="w-8 h-8 text-accent" />;
   };
 
@@ -147,12 +151,16 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                         </div>
                       )}
 
-                      {/* Status badge in top right */}
-                      {project.status !== "completed" && (
-                        <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
-                          {getStatusBadge(project.status)}
-                        </div>
-                      )}
+                      {/* Status / Open Source badge in top right */}
+                      <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+                        {(project.role.toLowerCase().includes("open source") || project.slug.includes("real-dev-squad")) && (
+                          <span className="rounded-full bg-sky-500/15 text-sky-700 dark:text-sky-300 border border-sky-500/30 px-2 py-0.5 text-[10px] font-mono font-semibold flex items-center gap-1">
+                            <GitPullRequest className="w-2.5 h-2.5" />
+                            Open Source
+                          </span>
+                        )}
+                        {project.status !== "completed" && getStatusBadge(project.status)}
+                      </div>
 
                       {/* Work project notice if confidential */}
                       {isConfidential && (

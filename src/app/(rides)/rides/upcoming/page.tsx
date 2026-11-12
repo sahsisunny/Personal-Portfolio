@@ -10,8 +10,8 @@ import {
   CircleDashed,
   Compass,
 } from "lucide-react";
-import { getPlannedRides, getSocials, isFeatureEnabled } from "@/lib/data";
-import { InstagramIcon, YoutubeIcon } from "@/components/ui/icons";
+import { getPlannedRides, getRidesSocials, isFeatureEnabled } from "@/lib/data";
+import { InstagramIcon, YoutubeIcon, TwitterIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
   title: "Upcoming Expeditions | On Two Wheels",
@@ -25,7 +25,7 @@ export default function UpcomingRidesPage() {
   }
 
   const plannedRides = getPlannedRides();
-  const socials = getSocials();
+  const socials = getRidesSocials();
 
   return (
     <div className="space-y-16 sm:space-y-20 pb-24">
@@ -232,7 +232,7 @@ export default function UpcomingRidesPage() {
           </p>
         </div>
 
-        <div className="flex justify-center gap-4 pt-2">
+        <div className="flex flex-wrap justify-center gap-4 pt-2">
           {socials.instagram && (
             <a
               href={socials.instagram}
@@ -242,6 +242,17 @@ export default function UpcomingRidesPage() {
             >
               <InstagramIcon className="w-4 h-4" />
               <span>Instagram Live</span>
+            </a>
+          )}
+          {socials.x && (
+            <a
+              href={socials.x}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-2.5 text-xs font-mono uppercase tracking-wider text-text hover:border-accent hover:text-accent transition-colors shadow-xs"
+            >
+              <TwitterIcon className="w-4 h-4" />
+              <span>X Dispatches</span>
             </a>
           )}
           {socials.youtube && (

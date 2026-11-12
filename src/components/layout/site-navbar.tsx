@@ -277,8 +277,8 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
 
             {/* Bottom Footer Details */}
             <div className="pt-4 border-t border-border/60 flex items-center justify-between text-xs font-mono text-muted">
-              <span>Patna, Bihar</span>
-              <span className="text-accent font-semibold">Remote Engineer</span>
+              <span>Based in India</span>
+              <span className="text-accent font-semibold">Open to Opportunities</span>
             </div>
           </div>,
           document.body

@@ -63,9 +63,9 @@ export default function BikePage() {
             </p>
           </div>
 
-          {/* Large Visual Illustration of Royal Enfield Meteor 350 */}
+          {/* Large Visual of Royal Enfield Meteor 350 */}
           <div className="relative rounded-2xl border-2 border-border/80 bg-surface shadow-2xl overflow-hidden group">
-            <div className="relative aspect-16/9 w-full bg-slate-950 flex items-center justify-center">
+            <div className="relative aspect-4/3 sm:aspect-16/9 w-full bg-slate-950 flex items-center justify-center">
               <Image
                 src={bike.image}
                 alt={bike.name}
@@ -73,7 +73,7 @@ export default function BikePage() {
                 width={1200}
                 height={675}
                 priority
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover"
               />
             </div>
             <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-wrap items-center justify-between gap-3 bg-surface/90 backdrop-blur-md border border-border/80 p-3 sm:p-4 rounded-xl">

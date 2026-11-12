@@ -7,8 +7,6 @@ import {
   getExperiences,
   getSkills,
   getFeaturedProjects,
-  getOpenSource,
-  getEducation,
   getRidesSection,
   getContact,
   getSeo,
@@ -21,8 +19,6 @@ import { AboutSection } from "@/components/home/about-section";
 import { ExperienceSection } from "@/components/home/experience-section";
 import { SkillsSection } from "@/components/home/skills-section";
 import { FeaturedProjectsSection } from "@/components/home/featured-projects-section";
-import { OpenSourceSection } from "@/components/home/open-source-section";
-import { EducationSection } from "@/components/home/education-section";
 import { LatestWritingSection } from "@/components/home/latest-writing-section";
 import { RidesTeaserSection } from "@/components/home/rides-teaser-section";
 import { ContactSection } from "@/components/home/contact-section";
@@ -49,8 +45,6 @@ export default function HomePage() {
   const experience = getExperiences();
   const skills = getSkills();
   const featuredProjects = getFeaturedProjects();
-  const openSource = getOpenSource();
-  const education = getEducation();
   const blogPosts = getAllBlogPosts(false);
   const rides = getRidesSection();
   const contact = getContact();
@@ -74,8 +68,6 @@ export default function HomePage() {
       {features.skills && <SkillsSection skills={skills} />}
       {features.now && <NowSection now={now} />}
       <AboutSection person={person} stats={features.stats ? stats : []} />
-      {features.openSource && <OpenSourceSection openSource={openSource} />}
-      {features.education && <EducationSection education={education} />}
       {features.rides && <RidesTeaserSection ridesData={rides} />}
       {features.contact && (
         <ContactSection

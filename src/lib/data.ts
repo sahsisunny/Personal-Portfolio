@@ -56,7 +56,6 @@ export function getExperiences(): Experience[] {
 }
 
 export function getEducation(): Education[] {
-  if (!isFeatureEnabled("education")) return [];
   return portfolioData.education.filter((e) => e.enabled !== false);
 }
 
@@ -90,6 +89,19 @@ export function getOpenSource(): OpenSource[] {
 
 export function getRidesSection() {
   return portfolioData.rides;
+}
+
+export function getRidesSocials(): {
+  instagram?: string | null;
+  x?: string | null;
+  youtube?: string | null;
+} {
+  const ridesSocials = portfolioData.rides.socials;
+  return {
+    instagram: ridesSocials?.instagram ?? portfolioData.socials.instagram,
+    x: ridesSocials?.x ?? portfolioData.socials.x,
+    youtube: ridesSocials?.youtube ?? portfolioData.socials.youtube,
+  };
 }
 
 export function getRides(): Ride[] {

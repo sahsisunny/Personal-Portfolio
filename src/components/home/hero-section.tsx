@@ -55,11 +55,11 @@ export function HeroSection({ person, socials, features }: HeroSectionProps) {
           {person.tagline}
         </p>
 
-        {/* Location */}
+        {/* Location & Work Mode */}
         <div className="flex items-center gap-1.5 text-sm text-muted mb-10">
           <MapPin className="w-4 h-4 text-accent flex-shrink-0" />
           <span>
-            Based in {person.location}. Open to remote work.
+            Based in {person.location}. Open to remote, hybrid &amp; on-site opportunities.
           </span>
         </div>
 

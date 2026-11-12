@@ -12,10 +12,10 @@ import {
 } from "lucide-react";
 import {
   getRidesSection,
-  getSocials,
+  getRidesSocials,
   getBikeDetails,
 } from "@/lib/data";
-import { InstagramIcon, YoutubeIcon } from "@/components/ui/icons";
+import { InstagramIcon, YoutubeIcon, TwitterIcon } from "@/components/ui/icons";
 import { IndiaRoutesMapClient } from "@/components/rides/india-routes-map-client";
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function RidesLandingPage() {
   const ridesData = getRidesSection();
-  const socials = getSocials();
+  const socials = getRidesSocials();
   const bike = getBikeDetails();
 
   // Filter out any stat that is null per Section 9.1 rules
@@ -188,14 +188,14 @@ export default function RidesLandingPage() {
             className="group flex flex-col justify-between rounded-2xl border-2 border-border bg-surface overflow-hidden shadow-xs hover:border-accent hover:shadow-xl transition-all duration-300"
           >
             <div>
-              <div className="relative aspect-16/10 w-full bg-slate-950 flex items-center justify-center p-4 overflow-hidden border-b border-border">
+              <div className="relative aspect-16/10 w-full bg-slate-950 flex items-center justify-center overflow-hidden border-b border-border">
                 <Image
                   src={bike.image}
                   alt={bike.name}
                   title={bike.name}
                   width={600}
                   height={375}
-                  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute top-3 left-3 rounded-full bg-surface/90 border border-accent/40 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent">
                   349CC SOHC J-SERIES
@@ -431,7 +431,7 @@ export default function RidesLandingPage() {
           </p>
         </div>
 
-        <div className="flex justify-center gap-4 pt-2">
+        <div className="flex flex-wrap justify-center gap-4 pt-2">
           {socials.instagram && (
             <a
               href={socials.instagram}
@@ -441,6 +441,17 @@ export default function RidesLandingPage() {
             >
               <InstagramIcon className="w-4 h-4" />
               <span>Instagram Reels</span>
+            </a>
+          )}
+          {socials.x && (
+            <a
+              href={socials.x}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-2.5 text-xs font-mono uppercase tracking-wider text-text hover:border-accent hover:text-accent transition-colors shadow-xs"
+            >
+              <TwitterIcon className="w-4 h-4" />
+              <span>X (Twitter) Dispatches</span>
             </a>
           )}
           {socials.youtube && (

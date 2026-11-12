@@ -6,7 +6,7 @@
 
 ## 1. Goal
 
-Build a personal portfolio website for **Sunny Sahsi**, an **Associate Full Stack Developer** (recently promoted from Junior) based in Patna, India, working remotely at Fountane with **Next.js and Go**. He is also building an **AI chatbot agent** and uses **Claude, Cursor and Antigravity** in his workflow.
+Build a personal portfolio website for **Sunny Sahsi**, an **Associate Full Stack Developer** (recently promoted from Junior) based in India, working remotely at Fountane with **Next.js and Go**. He is also building an **AI chatbot agent** and uses **Claude, Cursor and Antigravity** in his workflow.
 
 The site has two personalities in one codebase:
 

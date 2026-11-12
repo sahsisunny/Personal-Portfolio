@@ -26,7 +26,7 @@
       "Golang",
       "TypeScript",
       "AI chatbot agent",
-      "Patna",
+      "India",
       "motorcycle touring"
     ]
   },
@@ -50,8 +50,8 @@
     "handle": "sahsisunny",
     "headline": "Full Stack & Systems Engineer",
     "tagline": "I build production web applications, high-performance Go backend microservices, and enterprise AI agent orchestration platforms.",
-    "location": "Patna, Bihar, India",
-    "workMode": "Remote",
+    "location": "India",
+    "workMode": "Remote / Hybrid / On-site",
     "availability": {
       "status": "open-to-conversations",
       "label": "Open to interesting conversations",
@@ -59,7 +59,7 @@
     },
     "shortBio": "Full Stack & Systems Engineer at Fountane, working across Next.js and Go. I own features end to end, currently engineering a zero-trust AI agent orchestrator that resolves natural-language queries across 600+ microservice endpoints.",
     "longBio": [
-      "I'm a software engineer from Patna, India. I started building for the web while studying Computer Applications at Patna University, contributed to open source with Real Dev Squad, and joined Fountane in August 2024 as a Junior Full Stack Developer, advancing to Associate Full Stack Developer.",
+      "I'm a software engineer from India. I started building for the web while studying Computer Applications at Patna University, contributed to open source with Real Dev Squad, and joined Fountane in August 2024 as a Junior Full Stack Developer, advancing to Associate Full Stack Developer.",
       "Day to day I engineer scalable systems across Next.js and Go: high-density UI modules, transactional backend services, payment gateways, and role-based access control. I build and maintain zero-trust AI agent orchestration layers that query multi-service backends under strict tenant isolation.",
       "Outside code I ride. I have ridden solo from Patna to Ladakh and from Patna to Rameshwaram, documenting the roads, mechanics, and lessons on a dedicated Rides section."
     ],
@@ -178,38 +178,6 @@
         "Jira"
       ],
       "confidentialityNote": "Client and product names stay generic on the public site unless Fountane approves naming them."
-    },
-    {
-      "id": "real-dev-squad",
-      "company": "Real Dev Squad",
-      "companyUrl": "https://realdevsquad.com",
-      "logo": "/images/logos/rds.png",
-      "location": "Remote",
-      "employmentType": "Open source",
-      "start": "2022-12",
-      "end": null,
-      "current": true,
-      "roles": [
-        {
-          "title": "Open Source Contributor",
-          "start": "2022-12",
-          "end": null,
-          "highlights": [
-            "Worked across React, Next.js, Ember and Vue.js codebases.",
-            "Built the Goal form modal using Vue.js and Vuetify.",
-            "Added a feature to lock the accordion for unauthorized users.",
-            "Added a filter to list users by status.",
-            "Built a feature to show a user's pull requests on their profile page."
-          ]
-        }
-      ],
-      "tech": [
-        "Vue.js",
-        "Vuetify",
-        "React",
-        "Next.js",
-        "Ember"
-      ]
     },
     {
       "id": "smartinternz",
@@ -457,6 +425,50 @@
   },
   "projects": [
     {
+      "id": "ai-chatbot-agent",
+      "slug": "ai-chatbot-agent",
+      "enabled": true,
+      "title": "Enterprise AI Chatbot & Agent Orchestrator",
+      "status": "in-progress",
+      "featured": true,
+      "visibility": "public-after-review",
+      "visibilityNote": "Validated in multi-service staging environment. Architecture blueprint, zero-trust security invariants, and tool execution layer documented below.",
+      "summary": "A dedicated Go backend service that orchestrates natural-language queries across 600+ microservice APIs, enforcing caller-scoped zero-trust RBAC.",
+      "description": "A dedicated Go orchestration service connecting operational teams to multi-service enterprise backends. The agent translates natural-language queries into controlled API operations across 600+ microservice endpoints, injects tenant isolation in server code to prevent prompt drift, and streams verified structured cards to the client.",
+      "role": "Solo developer",
+      "tech": [
+        "Go",
+        "LLM APIs",
+        "REST Microservices",
+        "Zero-Trust RBAC",
+        "OpenAPI",
+        "OAuth"
+      ],
+      "highlights": [
+        "Architected the Go agent service connecting internal operational users to multi-service enterprise APIs.",
+        "Implemented caller-scoped JWT forwarding and strict server-side tenant injection preventing cross-tenant data leakage.",
+        "Resolved date-anchor invariants and timezone reconciliation to prevent faulty temporal query assumptions.",
+        "Designed asynchronous routine execution framework with human approval gates and revocable grants."
+      ],
+      "metrics": {
+        "_note": "Add real numbers only (response accuracy, latency, tools supported).",
+        "toolsCount": null,
+        "avgLatencyMs": null
+      },
+      "links": {
+        "repo": null,
+        "live": null,
+        "caseStudy": null
+      },
+      "images": [
+        "/images/projects/ai-chatbot-agent.svg"
+      ],
+      "period": {
+        "start": "2024",
+        "end": null
+      }
+    },
+    {
       "id": "care-ring",
       "slug": "care-ring",
       "enabled": true,
@@ -617,118 +629,44 @@
       }
     },
     {
-      "id": "ai-chatbot-agent",
-      "slug": "ai-chatbot-agent",
+      "id": "real-dev-squad",
+      "slug": "real-dev-squad",
       "enabled": true,
-      "title": "Enterprise AI Chatbot & Agent Orchestrator",
-      "status": "in-progress",
+      "title": "Real Dev Squad (RDS)",
+      "status": "completed",
       "featured": true,
-      "visibility": "public-after-review",
-      "visibilityNote": "Validated in multi-service staging environment. Architecture blueprint, zero-trust security invariants, and tool execution layer documented below.",
-      "summary": "A dedicated Go backend service that orchestrates natural-language queries across 600+ microservice APIs, enforcing caller-scoped zero-trust RBAC.",
-      "description": "A dedicated Go orchestration service connecting operational teams to multi-service enterprise backends. The agent translates natural-language queries into controlled API operations across 600+ microservice endpoints, injects tenant isolation in server code to prevent prompt drift, and streams verified structured cards to the client.",
-      "role": "Solo developer",
-      "tech": [
-        "Go",
-        "LLM APIs",
-        "REST Microservices",
-        "Zero-Trust RBAC",
-        "OpenAPI",
-        "OAuth"
-      ],
-      "highlights": [
-        "Architected the Go agent service connecting internal operational users to multi-service enterprise APIs.",
-        "Implemented caller-scoped JWT forwarding and strict server-side tenant injection preventing cross-tenant data leakage.",
-        "Resolved date-anchor invariants and timezone reconciliation to prevent faulty temporal query assumptions.",
-        "Designed asynchronous routine execution framework with human approval gates and revocable grants."
-      ],
-      "metrics": {
-        "_note": "Add real numbers only (response accuracy, latency, tools supported).",
-        "toolsCount": null,
-        "avgLatencyMs": null
-      },
-      "links": {
-        "repo": null,
-        "live": null,
-        "caseStudy": null
-      },
-      "images": [
-        "/images/projects/ai-chatbot-agent.svg"
-      ],
-      "period": {
-        "start": "2024",
-        "end": null
-      }
-    },
-    {
-      "id": "shadi-invitations",
-      "slug": "shadi-invitations",
-      "enabled": true,
-      "title": "Shadi Invitation Website",
-      "status": "completed",
-      "featured": false,
       "visibility": "public",
-      "summary": "A mobile-first Hindi wedding invitation site with multiple templates, a template gallery landing page and an animated opening-gate reveal.",
-      "description": "Next.js + TypeScript project built around reusable invitation templates. Includes an opening gate (doors) animation, animated couple illustrations, a map view option for the venue and a tap-to-call button for the organizer. Numbers are shown in English digits for readability.",
-      "role": "Solo developer",
+      "summary": "Community-driven open-source developer ecosystem building production-grade web applications, triage tools, and member profiles across Vue.js, React, Next.js, and Ember.",
+      "description": "Real Dev Squad is an open-source community platform empowering developers through hands-on collaboration and peer reviews. Contributed to core user interfaces and security controls across distributed codebases: engineered the Vue.js/Vuetify Goal modal with schema validation, implemented role-based accordion access controls, developed member status filters, and built an interactive pull request activity tracker for member profiles.",
+      "role": "Open Source Contributor",
       "tech": [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Framer Motion"
-      ],
-      "highlights": [
-        "Template system: add a new template without touching core code.",
-        "Landing page gallery that lists every template.",
-        "Opening-gate animation and animated illustrations, tuned for mobile.",
-        "Venue map option and one-tap organizer call."
-      ],
-      "links": {
-        "repo": null,
-        "live": null,
-        "caseStudy": null
-      },
-      "images": [
-        "/images/projects/shadi-invitations.svg"
-      ],
-      "period": {
-        "start": "2024",
-        "end": null
-      }
-    },
-    {
-      "id": "sweetcart",
-      "slug": "sweetcart",
-      "enabled": true,
-      "title": "SweetCart",
-      "status": "completed",
-      "featured": false,
-      "visibility": "public",
-      "summary": "Modern e-commerce storefront with reactive product catalog, cart persistence, and Framer Motion micro-interactions.",
-      "description": "An e-commerce web application built using React, Next.js, and Tailwind CSS. Features Commerce.js API integration for real-time inventory management, responsive product catalog, and seamless cart checkout flow.",
-      "role": "Solo developer",
-      "tech": [
-        "Next.js",
+        "Vue.js",
+        "Vuetify",
         "React",
-        "Tailwind CSS",
-        "Framer Motion"
+        "Next.js",
+        "Ember",
+        "TypeScript",
+        "JavaScript",
+        "Tailwind CSS"
       ],
       "highlights": [
-        "Dynamic product catalog and category filters connected to headless commerce APIs.",
-        "Smooth page and cart transition animations built with Framer Motion.",
-        "Fully responsive mobile-friendly shopping and checkout experience."
+        "Engineered the Goal form modal workflow using Vue.js and Vuetify with input validation and reactive state management.",
+        "Implemented access-control security restrictions to lock accordions for unauthorized users.",
+        "Added granular user filtering to query and list community members by status and engagement.",
+        "Built an interactive feature to track and showcase a user's GitHub pull requests on their public profile page.",
+        "Participated in distributed peer code reviews, frontend architecture discussions, and documentation across repositories."
       ],
       "links": {
-        "repo": "https://github.com/sahsisunny/sweetcart",
-        "live": "https://sweetcarts.netlify.app/",
+        "repo": "https://github.com/Real-Dev-Squad",
+        "live": "https://realdevsquad.com",
         "caseStudy": null
       },
       "images": [
-        "/images/projects/sweetcart.png"
+        "/images/projects/real-dev-squad.svg"
       ],
       "period": {
-        "start": "2023",
-        "end": "2023"
+        "start": "2022-12",
+        "end": "2024-07"
       }
     }
   ],
@@ -1045,7 +983,7 @@
             },
             {
               "name": "Hyderabad",
-              "lat": 17.3850,
+              "lat": 17.385,
               "lng": 78.4867,
               "day": 5,
               "note": "Deccan highway intersection."
@@ -1158,7 +1096,7 @@
       "rangeKm": "~480 km per tank (32-35 km/L highway touring)",
       "brakes": "Dual-Channel ABS with 300mm front disc & 270mm rear disc",
       "tires": "100/90-19 57P (Front) / 140/70-17 66P (Rear) Tubeless Alloys",
-      "image": "/images/rides/meteor-350.svg",
+      "image": "/images/rides/meteor-350.webp",
       "tagline": "The Highway Cruiser Built for Mountain Passes & Ocean Highways",
       "description": "My primary solo touring steed. Built on Royal Enfield's twin downtube spine frame with counterbalanced J-series single-cylinder thumper, delivering buttery smooth cruising without handlebar vibration at 90-100 km/h.",
       "whyThisBike": [
@@ -1478,10 +1416,16 @@
         "RAM Tough-Charge Anti-Vibration Phone Mount"
       ]
     },
+    "socials": {
+      "instagram": "https://www.instagram.com/SunnyCodeRides",
+      "x": "https://x.com/SunnyCodeRides",
+      "youtube": "https://www.youtube.com/@SunnyCodeRides"
+    },
     "cta": {
       "label": "Follow the rides",
       "links": [
         "instagram",
+        "x",
         "youtube"
       ]
     }
@@ -1534,8 +1478,6 @@
       "alumniOf": "Patna University",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Patna",
-        "addressRegion": "Bihar",
         "addressCountry": "IN"
       },
       "sameAs": [

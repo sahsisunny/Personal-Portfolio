@@ -322,6 +322,13 @@ export const RidesSectionSchema = z.object({
       content: z.array(z.string()).default([]),
     })
     .optional(),
+  socials: z
+    .object({
+      instagram: z.string().nullable().optional(),
+      x: z.string().nullable().optional(),
+      youtube: z.string().nullable().optional(),
+    })
+    .optional(),
   cta: z.object({
     label: z.string(),
     links: z.array(z.string()),
@@ -438,6 +445,7 @@ export type Experience = z.infer<typeof ExperienceSchema>;
 export type Education = z.infer<typeof EducationSchema>;
 export type Ride = z.infer<typeof RideSchema>;
 export type RidesSection = z.infer<typeof RidesSectionSchema>;
+export type RidesSocials = NonNullable<RidesSection["socials"]>;
 export type BikeDetails = z.infer<typeof BikeDetailsSchema>;
 export type GearItem = z.infer<typeof GearItemSchema>;
 export type PlannedRide = z.infer<typeof PlannedRideSchema>;

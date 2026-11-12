@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" fill="none">
+  <defs>
+    <linearGradient id="rdsbg" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="rds-blue-glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <radialGradient id="ambient-cyan" cx="20%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ambient-indigo" cx="80%" cy="70%" r="50%">
+      <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#rdsbg)"/>
+  <rect width="1200" height="675" fill="url(#ambient-cyan)"/>
+  <rect width="1200" height="675" fill="url(#ambient-indigo)"/>
+
+  <!-- Subtle grid lines -->
+  <g stroke="#1e293b" stroke-width="1" stroke-dasharray="4 8" opacity="0.6">
+    <line x1="0" y1="135" x2="1200" y2="135"/>
+    <line x1="0" y1="270" x2="1200" y2="270"/>
+    <line x1="0" y1="405" x2="1200" y2="405"/>
+    <line x1="0" y1="540" x2="1200" y2="540"/>
+    <line x1="240" y1="0" x2="240" y2="675"/>
+    <line x1="480" y1="0" x2="480" y2="675"/>
+    <line x1="720" y1="0" x2="720" y2="675"/>
+    <line x1="960" y1="0" x2="960" y2="675"/>
+  </g>
+
+  <!-- Top Navigation Bar -->
+  <rect x="80" y="60" width="1040" height="64" rx="16" fill="#0f172a" fill-opacity="0.85" stroke="#1e293b" stroke-width="1.5"/>
+  
+  <!-- RDS Logo Icon Placeholder -->
+  <rect x="104" y="76" width="32" height="32" rx="8" fill="#0284c7" fill-opacity="0.2" stroke="#38bdf8" stroke-width="1"/>
+  <path d="M112 88l8-4 8 4-8 4-8-4zm0 6l8 4 8-4" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <text x="148" y="97" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="18">Real Dev Squad (RDS)</text>
+  <text x="350" y="97" fill="#94a3b8" font-family="monospace" font-size="12">OPEN SOURCE COMMUNITY • MULTI-REPO COLLABORATION</text>
+
+  <!-- Status badges on top bar -->
+  <rect x="860" y="78" width="110" height="28" rx="14" fill="#38bdf8" fill-opacity="0.15" stroke="#38bdf8" stroke-opacity="0.4"/>
+  <circle cx="875" cy="92" r="4" fill="#38bdf8"/>
+  <text x="886" y="96" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="600">OPEN SOURCE</text>
+
+  <rect x="980" y="78" width="124" height="28" rx="14" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-opacity="0.4"/>
+  <circle cx="995" cy="92" r="4" fill="#10b981"/>
+  <text x="1006" y="96" fill="#10b981" font-family="monospace" font-size="11" font-weight="600">PRODUCTION</text>
+
+  <!-- Left: Contributions & Engineering Deliverables -->
+  <rect x="80" y="150" width="590" height="465" rx="20" fill="#0f172a" fill-opacity="0.95" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="110" y="195" fill="#38bdf8" font-family="monospace" font-size="12" font-weight="700" letter-spacing="1">KEY OPEN-SOURCE CONTRIBUTIONS &amp; MODULES</text>
+
+  <!-- Feature Card 1: Goal Form Modal (Vue.js + Vuetify) -->
+  <rect x="110" y="220" width="530" height="96" rx="12" fill="#1e293b" fill-opacity="0.6" stroke="#334155" stroke-width="1"/>
+  <rect x="126" y="236" width="36" height="36" rx="8" fill="#42b883" fill-opacity="0.15" stroke="#42b883" stroke-width="1"/>
+  <text x="137" y="260" fill="#42b883" font-family="monospace" font-size="14" font-weight="bold">V</text>
+  <text x="174" y="252" fill="#f8fafc" font-family="sans-serif" font-size="15" font-weight="600">Goal Form Modal &amp; Validation Flow</text>
+  <text x="174" y="274" fill="#94a3b8" font-family="sans-serif" font-size="12">Engineered responsive goal modal in Vue.js &amp; Vuetify with schema validation,</text>
+  <text x="174" y="292" fill="#94a3b8" font-family="sans-serif" font-size="12">reactive state binding, and optimistic UI dispatch.</text>
+  <rect x="520" y="236" width="104" height="22" rx="6" fill="#42b883" fill-opacity="0.1" stroke="#42b883" stroke-width="1"/>
+  <text x="532" y="251" fill="#42b883" font-family="monospace" font-size="10" font-weight="600">Vue.js • Vuetify</text>
+
+  <!-- Feature Card 2: Accordion Access Control -->
+  <rect x="110" y="332" width="530" height="96" rx="12" fill="#1e293b" fill-opacity="0.6" stroke="#334155" stroke-width="1"/>
+  <rect x="126" y="348" width="36" height="36" rx="8" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1"/>
+  <path d="M138 368v-4a6 6 0 0 1 12 0v4m-14 0h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-16a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z" stroke="#f59e0b" stroke-width="1.5" fill="none"/>
+  <text x="174" y="364" fill="#f8fafc" font-family="sans-serif" font-size="15" font-weight="600">Role-Based Accordion Lock</text>
+  <text x="174" y="386" fill="#94a3b8" font-family="sans-serif" font-size="12">Implemented access-control security barriers protecting privileged accordion</text>
+  <text x="174" y="404" fill="#94a3b8" font-family="sans-serif" font-size="12">configurations from unauthorized and guest members.</text>
+  <rect x="528" y="348" width="96" height="22" rx="6" fill="#f59e0b" fill-opacity="0.1" stroke="#f59e0b" stroke-width="1"/>
+  <text x="540" y="363" fill="#f59e0b" font-family="monospace" font-size="10" font-weight="600">RBAC Security</text>
+
+  <!-- Feature Card 3: Member PR Tracker & Status Filters -->
+  <rect x="110" y="444" width="530" height="96" rx="12" fill="#1e293b" fill-opacity="0.6" stroke="#334155" stroke-width="1"/>
+  <rect x="126" y="460" width="36" height="36" rx="8" fill="#38bdf8" fill-opacity="0.15" stroke="#38bdf8" stroke-width="1"/>
+  <path d="M141 468v4m0 8v4m6-12a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm0 12a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="174" y="476" fill="#f8fafc" font-family="sans-serif" font-size="15" font-weight="600">Member Status Filters &amp; Profile PR Tracker</text>
+  <text x="174" y="498" fill="#94a3b8" font-family="sans-serif" font-size="12">Added status triage filters and built a live GitHub pull request telemetry</text>
+  <text x="174" y="516" fill="#94a3b8" font-family="sans-serif" font-size="12">widget directly onto community member profile pages.</text>
+  <rect x="518" y="460" width="106" height="22" rx="6" fill="#38bdf8" fill-opacity="0.1" stroke="#38bdf8" stroke-width="1"/>
+  <text x="530" y="475" fill="#38bdf8" font-family="monospace" font-size="10" font-weight="600">GitHub API • PRs</text>
+
+  <!-- Bottom stat bar inside left panel -->
+  <rect x="110" y="555" width="530" height="42" rx="10" fill="#1e293b" fill-opacity="0.4" stroke="#334155" stroke-width="1"/>
+  <text x="130" y="581" fill="#38bdf8" font-family="monospace" font-size="12" font-weight="bold">✓ 5+ Shipped Features</text>
+  <text x="320" y="581" fill="#94a3b8" font-family="monospace" font-size="12">|</text>
+  <text x="340" y="581" fill="#f8fafc" font-family="monospace" font-size="12">Distributed Code Reviews</text>
+  <text x="540" y="581" fill="#94a3b8" font-family="monospace" font-size="12">|</text>
+  <text x="555" y="581" fill="#10b981" font-family="monospace" font-size="12">Remote Community</text>
+
+  <!-- Right: Multi-Framework Topology & PR Triage -->
+  <rect x="690" y="150" width="430" height="465" rx="20" fill="#0f172a" fill-opacity="0.95" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="720" y="195" fill="#38bdf8" font-family="monospace" font-size="12" font-weight="700" letter-spacing="1">MULTI-FRAMEWORK REPOSITORIES</text>
+
+  <!-- Framework Badges Grid -->
+  <g transform="translate(720, 220)">
+    <!-- Vue.js -->
+    <rect x="0" y="0" width="175" height="44" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <circle cx="22" cy="22" r="8" fill="#42b883"/>
+    <text x="40" y="27" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="600">Vue.js &amp; Vuetify</text>
+
+    <!-- React -->
+    <rect x="195" y="0" width="175" height="44" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <circle cx="217" cy="22" r="8" fill="#06b6d4"/>
+    <text x="235" y="27" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="600">React &amp; Next.js</text>
+
+    <!-- Ember.js -->
+    <rect x="0" y="58" width="175" height="44" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <circle cx="22" cy="80" r="8" fill="#e04e39"/>
+    <text x="40" y="85" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="600">Ember.js Web</text>
+
+    <!-- TypeScript -->
+    <rect x="195" y="58" width="175" height="44" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <circle cx="217" cy="80" r="8" fill="#3b82f6"/>
+    <text x="235" y="85" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="600">TypeScript &amp; APIs</text>
+  </g>
+
+  <!-- Simulated GitHub PR Triage Terminal -->
+  <rect x="720" y="345" width="370" height="245" rx="14" fill="#020617" stroke="#334155" stroke-width="1"/>
+  <rect x="720" y="345" width="370" height="32" rx="14" fill="#1e293b" fill-opacity="0.6"/>
+  <circle cx="738" cy="361" r="4.5" fill="#ef4444"/>
+  <circle cx="754" cy="361" r="4.5" fill="#f59e0b"/>
+  <circle cx="770" cy="361" r="4.5" fill="#10b981"/>
+  <text x="788" y="366" fill="#94a3b8" font-family="monospace" font-size="11">github.com/Real-Dev-Squad/website-status</text>
+
+  <g transform="translate(735, 395)" font-family="monospace" font-size="11">
+    <text x="0" y="0" fill="#38bdf8"># Real Dev Squad Peer Review Pipeline</text>
+    <text x="0" y="24" fill="#10b981">✔ PR #412: feat(modal): goal creation flow</text>
+    <text x="0" y="46" fill="#94a3b8">  Author: @sahsisunny • Merged</text>
+    
+    <text x="0" y="76" fill="#10b981">✔ PR #468: feat(security): lock accordion RBAC</text>
+    <text x="0" y="98" fill="#94a3b8">  Author: @sahsisunny • Merged</text>
+    
+    <text x="0" y="128" fill="#10b981">✔ PR #521: feat(profile): live PR activity list</text>
+    <text x="0" y="150" fill="#94a3b8">  Author: @sahsisunny • Merged</text>
+
+    <rect x="0" y="165" width="340" height="24" rx="4" fill="#1e293b" fill-opacity="0.8"/>
+    <text x="8" y="181" fill="#38bdf8" font-size="10">STATUS: ALL CI CHECKS &amp; CODE REVIEWS PASSED</text>
+  </g>
+</svg>
+

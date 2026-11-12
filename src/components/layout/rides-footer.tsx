@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { InstagramIcon, YoutubeIcon } from "@/components/ui/icons";
+import { InstagramIcon, YoutubeIcon, TwitterIcon } from "@/components/ui/icons";
 
 interface RidesFooterProps {
   socials: {
     instagram?: string | null;
+    x?: string | null;
     youtube?: string | null;
   };
 }
@@ -28,9 +29,20 @@ export function RidesFooter({ socials }: RidesFooterProps) {
                 target="_blank"
                 rel="noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-muted hover:text-accent hover:border-accent transition-colors"
-                aria-label="Instagram"
+                aria-label="Instagram (@SunnyCodeRides)"
               >
                 <InstagramIcon className="h-4 w-4" />
+              </a>
+            )}
+            {socials.x && (
+              <a
+                href={socials.x}
+                target="_blank"
+                rel="noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-muted hover:text-accent hover:border-accent transition-colors"
+                aria-label="X / Twitter (@SunnyCodeRides)"
+              >
+                <TwitterIcon className="h-4 w-4" />
               </a>
             )}
             {socials.youtube && (
@@ -39,7 +51,7 @@ export function RidesFooter({ socials }: RidesFooterProps) {
                 target="_blank"
                 rel="noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-muted hover:text-accent hover:border-accent transition-colors"
-                aria-label="YouTube"
+                aria-label="YouTube (@SunnyCodeRides)"
               >
                 <YoutubeIcon className="h-4 w-4" />
               </a>

@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FolderGit2, ArrowRight, ExternalLink, ShieldAlert, Bot, MapPin, Heart, Sparkles, Layers, Globe } from "lucide-react";
+import { FolderGit2, ArrowRight, ExternalLink, ShieldAlert, Bot, MapPin, Heart, Sparkles, Layers, Globe, GitPullRequest } from "lucide-react";
 import { GithubIcon } from "@/components/ui/icons";
 import type { Project } from "@/lib/schema";
 
@@ -70,6 +70,7 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
     if (slug.includes("home-assets")) return <Layers className="w-8 h-8 text-accent" />;
     if (slug.includes("linktree")) return <Globe className="w-8 h-8 text-accent" />;
     if (slug.includes("shadi")) return <Heart className="w-8 h-8 text-accent" />;
+    if (slug.includes("real-dev-squad") || slug.includes("rds")) return <GitPullRequest className="w-8 h-8 text-accent" />;
     return <FolderGit2 className="w-8 h-8 text-accent" />;
   };
 
@@ -166,6 +167,12 @@ export function ProjectsView({ initialProjects }: ProjectsViewProps) {
 
                     {/* Status badge */}
                     <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+                      {(project.role.toLowerCase().includes("open source") || project.slug.includes("real-dev-squad")) && (
+                        <span className="rounded-full bg-sky-500/15 text-sky-700 dark:text-sky-300 border border-sky-500/30 px-2 py-0.5 text-[10px] font-mono font-semibold flex items-center gap-1">
+                          <GitPullRequest className="w-2.5 h-2.5" />
+                          Open Source
+                        </span>
+                      )}
                       {project.featured && (
                         <span className="rounded-full bg-amber-500/15 text-amber-800 dark:text-amber-300 border border-amber-500/30 px-2 py-0.5 text-[10px] font-mono font-semibold flex items-center gap-1">
                           <Sparkles className="w-2.5 h-2.5" />
