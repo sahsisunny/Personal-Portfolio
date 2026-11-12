@@ -11,6 +11,9 @@ import {
   Compass,
   ArrowRight,
   Zap,
+  Cog,
+  Layers,
+  Scale,
 } from "lucide-react";
 import { getBikeDetails, getRides, isFeatureEnabled } from "@/lib/data";
 
@@ -49,6 +52,9 @@ export default function BikePage() {
             <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1 text-xs font-mono text-muted">
               <span>DUAL-CHANNEL ABS</span>
             </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-surface px-3 py-1 text-xs font-mono text-accent">
+              <span>STELLAR BLACK</span>
+            </span>
           </div>
 
           <div className="space-y-4">
@@ -79,7 +85,7 @@ export default function BikePage() {
             <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-wrap items-center justify-between gap-3 bg-surface/90 backdrop-blur-md border border-border/80 p-3 sm:p-4 rounded-xl">
               <div className="text-xs sm:text-sm font-mono text-text">
                 <span className="text-accent font-bold">RIG CONFIGURATION: </span>
-                <span>Solo Long-Distance Cruiser & Alpine Pass Setup</span>
+                <span>{bike.model}</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
                 <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -151,25 +157,66 @@ export default function BikePage() {
 
           <div className="rounded-xl border border-border bg-surface p-5 space-y-2">
             <div className="flex items-center gap-2 text-xs font-mono text-accent uppercase font-bold">
+              <Cog className="w-4 h-4" />
+              <span>Transmission & Clutch</span>
+            </div>
+            <div className="text-sm font-semibold text-text">
+              {bike.transmission || "5-Speed Constant Mesh with Heel-Toe Shifter"}
+            </div>
+            <p className="text-xs text-muted">
+              Positive 5-speed constant mesh gearbox with light-pull wet multi-plate clutch for effortless stop-and-go mountain climbs.
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-border bg-surface p-5 space-y-2">
+            <div className="flex items-center gap-2 text-xs font-mono text-accent uppercase font-bold">
               <Fuel className="w-4 h-4" />
-              <span>Fuel & Range</span>
+              <span>Fuel & Efficiency</span>
             </div>
             <div className="text-sm font-semibold text-text">
               {bike.fuelCapacity} • {bike.rangeKm}
             </div>
             <p className="text-xs text-muted">
-              Teardrop tank with electronic EFI calibration providing reliable 32–35 km/L under heavy touring loadout.
+              15-liter teardrop tank with closed-loop electronic EFI delivering reliable 32–35 km/L across isolated Himalayan gaps.
             </p>
           </div>
 
           <div className="rounded-xl border border-border bg-surface p-5 space-y-2">
             <div className="flex items-center gap-2 text-xs font-mono text-accent uppercase font-bold">
               <Gauge className="w-4 h-4" />
+              <span>Dimensions & Ergonomics</span>
+            </div>
+            <div className="text-sm font-semibold text-text">
+              {bike.seatHeight ? `Seat: ${bike.seatHeight} • Clearance: ${bike.groundClearance}` : "Seat: 765mm • Clearance: 170mm"}
+            </div>
+            <p className="text-xs text-muted">
+              Accessible 765mm low seat height gives confident foot-flat stability when navigating slick alpine mud and icy hairpins.
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-border bg-surface p-5 space-y-2">
+            <div className="flex items-center gap-2 text-xs font-mono text-accent uppercase font-bold">
+              <Scale className="w-4 h-4" />
               <span>Weight & Chassis</span>
             </div>
-            <div className="text-sm font-semibold text-text">{bike.weight}</div>
+            <div className="text-sm font-semibold text-text">
+              {bike.weight}
+            </div>
             <p className="text-xs text-muted">
-              Twin downtube spine frame with 765mm low seat height for low-speed gravel stability and confident footing.
+              {bike.chassis || "Twin Downtube Spine Frame"} engineered for low center of gravity and rock-solid crosswind composure.
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-border bg-surface p-5 space-y-2">
+            <div className="flex items-center gap-2 text-xs font-mono text-accent uppercase font-bold">
+              <Layers className="w-4 h-4" />
+              <span>Suspension Setup</span>
+            </div>
+            <div className="text-sm font-semibold text-text">
+              {bike.suspension || "41mm Telescopic Forks • Twin Emulsion Rear Shocks"}
+            </div>
+            <p className="text-xs text-muted">
+              130mm front travel with 6-step preload-adjustable rear twin shocks dialed for heavy 55L saddlebags and rocky terrain.
             </p>
           </div>
 

@@ -1086,50 +1086,79 @@
     ],
     "bikeDetails": {
       "name": "Royal Enfield Meteor 350",
-      "model": "Meteor 350 Fireball / Stellar Touring Rig",
+      "model": "Meteor 350 Stellar Edition (Stellar Black Touring Rig)",
       "engine": "349cc Single Cylinder, 4-stroke, Air-Oil Cooled SOHC J-Series Engine",
       "displacement": "349 cc",
       "power": "20.2 BHP @ 6,100 RPM",
-      "torque": "27 Nm @ 4,000 RPM (Flat low-end torque band)",
-      "weight": "191 kg (Kerb Weight)",
-      "fuelCapacity": "15 Litres",
+      "torque": "27 Nm @ 4,000 RPM (Low-RPM Flat Torque Curve)",
+      "weight": "191 kg (Kerb Weight with 90% fuel & oil)",
+      "fuelCapacity": "15 Litres (~4.5L reserve)",
       "rangeKm": "~480 km per tank (32-35 km/L highway touring)",
-      "brakes": "Dual-Channel ABS with 300mm front disc & 270mm rear disc",
+      "brakes": "Dual-Channel ABS with 300mm front disc (ByBre) & 270mm rear disc",
       "tires": "100/90-19 57P (Front) / 140/70-17 66P (Rear) Tubeless Alloys",
+      "seatHeight": "765 mm",
+      "groundClearance": "170 mm",
+      "transmission": "5-Speed Constant Mesh with Heel-Toe Shifter",
+      "suspension": "Front: 41mm Telescopic (130mm travel) • Rear: Twin Emulsion Shocks (6-step preload)",
+      "color": "Stellar Black (Matte Black with 3D Chrome Emblem)",
+      "cooling": "Air-Oil Cooled with Front Radiator Unit",
+      "fuelSystem": "Electronic Fuel Injection (EFI)",
+      "chassis": "Twin Downtube Spine Frame",
       "image": "/images/rides/meteor-350.webp",
       "tagline": "The Highway Cruiser Built for Mountain Passes & Ocean Highways",
-      "description": "My primary solo touring steed. Built on Royal Enfield's twin downtube spine frame with counterbalanced J-series single-cylinder thumper, delivering buttery smooth cruising without handlebar vibration at 90-100 km/h.",
+      "description": "My primary solo expedition steed. Built on Royal Enfield's twin downtube spine frame with counterbalanced J-series single-cylinder thumper, finished in Stellar Black with chrome 3D tank badging and configured with heavy-duty alpine touring armor.",
       "whyThisBike": [
-        "Low Center of Gravity & 765mm Seat Height: Enables full-foot plant control during treacherous slush and icy gravel hairpins in Ladakh.",
-        "Bottom-End Thump (27 Nm @ 4,000 RPM): Seamless hill-climbing without frequent gear hunting on 17,000 ft Himalayan switchbacks.",
-        "480 km Realistic Fuel Range: Vital for crossing remote fuel-dry stretches like the 365 km stretch between Tandi and Karu in Ladakh.",
+        "Low Center of Gravity & 765mm Seat Height: Enables full-foot plant control during treacherous slush, loose scree, and icy gravel hairpins in Ladakh.",
+        "Tractor Low-End Thump (27 Nm @ 4,000 RPM): Seamless hill-climbing without frequent gear hunting on 17,500 ft Himalayan switchbacks.",
+        "480 km Realistic Fuel Range: 15L teardrop tank essential for crossing remote fuel-dry stretches like the 365 km stretch between Tandi and Karu in Ladakh.",
+        "Counterbalanced J-Series Engine: Eliminates high-rpm handlebar buzz, enabling fatigue-free 600+ km daily endurance touring.",
         "Rock-solid Mechanical Reliability: Zero engine breakdown or mechanical drop across 15,480 km of solo cross-country touring."
       ],
       "modifications": [
         {
-          "title": "Heavy-Duty Touring Saddle Stays",
-          "description": "Custom bolted tubular steel stays preventing 55L saddlebags from rubbing against the rear tire and exhaust heat shield.",
+          "title": "Touring High Windscreen & Deflector",
+          "description": "Aerodynamic tall clear polycarbonate windscreen deflecting high-altitude chest blast, reducing rider fatigue on 600 km marathon days.",
+          "category": "Aerodynamics & Wind Protection"
+        },
+        {
+          "title": "Headlight Protective Grill",
+          "description": "Rugged matte black slotted headlamp grill shielding the glass lens against flying gravel and loose trail projectiles on unpaved passes.",
+          "category": "Armor & Protection"
+        },
+        {
+          "title": "Heavy-Duty Dual-Tube Crash Guard",
+          "description": "Robust powder-coated black tubular engine crash guard shielding crankcase covers, cylinder head, and legs in gravel hairpins and riverbeds.",
+          "category": "Armor & Protection"
+        },
+        {
+          "title": "Brushed Aluminum Sump Guard / Bash Plate",
+          "description": "4mm heavy-duty aluminum belly skid plate shielding crankcase and oil lines from sharp boulders and rocky riverbed strikes.",
+          "category": "Armor & Protection"
+        },
+        {
+          "title": "Heavy-Duty Touring Saddle Stays & Pannier Rails",
+          "description": "Dual-sided tubular steel stays with integrated lower support rails preventing 55L saddlebags from touching the rear tire and hot exhaust.",
           "category": "Chassis & Luggage"
         },
         {
-          "title": "Touring High Windscreen & Wind Deflector",
-          "description": "Aerodynamic polycarbonate screen deflecting highway chest blast, reducing rider fatigue on 600 km marathon days.",
-          "category": "Aerodynamics"
+          "title": "Wide Tail Luggage Rack & Top Plate",
+          "description": "Laser-cut black steel tail rack extension mounted behind the backrest providing a rigid platform for strapping 40L-60L dry bags and auxiliary jerry cans.",
+          "category": "Chassis & Luggage"
         },
         {
-          "title": "Twin 60W Cree LED Auxiliary Driving Pods",
-          "description": "Fork-mounted fog and spot combo beam providing 180° visibility in thick Himalayan mountain mist and unlit coastal corridors.",
-          "category": "Illumination"
+          "title": "Pillion Touring Backrest (Sissy Bar)",
+          "description": "Factory Stellar edition ergonomic passenger backrest providing lumbar stability and secondary lash points for high-capacity duffle bags.",
+          "category": "Ergonomics & Comfort"
         },
         {
-          "title": "Cockpit Anti-Vibration Wireless RAM Mount & Dual QC 3.0 USB",
-          "description": "Triple-dampened ball mount isolating phone optical sensors from road shock with direct ignition-switched waterproof charging.",
-          "category": "Cockpit Electronics"
+          "title": "Ergonomic Touring Seat Cushion with Red Accents",
+          "description": "Breathable honeycomb gel cushion with red accent piping for optimal pressure distribution and vibration dampening across 10-hour saddle sessions.",
+          "category": "Ergonomics & Comfort"
         },
         {
-          "title": "Engine & Sump Bash Plate",
-          "description": "4mm aircraft-grade aluminum belly skid plate shielding crankcase and oil lines from flying boulders on riverbeds.",
-          "category": "Armor & Protection"
+          "title": "Cockpit Phone Mount & Handlebar USB Charging",
+          "description": "Vibration-damped phone bracket tucked safely behind the tall windshield with ignition-switched USB charging for navigation.",
+          "category": "Cockpit & Electronics"
         }
       ],
       "telemetryStats": [
