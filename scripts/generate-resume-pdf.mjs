@@ -20,17 +20,33 @@ try {
   port = 3000;
 }
 
-const lightUrl = `http://localhost:${port}/resume?theme=light`;
-const darkUrl = `http://localhost:${port}/resume?theme=dark`;
+const jobs = [
+  {
+    name: "Resume (Light)",
+    url: `http://localhost:${port}/resume?theme=light`,
+    out: path.resolve("./public/resume.pdf"),
+  },
+  {
+    name: "Resume (Dark)",
+    url: `http://localhost:${port}/resume?theme=dark`,
+    out: path.resolve("./public/resume-dark.pdf"),
+  },
+  {
+    name: "Cover Letter (Light)",
+    url: `http://localhost:${port}/cover-letter?theme=light`,
+    out: path.resolve("./public/cover-letter.pdf"),
+  },
+  {
+    name: "Cover Letter (Dark)",
+    url: `http://localhost:${port}/cover-letter?theme=dark`,
+    out: path.resolve("./public/cover-letter-dark.pdf"),
+  },
+];
 
-const lightPdf = path.resolve("./public/resume.pdf");
-const darkPdf = path.resolve("./public/resume-dark.pdf");
+for (const job of jobs) {
+  console.log(`Generating ${job.name} PDF from ${job.url}`);
+  execSync(`"${chromePath}" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="${job.out}" "${job.url}"`, { stdio: "inherit" });
+  console.log(`✓ ${job.name} saved to: ${job.out}`);
+}
 
-console.log("Generating Light Theme PDF from", lightUrl);
-execSync(`"${chromePath}" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="${lightPdf}" "${lightUrl}"`, { stdio: "inherit" });
-console.log("✓ Light PDF saved to:", lightPdf);
-
-console.log("Generating Dark Theme PDF from", darkUrl);
-execSync(`"${chromePath}" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="${darkPdf}" "${darkUrl}"`, { stdio: "inherit" });
-console.log("✓ Dark PDF saved to:", darkPdf);
-console.log("✓ Done!");
+console.log("✓ All PDFs generated successfully!");

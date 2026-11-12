@@ -2,22 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import {
-  Download,
-  ArrowLeft,
-  Mail,
-  MapPin,
-  Briefcase,
-  GraduationCap,
-  Cpu,
-  Phone,
-  Printer,
-  Sun,
-  Moon,
-  Globe,
-} from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
+import { Download, ArrowLeft, Printer, Sun, Moon, FileText } from "lucide-react";
 import type { Person, Experience, Education, Skills, Socials } from "@/lib/schema";
 import { formatDate } from "@/lib/utils";
 
@@ -67,13 +52,23 @@ export function ResumeView({
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 print:p-0 print:m-0 print:max-w-none print:w-full">
         {/* Actions bar (hidden in print) */}
         <div className="no-print mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-border pb-4">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-muted hover:text-accent transition-colors"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to Portfolio</span>
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-1.5 text-xs font-mono text-muted hover:text-accent transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Portfolio</span>
+            </Link>
+            <span className="text-border">/</span>
+            <Link
+              href="/cover-letter"
+              className="inline-flex items-center gap-1.5 text-xs font-mono text-muted hover:text-accent transition-colors"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>Cover Letter</span>
+            </Link>
+          </div>
 
           <div className="flex flex-wrap items-center gap-3">
             {/* Theme switcher */}
@@ -134,7 +129,7 @@ export function ResumeView({
         {/* Resume Sheet */}
         <div
           style={{ colorScheme: isDark ? "dark" : "light" }}
-          className={`resume-sheet rounded-2xl border transition-colors p-6 sm:p-10 shadow-lg space-y-6 print:border-none print:shadow-none print:space-y-2.5 ${
+          className={`resume-sheet rounded-2xl border transition-colors p-6 sm:p-10 shadow-lg space-y-6 sm:space-y-7 print:border-none print:shadow-none print:space-y-4 ${
             isDark
               ? "bg-[#0b0f17] text-[#f8fafc] border-[#1e293b] print-theme-dark"
               : "bg-white text-black border-slate-200 print-theme-light shadow-xl"
@@ -142,19 +137,19 @@ export function ResumeView({
         >
           {/* Header */}
           <header
-            className={`border-b pb-5 print:pb-2.5 space-y-2 print:space-y-1 ${
+            className={`border-b pb-4 print:pb-2.5 space-y-2 print:space-y-1 ${
               isDark ? "border-[#1e293b]" : "border-slate-200"
             }`}
           >
             <h1
-              className={`text-3xl sm:text-4xl font-extrabold tracking-tight print:text-2xl ${
+              className={`text-3xl sm:text-4xl font-extrabold tracking-tight print:text-[24px] ${
                 isDark ? "text-white" : "text-black"
               }`}
             >
               {person.name}
             </h1>
             <p
-              className={`text-base sm:text-lg font-semibold font-mono print:text-sm ${
+              className={`text-base sm:text-lg font-semibold font-mono print:font-sans print:text-[13.5px] ${
                 isDark ? "text-cyan-400" : "text-black"
               }`}
             >
@@ -162,38 +157,31 @@ export function ResumeView({
             </p>
 
             <div
-              className={`flex flex-wrap gap-x-3 gap-y-1 text-xs font-mono pt-0.5 print:text-[10px] ${
+              className={`flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs font-mono print:font-sans pt-0.5 print:text-[10.5px] ${
                 isDark ? "text-slate-400" : "text-black"
               }`}
             >
-              <span className="flex items-center gap-1">
-                <MapPin
-                  className={`w-3.5 h-3.5 ${
-                    isDark ? "text-cyan-400" : "text-black"
-                  }`}
-                />
-                {person.location} ({person.workMode})
-              </span>
+              <span>{person.location}</span>
               <span>•</span>
-              <span className="flex items-center gap-1">
-                <Mail
-                  className={`w-3.5 h-3.5 ${
-                    isDark ? "text-cyan-400" : "text-black"
-                  }`}
-                />
+              <a
+                href={`mailto:${person.email}`}
+                className={`hover:underline font-medium ${
+                  isDark ? "text-cyan-400 hover:text-cyan-300" : "text-black hover:underline"
+                }`}
+              >
                 {person.email}
-              </span>
+              </a>
               {person.phone && (
                 <>
                   <span>•</span>
-                  <span className="flex items-center gap-1">
-                    <Phone
-                      className={`w-3.5 h-3.5 ${
-                        isDark ? "text-cyan-400" : "text-black"
-                      }`}
-                    />
+                  <a
+                    href={`tel:${person.phone.replace(/\s+/g, "")}`}
+                    className={`hover:underline font-medium ${
+                      isDark ? "text-cyan-400 hover:text-cyan-300" : "text-black hover:underline"
+                    }`}
+                  >
                     {person.phone}
-                  </span>
+                  </a>
                 </>
               )}
               <span>•</span>
@@ -201,18 +189,11 @@ export function ResumeView({
                 href="https://sunnysahsi.com"
                 target="_blank"
                 rel="noreferrer"
-                className={`inline-flex items-center gap-1 hover:underline font-medium ${
-                  isDark
-                    ? "text-cyan-400 hover:text-cyan-300"
-                    : "text-black hover:text-black/80"
+                className={`hover:underline font-medium ${
+                  isDark ? "text-cyan-400 hover:text-cyan-300" : "text-black hover:underline"
                 }`}
               >
-                <Globe
-                  className={`w-3.5 h-3.5 flex-shrink-0 ${
-                    isDark ? "text-cyan-400" : "text-black"
-                  }`}
-                />
-                <span>sunnysahsi.com</span>
+                sunnysahsi.com
               </a>
               {socials.linkedin && (
                 <>
@@ -221,18 +202,11 @@ export function ResumeView({
                     href={socials.linkedin}
                     target="_blank"
                     rel="noreferrer"
-                    className={`inline-flex items-center gap-1 hover:underline font-medium ${
-                      isDark
-                        ? "text-cyan-400 hover:text-cyan-300"
-                        : "text-black hover:text-black/80"
+                    className={`hover:underline font-medium ${
+                      isDark ? "text-cyan-400 hover:text-cyan-300" : "text-black hover:underline"
                     }`}
                   >
-                    <LinkedinIcon
-                      className={`w-3.5 h-3.5 flex-shrink-0 ${
-                        isDark ? "text-cyan-400" : "text-black"
-                      }`}
-                    />
-                    <span>LinkedIn</span>
+                    LinkedIn
                   </a>
                 </>
               )}
@@ -243,25 +217,18 @@ export function ResumeView({
                     href={socials.github}
                     target="_blank"
                     rel="noreferrer"
-                    className={`inline-flex items-center gap-1 hover:underline font-medium ${
-                      isDark
-                        ? "text-cyan-400 hover:text-cyan-300"
-                        : "text-black hover:text-black/80"
+                    className={`hover:underline font-medium ${
+                      isDark ? "text-cyan-400 hover:text-cyan-300" : "text-black hover:underline"
                     }`}
                   >
-                    <GithubIcon
-                      className={`w-3.5 h-3.5 flex-shrink-0 ${
-                        isDark ? "text-cyan-400" : "text-black"
-                      }`}
-                    />
-                    <span>GitHub</span>
+                    GitHub
                   </a>
                 </>
               )}
             </div>
 
             <p
-              className={`text-xs sm:text-sm leading-relaxed pt-1 print:text-[11px] print:leading-normal font-normal ${
+              className={`text-xs sm:text-sm leading-relaxed pt-0.5 print:text-[11px] print:leading-[1.5] font-normal ${
                 isDark ? "text-slate-300" : "text-black"
               }`}
             >
@@ -270,19 +237,14 @@ export function ResumeView({
           </header>
 
           {/* Work Experience */}
-          <section className="space-y-4 print:space-y-2">
+          <section className="space-y-3 print:space-y-2">
             <div
-              className={`flex items-center gap-2 border-b pb-1.5 print:pb-1 ${
+              className={`border-b pb-1.5 print:pb-1 ${
                 isDark ? "border-[#1e293b]" : "border-slate-200"
               }`}
             >
-              <Briefcase
-                className={`w-4 h-4 ${
-                  isDark ? "text-cyan-400" : "text-black"
-                }`}
-              />
               <h2
-                className={`text-sm sm:text-base font-bold uppercase font-mono tracking-wider print:text-xs ${
+                className={`text-sm sm:text-base font-bold uppercase tracking-wider print:tracking-normal print:font-sans print:text-[12px] ${
                   isDark ? "text-white" : "text-black"
                 }`}
               >
@@ -290,83 +252,61 @@ export function ResumeView({
               </h2>
             </div>
 
-            <div className="space-y-5 print:space-y-2.5">
+            <div className="space-y-4 print:space-y-2.5">
               {experience.map((exp) => (
-                <div key={exp.id} className="space-y-2.5 print:space-y-1.5">
+                <div key={exp.id} className="space-y-2 print:space-y-1">
                   <div className="flex flex-wrap items-baseline justify-between gap-1.5">
-                    <div className="flex items-center gap-2.5">
-                      {exp.logo && (
-                        <div
-                          className={`relative flex h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0 items-center justify-center rounded-lg border p-1 overflow-hidden print:h-6 print:w-6 ${
-                            isDark
-                              ? "border-[#334155] bg-white"
-                              : "border-slate-200 bg-white"
-                          }`}
-                        >
-                          <Image
-                            src={exp.logo}
-                            alt={`${exp.company} logo`}
-                            title={`${exp.company} logo`}
-                            width={32}
-                            height={32}
-                            className="h-full w-full object-contain bg-white"
-                          />
-                        </div>
-                      )}
-                      <div>
-                        <h3
-                          className={`text-base sm:text-lg font-bold leading-tight print:text-xs ${
-                            isDark ? "text-white" : "text-black"
-                          }`}
-                        >
-                          {exp.company}
-                        </h3>
-                        <span
-                          className={`text-[11px] font-mono print:text-[10px] ${
-                            isDark ? "text-slate-400" : "text-black"
-                          }`}
-                        >
-                          {exp.location} • {exp.employmentType}
-                        </span>
-                      </div>
+                    <div>
+                      <h3
+                        className={`text-base sm:text-lg font-bold leading-tight print:text-[12.5px] ${
+                          isDark ? "text-white" : "text-black"
+                        }`}
+                      >
+                        {exp.company}
+                      </h3>
+                      <span
+                        className={`text-[11px] font-mono print:font-sans print:text-[10px] ${
+                          isDark ? "text-slate-400" : "text-black"
+                        }`}
+                      >
+                        {exp.location} • {exp.employmentType}
+                      </span>
                     </div>
                     <span
-                      className={`text-xs font-mono print:text-[10px] ${
+                      className={`text-xs font-mono print:font-sans whitespace-nowrap flex-shrink-0 print:text-[10px] ${
                         isDark ? "text-slate-400" : "text-black"
                       }`}
                     >
-                      {formatDate(exp.start)} —{" "}
-                      {exp.end ? formatDate(exp.end) : "Present"}
+                      {formatDate(exp.start)} — {exp.end ? formatDate(exp.end) : "Present"}
                     </span>
                   </div>
 
-                  <div className="space-y-2.5 print:space-y-1.5">
+                  <div className="space-y-2.5 print:space-y-2">
                     {exp.roles.map((role, idx) => (
                       <div
                         key={idx}
-                        className={`space-y-1 pl-3 border-l-2 ${
+                        className={`space-y-1 print:space-y-0.5 pl-3 border-l-2 ${
                           isDark ? "border-[#334155]" : "border-slate-300"
                         }`}
                       >
                         <div className="flex justify-between items-baseline gap-2">
                           <h4
-                            className={`text-xs sm:text-sm font-semibold print:text-[11px] ${
+                            className={`text-xs sm:text-sm font-semibold print:text-[11.5px] ${
                               isDark ? "text-slate-100" : "text-black"
                             }`}
                           >
                             {role.title}
                           </h4>
                           <span
-                            className={`text-[11px] font-mono flex-shrink-0 print:text-[9.5px] ${
+                            className={`text-[11px] font-mono print:font-sans whitespace-nowrap flex-shrink-0 print:text-[10px] ${
                               isDark ? "text-slate-400" : "text-black"
                             }`}
                           >
-                            {formatDate(role.start)} —{" "}
-                            {role.end ? formatDate(role.end) : "Present"}
+                            &nbsp;{formatDate(role.start)} — {role.end ? formatDate(role.end) : "Present"}
                           </span>
                         </div>
                         <ul
-                          className={`space-y-0.5 text-xs print:text-[10.5px] print:leading-snug ${
+                          className={`space-y-1 text-xs print:text-[10.5px] print:leading-[1.5] ${
                             isDark ? "text-slate-300" : "text-black"
                           }`}
                         >
@@ -374,10 +314,10 @@ export function ResumeView({
                             <li key={hIdx} className="flex items-start gap-1.5">
                               <span
                                 className={`font-mono flex-shrink-0 font-bold ${
-                                  isDark ? "text-cyan-400" : "text-black"
+                                   isDark ? "text-cyan-400" : "text-black"
                                 }`}
                               >
-                                ▸
+                                •
                               </span>
                               <span>{hl}</span>
                             </li>
@@ -409,17 +349,12 @@ export function ResumeView({
           {/* Technical Skills */}
           <section className="space-y-2.5 print:space-y-1.5">
             <div
-              className={`flex items-center gap-2 border-b pb-1.5 print:pb-1 ${
+              className={`border-b pb-1.5 print:pb-0.5 ${
                 isDark ? "border-[#1e293b]" : "border-slate-200"
               }`}
             >
-              <Cpu
-                className={`w-4 h-4 ${
-                  isDark ? "text-cyan-400" : "text-black"
-                }`}
-              />
               <h2
-                className={`text-sm sm:text-base font-bold uppercase font-mono tracking-wider print:text-xs ${
+                className={`text-sm sm:text-base font-bold uppercase tracking-wider print:tracking-normal print:font-sans print:text-[12px] ${
                   isDark ? "text-white" : "text-black"
                 }`}
               >
@@ -427,18 +362,18 @@ export function ResumeView({
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 print:gap-1.5 text-xs print:text-[10.5px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 print:gap-x-6 print:gap-y-1.5 text-xs print:text-[10.5px]">
               {skills.groups.map((group) => (
                 <div key={group.id} className="space-y-0.5">
                   <span
-                    className={`font-bold font-mono text-[11px] print:text-[10px] ${
+                    className={`font-bold font-mono print:font-sans text-[11px] print:text-[10.5px] ${
                       isDark ? "text-slate-100" : "text-black"
                     }`}
                   >
                     {group.label}:
                   </span>
                   <p
-                    className={`print:leading-tight ${
+                    className={`print:leading-[1.45] ${
                       isDark ? "text-slate-300" : "text-black"
                     }`}
                   >
@@ -452,17 +387,12 @@ export function ResumeView({
           {/* Education */}
           <section className="space-y-2.5 print:space-y-1.5">
             <div
-              className={`flex items-center gap-2 border-b pb-1.5 print:pb-1 ${
+              className={`border-b pb-1.5 print:pb-0.5 ${
                 isDark ? "border-[#1e293b]" : "border-slate-200"
               }`}
             >
-              <GraduationCap
-                className={`w-4 h-4 ${
-                  isDark ? "text-cyan-400" : "text-black"
-                }`}
-              />
               <h2
-                className={`text-sm sm:text-base font-bold uppercase font-mono tracking-wider print:text-xs ${
+                className={`text-sm sm:text-base font-bold uppercase tracking-wider print:tracking-normal print:font-sans print:text-[12px] ${
                   isDark ? "text-white" : "text-black"
                 }`}
               >
@@ -475,48 +405,28 @@ export function ResumeView({
                 key={edu.id}
                 className="flex justify-between items-start gap-4 text-xs print:text-[10.5px]"
               >
-                <div className="flex items-center gap-2.5">
-                  {edu.logo && (
-                    <div
-                      className={`relative flex h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0 items-center justify-center rounded-lg border p-1 overflow-hidden print:h-6 print:w-6 ${
-                        isDark
-                          ? "border-[#334155] bg-white"
-                          : "border-slate-200 bg-white"
-                      }`}
-                    >
-                      <Image
-                        src={edu.logo}
-                        alt={`${edu.institution} logo`}
-                        title={`${edu.institution} logo`}
-                        width={32}
-                        height={32}
-                        className="h-full w-full object-contain bg-white"
-                      />
-                    </div>
-                  )}
-                  <div>
-                    <h3
-                      className={`font-bold text-xs sm:text-sm print:text-xs ${
-                        isDark ? "text-white" : "text-black"
-                      }`}
-                    >
-                      {edu.degree}
-                    </h3>
-                    <p
-                      className={`font-mono text-[11px] print:text-[10px] ${
-                        isDark ? "text-slate-400" : "text-black"
-                      }`}
-                    >
-                      {edu.institution} • Score: {edu.score}
-                    </p>
-                  </div>
+                <div>
+                  <h3
+                    className={`font-bold text-xs sm:text-sm print:text-[12px] ${
+                      isDark ? "text-white" : "text-black"
+                    }`}
+                  >
+                    {edu.degree}
+                  </h3>
+                  <p
+                    className={`text-[11px] print:font-sans print:text-[10px] ${
+                      isDark ? "text-slate-400" : "text-black"
+                    }`}
+                  >
+                    {edu.institution} • Score: {edu.score}
+                  </p>
                 </div>
                 <span
-                  className={`font-mono text-xs print:text-[10px] flex-shrink-0 ${
+                  className={`whitespace-nowrap flex-shrink-0 text-xs print:font-sans print:text-[10px] ${
                     isDark ? "text-slate-400" : "text-black"
                   }`}
                 >
-                  {edu.start} — {edu.end || "Present"}
+                  &nbsp;{edu.start} — {edu.end || "Present"}
                 </span>
               </div>
             ))}

@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: "/rides/gear", priority: 0.7, freq: "monthly" as const, enabled: isFeatureEnabled("rides") },
     { route: "/rides/upcoming", priority: 0.7, freq: "monthly" as const, enabled: isFeatureEnabled("rides") },
     { route: "/resume", priority: 0.8, freq: "monthly" as const, enabled: isFeatureEnabled("resume") },
+    { route: "/cover-letter", priority: 0.7, freq: "monthly" as const, enabled: isFeatureEnabled("coverLetter") },
   ];
 
   const staticRoutes = rawStatic

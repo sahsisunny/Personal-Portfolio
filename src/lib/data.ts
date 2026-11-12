@@ -10,6 +10,7 @@ import {
   type GearItem,
   type PlannedRide,
   type FeatureFlags,
+  type CoverLetter,
 } from "./schema";
 
 const parsed = PortfolioSchema.safeParse(rawPortfolioData);
@@ -152,11 +153,16 @@ export function getFeatureFlags(): FeatureFlags {
     stats: flags?.stats ?? true,
     now: flags?.now ?? true,
     resume: flags?.resume ?? true,
+    coverLetter: flags?.coverLetter ?? true,
   };
 }
 
 export function isFeatureEnabled(feature: keyof FeatureFlags): boolean {
   const flags = getFeatureFlags();
   return Boolean(flags[feature]);
+}
+
+export function getCoverLetter(): CoverLetter | undefined {
+  return portfolioData.coverLetter;
 }
 

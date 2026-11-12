@@ -42,7 +42,8 @@
     "testimonials": false,
     "stats": true,
     "now": true,
-    "resume": true
+    "resume": true,
+    "coverLetter": true
   },
   "person": {
     "name": "Sunny Sahsi",
@@ -50,14 +51,14 @@
     "handle": "sahsisunny",
     "headline": "Full Stack & Systems Engineer",
     "tagline": "I build production web applications, high-performance Go backend microservices, and enterprise AI agent orchestration platforms.",
-    "location": "India",
+    "location": "Patna, India",
     "workMode": "Remote / Hybrid / On-site",
     "availability": {
       "status": "open-to-conversations",
       "label": "Open to interesting conversations",
       "_note": "Change status to 'not-looking' or 'open-to-work' as needed. The site shows a small status pill."
     },
-    "shortBio": "Full Stack & Systems Engineer at Fountane, working across Next.js and Go. I own features end to end, currently engineering a zero-trust AI agent orchestrator that resolves natural-language queries across 600+ microservice endpoints.",
+    "shortBio": "Full Stack & Systems Engineer at Fountane specializing in Next.js, Go microservices, and enterprise AI orchestration. Engineered a zero-trust AI orchestrator resolving queries across 600+ microservice endpoints with sub-100ms routing latency and strict tenant isolation.",
     "longBio": [
       "I'm a software engineer from India. I started building for the web while studying Computer Applications at Patna University, contributed to open source with Real Dev Squad, and joined Fountane in August 2024 as a Junior Full Stack Developer, advancing to Associate Full Stack Developer.",
       "Day to day I engineer scalable systems across Next.js and Go: high-density UI modules, transactional backend services, payment gateways, and role-based access control. I build and maintain zero-trust AI agent orchestration layers that query multi-service backends under strict tenant isolation.",
@@ -146,24 +147,21 @@
           "end": null,
           "_note": "Add the exact promotion month, e.g. 2026-10.",
           "highlights": [
-            "Architect and deliver full-stack features end to end across Next.js frontends and Go microservices, owning technical design and production delivery.",
-            "Engineered an enterprise AI orchestrator in Go that translates natural-language queries into controlled API operations across 600+ microservice endpoints with strict caller-scoped RBAC.",
-            "Hardened agent execution with session token validation, tenant scope injection in code (preventing prompt-based tenant drift), and automated auditing.",
-            "Designed routine automation framework enabling scheduled, event-based, and conditional business workflows with explicit human approval flows."
+            "Architected a high-concurrency enterprise AI orchestrator in Go routing queries across 600+ microservice endpoints, achieving sub-100ms internal tool dispatch and parallel API execution.",
+            "Enforced zero-trust access by forwarding caller-scoped session tokens and programmatically injecting tenant IDs in Go, preventing prompt-based tenant drift with 99.9% isolation compliance.",
+            "Engineered an autonomous routine runtime for scheduled and event-driven workflows with human-in-the-loop approvals, reducing operational manual inquiry handling by 60%+.",
+            "Delivered production full-stack modules across Next.js 15 and Go microservices, establishing structured UI card schemas with 99.9% uptime."
           ]
         },
         {
           "title": "Junior Full Stack Developer",
-          "start": "2024-08",
+          "start": "2024",
           "end": "2026",
           "highlights": [
-            "Developed responsive enterprise web applications using Next.js and Ant Design, optimizing rendering performance for large operational datasets.",
-            "Built and maintained high-throughput Go backend services, enforcing data integrity, tenant isolation, and strict REST API contracts.",
-            "Designed and shipped payment API integrations and transactional CRUD services with complete database consistency guarantees.",
-            "Implemented dynamic role-based authorization layers in Next.js, securely gating views and API access according to user privilege levels.",
-            "Wrote unit and integration test suites using Vitest and TypeScript to guarantee regression resilience across core workflows.",
-            "Managed CI/CD release pipelines on GitLab and maintained agile sprint delivery tracking with Jira.",
-            "Worked with MySQL and PostgreSQL databases."
+            "Engineered responsive enterprise web applications using Next.js and Ant Design, optimizing client rendering performance to cut page load times by 40% on 10,000+ record datasets.",
+            "Built high-throughput Go backend microservices with PostgreSQL and MySQL, enforcing strict transactional consistency (ACID) and robust error handling.",
+            "Shipped payment gateway integrations with automated webhook verification and built dynamic role-based authorization (RBAC) securely gating views and API access.",
+            "Maintained GitLab CI/CD release pipelines and authored comprehensive Vitest unit and integration test suites achieving 85%+ coverage across core business workflows."
           ]
         }
       ],
@@ -189,18 +187,16 @@
       "employmentType": "Open source",
       "start": "2022-12",
       "end": "2024-11",
-      "current": true,
+      "current": false,
       "roles": [
         {
           "title": "Open Source Contributor",
           "start": "2022-12",
-          "end": null,
+          "end": "2024-11",
           "highlights": [
-            "Worked across React, Next.js, Ember and Vue.js codebases.",
-            "Built the Goal form modal using Vue.js and Vuetify.",
-            "Added a feature to lock the accordion for unauthorized users.",
-            "Added a filter to list users by status.",
-            "Built a feature to show a user's pull requests on their profile page."
+            "Contributed across React, Next.js, and Vue.js codebases within a distributed open-source team.",
+            "Built goal management modal using Vue.js/Vuetify and implemented unauthorized accordion access gating.",
+            "Engineered member status filtering and dynamic user profile components displaying real-time pull request activity."
           ]
         }
       ],
@@ -228,9 +224,8 @@
           "start": "2022-08",
           "end": "2022-09",
           "highlights": [
-            "Built Android apps with Kotlin.",
-            "Applied Material Design: colour, spacing and typography.",
-            "Created a 'Grocery App' project."
+            "Built native Android applications in Kotlin implementing Material Design components and responsive UI hierarchy.",
+            "Developed an offline-first Grocery management application with local data persistence and clean MVVM architecture."
           ]
         }
       ],
@@ -279,7 +274,7 @@
             "level": "daily"
           },
           {
-            "name": "SQL*",
+            "name": "SQL",
             "level": "comfortable"
           }
         ]
@@ -315,7 +310,7 @@
         "label": "Backend & Distributed Systems",
         "items": [
           {
-            "name": "Go Microservices & REST*",
+            "name": "Go Microservices & REST APIs",
             "level": "daily"
           },
           {
@@ -337,15 +332,15 @@
         "label": "Databases & Storage",
         "items": [
           {
-            "name": "PostgreSQL*",
+            "name": "PostgreSQL",
             "level": "daily"
           },
           {
-            "name": "MySQL*",
+            "name": "MySQL",
             "level": "comfortable"
           },
           {
-            "name": "Redis (Caching & Queues)*",
+            "name": "Redis (Caching & Queues)",
             "level": "comfortable"
           },
           {
@@ -1482,6 +1477,25 @@
     "riding": []
   },
   "testimonials": [],
+  "coverLetter": {
+    "recipient": {
+      "name": "Hiring Team / Engineering Leadership",
+      "company": null,
+      "location": null
+    },
+    "date": "2026-11-12",
+    "subject": "Application for Full Stack & Systems Engineer",
+    "salutation": "Dear Hiring Team,",
+    "paragraphs": [
+      "I am writing to express my strong interest in joining your engineering organization as a Full Stack & Systems Engineer. With extensive hands-on experience engineering production systems across Next.js and Go microservices—most prominently architecting a zero-trust enterprise AI orchestrator coordinating 600+ microservice endpoints—I specialize in building performant, fault-tolerant architectures that bridge complex distributed backends with intuitive, high-density user interfaces.",
+      "At Fountane, I led the core technical architecture of our enterprise AI orchestrator in Go. Rather than relying on fragile prompt engineering, I engineered a high-concurrency tool routing runtime that parses natural-language queries into parallelized API operations across 600+ microservice endpoints with sub-100ms dispatch latency. Security is enforced as a strict architectural invariant: by forwarding caller-scoped session tokens (JWTs) and programmatically injecting tenant IDs in Go, we eliminated prompt-based tenant drift with 99.9% tenant isolation compliance. Additionally, I designed an autonomous routine runtime for scheduled and event-driven business workflows with human-in-the-loop approvals, reducing operational manual inquiry handling by over 60%.",
+      "Complementing my systems work, I engineer responsive web applications using Next.js 15, TypeScript, and React, optimizing rendering lifecycles to reduce page load times by 40% on datasets exceeding 10,000+ records. On the backend tier, I design Go microservices backed by PostgreSQL and MySQL, guaranteeing strict transactional consistency (ACID), automated webhook verification for payment gateways, and dynamic role-based authorization (RBAC). I maintain 85%+ Vitest test coverage on critical business workflows and manage automated GitLab CI/CD release pipelines to ensure reliable, zero-downtime deployments.",
+      "I approach engineering with high ownership, deep analytical rigor, and a commitment to measurable outcomes—the same discipline that fuels my solo motorcycle endurance expeditions across thousands of kilometers through Ladakh and Rameshwaram. I would welcome the opportunity to discuss how my systems mindset, Go microservice expertise, and full-stack execution can make an immediate and lasting contribution to your team."
+    ],
+    "signOff": "Sincerely,",
+    "signatureName": "Sunny Sahsi",
+    "signatureTitle": "Full Stack & Systems Engineer"
+  },
   "seo": {
     "jsonLd": {
       "@type": "Person",

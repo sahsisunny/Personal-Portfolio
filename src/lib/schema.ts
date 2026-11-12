@@ -350,6 +350,21 @@ export const BlogPostConfigSchema = z.object({
   enabled: z.boolean().default(true),
 });
 
+export const CoverLetterSchema = z.object({
+  recipient: z.object({
+    name: z.string(),
+    company: z.string().nullable().optional(),
+    location: z.string().nullable().optional(),
+  }),
+  date: z.string().optional(),
+  subject: z.string(),
+  salutation: z.string(),
+  paragraphs: z.array(z.string()),
+  signOff: z.string(),
+  signatureName: z.string(),
+  signatureTitle: z.string(),
+});
+
 export const FeatureFlagsSchema = z.object({
   blog: z.boolean().default(true),
   projects: z.boolean().default(true),
@@ -363,6 +378,7 @@ export const FeatureFlagsSchema = z.object({
   stats: z.boolean().default(true),
   now: z.boolean().default(true),
   resume: z.boolean().default(true),
+  coverLetter: z.boolean().default(true),
 }).default({
   blog: true,
   projects: true,
@@ -376,6 +392,7 @@ export const FeatureFlagsSchema = z.object({
   stats: true,
   now: true,
   resume: true,
+  coverLetter: true,
 });
 
 export const PortfolioSchema = z.object({
@@ -431,6 +448,7 @@ export const PortfolioSchema = z.object({
     updated: z.string(),
     items: z.array(z.string()),
   }),
+  coverLetter: CoverLetterSchema.optional(),
   tools: z.object({
     ai: z.array(z.string()).default([]),
     dev: z.array(z.string()).default([]),
@@ -460,3 +478,4 @@ export type GearItem = z.infer<typeof GearItemSchema>;
 export type PlannedRide = z.infer<typeof PlannedRideSchema>;
 export type OpenSource = z.infer<typeof OpenSourceSchema>;
 export type FeatureFlags = z.infer<typeof FeatureFlagsSchema>;
+export type CoverLetter = z.infer<typeof CoverLetterSchema>;
