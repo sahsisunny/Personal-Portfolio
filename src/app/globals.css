@@ -169,13 +169,213 @@ article p,
   color: #f43f5e;
 }
 
+/* Resume self-contained theme isolation (works regardless of root dark/light mode) */
+.resume-sheet.print-theme-light {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --border: #e2e8f0;
+  --text: #000000;
+  --muted: #000000;
+  color-scheme: light;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.resume-sheet.print-theme-dark {
+  --bg: #0b0f17;
+  --surface: #0b0f17;
+  --surface-2: #161f2e;
+  --border: #1e293b;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  color-scheme: dark;
+  background-color: #0b0f17 !important;
+  color: #f8fafc !important;
+}
+
 /* Print styles */
 @media print {
-  nav, footer, .no-print {
+  @page {
+    size: A4 portrait;
+    margin: 0 !important;
+  }
+
+  *, *::before, *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  header.sticky, nav, footer, .no-print, .pointer-events-none {
     display: none !important;
   }
-  body {
+
+  .resume-sheet svg {
+    display: inline-block !important;
+    visibility: visible !important;
+    vertical-align: -0.125em !important;
+  }
+
+  /* Default / Light theme print */
+  html, body {
+    width: 210mm !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
     background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  main, [class*="min-h-screen"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    overflow: hidden !important;
+  }
+
+  .bg-tech-grid {
+    background: #ffffff !important;
+    background-image: none !important;
+    background-color: #ffffff !important;
+  }
+
+  .resume-sheet {
+    box-sizing: border-box !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
+    padding: 12mm 14mm 10mm 14mm !important;
+    margin: 0 !important;
+    border: none !important;
+    border-width: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+  }
+
+  /* LIGHT THEME PRINT: PURE BLACK TEXT (NO GRAY) */
+  .resume-sheet.print-theme-light,
+  body[data-print-theme="light"] .resume-sheet {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
     color: #000000 !important;
+  }
+
+  .resume-sheet.print-theme-light p,
+  .resume-sheet.print-theme-light span,
+  .resume-sheet.print-theme-light li,
+  .resume-sheet.print-theme-light div,
+  .resume-sheet.print-theme-light h1,
+  .resume-sheet.print-theme-light h2,
+  .resume-sheet.print-theme-light h3,
+  .resume-sheet.print-theme-light h4,
+  .resume-sheet.print-theme-light a,
+  .resume-sheet.print-theme-light .text-muted,
+  .resume-sheet.print-theme-light .text-accent,
+  body[data-print-theme="light"] .resume-sheet p,
+  body[data-print-theme="light"] .resume-sheet span,
+  body[data-print-theme="light"] .resume-sheet li,
+  body[data-print-theme="light"] .resume-sheet div,
+  body[data-print-theme="light"] .resume-sheet h1,
+  body[data-print-theme="light"] .resume-sheet h2,
+  body[data-print-theme="light"] .resume-sheet h3,
+  body[data-print-theme="light"] .resume-sheet h4,
+  body[data-print-theme="light"] .resume-sheet a,
+  body[data-print-theme="light"] .resume-sheet .text-muted,
+  body[data-print-theme="light"] .resume-sheet .text-accent {
+    color: #000000 !important;
+  }
+
+  .resume-sheet.print-theme-light svg,
+  body[data-print-theme="light"] .resume-sheet svg {
+    color: #000000 !important;
+    stroke: #000000 !important;
+  }
+
+  .resume-sheet.print-theme-light .border-border,
+  .resume-sheet.print-theme-light .border-border\/80,
+  .resume-sheet.print-theme-light .border-border\/60,
+  body[data-print-theme="light"] .resume-sheet .border-border,
+  body[data-print-theme="light"] .resume-sheet .border-border\/80,
+  body[data-print-theme="light"] .resume-sheet .border-border\/60 {
+    border-color: #000000 !important;
+  }
+
+  /* DARK THEME PRINT OVERRIDES */
+  html:has(.print-theme-dark),
+  body:has(.print-theme-dark),
+  body[data-print-theme="dark"],
+  body[data-print-theme="dark"] html,
+  body[data-print-theme="dark"] main,
+  body:has(.print-theme-dark) main,
+  body:has(.print-theme-dark) [class*="min-h-screen"],
+  body[data-print-theme="dark"] [class*="min-h-screen"],
+  body:has(.print-theme-dark) .bg-tech-grid,
+  body[data-print-theme="dark"] .bg-tech-grid {
+    background: #0b0f17 !important;
+    background-color: #0b0f17 !important;
+    color: #f8fafc !important;
+  }
+
+  .resume-sheet.print-theme-dark,
+  body[data-print-theme="dark"] .resume-sheet {
+    background: #0b0f17 !important;
+    background-color: #0b0f17 !important;
+    color: #f8fafc !important;
+  }
+
+  .resume-sheet.print-theme-dark h1,
+  .resume-sheet.print-theme-dark h2,
+  .resume-sheet.print-theme-dark h3,
+  .resume-sheet.print-theme-dark h4,
+  body[data-print-theme="dark"] h1,
+  body[data-print-theme="dark"] h2,
+  body[data-print-theme="dark"] h3,
+  body[data-print-theme="dark"] h4 {
+    color: #ffffff !important;
+  }
+
+  .resume-sheet.print-theme-dark p,
+  .resume-sheet.print-theme-dark span,
+  .resume-sheet.print-theme-dark li,
+  body[data-print-theme="dark"] p,
+  body[data-print-theme="dark"] span,
+  body[data-print-theme="dark"] li {
+    color: #cbd5e1 !important;
+  }
+
+  .resume-sheet.print-theme-dark .text-muted,
+  body[data-print-theme="dark"] .text-muted {
+    color: #94a3b8 !important;
+  }
+
+  .resume-sheet.print-theme-dark .text-accent,
+  body[data-print-theme="dark"] .text-accent {
+    color: #38bdf8 !important;
+  }
+
+  .resume-sheet.print-theme-dark svg,
+  body[data-print-theme="dark"] svg {
+    color: #38bdf8 !important;
+  }
+
+  .resume-sheet.print-theme-dark .border-border,
+  .resume-sheet.print-theme-dark .border-border\/80,
+  .resume-sheet.print-theme-dark .border-border\/60,
+  body[data-print-theme="dark"] .border-border,
+  body[data-print-theme="dark"] .border-border\/80,
+  body[data-print-theme="dark"] .border-border\/60 {
+    border-color: #1e293b !important;
   }
 }

@@ -19,6 +19,7 @@ export const PersonSchema = z.object({
   avatar: z.string(),
   avatarAlt: z.string(),
   email: z.string().email(),
+  phone: z.string().nullable().optional(),
   resumeUrl: z.string().nullable().optional(),
   resumeLocalPath: z.string().nullable().optional(),
 });

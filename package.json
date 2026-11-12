@@ -6,6 +6,7 @@
     "dev": "next dev",
     "validate:data": "tsx -e 'import \"./src/lib/data\"; console.log(\"✓ portfolio-data.json data is valid\")'",
     "prebuild": "pnpm validate:data",
+    "build:pdf": "node scripts/generate-resume-pdf.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

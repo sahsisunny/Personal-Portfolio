@@ -66,9 +66,10 @@
     "avatar": "/images/sunny.jpg",
     "avatarAlt": "Portrait of Sunny Sahsi",
     "email": "sahsisunny@gmail.com",
-    "resumeUrl": "https://drive.google.com/file/d/1PwY4WZ56RLXUaiuHxPnMBxMLFk1R6Oix/view",
-    "resumeLocalPath": null,
-    "_note": "Resume link is the one on the current portfolio. Replace with an updated PDF in /public/resume.pdf once the new title is added."
+    "phone": "+91 7759925544",
+    "resumeUrl": "/resume.pdf",
+    "resumeLocalPath": "/resume.pdf",
+    "_note": "Resume hosted on this site at /resume.pdf (Sunny_Sahsi_Resume.pdf) in A4 single-page format."
   },
   "socials": {
     "linkedin": "https://www.linkedin.com/in/sahsisunny/",
@@ -187,7 +188,7 @@
       "location": "Remote",
       "employmentType": "Open source",
       "start": "2022-12",
-      "end": null,
+      "end": "2024-11",
       "current": true,
       "roles": [
         {
@@ -278,7 +279,7 @@
             "level": "daily"
           },
           {
-            "name": "SQL",
+            "name": "SQL*",
             "level": "comfortable"
           }
         ]
@@ -288,7 +289,7 @@
         "label": "Frontend Engineering",
         "items": [
           {
-            "name": "Next.js (App Router)",
+            "name": "Next.js",
             "level": "daily"
           },
           {
@@ -299,17 +300,13 @@
             "name": "React Native (Expo SDK)",
             "level": "comfortable"
           },
-          {
-            "name": "Tailwind CSS",
-            "level": "daily"
-          },
-          {
-            "name": "Ant Design",
-            "level": "daily"
-          },
-          {
+                    {
             "name": "React Query",
             "level": "comfortable"
+          },
+          {
+            "name": "Vite",
+            "level": "daily"
           }
         ]
       },
@@ -318,7 +315,7 @@
         "label": "Backend & Distributed Systems",
         "items": [
           {
-            "name": "Go Microservices & REST",
+            "name": "Go Microservices & REST*",
             "level": "daily"
           },
           {
@@ -332,14 +329,6 @@
           {
             "name": "WebSocket Telemetry",
             "level": "comfortable"
-          },
-          {
-            "name": "BullMQ (Background Jobs)",
-            "level": "comfortable"
-          },
-          {
-            "name": "Zero-Trust RBAC & Auth",
-            "level": "daily"
           }
         ]
       },
@@ -348,23 +337,15 @@
         "label": "Databases & Storage",
         "items": [
           {
-            "name": "PostgreSQL",
+            "name": "PostgreSQL*",
             "level": "daily"
           },
           {
-            "name": "PostGIS (Spatial Telemetry)",
+            "name": "MySQL*",
             "level": "comfortable"
           },
           {
-            "name": "MySQL",
-            "level": "comfortable"
-          },
-          {
-            "name": "Redis (Caching & Queues)",
-            "level": "comfortable"
-          },
-          {
-            "name": "Prisma ORM",
+            "name": "Redis (Caching & Queues)*",
             "level": "comfortable"
           },
           {
@@ -392,32 +373,6 @@
           {
             "name": "RAG & Vector Embeddings",
             "level": "learning"
-          }
-        ]
-      },
-      {
-        "id": "devops",
-        "label": "DevOps & Testing",
-        "items": [
-          {
-            "name": "Docker & Containers",
-            "level": "comfortable"
-          },
-          {
-            "name": "GitLab CI/CD",
-            "level": "comfortable"
-          },
-          {
-            "name": "GitHub Actions",
-            "level": "comfortable"
-          },
-          {
-            "name": "Vitest (Unit & Integration)",
-            "level": "comfortable"
-          },
-          {
-            "name": "Linux / Shell",
-            "level": "comfortable"
           }
         ]
       },

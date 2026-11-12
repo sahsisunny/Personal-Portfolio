@@ -74,13 +74,14 @@ export function HeroSection({ person, socials, features }: HeroSectionProps) {
             </Link>
           )}
           {(features?.resume ?? true) && (
-            <Link
-              href="/resume"
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-6 py-3 text-sm font-semibold text-text hover:bg-surface-2 hover:border-accent/60 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            <a
+              href="/resume.pdf"
+              download="Sunny_Sahsi_Resume.pdf"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-6 py-3 text-sm font-semibold text-text hover:bg-surface-2 hover:border-accent/60 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer"
             >
               <FileText className="w-4 h-4 text-muted" />
               Download resume
-            </Link>
+            </a>
           )}
         </div>
 
