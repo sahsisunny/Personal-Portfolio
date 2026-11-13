@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 
+import type { RouteDisplayItem } from "@/components/rides/india-routes-map";
+
 const IndiaRoutesMap = dynamic(() => import("@/components/rides/india-routes-map"), {
   ssr: false,
   loading: () => (
@@ -11,7 +13,13 @@ const IndiaRoutesMap = dynamic(() => import("@/components/rides/india-routes-map
   ),
 });
 
-export function IndiaRoutesMapClient() {
-  return <IndiaRoutesMap />;
+export function IndiaRoutesMapClient({
+  className = "",
+  routes = [],
+}: {
+  className?: string;
+  routes?: RouteDisplayItem[];
+}) {
+  return <IndiaRoutesMap className={className} routes={routes} />;
 }
 

@@ -83,7 +83,15 @@ export function getProjectBySlug(slug: string): Project | undefined {
 }
 
 export function getRidesSection() {
-  return portfolioData.rides;
+  const rides = [...portfolioData.rides.rides].sort((a, b) => {
+    const timeA = a.startDate ? new Date(a.startDate).getTime() : 0;
+    const timeB = b.startDate ? new Date(b.startDate).getTime() : 0;
+    return timeB - timeA;
+  });
+  return {
+    ...portfolioData.rides,
+    rides,
+  };
 }
 
 export function getRidesSocials(): {
@@ -101,7 +109,13 @@ export function getRidesSocials(): {
 
 export function getRides(): Ride[] {
   if (!isFeatureEnabled("rides")) return [];
-  return portfolioData.rides.rides.filter((r) => r.enabled !== false);
+  return [...portfolioData.rides.rides]
+    .filter((r) => r.enabled !== false)
+    .sort((a, b) => {
+      const timeA = a.startDate ? new Date(a.startDate).getTime() : 0;
+      const timeB = b.startDate ? new Date(b.startDate).getTime() : 0;
+      return timeB - timeA;
+    });
 }
 
 export function getRideBySlug(slug: string): Ride | undefined {

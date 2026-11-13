@@ -14,6 +14,7 @@ import {
   getRidesSocials,
   getBikeDetails,
 } from "@/lib/data";
+import { getAllRidePosts } from "@/lib/mdx";
 import { InstagramIcon, YoutubeIcon, TwitterIcon } from "@/components/ui/icons";
 import { IndiaRoutesMapClient } from "@/components/rides/india-routes-map-client";
 
@@ -27,6 +28,7 @@ export default function RidesLandingPage() {
   const ridesData = getRidesSection();
   const socials = getRidesSocials();
   const bike = getBikeDetails();
+  const allRidePosts = getAllRidePosts();
 
   // Filter out any stat that is null per Section 9.1 rules
   const statsList = [
@@ -311,7 +313,16 @@ export default function RidesLandingPage() {
             </p>
           </div>
 
-          <IndiaRoutesMapClient />
+          <IndiaRoutesMapClient
+            routes={allRidePosts
+              .filter((p) => p.frontmatter.coordinates && p.frontmatter.coordinates.length > 0)
+              .map((p) => ({
+                slug: p.frontmatter.slug,
+                title: p.frontmatter.title,
+                distanceKm: p.frontmatter.distanceKm,
+                coordinates: p.frontmatter.coordinates as [number, number][],
+              }))}
+          />
         </section>
 
       {/* Ride Cards (Completed Expeditions) */}

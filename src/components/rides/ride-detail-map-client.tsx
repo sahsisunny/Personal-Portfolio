@@ -11,7 +11,15 @@ const RideDetailMap = dynamic(() => import("@/components/rides/ride-detail-map")
   ),
 });
 
-export function RideDetailMapClient({ slug, title }: { slug: string; title: string }) {
-  return <RideDetailMap slug={slug} title={title} />;
+export function RideDetailMapClient({
+  slug,
+  title,
+  coordinates = [],
+}: {
+  slug: string;
+  title: string;
+  coordinates?: [number, number][];
+}) {
+  return <RideDetailMap slug={slug} title={title} coordinates={coordinates} />;
 }
 

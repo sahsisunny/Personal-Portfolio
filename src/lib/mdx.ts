@@ -124,6 +124,23 @@ export function getAllTags(): string[] {
   return Array.from(tags);
 }
 
+export interface RidePostFrontmatter {
+  title: string;
+  slug: string;
+  origin?: string;
+  destination?: string;
+  startDate?: string | null;
+  endDate?: string | null;
+  distanceKm?: number | null;
+  coordinates?: [number, number][];
+  [key: string]: unknown;
+}
+
+export interface RidePost {
+  frontmatter: RidePostFrontmatter;
+  content: string;
+}
+
 export function getRideStoryMdx(slug: string): string | null {
   ensureDirectory(RIDES_DIR);
   const filePath = path.join(RIDES_DIR, `${slug}.mdx`);
@@ -133,6 +150,42 @@ export function getRideStoryMdx(slug: string): string | null {
     return content;
   }
   return null;
+}
+
+export function getRidePost(slug: string): RidePost | null {
+  ensureDirectory(RIDES_DIR);
+  const filePath = path.join(RIDES_DIR, `${slug}.mdx`);
+  if (fs.existsSync(filePath)) {
+    const fileContents = fs.readFileSync(filePath, "utf8");
+    const { data, content } = matter(fileContents);
+    return {
+      frontmatter: data as RidePostFrontmatter,
+      content,
+    };
+  }
+  return null;
+}
+
+export function getAllRidePosts(): RidePost[] {
+  ensureDirectory(RIDES_DIR);
+  if (!fs.existsSync(RIDES_DIR)) return [];
+  const files = fs.readdirSync(RIDES_DIR).filter((f) => f.endsWith(".mdx"));
+  const posts: RidePost[] = [];
+  for (const f of files) {
+    const filePath = path.join(RIDES_DIR, f);
+    const fileContents = fs.readFileSync(filePath, "utf8");
+    const { data, content } = matter(fileContents);
+    posts.push({
+      frontmatter: data as RidePostFrontmatter,
+      content,
+    });
+  }
+  // Sort by startDate descending (newest first)
+  return posts.sort((a, b) => {
+    const timeA = a.frontmatter.startDate ? new Date(a.frontmatter.startDate).getTime() : 0;
+    const timeB = b.frontmatter.startDate ? new Date(b.frontmatter.startDate).getTime() : 0;
+    return timeB - timeA;
+  });
 }
 
 export function getProjectCaseStudyMdx(slug: string): string | null {

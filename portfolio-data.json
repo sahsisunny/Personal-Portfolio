@@ -295,7 +295,7 @@
             "name": "React Native (Expo SDK)",
             "level": "comfortable"
           },
-                    {
+          {
             "name": "React Query",
             "level": "comfortable"
           },
@@ -749,320 +749,297 @@
       "_copyStatus": "authentic expedition journal"
     },
     "stats": {
-      "totalDistanceKm": 15480,
-      "totalRides": 2,
+      "totalDistanceKm": 11611,
+      "totalRides": 8,
       "statesCrossed": 14,
       "highestPointMeters": 5359,
-      "totalRideDays": 38
+      "totalRideDays": 33
     },
     "rides": [
       {
-        "id": "patna-to-ladakh",
-        "slug": "patna-to-ladakh",
+        "id": "bangalore-to-patna",
+        "slug": "bangalore-to-patna",
         "enabled": true,
-        "title": "Patna to Ladakh",
+        "title": "Bangalore to Patna (Northbound Return)",
         "type": "solo",
-        "origin": "Patna, Bihar",
-        "destination": "Ladakh (Khardung La & Pangong Tso)",
-        "year": 2023,
-        "startDate": "2023-06-10",
-        "endDate": "2023-06-27",
-        "durationDays": 18,
-        "distanceKm": 3850,
+        "origin": "Bangalore, Karnataka",
+        "destination": "Patna, Bihar",
+        "year": 2026,
+        "startDate": "2026-09-29T21:00:00+05:30",
+        "endDate": "2026-10-02T22:00:00+05:30",
+        "durationDays": 4,
+        "distanceKm": 2662,
         "bike": "Royal Enfield Meteor 350",
-        "coverImage": "/images/rides/ladakh-hero.jpg",
-        "summary": "A 3,850 km solo motorcycle expedition from the plains of Patna across Rohtang, Baralacha La, and Tanglang La to Khardung La at 17,590 ft.",
-        "story": "Leaving the sweltering 42°C heat of Patna behind, this solo journey was about testing grit on a Royal Enfield Meteor 350. Climbing from sea-level plains up into the freezing passes of the Great Himalayas proved that the J-series engine's steady low-end torque is built for high-altitude mountain climbs.",
+        "coverImage": "/images/rides/rameshwaram-cover.svg",
+        "summary": "The grand return leg heading north across Karnataka, Telangana, Hyderabad, Jabalpur, and the Gangetic plains back home to Patna.",
+        "story": "Northbound trans-subcontinent return run connecting Bangalore through central India back to Patna basecamp.",
         "route": {
           "geojsonFile": null,
           "gpxFile": null,
-          "waypoints": [
-            {
-              "name": "Patna (Origin)",
-              "lat": 25.5941,
-              "lng": 85.1376,
-              "day": 1,
-              "note": "Expedition flag-off at 5:00 AM."
-            },
-            {
-              "name": "Varanasi",
-              "lat": 25.3176,
-              "lng": 82.9739,
-              "day": 1,
-              "note": "First fuel stop and evening Ganga Aarti."
-            },
-            {
-              "name": "Delhi",
-              "lat": 28.7041,
-              "lng": 77.1025,
-              "day": 2,
-              "note": "Yamuna Expressway transit."
-            },
-            {
-              "name": "Chandigarh",
-              "lat": 30.7333,
-              "lng": 76.7794,
-              "day": 3,
-              "note": "Pre-Himalaya bike inspection."
-            },
-            {
-              "name": "Manali",
-              "lat": 32.2432,
-              "lng": 77.1892,
-              "day": 4,
-              "note": "Acclimatization and permit clearance."
-            },
-            {
-              "name": "Keylong / Jispa",
-              "lat": 32.5714,
-              "lng": 77.0324,
-              "day": 5,
-              "note": "Atal Tunnel transit into Lahaul Valley."
-            },
-            {
-              "name": "Sarchu",
-              "lat": 32.9061,
-              "lng": 77.5833,
-              "day": 6,
-              "note": "Freezing winds at 14,000 ft border camp."
-            },
-            {
-              "name": "Leh, Ladakh",
-              "lat": 34.1526,
-              "lng": 77.5771,
-              "day": 7,
-              "note": "Himalayan base camp reached."
-            },
-            {
-              "name": "Khardung La Pass",
-              "lat": 34.2787,
-              "lng": 77.6047,
-              "day": 9,
-              "note": "Summit at 17,590 ft altitude."
-            },
-            {
-              "name": "Pangong Tso",
-              "lat": 33.7595,
-              "lng": 78.6674,
-              "day": 11,
-              "note": "Endorheic salt lake at 14,270 ft."
-            }
-          ]
+          "waypoints": []
         },
         "highlights": [
-          "Conquered Khardung La at 17,590 ft on the Royal Enfield Meteor 350.",
-          "Navigated freezing water crossings at Pagal Nallah and snow blizzards on Baralacha La.",
-          "Camped by Pangong Tso at 14,270 ft with freezing -2°C night winds.",
-          "Maintained 100% mechanical reliability across 3,850 km of rugged mountain terrain."
+          "Completing the 10,000+ km southern touring circuit back at Patna basecamp."
         ],
-        "dayByDay": [
-          {
-            "day": 1,
-            "from": "Patna",
-            "to": "Varanasi",
-            "km": 260,
-            "note": "Early morning start avoiding highway traffic."
-          },
-          {
-            "day": 2,
-            "from": "Varanasi",
-            "to": "Agra / Delhi",
-            "km": 720,
-            "note": "Longest single-day highway marathon."
-          },
-          {
-            "day": 3,
-            "from": "Delhi",
-            "to": "Manali",
-            "km": 540,
-            "note": "Transitioning from plains to mountain foothills."
-          },
-          {
-            "day": 4,
-            "from": "Manali",
-            "to": "Jispa",
-            "km": 140,
-            "note": "Crossing through Atal Tunnel into Lahaul."
-          },
-          {
-            "day": 5,
-            "from": "Jispa",
-            "to": "Sarchu",
-            "km": 115,
-            "note": "Baralacha La pass crossing at 16,040 ft."
-          },
-          {
-            "day": 6,
-            "from": "Sarchu",
-            "to": "Leh",
-            "km": 250,
-            "note": "Gata Loops and More Plains crossing."
-          },
-          {
-            "day": 7,
-            "from": "Leh",
-            "to": "Khardung La",
-            "km": 80,
-            "note": "Ascended to the highest motorable road."
-          }
-        ],
+        "dayByDay": [],
         "gallery": [],
         "videos": [],
         "lessons": [
-          "AMS (Acute Mountain Sickness) is real: hydrate aggressively with electrolytes and ascend gradually.",
-          "Keep weight centered and low on the rear subframe to maintain front tire steering in gravel.",
-          "The Meteor 350's low-end 27 Nm torque makes hair-pin climbs smooth without constant downshifts."
+          "Consistent 80-90 km/h cruising preserves tire life and rider stamina over multi-day legs."
         ],
         "gearUsed": [
-          "Royal Enfield Meteor 350",
-          "Rynox All-Weather CE Level 2 Touring Jacket",
-          "MT Dual-Visor Adventure Helmet with Pinlock",
-          "Viaterra 55L Waterproof Dry Saddlebags",
-          "12V Portable Tire Inflator & Puncture Kit"
+          "Royal Enfield Meteor 350"
         ]
       },
       {
-        "id": "patna-to-rameshwaram",
-        "slug": "patna-to-rameshwaram",
+        "id": "bangalore-to-nandi-hills-adiyogi",
+        "slug": "bangalore-to-nandi-hills-adiyogi",
         "enabled": true,
-        "title": "Patna to Rameshwaram",
+        "title": "Bangalore to Nandi Hills & Adiyogi",
         "type": "solo",
-        "origin": "Patna, Bihar",
-        "destination": "Rameshwaram (Dhanushkodi)",
-        "year": 2024,
-        "startDate": "2024-01-12",
-        "endDate": "2024-01-31",
-        "durationDays": 20,
-        "distanceKm": 5420,
+        "origin": "Bangalore, Karnataka",
+        "destination": "Nandi Hills & Adiyogi Chikkaballapura & Return",
+        "year": 2026,
+        "startDate": "2026-09-24T05:00:00+05:30",
+        "endDate": "2026-09-24T23:59:59+05:30",
+        "durationDays": 1,
+        "distanceKm": 146,
         "bike": "Royal Enfield Meteor 350",
-        "coverImage": "/images/rides/rameshwaram-cover.svg",
-        "summary": "A 5,420 km solo motorcycle ride slicing from North India down the spine of the Deccan Plateau to the Pamban Sea Bridge and Dhanushkodi.",
-        "story": "Riding from the Ganga basin to the confluence of the Indian Ocean and the Bay of Bengal. Across 9 states, this expedition was about enduring intense heat shifts, coastal crosswinds, and endless asphalt marathons.",
+        "coverImage": "/images/rides/meteor-350.webp",
+        "summary": "Early morning mountain climb up Nandi Hills switchbacks followed by the highway run to Adiyogi Chikkaballapura and return to Bangalore.",
+        "story": "Chasing the sunrise above the cloud line at Nandi Hills before rolling through the Chikkaballapura granite landscape to the Adiyogi monument.",
         "route": {
           "geojsonFile": null,
           "gpxFile": null,
-          "waypoints": [
-            {
-              "name": "Patna",
-              "lat": 25.5941,
-              "lng": 85.1376,
-              "day": 1,
-              "note": "Start southward."
-            },
-            {
-              "name": "Ranchi",
-              "lat": 23.3441,
-              "lng": 85.3096,
-              "day": 1,
-              "note": "Chota Nagpur plateau ascent."
-            },
-            {
-              "name": "Raipur",
-              "lat": 21.2514,
-              "lng": 81.6296,
-              "day": 3,
-              "note": "Chhattisgarh transit."
-            },
-            {
-              "name": "Hyderabad",
-              "lat": 17.385,
-              "lng": 78.4867,
-              "day": 5,
-              "note": "Deccan highway intersection."
-            },
-            {
-              "name": "Bengaluru",
-              "lat": 12.9716,
-              "lng": 77.5946,
-              "day": 8,
-              "note": "Technical maintenance check."
-            },
-            {
-              "name": "Madurai",
-              "lat": 9.9252,
-              "lng": 78.1198,
-              "day": 10,
-              "note": "Tamil heartland."
-            },
-            {
-              "name": "Pamban Sea Bridge",
-              "lat": 9.2789,
-              "lng": 79.2062,
-              "day": 11,
-              "note": "Ocean sea crossing on two wheels."
-            },
-            {
-              "name": "Dhanushkodi",
-              "lat": 9.1783,
-              "lng": 79.4183,
-              "day": 12,
-              "note": "Edge of the Indian map reached."
-            }
-          ]
+          "waypoints": []
         },
         "highlights": [
-          "Solo coast-to-coast sprint slicing across 9 Indian states and 5,420 km.",
-          "Crossed the legendary Pamban Sea Bridge surrounded by open ocean crosswinds.",
-          "Stood at Dhanushkodi—the ghost town at the exact boundary of India and Sri Lankan waters.",
-          "Zero chain drops or tire failures thanks to strict 500 km maintenance protocols."
+          "Sunrise cloud sea above the Nandi Hills cliff curves.",
+          "Cruising the scenic Chikkaballapura rural highways to Adiyogi."
         ],
-        "dayByDay": [
-          {
-            "day": 1,
-            "from": "Patna",
-            "to": "Ranchi",
-            "km": 330,
-            "note": "Scenic highway through Jharkhand."
-          },
-          {
-            "day": 2,
-            "from": "Ranchi",
-            "to": "Raipur",
-            "km": 560,
-            "note": "Dense forest corridors."
-          },
-          {
-            "day": 3,
-            "from": "Raipur",
-            "to": "Hyderabad",
-            "km": 680,
-            "note": "Long dry southern stretch."
-          },
-          {
-            "day": 4,
-            "from": "Hyderabad",
-            "to": "Bengaluru",
-            "km": 570,
-            "note": "Smooth NH44 4-lane blacktop."
-          },
-          {
-            "day": 5,
-            "from": "Bengaluru",
-            "to": "Madurai",
-            "km": 435,
-            "note": "Passing windmills and coconut groves."
-          },
-          {
-            "day": 6,
-            "from": "Madurai",
-            "to": "Rameshwaram",
-            "km": 170,
-            "note": "Arrival at the Indian Ocean."
-          }
-        ],
+        "dayByDay": [],
         "gallery": [],
         "videos": [],
         "lessons": [
-          "Crosswinds on sea bridges and coastal highways require firm knee-grip on the fuel tank.",
-          "Clean and lube the drive chain every 500 km, especially after salt air and beach sand.",
-          "Hydration tablets are just as crucial in 40°C humid south heat as in Ladakh."
+          "Early dawn starts reward you with empty switchbacks and cool engine temps."
         ],
         "gearUsed": [
-          "Royal Enfield Meteor 350",
-          "Mesh Ventilation Touring Jacket",
-          "Hydration Bladder (2L)",
-          "RAM Waterproof Phone Mount",
-          "Dryspec Waterproof Duffle Bag"
+          "Royal Enfield Meteor 350"
+        ]
+      },
+      {
+        "id": "kolli-hills-70-hairpin-bends",
+        "slug": "kolli-hills-70-hairpin-bends",
+        "enabled": true,
+        "title": "Kolli Hills: 70 Hairpin Bends",
+        "type": "solo",
+        "origin": "Namakkal / Bangalore",
+        "destination": "Kolli Hills (70 Continuous Hairpins)",
+        "year": 2026,
+        "startDate": "2026-09-12T09:30:00+05:30",
+        "endDate": "2026-09-12T13:30:00+05:30",
+        "durationDays": 1,
+        "distanceKm": 6,
+        "bike": "Royal Enfield Meteor 350",
+        "coverImage": "/images/rides/meteor-350.webp",
+        "summary": "Technical hill climb mastering the legendary 70 consecutive hairpin bends of Kolli Malai in Tamil Nadu.",
+        "story": "70 continuous numbered hairpin bends stacked one after another up the mist-covered Eastern Ghats of Kolli Hills.",
+        "route": {
+          "geojsonFile": null,
+          "gpxFile": null,
+          "waypoints": []
+        },
+        "highlights": [
+          "Conquered all 70 numbered hairpin bends of Kolli Malai without a foot down.",
+          "Mastering lean angles and low-gear engine braking."
+        ],
+        "dayByDay": [],
+        "gallery": [],
+        "videos": [],
+        "lessons": [
+          "Look through the turn, feather the rear brake, and power out on the J-series torque curve."
+        ],
+        "gearUsed": [
+          "Royal Enfield Meteor 350"
+        ]
+      },
+      {
+        "id": "bangalore-to-rameshwaram",
+        "slug": "bangalore-to-rameshwaram",
+        "enabled": true,
+        "title": "Bangalore to Rameshwaram & Return",
+        "type": "solo",
+        "origin": "Bangalore, Karnataka",
+        "destination": "Rameshwaram (Pamban Bridge, Dhanushkodi) & Return",
+        "year": 2026,
+        "startDate": "2026-09-12T05:00:00+05:30",
+        "endDate": "2026-09-14T23:59:59+05:30",
+        "durationDays": 3,
+        "distanceKm": 868,
+        "bike": "Royal Enfield Meteor 350",
+        "coverImage": "/images/rides/rameshwaram-cover.svg",
+        "summary": "Southern coastal expedition across Tamil Nadu through Madurai to Pamban Sea Bridge and the ruins of Dhanushkodi, returning to Bangalore.",
+        "story": "Riding down to the edge of the subcontinent where the Indian Ocean meets the Bay of Bengal at Dhanushkodi.",
+        "route": {
+          "geojsonFile": null,
+          "gpxFile": null,
+          "waypoints": []
+        },
+        "highlights": [
+          "Crossing the iconic Pamban Sea Bridge on two wheels.",
+          "Riding to the last road in India at Dhanushkodi."
+        ],
+        "dayByDay": [],
+        "gallery": [],
+        "videos": [],
+        "lessons": [
+          "Coastal crosswinds require steady throttle and relaxed handlebar grip."
+        ],
+        "gearUsed": [
+          "Royal Enfield Meteor 350"
+        ]
+      },
+      {
+        "id": "patna-to-bangalore",
+        "slug": "patna-to-bangalore",
+        "enabled": true,
+        "title": "Patna to Bangalore",
+        "type": "solo",
+        "origin": "Patna, Bihar",
+        "destination": "Bangalore, Karnataka",
+        "year": 2026,
+        "startDate": "2026-08-29T05:00:00+05:30",
+        "endDate": "2026-09-02T12:00:00+05:30",
+        "durationDays": 5,
+        "distanceKm": 2189,
+        "bike": "Royal Enfield Meteor 350",
+        "coverImage": "/images/rides/meteor-350.webp",
+        "summary": "Solo cross-country ride slicing across the heart of the subcontinent: from Patna through Madhya Pradesh, Nagpur, and Hyderabad into Bangalore.",
+        "story": "Crossing 5 states southwards across central India, traversing the Deccan plateau into Bangalore.",
+        "route": {
+          "geojsonFile": null,
+          "gpxFile": null,
+          "waypoints": []
+        },
+        "highlights": [
+          "Transversing the heart of India from Gangetic plains to Deccan plateau.",
+          "Navigating the Hyderabad Outer Ring Road corridor."
+        ],
+        "dayByDay": [],
+        "gallery": [],
+        "videos": [],
+        "lessons": [
+          "Managing long 700+ km highway days with scheduled hydration intervals."
+        ],
+        "gearUsed": [
+          "Royal Enfield Meteor 350"
+        ]
+      },
+      {
+        "id": "delhi-to-patna",
+        "slug": "delhi-to-patna",
+        "enabled": true,
+        "title": "Delhi to Patna (Ladakh Return Leg)",
+        "type": "solo",
+        "origin": "New Delhi",
+        "destination": "Patna, Bihar",
+        "year": 2026,
+        "startDate": "2026-06-04T06:00:00+05:30",
+        "endDate": "2026-06-05T18:00:00+05:30",
+        "durationDays": 2,
+        "distanceKm": 838,
+        "bike": "Royal Enfield Meteor 350",
+        "coverImage": "/images/rides/ladakh-hero.jpg",
+        "summary": "The return sprint heading east from Delhi across the northern plains back to Patna basecamp, concluding the Ladakh expedition.",
+        "story": "Wrapping up the trans-Himalayan expedition with a direct highway sprint from Delhi back home to Patna.",
+        "route": {
+          "geojsonFile": null,
+          "gpxFile": null,
+          "waypoints": []
+        },
+        "highlights": [
+          "Grand return to home basecamp in Patna after completing Ladakh."
+        ],
+        "dayByDay": [],
+        "gallery": [],
+        "videos": [],
+        "lessons": [
+          "Post-Himalayan bike servicing and chain tension adjustment."
+        ],
+        "gearUsed": [
+          "Royal Enfield Meteor 350"
+        ]
+      },
+      {
+        "id": "delhi-to-ladakh-circuit",
+        "slug": "delhi-to-ladakh-circuit",
+        "enabled": true,
+        "title": "Delhi to Ladakh Circuit & Return",
+        "type": "solo",
+        "origin": "New Delhi",
+        "destination": "Leh, Ladakh (Khardung La & Pangong Tso) & Return to Delhi",
+        "year": 2026,
+        "startDate": "2026-05-22T22:00:00+05:30",
+        "endDate": "2026-06-01T23:59:59+05:30",
+        "durationDays": 11,
+        "distanceKm": 3971,
+        "bike": "Royal Enfield Meteor 350",
+        "coverImage": "/images/rides/ladakh-hero.jpg",
+        "summary": "The main high-altitude circuit: Delhi across Punjab and Jammu & Kashmir into Zoji La, Kargil, Leh, Khardung La summit at 17,590 ft, and Pangong Tso, returning to Delhi.",
+        "story": "Ascending from sea-level plains into the great high-altitude mountain deserts of Ladakh. Crossing Khardung La at 17,590 ft and the shores of Pangong Tso.",
+        "route": {
+          "geojsonFile": null,
+          "gpxFile": null,
+          "waypoints": []
+        },
+        "highlights": [
+          "Conquered Khardung La Pass at 17,590 ft.",
+          "Camped at Pangong Tso at 14,270 ft altitude."
+        ],
+        "dayByDay": [],
+        "gallery": [],
+        "videos": [],
+        "lessons": [
+          "Acclimatization and electrolyte hydration are vital at 15,000+ ft."
+        ],
+        "gearUsed": [
+          "Royal Enfield Meteor 350"
+        ]
+      },
+      {
+        "id": "patna-to-delhi",
+        "slug": "patna-to-delhi",
+        "enabled": true,
+        "title": "Patna to Delhi (Ladakh Leg 1)",
+        "type": "solo",
+        "origin": "Patna, Bihar",
+        "destination": "New Delhi",
+        "year": 2026,
+        "startDate": "2026-04-25T04:00:00+05:30",
+        "endDate": "2026-04-30T10:00:00+05:30",
+        "durationDays": 6,
+        "distanceKm": 931,
+        "bike": "Royal Enfield Meteor 350",
+        "coverImage": "/images/rides/ladakh-hero.jpg",
+        "summary": "First leg of the trans-Himalayan expedition. Express highway run across Uttar Pradesh from Patna to Delhi.",
+        "story": "Expedition flag-off from Patna heading west across Varanasi, Lucknow, and Agra into New Delhi preparing for the Himalayan ascent.",
+        "route": {
+          "geojsonFile": null,
+          "gpxFile": null,
+          "waypoints": []
+        },
+        "highlights": [
+          "Expedition flag-off from Patna home basecamp.",
+          "Cruising the Purvanchal and Yamuna Expressways."
+        ],
+        "dayByDay": [],
+        "gallery": [],
+        "videos": [],
+        "lessons": [
+          "Early morning start essential to beat northern highway fog and congestion."
+        ],
+        "gearUsed": [
+          "Royal Enfield Meteor 350"
         ]
       }
     ],

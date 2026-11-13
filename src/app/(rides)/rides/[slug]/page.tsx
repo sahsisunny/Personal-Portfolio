@@ -12,7 +12,7 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { getRides, getRideBySlug } from "@/lib/data";
-import { getRideStoryMdx } from "@/lib/mdx";
+import { getRideStoryMdx, getRidePost } from "@/lib/mdx";
 import { RideGallery } from "@/components/rides/ride-gallery";
 import { DayByDayTimeline } from "@/components/rides/day-by-day-timeline";
 import { YoutubeFacade } from "@/components/rides/youtube-facade";
@@ -58,8 +58,10 @@ export default async function RideDetailPage({ params }: PageProps) {
   const prevRide = currentIndex > 0 ? allRides[currentIndex - 1] : null;
   const nextRide = currentIndex < allRides.length - 1 ? allRides[currentIndex + 1] : null;
 
-  const mdxStory = getRideStoryMdx(slug);
+  const ridePost = getRidePost(slug);
+  const mdxStory = ridePost?.content || getRideStoryMdx(slug);
   const storyContent = mdxStory || ride.story;
+  const coordinates = ridePost?.frontmatter.coordinates || [];
 
   const BASE_URL = "https://sunnysahsi.com";
   const rideUrl = `${BASE_URL}/rides/${ride.slug}`;
@@ -196,7 +198,7 @@ export default async function RideDetailPage({ params }: PageProps) {
             </span>
           </div>
 
-          <RideDetailMapClient slug={slug} title={ride.title} />
+          <RideDetailMapClient slug={slug} title={ride.title} coordinates={coordinates} />
         </section>
 
         {/* The Field Story */}
