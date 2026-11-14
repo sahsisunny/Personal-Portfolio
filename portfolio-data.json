@@ -770,7 +770,7 @@
         "durationDays": 4,
         "distanceKm": 2662,
         "bike": "Royal Enfield Meteor 350",
-        "coverImage": "/images/rides/meteor-350.webp",
+        "coverImage": "/images/rides/bangalore-to-patna-cover.webp",
         "summary": "The grand return leg heading north across Karnataka, Telangana, Hyderabad, Jabalpur, and the Gangetic plains back home to Patna.",
         "story": "Northbound trans-subcontinent return run connecting Bangalore through central India back to Patna basecamp.",
         "route": {
@@ -923,7 +923,7 @@
         "durationDays": 5,
         "distanceKm": 2189,
         "bike": "Royal Enfield Meteor 350",
-        "coverImage": "/images/rides/meteor-350.webp",
+        "coverImage": "/images/rides/patna-to-bangalore-cover.webp",
         "summary": "Solo cross-country ride slicing across the heart of the subcontinent: from Patna through Madhya Pradesh, Nagpur, and Hyderabad into Bangalore.",
         "story": "Crossing 5 states southwards across central India, traversing the Deccan plateau into Bangalore.",
         "route": {
