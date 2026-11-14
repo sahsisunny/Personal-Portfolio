@@ -229,7 +229,7 @@ export default function RidesLandingPage() {
             <div>
               <div className="relative aspect-16/10 w-full bg-slate-950 flex items-center justify-center p-4 overflow-hidden border-b border-border">
                 <Image
-                  src="/images/gear/rynox-jacket.svg"
+                  src="/images/gear/rynox-touring-jacket.webp"
                   alt="Touring Gear"
                   title="Touring Gear and Loadout"
                   width={600}
@@ -237,7 +237,7 @@ export default function RidesLandingPage() {
                   className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute top-3 left-3 rounded-full bg-surface/90 border border-accent/40 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent">
-                  CE LEVEL 2 • 8 ARSENAL ITEMS
+                  CE LEVEL 2 • 14 ARSENAL ITEMS
                 </div>
               </div>
               <div className="p-5 space-y-2">
