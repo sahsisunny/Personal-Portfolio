@@ -1191,25 +1191,25 @@
         "rating": "5/5 Expedition Rating"
       },
       {
-        "id": "rynox-rain-jacket",
-        "name": "Rynox H2Go Hi-Viz Waterproof Rain Jacket",
+        "id": "rynox-h2go-pro-3-jacket",
+        "name": "Rynox H2Go Pro 3 Rain Jacket",
         "category": "armour",
         "categoryLabel": "Armour & Protection",
         "brand": "Rynox Gears",
-        "spec": "10,000mm H2O Waterproof Rating • Fully Taped Seams • High-Visibility Neon Yellow with Reflective 3M Trim",
-        "description": "Ultra-packable external rain shell engineered to wear over bulky armored jackets. Features storm flap closure, high collar with hood, and elasticized cuffs to seal out high-speed highway downpours.",
+        "spec": "15,000mm H2O Waterproof Rating • Fully Taped Seams • High-Visibility Neon Yellow with Reflective 3M Trim",
+        "description": "Standard-length external rain jacket with 15,000mm waterproof nylon shell, storm flap closure, high collar with hood, and elasticized cuffs to seal out high-speed highway downpours.",
         "image": "/images/gear/rynox-rain-jacket.webp",
         "fieldNotes": "Survived severe monsoon downpours across the coastal corridor to Rameshwaram without a drop leaking through.",
         "rating": "5/5 Expedition Rating"
       },
       {
-        "id": "rynox-rain-pants",
-        "name": "Rynox H2Go Waterproof Rain Pants",
+        "id": "rynox-h2go-pro-pants",
+        "name": "Rynox H2Go Pro Rain Pants",
         "category": "armour",
         "categoryLabel": "Armour & Protection",
         "brand": "Rynox Gears",
-        "spec": "10,000mm H2O Waterproof Rating • Reinforced Seat Panel • Velcro Ankle Gussets for Boots",
-        "description": "Heavy-duty waterproof over-pants designed to slip easily over armored riding pants and boots. Sealed taped seams prevent water seepage at saddle pressure points.",
+        "spec": "10,000mm Water Resistance • Double Ripstop Waterproof Shell • Heat Sealed Taped Seams",
+        "description": "Heavy-duty waterproof over-pants with double ripstop shell designed to slip easily over armored riding pants and boots. Heat-sealed taped seams prevent water seepage at saddle pressure points.",
         "image": "/images/gear/rynox-rain-pants.webp",
         "fieldNotes": "Kept inner riding pants bone dry through 4 hours of nonstop coastal rainstorms.",
         "rating": "5/5 Expedition Rating"
@@ -1252,23 +1252,23 @@
       },
       {
         "id": "viaterra-leh-saddlebags",
-        "name": "ViaTerra Leh 2.0 Heavy-Duty Saddlebags",
+        "name": "ViaTerra Leh 100% Waterproof Saddlebags (70L)",
         "category": "luggage",
         "categoryLabel": "Luggage & Packs",
         "brand": "ViaTerra",
-        "spec": "48L Combined Capacity • 100% Waterproof Inner Drybags • 1200D Cordura Construction • Quick-Release Cam Buckles",
-        "description": "Iconic expedition saddlebags engineered for rugged terrain. Features radio-frequency welded 100% waterproof seam-sealed roll-top drybags inside abrasion-resistant Cordura outer pods with external water bottle holsters.",
+        "spec": "70L Combined Capacity • 100% Waterproof Inner Liners + Outer Rain/Dust Covers • Straight Exhaust Fit",
+        "description": "Heavy-duty 70L expedition saddlebag system built specifically for straight-exhaust motorcycles like the Royal Enfield Meteor 350. Includes inner roll-top waterproof liners and outer dust covers.",
         "image": "/images/gear/viaterra-leh-saddlebags.webp",
         "fieldNotes": "Stayed solidly anchored over 15,000 km without shifting, protecting heavy spares and tools across the roughest Himalayan rockbeds.",
         "rating": "5/5 Expedition Rating"
       },
       {
         "id": "viaterra-element-tailbag",
-        "name": "ViaTerra Element Tail Bag / Duffel",
+        "name": "ViaTerra Element Motorcycle Tail Bag (35L)",
         "category": "luggage",
         "categoryLabel": "Luggage & Packs",
         "brand": "ViaTerra",
-        "spec": "35L Capacity • Integrated Rain Cover • Bungee Cargo Netting • Heavy-Duty Ballistic Nylon",
+        "spec": "35L Capacity • Heavy-Duty Ballistic Polyester • Inclusive of Outer Rain/Dust Cover • Top Bungee Net",
         "description": "Aerodynamic rear rack tail bag designed to secure camping gear, sleeping bags, and clothes over the pillion seat. Equipped with top bungee tie-downs for gloves or rain gear and reflective 3M visibility stripes.",
         "image": "/images/gear/viaterra-element-tailbag.webp",
         "fieldNotes": "The top bungee net made stashing rain shells instant during sudden coastal squalls.",
@@ -1276,27 +1276,51 @@
       },
       {
         "id": "viaterra-fly-tankbag",
-        "name": "ViaTerra Fly Magnetic Tank Bag",
+        "name": "ViaTerra Fly Magnetic Tank Bag (18L)",
         "category": "luggage",
         "categoryLabel": "Luggage & Packs",
         "brand": "ViaTerra",
-        "spec": "16L Expandable Capacity • Neodymium Tank Magnets • Touch-Friendly Clear Smartphone / Map Sleeve • Cable Pass-Through Port",
+        "spec": "18L Capacity • Neodymium Tank Magnets • Convertible to Backpack • Touch-Friendly Mobile Window",
         "description": "Quick-mount magnetic tank bag contoured for metallic fuel tanks. Features scratch-resistant base, clear touchscreen GPS pocket, and internal cable grommet for charging devices while riding.",
         "image": "/images/gear/viaterra-fly-tankbag.webp",
         "fieldNotes": "Kept wallet, action cam batteries, and road toll cards instantly reachable at every state border.",
         "rating": "5/5 Expedition Rating"
       },
       {
-        "id": "action-cam-rig",
-        "name": "4K 60fps Helmet Action Camera & Mic Rig",
+        "id": "dji-action-4-adventure-combo",
+        "name": "DJI Osmo Action 4 Adventure Combo",
         "category": "tech",
         "categoryLabel": "Tech & Electronics",
-        "brand": "GoPro / DJI",
-        "spec": "4K 60fps HDR • RockSteady / HyperSmooth 6.0 Gyro Stabilization • Stereo Deadcat Wind Mic",
-        "description": "Chin-mounted POV cinematography system calibrated for horizon-level riding perspective. Custom wind-cut lapel microphone mounted inside helmet cheek-pads for clean exhaust and engine audio.",
-        "image": "/images/gear/action-cam.svg",
-        "fieldNotes": "Captured the entire Khardung La ascent and Pamban Bridge ocean sweep in crisp 4K.",
-        "rating": "4.8/5 Expedition Rating"
+        "brand": "DJI",
+        "spec": "4K/120fps HDR • 1/1.3-Inch Sensor • 10-bit D-Log M • 3x Extreme Cold-Weather Batteries + Battery Case + 1.5m Rod • TELESIN Filters",
+        "description": "Flagship action cinematography setup calibrated for motorcycle expeditions. Large 1/1.3-inch sensor delivers crisp low-light footage in mountain passes and high-contrast coastal sunsets. Paired with TELESIN ND8/16/32 cinematic filters, 256GB SanDisk Extreme V30 card, and Action Pro helmet chin mount.",
+        "image": "/images/gear/dji-action-4.webp",
+        "fieldNotes": "Captured all 70 hairpin bends of Kolli Hills and the sea expanse of Pamban Bridge in cinematic 4K 10-bit color.",
+        "rating": "5/5 Expedition Rating"
+      },
+      {
+        "id": "dji-mic-mini",
+        "name": "DJI Mic Mini Wireless Microphone System (2 TX + 1 RX)",
+        "category": "tech",
+        "categoryLabel": "Tech & Electronics",
+        "brand": "DJI",
+        "spec": "2 Transmitters + 1 Receiver + Charging Case • 48-Hour Battery Life • Two-Level Active Noise Cancelling • Automatic Limiting",
+        "description": "Ultralight wireless microphone kit tucked inside helmet cheek-pads. Built-in active noise cancelling and automatic limiting eliminate highway wind buffet and loud exhaust clipping while capturing crystal-clear rider voice commentary.",
+        "image": "/images/gear/dji-mic-mini.webp",
+        "fieldNotes": "Completely isolated voice audio from 90 km/h highway wind roar without audio clipping.",
+        "rating": "5/5 Expedition Rating"
+      },
+      {
+        "id": "grand-pitstop-gel-seat",
+        "name": "Grand Pitstop Gel Air Seat Cushion",
+        "category": "tech",
+        "categoryLabel": "Cockpit & Ergonomics",
+        "brand": "Grand Pitstop",
+        "spec": "3D Honeycomb Medical-Grade Gel Structure • Breathable Airflow Channel • Universal Meteor 350 Fit • Anti-Slip Base",
+        "description": "Ergonomic 3D honeycomb gel seat pad designed to absorb engine vibration, distribute tailbone pressure, and promote airflow during 12+ hour highway marathons.",
+        "image": "/images/gear/grand-pitstop-seat.webp",
+        "fieldNotes": "Indispensable for eliminating saddle fatigue during the 2,189 km solo ride from Patna to Bangalore.",
+        "rating": "5/5 Expedition Rating"
       },
       {
         "id": "ram-phone-mount",
@@ -1311,15 +1335,15 @@
         "rating": "5/5 Expedition Rating"
       },
       {
-        "id": "tire-inflator-kit",
-        "name": "12V Digital High-Pressure Tire Pump & Repair Kit",
+        "id": "agaro-atom-cordless-inflator",
+        "name": "AGARO Atom Cordless Digital Tyre Inflator",
         "category": "emergency",
         "categoryLabel": "Rescue & Emergency",
-        "brand": "ResqTech / Michelin",
-        "spec": "150 PSI Max Pressure • Auto-Shutoff Preset • Heavy-Duty Tubeless Mushroom Plugger Kit",
-        "description": "Compact emergency air compressor wired directly to the bike battery via SAE quick-disconnect connector. Capable of inflating a rear tire from 0 to 32 PSI in under 3 minutes on remote mountain trails.",
-        "image": "/images/gear/tire-inflator.svg",
-        "fieldNotes": "Rescued a stranded fellow rider in the More Plains at 15,000 ft altitude.",
+        "brand": "AGARO",
+        "spec": "150 PSI Max Pressure • 4500mAh Built-in Battery • Auto-Shutoff Preset • USB-C Fast Charging • Integrated LED Work Light",
+        "description": "Compact standalone battery-powered tire compressor paired with OLKINO 12-in-1 heavy-duty tubeless puncture repair kit and Taparia hex keys for rapid roadside inflation without needing bike battery cables.",
+        "image": "/images/gear/agaro-tyre-inflator.webp",
+        "fieldNotes": "Keeps tire pressures dialed to exact 32/36 PSI specs at cold mountain altitudes and hot highway tarmac.",
         "rating": "5/5 Expedition Rating"
       }
     ],
@@ -1475,18 +1499,21 @@
       "riding": [
         "Rynox Air GT 4 Riding Jacket (CE Level 2 KNOX Armour)",
         "Rynox Air GT Riding Pants (CE Level 2 KNOX Armour)",
-        "Rynox H2Go Waterproof Rain Shell & Pants",
+        "Rynox H2Go Pro 3 Rain Jacket (15,000mm) & Pro Rain Pants (10,000mm)",
         "ViaTerra Tundra V3 Winter Waterproof Gloves",
         "Rynox Air GT Motorcycle Gloves",
         "Royal Enfield Waterproof Touring Boots (Dual Ratchet Closures)",
         "SMK Modular Dual-Visor Helmet (DOT/ECE with Pinlock 70)",
-        "ViaTerra Leh 2.0 Saddlebags, Element Tail Bag & Fly Tank Bag"
+        "ViaTerra Leh 70L Saddlebags, Element 35L Tail Bag & Fly 18L Tank Bag"
       ],
       "content": [
-        "Action Camera (4K 60fps helmet mounted)",
-        "Wind-isolated Stereo Lapel Microphone",
-        "Handlebar Power Dual USB Weatherproof Charger",
-        "RAM Tough-Charge Anti-Vibration Phone Mount"
+        "DJI Osmo Action 4 Adventure Combo (4K/120fps, 1/1.3\" Sensor, 3x Batteries, TELESIN ND Filters)",
+        "DJI Mic Mini Wireless Microphone System (2 TX + 1 RX + Charging Case)",
+        "Grand Pitstop 3D Honeycomb Gel Air Seat Cushion",
+        "Vagary Universal CNC Cruise Control Throttle Lock",
+        "AGARO Atom Cordless 150 PSI Digital Tyre Inflator",
+        "OLKINO 12-in-1 Tubeless Puncture Kit & Taparia Hex Keys",
+        "RAM Tough-Charge Anti-Vibration Wireless Phone Mount"
       ]
     },
     "socials": {

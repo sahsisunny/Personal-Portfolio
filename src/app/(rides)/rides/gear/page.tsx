@@ -88,9 +88,9 @@ export default function GearPage() {
               <PackageCheck className="w-4 h-4" />
               <span>Low-Center Saddlebags (18 kg)</span>
             </div>
-            <h3 className="text-base font-bold text-text">ViaTerra Leh 2.0 Saddlebags</h3>
+            <h3 className="text-base font-bold text-text">ViaTerra Leh 70L Saddlebags</h3>
             <p className="text-xs text-muted leading-relaxed">
-              48L heavy-duty waterproof saddlebags carrying tire inflator, chain lube, torque wrenches, engine oil top-up, spare inner tubes, and thermal liners mounted low along the swingarm.
+              70L heavy-duty waterproof saddlebag system built for straight exhausts, carrying AGARO cordless tire inflator, chain lube, torque tools, OLKINO puncture kit, and spares mounted low along the swingarm.
             </p>
           </div>
 
@@ -99,7 +99,7 @@ export default function GearPage() {
               <Layers className="w-4 h-4" />
               <span>Tail Rack Dry Bag (10 kg)</span>
             </div>
-            <h3 className="text-base font-bold text-text">ViaTerra Element Tail Bag</h3>
+            <h3 className="text-base font-bold text-text">ViaTerra Element 35L Tail Bag</h3>
             <p className="text-xs text-muted leading-relaxed">
               35L luggage duffel carrying alpine dome tent, sleeping bag, insulated ground mat, and camp stove. Secured with heavy-duty ROK straps with quick-access top bungee tie-down netting.
             </p>
@@ -110,9 +110,9 @@ export default function GearPage() {
               <ShieldCheck className="w-4 h-4" />
               <span>Magnetic Tank Bag (7 kg)</span>
             </div>
-            <h3 className="text-base font-bold text-text">ViaTerra Fly Magnetic Tank Bag</h3>
+            <h3 className="text-base font-bold text-text">ViaTerra Fly 18L Magnetic Tank Bag</h3>
             <p className="text-xs text-muted leading-relaxed">
-              Touchscreen GPS sleeve, road permits, 4K action camera batteries, SD cards, Diamox, and powerbanks with cockpit pass-through charging cable ports.
+              Touchscreen GPS sleeve, road permits, DJI Action 4 batteries, DJI Mic Mini receiver, SD cards, Diamox, and powerbanks with cockpit pass-through charging cable ports.
             </p>
           </div>
         </div>
