@@ -87,8 +87,8 @@ export function GearShowcase({ initialItems }: GearShowcaseProps) {
             className="group flex flex-col justify-between rounded-2xl border-2 border-border bg-surface overflow-hidden shadow-xs hover:border-accent hover:shadow-xl transition-all duration-300"
           >
             <div>
-              {/* Product Visual SVG Illustration */}
-              <div className="relative aspect-16/10 w-full bg-slate-950/70 border-b border-border flex items-center justify-center p-4 overflow-hidden">
+              {/* Product Visual */}
+              <div className="relative aspect-16/10 w-full bg-white border-b border-border flex items-center justify-center p-4 overflow-hidden">
                 <Image
                   src={gear.image}
                   alt={gear.name}
@@ -99,12 +99,12 @@ export function GearShowcase({ initialItems }: GearShowcaseProps) {
                 />
 
                 {/* Brand Badge */}
-                <div className="absolute top-3 left-3 rounded-full bg-surface/90 backdrop-blur-xs border border-border px-3 py-1 text-[11px] font-mono font-bold text-accent">
+                <div className="absolute top-3 left-3 rounded-full bg-slate-950/85 backdrop-blur-xs border border-white/20 px-3 py-1 text-[11px] font-mono font-bold text-accent shadow-sm">
                   {gear.brand}
                 </div>
 
                 {/* Category Badge */}
-                <div className="absolute top-3 right-3 rounded-full bg-surface/90 backdrop-blur-xs border border-border px-3 py-1 text-[10px] font-mono text-muted uppercase">
+                <div className="absolute top-3 right-3 rounded-full bg-slate-950/85 backdrop-blur-xs border border-white/20 px-3 py-1 text-[10px] font-mono text-slate-200 uppercase tracking-wider shadow-sm">
                   {gear.categoryLabel}
                 </div>
               </div>

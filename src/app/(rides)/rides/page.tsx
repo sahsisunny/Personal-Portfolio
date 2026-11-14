@@ -227,16 +227,16 @@ export default function RidesLandingPage() {
             className="group flex flex-col justify-between rounded-2xl border-2 border-border bg-surface overflow-hidden shadow-xs hover:border-accent hover:shadow-xl transition-all duration-300"
           >
             <div>
-              <div className="relative aspect-16/10 w-full bg-slate-950 flex items-center justify-center p-4 overflow-hidden border-b border-border">
+              <div className="relative aspect-16/10 w-full bg-white flex items-center justify-center p-4 overflow-hidden border-b border-border">
                 <Image
-                  src="/images/gear/rynox-touring-jacket.webp"
+                  src="/images/gear/rynox-air-gt-4-jacket.webp"
                   alt="Touring Gear"
                   title="Touring Gear and Loadout"
                   width={600}
                   height={375}
                   className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute top-3 left-3 rounded-full bg-surface/90 border border-accent/40 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent">
+                <div className="absolute top-3 left-3 rounded-full bg-slate-950/85 border border-white/20 px-2.5 py-0.5 text-[10px] font-mono font-bold text-accent shadow-sm">
                   CE LEVEL 2 • 16 ARSENAL ITEMS
                 </div>
               </div>
