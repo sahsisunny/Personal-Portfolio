@@ -1155,27 +1155,15 @@
     },
     "gearItems": [
       {
-        "id": "rynox-tornado-pro",
-        "name": "Rynox Tornado Pro 4 Riding Jacket",
+        "id": "rynox-air-gt-4-jacket",
+        "name": "Rynox Air GT 4 Riding Jacket",
         "category": "armour",
         "categoryLabel": "Armour & Protection",
         "brand": "Rynox Gears",
-        "spec": "CE Level 2 KNOX Micro-Lock Armour (Back, Shoulders, Elbows) + Chest Protectors",
-        "description": "Heavy-duty Cordura mesh chassis built for endurance touring. Features dual-layer removable thermal and rain liners adapted for freezing Himalayan passes and 42°C Deccan heat.",
+        "spec": "CE Level 2 KNOX Micro-Lock Armour (Back, Shoulders, Elbows) • Heavy-Duty 3D Airflow Mesh & Cordura",
+        "description": "Endurance touring jacket crafted with high-density abrasion-resistant chassis, 3D airflow mesh panels, and Knox CE Level 2 armour on all critical impact zones. Includes removable internal thermal and rain liners.",
         "image": "/images/gear/rynox-touring-jacket.webp",
-        "fieldNotes": "Kept me dry through torrential coastal monsoon in Tamil Nadu and warm at 14,000 ft Pangong Tso.",
-        "rating": "5/5 Expedition Rating"
-      },
-      {
-        "id": "rynox-air-gt-04-jacket",
-        "name": "Rynox Air GT 04 Mesh Riding Jacket",
-        "category": "armour",
-        "categoryLabel": "Armour & Protection",
-        "brand": "Rynox Gears",
-        "spec": "CE Level 2 KNOX Micro-Lock Armour (Back, Shoulders, Elbows) • Heavy-Duty 3D Airflow Mesh",
-        "description": "Maximum-airflow summer touring jacket crafted with open-pore abrasion-resistant mesh for tropical climates, reinforced with Knox Level 2 armour on all impact zones.",
-        "image": "/images/gear/rynox-air-gt-04-jacket.webp",
-        "fieldNotes": "Crucial ventilation for surviving 42°C highway runs across Telangana and Andhra Pradesh.",
+        "fieldNotes": "Kept me cool in 42°C Deccan heat, dry through coastal monsoon downpours, and protected across 15,480 km.",
         "rating": "5/5 Expedition Rating"
       },
       {
@@ -1188,6 +1176,18 @@
         "description": "All-terrain touring pants with Knox Level 2 armour, knee stretch panels, and high-abrasion Cordura outer shell designed for high-mileage saddle endurance.",
         "image": "/images/gear/rynox-air-gt-pants.webp",
         "fieldNotes": "Zero chafing through 800+ km saddle days in coastal humidity and Deccan heat.",
+        "rating": "5/5 Expedition Rating"
+      },
+      {
+        "id": "viaterra-tundra-v3-gloves",
+        "name": "ViaTerra Tundra V3 Winter Waterproof Gloves",
+        "category": "armour",
+        "categoryLabel": "Armour & Protection",
+        "brand": "ViaTerra",
+        "spec": "DryTerra™ 100% Waterproof Membrane • 3M Thinsulate™ Thermal Insulation • SuperFabric® Palm Sliders • Visor Wiper",
+        "description": "Heavy-duty full-gauntlet winter waterproof touring gloves engineered for sub-zero alpine passes and driving monsoon rain. Features DryTerra waterproof liner, 3M Thinsulate cold barrier, goatskin leather palm, and left-thumb visor wiper.",
+        "image": "/images/gear/viaterra-tundra-v3-gloves.webp",
+        "fieldNotes": "Kept hands completely warm and dry at sub-zero mountain temperatures with zero moisture seepage.",
         "rating": "5/5 Expedition Rating"
       },
       {
@@ -1473,10 +1473,10 @@
     "gear": {
       "bike": "Royal Enfield Meteor 350 (349cc J-Series, Dual-Channel ABS)",
       "riding": [
-        "Rynox Tornado Pro 4 Jacket (CE Level 2 KNOX Armour)",
-        "Rynox Air GT 04 Mesh Riding Jacket (CE Level 2 Armour)",
+        "Rynox Air GT 4 Riding Jacket (CE Level 2 KNOX Armour)",
         "Rynox Air GT Riding Pants (CE Level 2 KNOX Armour)",
         "Rynox H2Go Waterproof Rain Shell & Pants",
+        "ViaTerra Tundra V3 Winter Waterproof Gloves",
         "Rynox Air GT Motorcycle Gloves",
         "Royal Enfield Waterproof Touring Boots (Dual Ratchet Closures)",
         "SMK Modular Dual-Visor Helmet (DOT/ECE with Pinlock 70)",
