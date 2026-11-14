@@ -770,7 +770,7 @@
         "durationDays": 4,
         "distanceKm": 2662,
         "bike": "Royal Enfield Meteor 350",
-        "coverImage": "/images/rides/rameshwaram-cover.svg",
+        "coverImage": "/images/rides/meteor-350.webp",
         "summary": "The grand return leg heading north across Karnataka, Telangana, Hyderabad, Jabalpur, and the Gangetic plains back home to Patna.",
         "story": "Northbound trans-subcontinent return run connecting Bangalore through central India back to Patna basecamp.",
         "route": {
@@ -805,7 +805,7 @@
         "durationDays": 1,
         "distanceKm": 146,
         "bike": "Royal Enfield Meteor 350",
-        "coverImage": "/images/rides/meteor-350.webp",
+        "coverImage": "/images/rides/nandi-hills-cover.webp",
         "summary": "Early morning mountain climb up Nandi Hills switchbacks followed by the highway run to Adiyogi Chikkaballapura and return to Bangalore.",
         "story": "Chasing the sunrise above the cloud line at Nandi Hills before rolling through the Chikkaballapura granite landscape to the Adiyogi monument.",
         "route": {
@@ -841,7 +841,7 @@
         "durationDays": 1,
         "distanceKm": 95,
         "bike": "Royal Enfield Meteor 350",
-        "coverImage": "/images/rides/meteor-350.webp",
+        "coverImage": "/images/rides/kolli-hills-cover.webp",
         "summary": "The ultimate detour on the Bangalore–Rameshwaram expedition: conquering all 70 continuous numbered hairpin bends of Kolli Malai up and down in one non-stop push.",
         "story": "140 hairpin bends in a single morning assault — scaling the sheer wall of Kolli Hills to Solakkadu summit, turning right around, and carving back down before hammering south toward Rameshwaram.",
         "route": {
@@ -887,7 +887,7 @@
         "durationDays": 3,
         "distanceKm": 868,
         "bike": "Royal Enfield Meteor 350",
-        "coverImage": "/images/rides/rameshwaram-cover.svg",
+        "coverImage": "/images/rides/rameshwaram-cover.webp",
         "summary": "Southern coastal expedition across Tamil Nadu through Madurai to Pamban Sea Bridge and the ruins of Dhanushkodi, returning to Bangalore.",
         "story": "Riding down to the edge of the subcontinent where the Indian Ocean meets the Bay of Bengal at Dhanushkodi.",
         "route": {

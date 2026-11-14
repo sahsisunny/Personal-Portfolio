@@ -62,6 +62,7 @@ export default async function RideDetailPage({ params }: PageProps) {
   const mdxStory = ridePost?.content || getRideStoryMdx(slug);
   const storyContent = mdxStory || ride.story;
   const coordinates = ridePost?.frontmatter.coordinates || [];
+  const coverImage = (ridePost?.frontmatter.coverImage as string | undefined) || ride.coverImage;
 
   const BASE_URL = "https://sunnysahsi.com";
   const rideUrl = `${BASE_URL}/rides/${ride.slug}`;
@@ -170,17 +171,16 @@ export default async function RideDetailPage({ params }: PageProps) {
             )}
           </div>
 
-          {/* Cover Landscape Illustration */}
-          <div className="relative aspect-16/9 sm:aspect-21/9 w-full rounded-2xl border-2 border-border bg-slate-950 overflow-hidden shadow-xl mt-6">
-            {/* Real photo goes here — replace coverImage with your actual photo path */}
+          {/* Cover Landscape Banner */}
+          <div className="relative aspect-16/10 w-full rounded-2xl border-2 border-border bg-slate-950 overflow-hidden shadow-xl mt-6">
             <Image
-              src={ride.coverImage}
+              src={coverImage}
               alt={`${ride.origin} to ${ride.destination} ride cover`}
               title={ride.title}
-              width={1200}
-              height={550}
+              width={1600}
+              height={1000}
               priority
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain bg-slate-950"
             />
           </div>
         </header>
