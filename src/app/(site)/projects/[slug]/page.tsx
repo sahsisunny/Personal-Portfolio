@@ -187,11 +187,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   return (
     <>
       <script
+        key="software-jsonld"
         type="application/ld+json"
+        suppressHydrationWarning
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
       />
       <script
+        key="breadcrumbs-jsonld"
         type="application/ld+json"
+        suppressHydrationWarning
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbsJsonLd) }}
       />
 
