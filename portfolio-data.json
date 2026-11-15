@@ -540,29 +540,29 @@
       "status": "completed",
       "featured": true,
       "visibility": "public",
-      "summary": "An engineering management dashboard that allows engineering teams and open-source organizations to monitor, triage, and manage GitHub issues, PRs, and contributor velocity.",
-      "description": "Built with Next.js, NextAuth, and React Query, GitTrackr connects to the GitHub REST and GraphQL APIs to provide unified multi-repo issue triage, pull request lifecycle tracking, team velocity summaries, and contributor activity graphs with Vitest test coverage.",
-      "role": "Solo developer",
+      "summary": "High-velocity GitHub developer cockpit aggregating multi-repo pull requests, assigned issues, and organization velocity metrics into an instantaneous triage dashboard.",
+      "description": "Inspired during active engineering contributions at Real Dev Squad, GitTrackr solves developer context-switching and tab explosion across distributed repositories. Interfacing with GitHub's Search and Users APIs via scoped OAuth, it provides unified issue/PR tracking, multi-state status filters, lead-time velocity telemetry, and developer activity metrics with zero server database storage.",
+      "role": "Software Engineer (Solo Developer)",
       "tech": [
-        "Next.js",
+        "Next.js 16",
+        "React 19",
         "TypeScript",
-        "NextAuth",
-        "React Query",
-        "Redux",
+        "NextAuth.js",
         "GitHub API",
-        "Vitest",
-        "Tailwind CSS"
+        "Resend API",
+        "CSS Modules",
+        "Vitest"
       ],
       "highlights": [
-        "Unified organization issue and pull request dashboard with multi-repo search and smart labeling.",
-        "GitHub OAuth authentication via NextAuth with fine-grained repository access scopes.",
-        "Real-time data synchronization using React Query with optimistic UI updates and cache invalidation.",
-        "Comprehensive test coverage with Vitest and React Testing Library for mission-critical triage flows."
+        "Unified dual-stream cockpit toggling between assigned issues and pull requests with multi-state filters (All, Open, Merged, Closed).",
+        "Interactive velocity telemetry and lead-time analytics tracking PR throughput across 7-day, 4-week, and quarterly windows.",
+        "Zero-database, privacy-first architecture executing queries client-side via scoped GitHub OAuth tokens in memory.",
+        "Multi-tenant organization switcher, layout-stable contribution calendar, and inbound contact delivery with Resend."
       ],
       "links": {
         "repo": "https://github.com/sahsisunny/gittrackr",
-        "live": "https://gittrackr.netlify.app/",
-        "caseStudy": null
+        "live": "https://gittrackr.sunnysahsi.com/",
+        "caseStudy": "/projects/gittrackr"
       },
       "images": [
         "/images/projects/gittrackr.png"

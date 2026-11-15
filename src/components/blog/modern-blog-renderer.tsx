@@ -154,6 +154,40 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
             return;
           }
 
+          if (trimmed.startsWith("# ")) {
+            const newlineIdx = trimmed.indexOf("\n");
+            const headingLine = newlineIdx !== -1 ? trimmed.slice(0, newlineIdx).trim() : trimmed;
+            const remainingText = newlineIdx !== -1 ? trimmed.slice(newlineIdx + 1).trim() : "";
+            const headingText = headingLine.replace(/^#\s+/, "");
+            const id = headingText
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, "-")
+              .replace(/(^-|-$)/g, "");
+
+            elements.push(
+              <h2
+                key={`h1-${index}-${pIdx}`}
+                id={id}
+                className="text-2xl sm:text-3xl font-extrabold text-text mt-10 mb-4 scroll-mt-24 border-b border-border/80 pb-3"
+              >
+                {headingText}
+              </h2>
+            );
+
+            if (remainingText) {
+              elements.push(
+                <p
+                  key={`p-after-h1-${index}-${pIdx}`}
+                  className="text-base sm:text-[17px] text-muted leading-relaxed font-sans text-justify hyphens-auto"
+                  dangerouslySetInnerHTML={{
+                    __html: formatInline(remainingText),
+                  }}
+                />
+              );
+            }
+            return;
+          }
+
           // Markdown Table
           if (trimmed.includes("|") && trimmed.includes("---")) {
             const lines = trimmed.split("\n").filter((l) => l.trim().length > 0);
@@ -273,8 +307,8 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
             return;
           }
 
-          // Bullet lists / Numbered lists
-          if (trimmed.startsWith("- ") || trimmed.startsWith("1. ")) {
+          // Bullet lists / Numbered lists / Checklists
+          if (trimmed.startsWith("- ") || trimmed.startsWith("1. ") || trimmed.startsWith("* ")) {
             const listItems = trimmed.split("\n");
             elements.push(
               <ul
@@ -282,13 +316,28 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
                 className="my-4 space-y-2 text-muted text-base leading-relaxed pl-1"
               >
                 {listItems.map((item, itemIdx) => {
-                  const cleaned = item.replace(/^(-\s+|\d+\.\s+)/, "");
+                  let isChecked: boolean | null = null;
+                  let itemText = item.replace(/^(-\s+|\d+\.\s+|\*\s+)/, "");
+                  if (itemText.startsWith("[x] ") || itemText.startsWith("[X] ")) {
+                    isChecked = true;
+                    itemText = itemText.replace(/^\[[xX]\]\s*/, "");
+                  } else if (itemText.startsWith("[ ] ")) {
+                    isChecked = false;
+                    itemText = itemText.replace(/^\[ \]\s*/, "");
+                  }
+
                   return (
                     <li key={itemIdx} className="flex items-start gap-2.5">
-                      <span className="text-accent/80 select-none mt-1 font-mono text-xs">•</span>
+                      {isChecked === true ? (
+                        <span className="text-emerald-500 font-mono text-sm leading-none mt-1">✓</span>
+                      ) : isChecked === false ? (
+                        <span className="text-muted/60 font-mono text-sm leading-none mt-1">○</span>
+                      ) : (
+                        <span className="text-accent/80 select-none mt-1 font-mono text-xs">•</span>
+                      )}
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: formatInline(cleaned),
+                          __html: formatInline(itemText),
                         }}
                       />
                     </li>
