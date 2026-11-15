@@ -218,7 +218,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
                         href={`/projects/${project.slug}`}
                         className="inline-flex items-center gap-1 text-xs font-semibold text-accent hover:underline"
                       >
-                        <span>Read Case Study</span>
+                        <span>{project.slug === "real-dev-squad" ? "My Journey & Learnings" : "Read Case Study"}</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
 

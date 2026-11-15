@@ -190,22 +190,27 @@
       "current": false,
       "roles": [
         {
-          "title": "Open Source Contributor",
+          "title": "Open Source Contributor & Core Member",
           "start": "2022-12",
           "end": "2024-11",
           "highlights": [
-            "Contributed across React, Next.js, and Vue.js codebases within a distributed open-source team.",
-            "Built goal management modal using Vue.js/Vuetify and implemented unauthorized accordion access gating.",
-            "Engineered member status filtering and dynamic user profile components displaying real-time pull request activity."
+            "Joined 5:00 AM daily standups, establishing high-discipline async communication and agile standup rituals in a distributed team.",
+            "Earned production task access by architecting a Vanilla JS Lift Simulation (state store, queue engine, responsive UI).",
+            "Inducted into the GitHub organization with elevated privileges after receiving 5+ endorsement votes from existing core members.",
+            "Contributed across the multi-stack ecosystem: Vanilla JS (website-www), Ember.js (website-my), React & Next.js (website-status, website-dashboard), and Golang microservices (tiny-site-backend).",
+            "Attended the sponsored in-person community meetup in Bangalore arranged by Prakash and sponsored by Ankush Dharkar, Amit Prakash, and Prakash."
           ]
         }
       ],
       "tech": [
-        "Vue.js",
-        "Vuetify",
+        "Vanilla JavaScript",
+        "Ember.js",
         "React",
         "Next.js",
-        "Ember"
+        "Golang",
+        "TypeScript",
+        "Node.js",
+        "MSW"
       ]
     },
     {
@@ -627,25 +632,28 @@
       "status": "completed",
       "featured": true,
       "visibility": "public",
-      "summary": "Community-driven open-source developer ecosystem building production-grade web applications, triage tools, and member profiles across Vue.js, React, Next.js, and Ember.",
-      "description": "Real Dev Squad is an open-source community platform empowering developers through hands-on collaboration and peer reviews. Contributed to core user interfaces and security controls across distributed codebases: engineered the Vue.js/Vuetify Goal modal with schema validation, implemented role-based accordion access controls, developed member status filters, and built an interactive pull request activity tracker for member profiles.",
-      "role": "Open Source Contributor",
+      "summary": "My journey at Real Dev Squad: 5 AM daily standups, passing the Vanilla JS Lift Simulation gatekeeper challenge, earning 5 votes for GitHub org membership, engineering across Vanilla JS, Ember.js, React, Next.js, and Golang, and the Bangalore community meetup.",
+      "description": "When I joined Real Dev Squad, engineering discipline was paramount: every day began with a 5:00 AM standup call, and before touching production code, contributors had to architect and deliver a fully functional multi-floor Lift Simulation in pure Vanilla JavaScript. Once approved, I progressed across Vanilla JS (website-www), Ember.js (website-my), React/Next.js (website-status, website-dashboard), and Golang (tiny-site-backend). Consistent contributions earned me 5+ peer endorsement votes to become an official Member with GitHub organization privileges. I also attended the sponsored in-person Bangalore meetup with Ankush Dharkar, Amit Prakash, and Prakash.",
+      "role": "Open Source Contributor & Core Member",
       "tech": [
-        "Vue.js",
-        "Vuetify",
+        "Vanilla JavaScript",
+        "Ember.js",
         "React",
         "Next.js",
-        "Ember",
+        "Golang",
         "TypeScript",
-        "JavaScript",
-        "Tailwind CSS"
+        "Node.js",
+        "Tailwind CSS",
+        "MSW",
+        "Jest"
       ],
       "highlights": [
-        "Engineered the Goal form modal workflow using Vue.js and Vuetify with input validation and reactive state management.",
-        "Implemented access-control security restrictions to lock accordions for unauthorized users.",
-        "Added granular user filtering to query and list community members by status and engagement.",
-        "Built an interactive feature to track and showcase a user's GitHub pull requests on their public profile page.",
-        "Participated in distributed peer code reviews, frontend architecture discussions, and documentation across repositories."
+        "Joined the daily 5:00 AM standup calls, practicing rigorous engineering discipline, daily blocker resolution, and distributed asynchronous communication.",
+        "Passed the qualifying gatekeeper challenge by architecting a multi-floor, multi-elevator simulation in pure Vanilla JS with separated state store and algorithmic dispatch engine.",
+        "Elected as an official Member with elevated GitHub organization privileges after securing 5+ endorsement votes from existing core members.",
+        "Contributed across frontend ecosystems: Vanilla JS on website-www, Ember.js feature-flagged OOO workflows on website-my, and React/Next.js roadmap tooling on website-status.",
+        "Engineered Golang backend microservices on tiny-site-backend, delivering authenticated URL list retrieval routes and API middleware.",
+        "Attended the all-expenses-covered in-person community meetup in Bangalore arranged by Prakash and sponsored by Ankush Dharkar, Amit Prakash, and Prakash, bonding over games and go-karting."
       ],
       "links": {
         "repo": "https://github.com/Real-Dev-Squad",
@@ -659,7 +667,7 @@
         "start": "2022-12",
         "end": "2024-07"
       },
-      "outcome": "Contributing to Real Dev Squad taught me more about production code review culture than any personal project could—every PR touched shared infrastructure used by hundreds of active contributors, so defensive validation and backward-compatible changes weren't optional. The Goal form modal work exposed gaps in Vuetify's reactive state model under rapid user input, which I addressed with explicit debounce guards. I'd revisit the access-control accordion logic to lift it into a composable permission hook, making it reusable across the growing number of role-gated UI surfaces."
+      "outcome": "Real Dev Squad shaped my engineering foundation. The 5 AM standups built unwavering discipline, while the Lift Simulation proved that strong software design principles—like separating state management and algorithmic controllers from rendering—transcend any UI framework. Shipping code across Vanilla JS, Ember.js, React, Next.js, and Golang taught me to be truly tech-agnostic. Beyond code, earning member privileges through peer votes and attending the Bangalore meetup sponsored by Ankush, Amit, and Prakash taught me that high-trust communities are what transform developers into leaders."
     }
   ],
   "openSource": [

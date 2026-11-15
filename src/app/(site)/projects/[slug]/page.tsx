@@ -52,6 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const projectUrl = `${BASE_URL}/projects/${project.slug}`;
+  const isRDS = project.slug === "real-dev-squad";
   const firstImg = project.images && project.images[0]
     ? typeof project.images[0] === "string"
       ? project.images[0]
@@ -60,13 +61,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const imageUrl = firstImg.startsWith("http") ? firstImg : `${BASE_URL}${firstImg}`;
 
   return {
-    title: `${project.title} | Case Study & Architecture`,
+    title: isRDS
+      ? `${project.title} | When I Joined, What I Built & What I Learned`
+      : `${project.title} | Case Study & Architecture`,
     description: project.summary,
     keywords: [
       ...project.tech,
       project.role,
-      "Case Study",
-      "Software Architecture",
+      isRDS ? "Engineering Journey" : "Case Study",
+      isRDS ? "Learnings & Experience" : "Software Architecture",
       "Full Stack Development",
       "Sunny Sahsi",
     ],
@@ -120,6 +123,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
   const mdxContent = getProjectCaseStudyMdx(slug);
   const isConfidential = project.visibility === "public-after-review";
+  const isRDS = project.slug === "real-dev-squad";
 
   const projectUrl = `${BASE_URL}/projects/${project.slug}`;
   const firstImg = project.images && project.images[0]
@@ -337,15 +341,17 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Case Study Content Blocks */}
+          {/* Main Story & Technical Implementation Blocks */}
           <div className="space-y-12">
-            {/* Problem */}
+            {/* Problem / Context */}
             <section className="space-y-4">
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-accent font-semibold">
                 <Workflow className="w-4 h-4" />
-                <span>1. The Problem &amp; Context</span>
+                <span>{isRDS ? "1. When I Joined & The 5 AM Standup Routine" : "1. The Problem & Context"}</span>
               </div>
-              <h2 className="text-2xl font-bold text-text">Why this project was initiated</h2>
+              <h2 className="text-2xl font-bold text-text">
+                {isRDS ? "Joining Real Dev Squad & 5:00 AM Standup Culture" : "Why this project was initiated"}
+              </h2>
               <p className="text-base sm:text-lg text-muted leading-relaxed text-justify hyphens-auto">
                 {project.description}
               </p>
@@ -355,9 +361,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             <section className="space-y-4">
               <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-accent font-semibold">
                 <Layers className="w-4 h-4" />
-                <span>2. Technical Implementation &amp; Highlights</span>
+                <span>{isRDS ? "2. The Gatekeeper Challenge & Milestones" : "2. Technical Implementation & Highlights"}</span>
               </div>
-              <h2 className="text-2xl font-bold text-text">Engineering Deliverables</h2>
+              <h2 className="text-2xl font-bold text-text">
+                {isRDS ? "Unlocking Real Tasks via Lift Simulation" : "Engineering Deliverables"}
+              </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 {project.highlights.map((hl, idx) => (
@@ -372,17 +380,19 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </div>
             </section>
 
-            {/* Deep Dive Case Study Content with Syntax Highlighted Code Blocks */}
+            {/* Deep Dive Content with Syntax Highlighted Code Blocks */}
             {mdxContent && (
               <section className="rounded-xl border border-border bg-surface p-6 sm:p-8 shadow-xs">
                 <ModernBlogRenderer content={mdxContent} slug={project.slug} />
               </section>
             )}
 
-            {/* Outcome & What I'd Do Next */}
+            {/* Outcome & What I Learned */}
             {project.outcome && (
               <section className="rounded-xl border border-border bg-surface-2/40 p-6 sm:p-8 space-y-4">
-                <h3 className="text-xl font-bold text-text">Engineering Outcome &amp; Takeaways</h3>
+                <h3 className="text-xl font-bold text-text">
+                  {isRDS ? "What I Learned & Engineering Takeaways" : "Engineering Outcome & Takeaways"}
+                </h3>
                 <p className="text-sm sm:text-base text-muted leading-relaxed text-justify hyphens-auto">
                   {project.outcome}
                 </p>
