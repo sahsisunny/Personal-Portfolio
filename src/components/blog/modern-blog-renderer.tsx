@@ -49,6 +49,7 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
               codeBody.trim().startsWith("classDiagram") ||
               codeBody.trim().startsWith("stateDiagram") ||
               codeBody.trim().startsWith("erDiagram") ||
+              codeBody.trim().startsWith("xychart") ||
               codeBody.trim().startsWith("graph ")))
         ) {
           elements.push(<MermaidBlock key={`mermaid-${index}`} code={codeBody} />);
@@ -78,124 +79,278 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
         const proseText = part.trim();
         if (!proseText) return;
 
-        // Ensure headings, horizontal rules, and block elements have clean double-newlines around them
-        const normalizedProse = proseText
-          .replace(/(^|\n)(#{1,4}\s+[^\n]+)/g, "$1\n\n$2\n\n")
-          .replace(/(^|\n)(---|\*\*\*|___)\s*(\n|$)/g, "$1\n\n$2\n\n");
+        const lines = proseText.split("\n");
+        type Block =
+          | { type: "heading"; level: number; text: string }
+          | { type: "hr" }
+          | { type: "table"; lines: string[] }
+          | { type: "quote"; lines: string[] }
+          | { type: "list"; items: string[] }
+          | { type: "html"; content: string }
+          | { type: "image"; alt: string; src: string }
+          | { type: "paragraph"; text: string };
 
-        // Split prose into paragraphs, headings, blockquotes, lists, tables
-        const paragraphs = normalizedProse.split(/\n\n+/);
+        const parsedBlocks: Block[] = [];
+        let currentBlock:
+          | { type: "table"; lines: string[] }
+          | { type: "quote"; lines: string[] }
+          | { type: "list"; lines: string[] }
+          | { type: "html"; lines: string[] }
+          | { type: "paragraph"; lines: string[] }
+          | null = null;
 
-        paragraphs.forEach((pText, pIdx) => {
-          const trimmed = pText.trim();
-          if (!trimmed) return;
+        const flushCurrentBlock = () => {
+          if (!currentBlock) return;
+          if (currentBlock.type === "table") {
+            parsedBlocks.push({ type: "table", lines: currentBlock.lines });
+          } else if (currentBlock.type === "quote") {
+            parsedBlocks.push({ type: "quote", lines: currentBlock.lines });
+          } else if (currentBlock.type === "list") {
+            parsedBlocks.push({ type: "list", items: currentBlock.lines });
+          } else if (currentBlock.type === "html") {
+            parsedBlocks.push({ type: "html", content: currentBlock.lines.join("\n") });
+          } else if (currentBlock.type === "paragraph") {
+            const pText = currentBlock.lines.join(" ").trim();
+            if (pText) {
+              parsedBlocks.push({ type: "paragraph", text: pText });
+            }
+          }
+          currentBlock = null;
+        };
 
-          // Headings
-          if (trimmed.startsWith("### ")) {
-            const newlineIdx = trimmed.indexOf("\n");
-            const headingLine = newlineIdx !== -1 ? trimmed.slice(0, newlineIdx).trim() : trimmed;
-            const remainingText = newlineIdx !== -1 ? trimmed.slice(newlineIdx + 1).trim() : "";
-            const headingText = headingLine.replace(/^###\s+/, "");
-            const id = headingText
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+          const trimmed = line.trim();
+
+          // Empty line terminates current open block
+          if (!trimmed) {
+            flushCurrentBlock();
+            continue;
+          }
+
+          // 1. Horizontal Rule (---, ***, ___)
+          if (/^(---|\*\*\*|___)$/.test(trimmed)) {
+            flushCurrentBlock();
+            parsedBlocks.push({ type: "hr" });
+            continue;
+          }
+
+          // 2. Heading (#, ##, ###, ####)
+          const headingMatch = trimmed.match(/^(#{1,4})\s+(.+)$/);
+          if (headingMatch) {
+            flushCurrentBlock();
+            parsedBlocks.push({
+              type: "heading",
+              level: headingMatch[1].length,
+              text: headingMatch[2].trim(),
+            });
+            continue;
+          }
+
+          // 3. Standalone Image: ![alt](url)
+          const imgMatch = trimmed.match(/^!\[(.*?)\]\((.*?)\)$/);
+          if (imgMatch) {
+            flushCurrentBlock();
+            parsedBlocks.push({
+              type: "image",
+              alt: imgMatch[1],
+              src: imgMatch[2],
+            });
+            continue;
+          }
+
+          // 4. HTML block e.g. <div ...> ... </div>
+          if (
+            trimmed.startsWith("<div") ||
+            trimmed.startsWith("<section") ||
+            trimmed.startsWith("<figure") ||
+            trimmed.startsWith("<center")
+          ) {
+            flushCurrentBlock();
+            currentBlock = { type: "html", lines: [line] };
+            if (
+              trimmed.includes("</div>") ||
+              trimmed.includes("</section>") ||
+              trimmed.includes("</figure>") ||
+              trimmed.includes("</center>")
+            ) {
+              flushCurrentBlock();
+            }
+            continue;
+          }
+          if (currentBlock && currentBlock.type === "html") {
+            currentBlock.lines.push(line);
+            if (
+              trimmed.includes("</div>") ||
+              trimmed.includes("</section>") ||
+              trimmed.includes("</figure>") ||
+              trimmed.includes("</center>")
+            ) {
+              flushCurrentBlock();
+            }
+            continue;
+          }
+
+          // 5. Table (starts and contains |)
+          if (trimmed.includes("|") && (trimmed.startsWith("|") || trimmed.endsWith("|") || trimmed.includes("---"))) {
+            if (currentBlock && currentBlock.type === "table") {
+              currentBlock.lines.push(trimmed);
+            } else {
+              flushCurrentBlock();
+              currentBlock = { type: "table", lines: [trimmed] };
+            }
+            continue;
+          }
+
+          // 6. Blockquote (starts with >)
+          if (trimmed.startsWith(">")) {
+            if (currentBlock && currentBlock.type === "quote") {
+              currentBlock.lines.push(trimmed.replace(/^>\s*/, ""));
+            } else {
+              flushCurrentBlock();
+              currentBlock = { type: "quote", lines: [trimmed.replace(/^>\s*/, "")] };
+            }
+            continue;
+          }
+
+          // 7. List Item (- item, * item, • item, 1. item) or Indented List Item
+          const isListItem = /^[ \t]*([-\*•]|\d+\.)\s+/.test(line);
+          const isListIndented = currentBlock && currentBlock.type === "list" && /^[ \t]{2,}\S/.test(line);
+
+          if (isListItem || isListIndented) {
+            if (currentBlock && currentBlock.type === "list") {
+              currentBlock.lines.push(line);
+            } else {
+              flushCurrentBlock();
+              currentBlock = { type: "list", lines: [line] };
+            }
+            continue;
+          }
+
+          // 8. Normal Paragraph text
+          if (currentBlock && currentBlock.type === "paragraph") {
+            currentBlock.lines.push(trimmed);
+          } else {
+            flushCurrentBlock();
+            currentBlock = { type: "paragraph", lines: [trimmed] };
+          }
+        }
+        flushCurrentBlock();
+
+        // Render parsed blocks deterministically
+        parsedBlocks.forEach((b, bIdx) => {
+          const key = `block-${index}-${bIdx}`;
+
+          if (b.type === "heading") {
+            const id = b.text
               .toLowerCase()
               .replace(/[^a-z0-9]+/g, "-")
               .replace(/(^-|-$)/g, "");
 
-            elements.push(
-              <h3
-                key={`h3-${index}-${pIdx}`}
-                id={id}
-                className="text-lg sm:text-xl font-bold text-text mt-8 mb-3 scroll-mt-24"
-              >
-                {headingText}
-              </h3>
-            );
-
-            if (remainingText) {
+            if (b.level === 1) {
               elements.push(
-                <p
-                  key={`p-after-h3-${index}-${pIdx}`}
-                  className="text-base sm:text-[17px] text-muted leading-relaxed font-sans text-justify hyphens-auto"
-                  dangerouslySetInnerHTML={{
-                    __html: formatInline(remainingText),
-                  }}
+                <h2
+                  key={key}
+                  id={id}
+                  className="text-2xl sm:text-3xl font-extrabold text-text mt-10 mb-4 scroll-mt-24 border-b border-border/80 pb-3"
+                  dangerouslySetInnerHTML={{ __html: formatInline(b.text) }}
+                />
+              );
+            } else if (b.level === 2) {
+              elements.push(
+                <h2
+                  key={key}
+                  id={id}
+                  className="text-xl sm:text-2xl font-bold text-text mt-12 mb-4 scroll-mt-24 border-b border-border/60 pb-2"
+                  dangerouslySetInnerHTML={{ __html: formatInline(b.text) }}
+                />
+              );
+            } else if (b.level === 3) {
+              elements.push(
+                <h3
+                  key={key}
+                  id={id}
+                  className="text-lg sm:text-xl font-bold text-text mt-8 mb-3 scroll-mt-24"
+                  dangerouslySetInnerHTML={{ __html: formatInline(b.text) }}
+                />
+              );
+            } else {
+              elements.push(
+                <h4
+                  key={key}
+                  id={id}
+                  className="text-base sm:text-lg font-semibold text-text mt-6 mb-2 scroll-mt-24"
+                  dangerouslySetInnerHTML={{ __html: formatInline(b.text) }}
                 />
               );
             }
             return;
           }
 
-          if (trimmed.startsWith("## ")) {
-            const newlineIdx = trimmed.indexOf("\n");
-            const headingLine = newlineIdx !== -1 ? trimmed.slice(0, newlineIdx).trim() : trimmed;
-            const remainingText = newlineIdx !== -1 ? trimmed.slice(newlineIdx + 1).trim() : "";
-            const headingText = headingLine.replace(/^##\s+/, "");
-            const id = headingText
-              .toLowerCase()
-              .replace(/[^a-z0-9]+/g, "-")
-              .replace(/(^-|-$)/g, "");
-
-            elements.push(
-              <h2
-                key={`h2-${index}-${pIdx}`}
-                id={id}
-                className="text-xl sm:text-2xl font-bold text-text mt-12 mb-4 scroll-mt-24 border-b border-border/60 pb-2"
-              >
-                {headingText}
-              </h2>
-            );
-
-            if (remainingText) {
-              elements.push(
-                <p
-                  key={`p-after-h2-${index}-${pIdx}`}
-                  className="text-base sm:text-[17px] text-muted leading-relaxed font-sans text-justify hyphens-auto"
-                  dangerouslySetInnerHTML={{
-                    __html: formatInline(remainingText),
-                  }}
-                />
-              );
-            }
+          if (b.type === "hr") {
+            elements.push(<hr key={key} className="my-10 border-border/70" />);
             return;
           }
 
-          if (trimmed.startsWith("# ")) {
-            const newlineIdx = trimmed.indexOf("\n");
-            const headingLine = newlineIdx !== -1 ? trimmed.slice(0, newlineIdx).trim() : trimmed;
-            const remainingText = newlineIdx !== -1 ? trimmed.slice(newlineIdx + 1).trim() : "";
-            const headingText = headingLine.replace(/^#\s+/, "");
-            const id = headingText
-              .toLowerCase()
-              .replace(/[^a-z0-9]+/g, "-")
-              .replace(/(^-|-$)/g, "");
-
+          if (b.type === "image") {
             elements.push(
-              <h2
-                key={`h1-${index}-${pIdx}`}
-                id={id}
-                className="text-2xl sm:text-3xl font-extrabold text-text mt-10 mb-4 scroll-mt-24 border-b border-border/80 pb-3"
+              <figure
+                key={key}
+                className="my-8 overflow-hidden rounded-xl border border-border/80 bg-surface-2/40 shadow-xs"
               >
-                {headingText}
-              </h2>
-            );
-
-            if (remainingText) {
-              elements.push(
-                <p
-                  key={`p-after-h1-${index}-${pIdx}`}
-                  className="text-base sm:text-[17px] text-muted leading-relaxed font-sans text-justify hyphens-auto"
-                  dangerouslySetInnerHTML={{
-                    __html: formatInline(remainingText),
-                  }}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={b.src}
+                  alt={b.alt || "Article illustration"}
+                  loading="lazy"
+                  className="w-full h-auto object-cover max-h-[520px]"
                 />
-              );
-            }
+                {b.alt && (
+                  <figcaption className="p-3 text-center text-xs font-mono text-muted border-t border-border/50 bg-surface-2/60">
+                    {b.alt}
+                  </figcaption>
+                )}
+              </figure>
+            );
             return;
           }
 
-          // Markdown Table
-          if (trimmed.includes("|") && trimmed.includes("---")) {
-            const lines = trimmed.split("\n").filter((l) => l.trim().length > 0);
+          if (b.type === "quote") {
+            const quoteContent = b.lines.join(" ");
+            const isNote = quoteContent.startsWith("[!NOTE]");
+            const isImportant = quoteContent.startsWith("[!IMPORTANT]");
+            const isWarning = quoteContent.startsWith("[!WARNING]");
+
+            let cleanQuote = quoteContent;
+            let calloutClass =
+              "border-l-2 border-accent pl-4 my-5 italic text-muted text-base leading-relaxed";
+
+            if (isNote || isImportant || isWarning) {
+              cleanQuote = quoteContent.replace(
+                /^\[!(NOTE|IMPORTANT|WARNING)\]\s*/,
+                ""
+              );
+              calloutClass = isWarning
+                ? "border-l-4 border-amber-500 bg-amber-500/10 p-4 rounded-r-lg my-6 not-italic text-text"
+                : isImportant
+                ? "border-l-4 border-accent bg-accent/10 p-4 rounded-r-lg my-6 not-italic text-text"
+                : "border-l-4 border-blue-500 bg-blue-500/10 p-4 rounded-r-lg my-6 not-italic text-text";
+            }
+
+            elements.push(
+              <blockquote key={key} className={calloutClass}>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: formatInline(cleanQuote),
+                  }}
+                />
+              </blockquote>
+            );
+            return;
+          }
+
+          if (b.type === "table") {
+            const lines = b.lines.filter((l) => l.trim().length > 0);
             if (lines.length >= 2) {
               const headers = lines[0]
                 .split("|")
@@ -210,7 +365,7 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
 
               elements.push(
                 <div
-                  key={`table-${index}-${pIdx}`}
+                  key={key}
                   className="my-6 overflow-x-auto rounded-lg border border-border bg-surface"
                 >
                   <table className="w-full text-left text-xs sm:text-sm">
@@ -227,7 +382,10 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
                       {rows.map((row, rIdx) => (
                         <tr key={rIdx} className="hover:bg-surface-2/30">
                           {row.map((cell, cIdx) => (
-                            <td key={cIdx} className="p-3 text-muted text-xs leading-relaxed">
+                            <td
+                              key={cIdx}
+                              className="p-3 text-muted text-xs leading-relaxed"
+                            >
                               <span
                                 dangerouslySetInnerHTML={{
                                   __html: formatInline(cell),
@@ -241,97 +399,29 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
                   </table>
                 </div>
               );
-              return;
             }
-          }
-
-          // Horizontal rule
-          if (trimmed === "---" || trimmed === "***" || trimmed === "___") {
-            elements.push(<hr key={`hr-${index}-${pIdx}`} className="my-10 border-border/70" />);
             return;
           }
 
-          // Markdown Image: ![alt](url)
-          const standaloneImgMatch = trimmed.match(/^!\[(.*?)\]\((.*?)\)$/);
-          if (standaloneImgMatch) {
-            const alt = standaloneImgMatch[1];
-            const src = standaloneImgMatch[2];
-            elements.push(
-              <figure
-                key={`img-${index}-${pIdx}`}
-                className="my-8 overflow-hidden rounded-xl border border-border/80 bg-surface-2/40 shadow-xs"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={src}
-                  alt={alt || "Article illustration"}
-                  loading="lazy"
-                  className="w-full h-auto object-cover max-h-[520px]"
-                />
-                {alt && (
-                  <figcaption className="p-3 text-center text-xs font-mono text-muted border-t border-border/50 bg-surface-2/60">
-                    {alt}
-                  </figcaption>
-                )}
-              </figure>
-            );
-            return;
-          }
-
-          // Blockquotes and Callouts
-          if (trimmed.startsWith("> ")) {
-            const quoteContent = trimmed.replace(/^>\s*/gm, "");
-            const isNote = quoteContent.startsWith("[!NOTE]");
-            const isImportant = quoteContent.startsWith("[!IMPORTANT]");
-            const isWarning = quoteContent.startsWith("[!WARNING]");
-
-            let cleanQuote = quoteContent;
-            let calloutClass = "border-l-2 border-accent pl-4 my-5 italic text-muted text-base leading-relaxed";
-
-            if (isNote || isImportant || isWarning) {
-              cleanQuote = quoteContent.replace(/^\[!(NOTE|IMPORTANT|WARNING)\]\s*/, "");
-              calloutClass = isWarning
-                ? "border-l-4 border-amber-500 bg-amber-500/10 p-4 rounded-r-lg my-6 not-italic text-text"
-                : isImportant
-                ? "border-l-4 border-accent bg-accent/10 p-4 rounded-r-lg my-6 not-italic text-text"
-                : "border-l-4 border-blue-500 bg-blue-500/10 p-4 rounded-r-lg my-6 not-italic text-text";
-            }
-
-            elements.push(
-              <blockquote
-                key={`quote-${index}-${pIdx}`}
-                className={calloutClass}
-              >
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: formatInline(cleanQuote),
-                  }}
-                />
-              </blockquote>
-            );
-            return;
-          }
-
-          // Bullet lists / Numbered lists / Checklists
-          if (
-            trimmed.startsWith("- ") ||
-            trimmed.startsWith("1. ") ||
-            trimmed.startsWith("* ") ||
-            trimmed.startsWith("• ")
-          ) {
-            const listItems = trimmed.split("\n").filter((l) => l.trim().length > 0);
+          if (b.type === "list") {
             elements.push(
               <ul
-                key={`list-${index}-${pIdx}`}
+                key={key}
                 className="my-4 space-y-2.5 text-muted text-base leading-relaxed pl-1"
               >
-                {listItems.map((item, itemIdx) => {
+                {b.items.map((item, itemIdx) => {
                   const isSubItem = /^\s{2,}/.test(item);
                   const trimmedItem = item.trim();
 
                   let isChecked: boolean | null = null;
-                  let itemText = trimmedItem.replace(/^([-\*•]\s+|\d+\.\s+)/, "");
-                  if (itemText.startsWith("[x] ") || itemText.startsWith("[X] ")) {
+                  let itemText = trimmedItem.replace(
+                    /^([-\*•]\s+|\d+\.\s+)/,
+                    ""
+                  );
+                  if (
+                    itemText.startsWith("[x] ") ||
+                    itemText.startsWith("[X] ")
+                  ) {
                     isChecked = true;
                     itemText = itemText.replace(/^\[[xX]\]\s*/, "");
                   } else if (itemText.startsWith("[ ] ")) {
@@ -347,13 +437,21 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
                       }`}
                     >
                       {isChecked === true ? (
-                        <span className="text-emerald-500 font-mono text-sm leading-none mt-1 flex-shrink-0">✓</span>
+                        <span className="text-emerald-500 font-mono text-sm leading-none mt-1 flex-shrink-0">
+                          ✓
+                        </span>
                       ) : isChecked === false ? (
-                        <span className="text-muted/60 font-mono text-sm leading-none mt-1 flex-shrink-0">○</span>
+                        <span className="text-muted/60 font-mono text-sm leading-none mt-1 flex-shrink-0">
+                          ○
+                        </span>
                       ) : isSubItem ? (
-                        <span className="text-accent/60 select-none mt-1 font-mono text-xs flex-shrink-0">–</span>
+                        <span className="text-accent/60 select-none mt-1 font-mono text-xs flex-shrink-0">
+                          –
+                        </span>
                       ) : (
-                        <span className="text-accent/80 select-none mt-1 font-mono text-xs flex-shrink-0">•</span>
+                        <span className="text-accent/80 select-none mt-1 font-mono text-xs flex-shrink-0">
+                          •
+                        </span>
                       )}
                       <span
                         className="flex-1"
@@ -369,16 +467,31 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
             return;
           }
 
-          // Standard Paragraph: clean, calm, comfortable reading format
-          elements.push(
-            <p
-              key={`p-${index}-${pIdx}`}
-              className="text-base sm:text-[17px] text-muted leading-relaxed font-sans text-justify hyphens-auto"
-              dangerouslySetInnerHTML={{
-                __html: formatInline(trimmed),
-              }}
-            />
-          );
+          if (b.type === "html") {
+            elements.push(
+              <div
+                key={key}
+                className="my-6 w-full overflow-hidden"
+                dangerouslySetInnerHTML={{
+                  __html: formatInline(b.content),
+                }}
+              />
+            );
+            return;
+          }
+
+          if (b.type === "paragraph") {
+            elements.push(
+              <p
+                key={key}
+                className="text-base sm:text-[17px] text-muted leading-relaxed font-sans text-justify hyphens-auto"
+                dangerouslySetInnerHTML={{
+                  __html: formatInline(b.text),
+                }}
+              />
+            );
+            return;
+          }
         });
       }
     });

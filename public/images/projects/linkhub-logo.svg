@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+
+    <!-- Outer Glow -->
+    <radialGradient id="ambientGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#a855f7" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Main Link Gradient Left -->
+    <linearGradient id="linkLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+
+    <!-- Main Link Gradient Right -->
+    <linearGradient id="linkRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="50%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#f43f5e" />
+    </linearGradient>
+
+    <!-- Connection Nexus Gradient -->
+    <linearGradient id="nexusGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="50%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+
+    <!-- Shadow filter for 3D depth -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Squircle -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <rect width="512" height="512" rx="112" stroke="rgba(255, 255, 255, 0.12)" stroke-width="2" />
+  <circle cx="256" cy="256" r="230" fill="url(#ambientGlow)" />
+
+  <!-- Center Interlocking Nexus Chain -->
+  <g transform="translate(256, 256) rotate(-45) translate(-256, -256)" filter="url(#glow)">
+    <!-- Left Loop (Rounded Link) -->
+    <rect x="120" y="196" width="180" height="120" rx="60" fill="none" stroke="url(#linkLeft)" stroke-width="36" stroke-linecap="round" />
+
+    <!-- Right Loop (Rounded Link) -->
+    <rect x="212" y="196" width="180" height="120" rx="60" fill="none" stroke="url(#linkRight)" stroke-width="36" stroke-linecap="round" />
+
+    <!-- Connecting Nexus Beam -->
+    <line x1="200" y1="256" x2="312" y2="256" stroke="url(#nexusGrad)" stroke-width="28" stroke-linecap="round" />
+
+    <!-- Glowing Nodes -->
+    <circle cx="160" cy="256" r="14" fill="#ffffff" />
+    <circle cx="256" cy="256" r="18" fill="#ffffff" filter="url(#glow)" />
+    <circle cx="352" cy="256" r="14" fill="#ffffff" />
+  </g>
+</svg>

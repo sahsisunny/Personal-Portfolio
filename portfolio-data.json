@@ -565,7 +565,7 @@
         "caseStudy": "/projects/gittrackr"
       },
       "images": [
-        "/images/projects/gittrackr-cockpit.png"
+        "/images/projects/gittrackr-dashboard.png"
       ],
       "period": {
         "start": "2023-08",
@@ -580,30 +580,32 @@
       "status": "completed",
       "featured": true,
       "visibility": "public",
-      "summary": "A link-in-bio platform allowing creators and developers to consolidate social presence, portfolio links, and content into a single high-performance page.",
-      "description": "Built with Next.js 14, MongoDB, Mongoose, and NextAuth. Provides dynamic slug routing, custom link ordering, responsive mobile layout, and analytics tracking for link visits.",
-      "role": "Solo developer",
+      "summary": "An open-source link-in-bio platform engineered with Next.js 14, MongoDB Atlas, and NextAuth for creators seeking live mobile previews, custom theming, and complete data sovereignty.",
+      "description": "LinkHub eliminates the privacy invasion, rigid paywalls, and aggressive monetization of legacy biolink tools. Built with Next.js App Router, server-side dynamic routing, and authenticated Server Actions, it provides instant handle claims, live mobile preview sync, custom mesh gradient theming, and drag-and-drop link curation with zero third-party trackers.",
+      "role": "Software Engineer & Creator",
       "tech": [
-        "Next.js",
+        "Next.js 14",
+        "React",
         "TypeScript",
-        "NextAuth",
+        "NextAuth.js",
         "MongoDB",
         "Mongoose",
-        "Tailwind CSS"
+        "Tailwind CSS",
+        "Framer Motion"
       ],
       "highlights": [
-        "Dynamic user profile slug generation with Next.js App Router and server-side rendering for optimal SEO.",
-        "MongoDB schema design with Mongoose handling link order, click counters, and social icons.",
-        "Secure authentication with NextAuth and MongoDB adapter for seamless link dashboard management.",
-        "Fully responsive mobile-first UI with custom themes, drag-and-drop link ordering, and share previews."
+        "Server-rendered dynamic /[uri] routes for instant SEO indexing and crawler OpenGraph tag delivery.",
+        "Authenticated Next.js Server Actions for link mutations, theme configuration, and profile curation.",
+        "Live desktop smartphone preview with Dynamic Island frame and real-time iframe synchronization.",
+        "Zero third-party trackers, zero advertising pixels, and full creator data sovereignty under GDPR/CCPA."
       ],
       "links": {
         "repo": "https://github.com/sahsisunny/linktree",
-        "live": "https://litree.netlify.app/",
-        "caseStudy": null
+        "live": "https://linkhub.sunnysahsi.com",
+        "caseStudy": "/projects/linktree"
       },
       "images": [
-        "/images/projects/linktree.jpeg"
+        "/images/projects/linkhub-hero.png"
       ],
       "period": {
         "start": "2023-11",
