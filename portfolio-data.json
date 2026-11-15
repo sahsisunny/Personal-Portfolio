@@ -448,7 +448,8 @@
       "period": {
         "start": "2024",
         "end": null
-      }
+      },
+      "outcome": "Shipping the agent orchestrator proved that strict tenant isolation and caller-scoped JWT forwarding are non-negotiable at enterprise scale—retrofitting them later would have been far more costly than designing them in upfront. The hardest part wasn't the LLM integration but preserving context boundaries across 600+ microservices without leaking state between sessions. In future iterations I want to introduce structured tool-call tracing so every agent decision is auditable, and add a circuit-breaker layer to degrade gracefully when downstream APIs are slow rather than surfacing raw timeouts to users."
     },
     {
       "id": "care-ring",
@@ -479,7 +480,7 @@
       ],
       "links": {
         "repo": "https://github.com/sahsisunny/care-ring",
-        "live": "https://care-ring.netlify.app/",
+        "live": "https://carering.sunnysahsi.com",
         "caseStudy": null
       },
       "images": [
@@ -488,7 +489,8 @@
       "period": {
         "start": "2024-03",
         "end": "2024-09"
-      }
+      },
+      "outcome": "Building CareRing showed me that real-time location systems live or die on battery efficiency—the sub-1% drain per hour target forced every design decision, from the motion coprocessor filtering strategy to the WebSocket keep-alive cadence. Achieving sub-50ms telemetry propagation was straightforward in isolation; keeping it stable under concurrent family members with intermittent connectivity was the real engineering challenge. Next, I'd add a local-first offline queue so location updates survive network gaps and replay in order once connectivity resumes."
     },
     {
       "id": "home-assets",
@@ -530,7 +532,8 @@
       "period": {
         "start": "2024-06",
         "end": "2024-11"
-      }
+      },
+      "outcome": "The Home Asset Manager reinforced how much friction disappears when you share strict Zod schemas across the full stack from day one—runtime mismatches that would normally surface in production were caught at the type level during development. The multimodal OCR pipeline with Gemini 2.5 Flash exceeded accuracy expectations on structured invoices but highlighted the need for a human-review fallback for handwritten receipts. In the next phase I'd add warranty expiry push notifications and a cost-of-ownership timeline so the tool shifts from reactive record-keeping to proactive maintenance planning."
     },
     {
       "id": "gittrackr",
@@ -561,7 +564,7 @@
       ],
       "links": {
         "repo": "https://github.com/sahsisunny/gittrackr",
-        "live": "https://gittrackr.sunnysahsi.com/",
+        "live": "https://gittrackr.sunnysahsi.com",
         "caseStudy": "/projects/gittrackr"
       },
       "images": [
@@ -570,7 +573,8 @@
       "period": {
         "start": "2023-08",
         "end": "2024-01"
-      }
+      },
+      "outcome": "GitTrackr made it clear that developer tooling must feel instantaneous—even a 200ms delay on filter switches broke the flow state the cockpit was designed to protect. The dual-stream PR/issue toggle required careful cache invalidation to avoid stale state when switching between views. Going forward I'd integrate webhook-driven real-time updates to replace the polling interval, and add anomaly detection on the velocity telemetry to surface burnout signals or sprint drift before they affect delivery."
     },
     {
       "id": "linktree",
@@ -610,7 +614,8 @@
       "period": {
         "start": "2023-11",
         "end": "2024-03"
-      }
+      },
+      "outcome": "Building LinkHub end-to-end reinforced the compounding benefit of server-rendered dynamic routes for SEO—crawler indexing was near-instant compared to client-rendered alternatives. The biggest lesson was in NextAuth session handling: keeping theme and profile mutations inside authenticated Server Actions eliminated an entire class of CSRF surface area. Next I'd add analytics on link click-through rates and A/B test different card layouts, since the platform's value is ultimately measured by whether the links actually get clicked."
     },
     {
       "id": "real-dev-squad",
@@ -651,7 +656,8 @@
       "period": {
         "start": "2022-12",
         "end": "2024-07"
-      }
+      },
+      "outcome": "Contributing to Real Dev Squad taught me more about production code review culture than any personal project could—every PR touched shared infrastructure used by hundreds of active contributors, so defensive validation and backward-compatible changes weren't optional. The Goal form modal work exposed gaps in Vuetify's reactive state model under rapid user input, which I addressed with explicit debounce guards. I'd revisit the access-control accordion logic to lift it into a composable permission hook, making it reusable across the growing number of role-gated UI surfaces."
     }
   ],
   "openSource": [

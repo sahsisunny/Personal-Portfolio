@@ -130,6 +130,7 @@ export const ProjectSchema = z.object({
   role: z.string(),
   tech: z.array(z.string()),
   highlights: z.array(z.string()),
+  outcome: z.string().nullable().optional(),
   metrics: z
     .object({
       toolsCount: z.number().nullable().optional(),
