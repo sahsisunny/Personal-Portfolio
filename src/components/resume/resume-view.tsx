@@ -162,7 +162,7 @@ export function ResumeView({
               }`}
             >
               <span>{person.location}</span>
-              <span>•</span>
+              <span>&nbsp;•&nbsp;</span>
               <a
                 href={`mailto:${person.email}`}
                 className={`hover:underline font-medium ${
@@ -173,7 +173,7 @@ export function ResumeView({
               </a>
               {person.phone && (
                 <>
-                  <span>•</span>
+                  <span>&nbsp;•&nbsp;</span>
                   <a
                     href={`tel:${person.phone.replace(/\s+/g, "")}`}
                     className={`hover:underline font-medium ${
@@ -184,7 +184,7 @@ export function ResumeView({
                   </a>
                 </>
               )}
-              <span>•</span>
+              <span>&nbsp;•&nbsp;</span>
               <a
                 href="https://sunnysahsi.com"
                 target="_blank"
@@ -197,7 +197,7 @@ export function ResumeView({
               </a>
               {socials.linkedin && (
                 <>
-                  <span>•</span>
+                  <span>&nbsp;•&nbsp;</span>
                   <a
                     href={socials.linkedin}
                     target="_blank"
@@ -212,7 +212,7 @@ export function ResumeView({
               )}
               {socials.github && (
                 <>
-                  <span>•</span>
+                  <span>&nbsp;•&nbsp;</span>
                   <a
                     href={socials.github}
                     target="_blank"

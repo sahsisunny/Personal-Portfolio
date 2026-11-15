@@ -10,14 +10,22 @@ if (!fs.existsSync(chromePath)) {
 }
 
 // Find active port
-let port = 3001;
-try {
-  const check = execSync(`curl -s -o /dev/null -w "%{http_code}" http://localhost:3001/resume`, { encoding: "utf-8" });
-  if (check.trim() !== "200") {
-    port = 3000;
-  }
-} catch {
-  port = 3000;
+const candidatePorts = [process.env.PORT, 3000, 3001, 3002, 3003, 3004, 3005].filter(Boolean);
+let port = null;
+
+for (const p of candidatePorts) {
+  try {
+    const res = execSync(`curl -s "http://localhost:${p}/resume"`, { encoding: "utf-8", timeout: 2000 });
+    if (res.includes("Sunny Sahsi")) {
+      port = p;
+      break;
+    }
+  } catch {}
+}
+
+if (!port) {
+  console.error("Could not find active portfolio server. Please ensure 'pnpm dev' is running.");
+  process.exit(1);
 }
 
 const jobs = [

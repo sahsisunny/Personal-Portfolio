@@ -143,9 +143,8 @@
       "roles": [
         {
           "title": "Associate Full Stack Developer",
-          "start": "2026",
+          "start": "2026-10",
           "end": null,
-          "_note": "Add the exact promotion month, e.g. 2026-10.",
           "highlights": [
             "Architected a high-concurrency enterprise AI orchestrator in Go routing queries across 600+ microservice endpoints, achieving sub-100ms internal tool dispatch and parallel API execution.",
             "Enforced zero-trust access by forwarding caller-scoped session tokens and programmatically injecting tenant IDs in Go, preventing prompt-based tenant drift with 99.9% isolation compliance.",
@@ -155,8 +154,8 @@
         },
         {
           "title": "Junior Full Stack Developer",
-          "start": "2024",
-          "end": "2026",
+          "start": "2024-08",
+          "end": "2026-10",
           "highlights": [
             "Engineered responsive enterprise web applications using Next.js and Ant Design, optimizing client rendering performance to cut page load times by 40% on 10,000+ record datasets.",
             "Built high-throughput Go backend microservices with PostgreSQL and MySQL, enforcing strict transactional consistency (ACID) and robust error handling.",
@@ -194,11 +193,10 @@
           "start": "2022-12",
           "end": "2024-11",
           "highlights": [
-            "Joined 5:00 AM daily standups, establishing high-discipline async communication and agile standup rituals in a distributed team.",
-            "Earned production task access by architecting a Vanilla JS Lift Simulation (state store, queue engine, responsive UI).",
-            "Inducted into the GitHub organization with elevated privileges after receiving 5+ endorsement votes from existing core members.",
-            "Contributed across the multi-stack ecosystem: Vanilla JS (website-www), Ember.js (website-my), React & Next.js (website-status, website-dashboard), and Golang microservices (tiny-site-backend).",
-            "Attended the sponsored in-person community meetup in Bangalore arranged by Prakash and sponsored by Ankush Dharkar, Amit Prakash, and Prakash."
+            "Inducted into GitHub org with triage & review privileges after securing 5 core member votes; maintained RFC guidelines across 30+ distributed contributors.",
+            "Architected an algorithmic multi-elevator simulation in Vanilla JS (central state store, starvation-free queue engine, 60fps responsive rendering).",
+            "Built authenticated Go microservice routes (tiny-site-backend) with structured error handling and unit tests, and standardized Node.js API endpoints.",
+            "Engineered Ember.js Out-of-Office sprint workflows behind feature flags and configured local SSL MSW proxy servers, unblocking squad development environments."
           ]
         }
       ],
@@ -229,8 +227,8 @@
           "start": "2022-08",
           "end": "2022-09",
           "highlights": [
-            "Built native Android applications in Kotlin implementing Material Design components and responsive UI hierarchy.",
-            "Developed an offline-first Grocery management application with local data persistence and clean MVVM architecture."
+            "Engineered an offline-first Android application in Kotlin using MVVM architecture, Room database for local caching, and Material Design UI.",
+            "Implemented reactive UI state binding and asynchronous repository queries, ensuring seamless offline synchronization and 60fps scrolling."
           ]
         }
       ],
