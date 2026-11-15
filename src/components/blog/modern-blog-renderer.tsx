@@ -293,25 +293,42 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
           }
 
           if (b.type === "image") {
-            elements.push(
-              <figure
-                key={key}
-                className="my-8 overflow-hidden rounded-xl border border-border/80 bg-surface-2/40 shadow-xs"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={b.src}
-                  alt={b.alt || "Article illustration"}
-                  loading="lazy"
-                  className="w-full h-auto object-cover max-h-[520px]"
-                />
-                {b.alt && (
-                  <figcaption className="p-3 text-center text-xs font-mono text-muted border-t border-border/50 bg-surface-2/60">
-                    {b.alt}
-                  </figcaption>
-                )}
-              </figure>
-            );
+            const isLogo = b.alt.startsWith("logo:");
+            const displayAlt = isLogo ? b.alt.replace(/^logo:\s*/, "") : b.alt;
+
+            if (isLogo) {
+              elements.push(
+                <div key={key} className="my-6 flex justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={b.src}
+                    alt={displayAlt}
+                    loading="lazy"
+                    className="w-24 h-24 object-contain rounded-2xl shadow-md"
+                  />
+                </div>
+              );
+            } else {
+              elements.push(
+                <figure
+                  key={key}
+                  className="my-8 overflow-hidden rounded-xl border border-border/80 bg-surface-2/40 shadow-xs"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={b.src}
+                    alt={displayAlt || "Article illustration"}
+                    loading="lazy"
+                    className="w-full h-auto object-cover max-h-[520px]"
+                  />
+                  {displayAlt && (
+                    <figcaption className="p-3 text-center text-xs font-mono text-muted border-t border-border/50 bg-surface-2/60">
+                      {displayAlt}
+                    </figcaption>
+                  )}
+                </figure>
+              );
+            }
             return;
           }
 

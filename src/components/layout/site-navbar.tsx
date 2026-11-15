@@ -3,6 +3,7 @@
 import * as React from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, Compass, FileText, ArrowUpRight } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -53,9 +54,14 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
           href="/"
           className="group flex items-center gap-2.5 text-left transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg p-1 flex-shrink-0"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-contrast font-mono font-bold text-base shadow-sm flex-shrink-0">
-            SS
-          </div>
+          <Image
+            src="/icon.svg"
+            alt="SS logo"
+            width={36}
+            height={36}
+            className="rounded-lg flex-shrink-0"
+            priority
+          />
           <div className="flex flex-col min-w-0">
             <span className="font-bold leading-tight tracking-tight text-text whitespace-nowrap text-sm sm:text-base">
               {name}
@@ -164,9 +170,13 @@ export function SiteNavbar({ name, features }: SiteNavbarProps) {
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-3"
               >
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-contrast font-mono font-bold text-sm shadow-sm">
-                  SS
-                </div>
+                <Image
+                  src="/icon.svg"
+                  alt="SS logo"
+                  width={36}
+                  height={36}
+                  className="rounded-lg"
+                />
                 <div className="flex flex-col">
                   <span className="font-bold text-text text-base tracking-tight leading-none">
                     {name}
