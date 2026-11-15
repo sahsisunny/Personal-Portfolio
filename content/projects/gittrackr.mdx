@@ -2,13 +2,14 @@
 
 ---
 
-## Metadata
-- **Project**: GitTrackr
-- **Developer**: Sunny Sahsi (Software Engineer, inspired during active tenure in Real Dev Squad)
-- **Domain**: Developer Tools, Engineering Productivity, Workflow Optimization
-- **Tech Stack**: Next.js 16, React 19, TypeScript 5.9, NextAuth v4, Resend API, CSS Modules, Vitest, Node.js LTS
-- **Live Demo**: [https://gittrackr.sunnysahsi.com/dashboard/octocat](https://gittrackr.sunnysahsi.com/dashboard/octocat)
-- **Production URL**: [https://gittrackr.sunnysahsi.com/](https://gittrackr.sunnysahsi.com/)
+## Project Metadata
+
+- **Project Name**: GitTrackr
+- **Developer & Role**: Sunny Sahsi (Software Engineer, inspired during active engineering tenure in Real Dev Squad)
+- **Domain**: Developer Productivity, Engineering Intelligence, GitHub Triage & Workflow Optimization
+- **Tech Stack**: Next.js 16, React 19, TypeScript 5.9, NextAuth.js v4, Resend API, CSS Modules, Vitest, Node.js LTS
+- **Live Demo Sandbox**: [https://gittrackr.sunnysahsi.com/dashboard/octocat](https://gittrackr.sunnysahsi.com/dashboard/octocat)
+- **Production Application**: [https://gittrackr.sunnysahsi.com/](https://gittrackr.sunnysahsi.com/)
 
 ---
 
@@ -18,7 +19,11 @@ In fast-paced, high-collaboration software engineering environments like **Real 
 
 **GitTrackr** was conceptualized and engineered to solve this pervasive developer bottleneck: **the lack of a single, unified view to monitor, filter, and track all assigned issues, open PRs, merged contributions, and organization-wide velocity.**
 
-By directly interfacing with GitHub's Search and Users APIs through scoped OAuth, GitTrackr aggregates fragmented work streams into an intuitive, zero-latency dashboard. It transforms hours of manual GitHub navigation into an instantaneous triage cockpit.
+### Strategic Objectives
+
+- **Zero-Latency Ingestion**: Aggregate fragmented work streams from GitHub's Search and Users APIs into an instantaneous triage cockpit.
+- **Cognitive Load Reduction**: Transform 15+ scattered browser tabs into a single unified stream of truth.
+- **Privacy-First Architecture**: Zero external databases — bearer tokens remain strictly in client memory.
 
 ```mermaid
 flowchart LR
@@ -35,12 +40,14 @@ flowchart LR
 ## 2. The Problem Space: The Real Dev Squad Experience
 
 ### The Challenge of Modern Collaborative Development
+
 While contributing actively in Real Dev Squad, the engineering workflow demanded:
-1. **Raising Multiple Concurrent PRs**: Features split into modular pull requests across frontend, backend, documentation, and shared utility packages.
-2. **Handling Multiple Assigned Tickets**: Reviewing community bug reports, sprint backlog items, and architectural RFCs.
-3. **Cross-Organization Context Switching**: Jumping between organization repositories, personal forks, and downstream dependencies.
+- **Raising Multiple Concurrent PRs**: Features split into modular pull requests across frontend, backend, documentation, and shared utility packages.
+- **Handling Multiple Assigned Tickets**: Reviewing community bug reports, sprint backlog items, and architectural RFCs.
+- **Cross-Organization Context Switching**: Jumping between organization repositories, personal forks, and downstream dependencies.
 
 ### The Pain Points in Native GitHub
+
 Despite GitHub's power, managing active multi-repo workloads presents friction:
 - **Fragmented Views**: A developer's authored PRs, assigned issues, and review requests live on separate pages behind custom query filters (`is:open is:pr author:@me`, `is:issue assignee:@me`).
 - **No Consolidated Velocity Metrics**: GitHub lacks a quick dashboard revealing personal sprint stats at a glance (e.g., total open PRs, merged count, pending tickets).
@@ -89,33 +96,33 @@ graph TD
 
 ### Core Innovations & Capabilities
 
-1. **Unified Dual-Stream Cockpit**:
-   - Effortless toggle between **Assigned Issues** and **Pull Requests** in a single view.
-   - Real-time search query filtering with instant clear capabilities.
+- **Unified Dual-Stream Cockpit**:
+  - Effortless toggle between **Assigned Issues** and **Pull Requests** in a single view.
+  - Real-time search query filtering with instant clear capabilities.
 
-2. **Multi-State Status Filtering**:
-   - Distinct filters for **All**, **Open**, **Merged**, and **Closed** states with dynamic count badges, giving immediate visual status for every item.
+- **Multi-State Status Filtering**:
+  - Distinct filters for **All**, **Open**, **Merged**, and **Closed** states with dynamic count badges, giving immediate visual status for every item.
 
-3. **Multi-Tenant Organization Switcher**:
-   - Automatically detects user organization memberships and surfaces one-click org dashboards, enabling seamless switching between company orgs and personal repos.
+- **Multi-Tenant Organization Switcher**:
+  - Automatically detects user organization memberships and surfaces one-click org dashboards, enabling seamless switching between company orgs and personal repos.
 
-4. **Velocity Telemetry & Lead-Time Analytics**:
-   - Interactive trend graphs allowing engineers to analyze throughput over **Last 7 Days**, **Last 4 Weeks**, or **Last Quarter**.
-   - Tracks merged vs. opened PR volumes and issue resolution cadences.
+- **Velocity Telemetry & Lead-Time Analytics**:
+  - Interactive trend graphs allowing engineers to analyze throughput over **Last 7 Days**, **Last 4 Weeks**, or **Last Quarter**.
+  - Tracks merged vs. opened PR volumes and issue resolution cadences.
 
-5. **Developer Profile & Activity Calendar**:
-   - Language breakdown badges and public repository browser.
-   - Real-time streak tracking (Current Streak, Longest Streak, Consistency Rate).
-   - Layout-stable contribution calendar with hover tooltips and zero layout shift.
+- **Developer Profile & Activity Calendar**:
+  - Language breakdown badges and public repository browser.
+  - Real-time streak tracking (Current Streak, Longest Streak, Consistency Rate).
+  - Layout-stable contribution calendar with hover tooltips and zero layout shift.
 
-6. **Direct Contact Channel via Resend**:
-   - Built-in `/api/contact` powered by the Resend email API to deliver feedback, bug reports, and inquiries directly to the developer's inbox with styled HTML templates.
+- **Direct Contact Channel via Resend**:
+  - Built-in `/api/contact` powered by the Resend email API to deliver feedback, bug reports, and inquiries directly to the developer's inbox with styled HTML templates.
 
-7. **Zero-Database, Privacy-First Architecture**:
-   - GitTrackr stores **no user source code**, no database records, and no credentials on server disks. All queries execute client-side via secure, scoped GitHub bearer tokens.
+- **Zero-Database, Privacy-First Architecture**:
+  - GitTrackr stores **no user source code**, no database records, and no credentials on server disks. All queries execute client-side via secure, scoped GitHub bearer tokens.
 
-8. **Interactive Live Demo Cockpit**:
-   - Standalone `/dashboard/octocat` sandbox and landing page interactive cockpit running real components with zero OAuth requirements.
+- **Interactive Live Demo Cockpit**:
+  - Standalone `/dashboard/octocat` sandbox and landing page interactive cockpit running real components with zero OAuth requirements.
 
 ---
 
@@ -138,7 +145,7 @@ graph TD
 
 ## 5. UI/UX Evolution
 
-The application underwent continuous polish transitioning from a prototype to a polished developer tool:
+The application underwent continuous polish transitioning from an initial prototype to a modernized developer tool:
 
 ### Before vs. After Modernization
 
@@ -160,6 +167,7 @@ The application underwent continuous polish transitioning from a prototype to a 
 ## 6. Key Results & Developer Impact
 
 ### Quantitative Velocity Gains
+
 - **65% Reduction in Daily Triage Time**: Developers spend ~5 minutes reviewing their morning backlog instead of 15–20 minutes clicking through separate GitHub URLs.
 - **Zero Stalled Pull Requests**: By highlighting merged vs. pending review states, PR turnaround times improved significantly during sprint cycles.
 - **Single-Tab Workflow**: Reduced browser overhead from 15+ tabs down to 1 active GitTrackr window.
@@ -169,12 +177,14 @@ The application underwent continuous polish transitioning from a prototype to a 
 ## 7. Lessons Learned & Future Roadmap
 
 ### Engineering Lessons
-1. **API Rate Limiting & Pagination Strategy**: GitHub's Search API rate limits (30 requests/minute for search endpoints) require targeted querying (`per_page=100`) and client-side memoization to prevent throttling.
-2. **SSR Hydration Hygiene**: In hybrid SSR applications (Next.js), date formatting must strictly avoid locale-dependent methods like `toLocaleDateString(undefined, ...)` without fixed locales or UTC date extraction.
-3. **Layout Shift Resilience**: Visual elements mounted dynamically on hover (tooltips, pills) must allocate layout space up front to avoid triggering cumulative layout shift (CLS).
-4. **Standard Web Platform Over Workarounds**: Migrating to native `<details>` and `<summary>` elements simplified state management and provided out-of-the-box keyboard and screen-reader accessibility.
 
-### Roadmap
+- **API Rate Limiting & Pagination Strategy**: GitHub's Search API rate limits (30 requests/minute for search endpoints) require targeted querying (`per_page=100`) and client-side memoization to prevent throttling.
+- **SSR Hydration Hygiene**: In hybrid SSR applications (Next.js), date formatting must strictly avoid locale-dependent methods like `toLocaleDateString(undefined, ...)` without fixed locales or UTC date extraction.
+- **Layout Shift Resilience**: Visual elements mounted dynamically on hover (tooltips, pills) must allocate layout space up front to avoid triggering cumulative layout shift (CLS).
+- **Standard Web Platform Over Workarounds**: Migrating to native `<details>` and `<summary>` elements simplified state management and provided out-of-the-box keyboard and screen-reader accessibility.
+
+### Roadmap Milestones
+
 - [x] **Velocity Telemetry Chart**: Interactive 7-day, 4-week, and quarterly throughput visualization.
 - [x] **Activity & Streak Heatmap**: Layout-stable contribution calendar with active streak tracking.
 - [x] **Live Interactive Demo Cockpit**: Real component sandbox accessible without authentication.

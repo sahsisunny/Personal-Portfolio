@@ -78,8 +78,13 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
         const proseText = part.trim();
         if (!proseText) return;
 
+        // Ensure headings, horizontal rules, and block elements have clean double-newlines around them
+        const normalizedProse = proseText
+          .replace(/(^|\n)(#{1,4}\s+[^\n]+)/g, "$1\n\n$2\n\n")
+          .replace(/(^|\n)(---|\*\*\*|___)\s*(\n|$)/g, "$1\n\n$2\n\n");
+
         // Split prose into paragraphs, headings, blockquotes, lists, tables
-        const paragraphs = proseText.split(/\n\n+/);
+        const paragraphs = normalizedProse.split(/\n\n+/);
 
         paragraphs.forEach((pText, pIdx) => {
           const trimmed = pText.trim();
@@ -308,16 +313,24 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
           }
 
           // Bullet lists / Numbered lists / Checklists
-          if (trimmed.startsWith("- ") || trimmed.startsWith("1. ") || trimmed.startsWith("* ")) {
-            const listItems = trimmed.split("\n");
+          if (
+            trimmed.startsWith("- ") ||
+            trimmed.startsWith("1. ") ||
+            trimmed.startsWith("* ") ||
+            trimmed.startsWith("• ")
+          ) {
+            const listItems = trimmed.split("\n").filter((l) => l.trim().length > 0);
             elements.push(
               <ul
                 key={`list-${index}-${pIdx}`}
-                className="my-4 space-y-2 text-muted text-base leading-relaxed pl-1"
+                className="my-4 space-y-2.5 text-muted text-base leading-relaxed pl-1"
               >
                 {listItems.map((item, itemIdx) => {
+                  const isSubItem = /^\s{2,}/.test(item);
+                  const trimmedItem = item.trim();
+
                   let isChecked: boolean | null = null;
-                  let itemText = item.replace(/^(-\s+|\d+\.\s+|\*\s+)/, "");
+                  let itemText = trimmedItem.replace(/^([-\*•]\s+|\d+\.\s+)/, "");
                   if (itemText.startsWith("[x] ") || itemText.startsWith("[X] ")) {
                     isChecked = true;
                     itemText = itemText.replace(/^\[[xX]\]\s*/, "");
@@ -327,15 +340,23 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
                   }
 
                   return (
-                    <li key={itemIdx} className="flex items-start gap-2.5">
+                    <li
+                      key={itemIdx}
+                      className={`flex items-start gap-2.5 ${
+                        isSubItem ? "ml-6 text-sm text-muted/90" : ""
+                      }`}
+                    >
                       {isChecked === true ? (
-                        <span className="text-emerald-500 font-mono text-sm leading-none mt-1">✓</span>
+                        <span className="text-emerald-500 font-mono text-sm leading-none mt-1 flex-shrink-0">✓</span>
                       ) : isChecked === false ? (
-                        <span className="text-muted/60 font-mono text-sm leading-none mt-1">○</span>
+                        <span className="text-muted/60 font-mono text-sm leading-none mt-1 flex-shrink-0">○</span>
+                      ) : isSubItem ? (
+                        <span className="text-accent/60 select-none mt-1 font-mono text-xs flex-shrink-0">–</span>
                       ) : (
-                        <span className="text-accent/80 select-none mt-1 font-mono text-xs">•</span>
+                        <span className="text-accent/80 select-none mt-1 font-mono text-xs flex-shrink-0">•</span>
                       )}
                       <span
+                        className="flex-1"
                         dangerouslySetInnerHTML={{
                           __html: formatInline(itemText),
                         }}
@@ -377,6 +398,7 @@ export function ModernBlogRenderer({ content }: ModernBlogRendererProps) {
 // Format basic inline markdown: **bold**, *italic*, `code`, ![img](url), [link](url)
 function formatInline(text: string): string {
   return text
+    .replace(/&(?!(?:amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);)/g, "&amp;")
     .replace(
       /!\[(.*?)\]\((.*?)\)/g,
       '<img src="$2" alt="$1" class="rounded-lg my-2 max-w-full h-auto border border-border inline-block" loading="lazy" />'
