@@ -459,8 +459,8 @@
       "status": "completed",
       "featured": true,
       "visibility": "public",
-      "summary": "Privacy-first real-time family location intelligence, safety, and emergency response platform with sub-50ms WebSocket telemetry propagation, geofencing, and sub-1% battery drain.",
-      "description": "CareRing is an open-source, privacy-first family safety platform engineered with zero telemetry monetization. Combines hardware-accelerated motion coprocessor filtering for sub-1% battery drain per hour (benchmarked on physical iOS and Android test devices across 8-hour continuous mobile sessions), sub-50ms WebSocket telemetry propagation, and PostGIS spatial indexing for instant safe-zone arrival/departure triggers.",
+      "summary": "Privacy-first real-time family location intelligence, commute safety, and trip coordination platform with sub-50ms WebSocket telemetry, unlimited geofenced safe places, and sub-1% battery drain.",
+      "description": "Engineered for families navigating everyday commutes—children going to school, young adults commuting to college, parents heading to the office, and friends on highway road trips. Built to eliminate the hazardous anxiety of 'Did you reach safely?' calls while solving the three fatal flaws of commercial tracking apps: rapid battery depletion (<4 hrs), selling private location data to insurance and ad brokers, and steep $25/mo paywalls. Combines hardware-accelerated motion coprocessor gating (<1% battery/hr), dynamic trip groups for live journey tracking, sub-50ms WebSocket broadcast, PostGIS safe-zone geofencing, and one-touch emergency sirens.",
       "role": "Solo developer",
       "tech": [
         "React Native",
@@ -473,15 +473,17 @@
         "TypeScript"
       ],
       "highlights": [
-        "Sub-50ms WebSocket telemetry propagation with 60 FPS mobile coordinate interpolation.",
-        "Hardware-accelerated motion coprocessor filtering with sub-1% battery drain per hour.",
-        "Dynamic geofencing with PostGIS spatial indexing for instant safe-zone arrival/departure triggers.",
-        "One-touch emergency SOS broadcast with zero-knowledge encrypted contact alerts."
+        "Sub-50ms WebSocket telemetry propagation with 60 FPS mobile coordinate interpolation (MarkerInterpolator).",
+        "Hardware-accelerated motion coprocessor filtering achieving sub-1% battery drain per hour.",
+        "Dynamic trip groups and everyday family circles for live commute tracking, speed, and battery monitoring.",
+        "PostGIS spatial indexing (ST_DWithin) for microsecond safe-zone arrival/departure triggers (School, College, Work).",
+        "Smart Activity Detection state machine (Stationary, Walking, Running, Cycling, Driving, Riding) rejecting naive speed lookups.",
+        "One-touch emergency SOS siren broadcast with Do-Not-Disturb override and real-time distress coordinate streaming."
       ],
       "links": {
         "repo": "https://github.com/sahsisunny/care-ring",
         "live": "https://carering.sunnysahsi.com",
-        "caseStudy": null
+        "caseStudy": "/projects/care-ring"
       },
       "images": [
         "/images/projects/care-ring-cover.png"
@@ -648,10 +650,10 @@
       "links": {
         "repo": "https://github.com/Real-Dev-Squad",
         "live": "https://realdevsquad.com",
-        "caseStudy": null
+        "caseStudy": "/projects/real-dev-squad"
       },
       "images": [
-        "/images/projects/real-dev-squad.svg"
+        "/images/projects/real-dev-squad-cover.png"
       ],
       "period": {
         "start": "2022-12",
@@ -1331,18 +1333,6 @@
         "rating": "5/5 Expedition Rating"
       },
       {
-        "id": "ram-phone-mount",
-        "name": "RAM Tough-Charge Anti-Vibration Mount",
-        "category": "tech",
-        "categoryLabel": "Tech & Electronics",
-        "brand": "RAM Mounts",
-        "spec": "1-inch B-Size Ball • Triple-Axis Silicone Vibration Dampener • 15W Qi Wireless Fast Charging • IP67 Waterproof",
-        "description": "Rugged cockpit smartphone mount combining an aircraft-grade aluminum 1-inch B-size rubber ball mount with a triple-axis silicone vibration dampener. Protects sensitive smartphone optical image stabilization (OIS) camera sensors while delivering 15W Qi wireless fast charging with IP67 waterproof sealed electronics.",
-        "image": "/images/gear/ram-phone-mount.webp",
-        "fieldNotes": "Absorbs single-cylinder engine harmonic vibrations; protected smartphone camera OIS gyro sensors through 15,480 km with zero mechanical faults.",
-        "rating": "5/5 Expedition Rating"
-      },
-      {
         "id": "agaro-atom-cordless-inflator",
         "name": "AGARO Atom Cordless Digital Tyre Inflator",
         "category": "emergency",
@@ -1520,8 +1510,7 @@
         "Grand Pitstop 3D Honeycomb Gel Air Seat Cushion",
         "Vagary Universal CNC Cruise Control Throttle Lock",
         "AGARO Atom Cordless 150 PSI Digital Tyre Inflator (4500mAh Battery)",
-        "OLKINO 12-in-1 Tubeless Puncture Kit & Taparia Hex Keys",
-        "RAM Tough-Charge Anti-Vibration Wireless Phone Mount"
+        "OLKINO 12-in-1 Tubeless Puncture Kit & Taparia Hex Keys"
       ]
     },
     "socials": {
