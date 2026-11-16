@@ -87,7 +87,7 @@ export function getAllBlogPosts(includeDrafts = process.env.NODE_ENV !== "produc
       const coverImage =
         parsedFrontmatter.data.cover ||
         parsedFrontmatter.data.image ||
-        `/images/blog/${slug}.svg`;
+        `/images/blog/${slug}.png`;
 
       return {
         frontmatter: parsedFrontmatter.data,
