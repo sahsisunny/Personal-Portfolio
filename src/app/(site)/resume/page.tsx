@@ -40,7 +40,9 @@ export default async function ResumePage({
   const initialTheme = resolvedParams?.theme === "dark" ? "dark" : "light";
 
   const person = getPerson();
-  const experience = getExperiences();
+  const experience = getExperiences().filter(
+    (exp) => exp.id !== "smartinternz" && exp.company.toLowerCase() !== "smartinternz"
+  );
   const education = getEducation();
   const skills = getSkills();
   const socials = getSocials();
