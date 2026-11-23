@@ -146,10 +146,10 @@
           "start": "2026-10",
           "end": null,
           "highlights": [
-            "Architected a high-concurrency enterprise AI orchestrator in Go routing queries across 600+ microservice endpoints, achieving sub-100ms internal tool dispatch and parallel API execution.",
-            "Enforced zero-trust access by forwarding caller-scoped session tokens and programmatically injecting tenant IDs in Go, preventing prompt-based tenant drift with 99.9% isolation compliance.",
-            "Engineered an autonomous routine runtime for scheduled and event-driven workflows with human-in-the-loop approvals, reducing operational manual inquiry handling by 60%+.",
-            "Delivered production full-stack modules across Next.js 15 and Go microservices, establishing structured UI card schemas with 99.9% uptime."
+            "Designed and built a Go-based AI assistant service for a hospitality reservation platform, using LLM tool-calling over the platform's APIs through the Model Context Protocol (MCP), with Redis-backed caching and support for multiple LLM providers.",
+            "Implemented an OAuth 2.0 authorization server for MCP clients in the auth service (RFC 8414 metadata, authorize/consent/token/revoke flows) and a rate-limited token exchange that issues short-lived, user-scoped delegated JWTs, so the assistant only acts with the caller's own permissions.",
+            "Owned the assistant's routines feature end to end: scheduled routines with delivery and run history, a Next.js UI with dynamic forms, and per-routine access grants backed by new database migrations.",
+            "Set up the assistant's delivery pipeline with Docker images, GitHub Actions deploys to dev and QA, and a Helm chart for environment and LLM configuration."
           ]
         },
         {
@@ -157,22 +157,37 @@
           "start": "2024-08",
           "end": "2026-10",
           "highlights": [
-            "Engineered responsive enterprise web applications using Next.js and Ant Design, optimizing client rendering performance to cut page load times by 40% on 10,000+ record datasets.",
-            "Built high-throughput Go backend microservices with PostgreSQL and MySQL, enforcing strict transactional consistency (ACID) and robust error handling.",
-            "Shipped payment gateway integrations with automated webhook verification and built dynamic role-based authorization (RBAC) securely gating views and API access.",
-            "Maintained GitLab CI/CD release pipelines and authored comprehensive Vitest unit and integration test suites achieving 85%+ coverage across core business workflows."
+            "Shipped 1,100+ merged merge requests across the frontend and four Go microservices of a hotel property-management and reservation platform, covering property setup, rates, inventory, reservations, housekeeping, and reporting.",
+            "Built core reservation and front-desk flows in Next.js, React, TypeScript, and Ant Design, including the booking flow, check-in with guest document and signature capture, group charge and refund allocation, and reservation locking.",
+            "Integrated card payments with Fortis terminals, Shift4, and PCI Booking hosted card capture, including gateway-hosted tokenization, authorize-to-sale collection, and audit logging across the payment lifecycle.",
+            "Developed Go (Gin, GORM) backend features such as folio and group folio PDF generation with a worker pool for parallel rendering, PDF/XLSX/CSV report exports, a reservation audit trail, credit invoices with credit-limit checks, and RBAC-protected report APIs.",
+            "Automated guest and staff emails (confirmations, cancellations, check-in welcome, split folio delivery, night audit alerts) and wrote Vitest, Testing Library, and Playwright BDD test suites running in GitLab CI."
           ]
         }
       ],
       "tech": [
         "Next.js",
+        "React",
         "TypeScript",
         "Ant Design",
+        "Tailwind CSS",
+        "React Query",
         "Go",
-        "MySQL",
+        "Gin",
+        "GORM",
         "PostgreSQL",
+        "MySQL",
+        "Redis",
+        "AWS (S3, SQS)",
+        "Docker",
         "GitLab CI/CD",
+        "GitHub Actions",
+        "Helm",
+        "OAuth 2.0",
+        "Model Context Protocol (MCP)",
+        "LLM APIs",
         "Vitest",
+        "Playwright",
         "Jira"
       ],
       "confidentialityNote": "Client and product names stay generic on the public site unless Fountane approves naming them."
